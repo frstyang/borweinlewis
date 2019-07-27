@@ -1,0 +1,999 @@
+\documentclass[../borwein-lewis_notes.tex]{subfiles}
+\begin{document}
+\maketitle
+\subsection{2.1 Optimality Conditions}
+\begin{enumerate}
+\item The \textit{directional derivative} of a function $f$ at 
+$\bar x$ in a direction $d\in\E$ is 
+\begin{equation*}
+f'(\bar x; d) = \lim_{t\downarrow 0} \frac{f(\bar x+td)-f(\bar x)}{t},
+\end{equation*}
+when this limit exists. 
+\item If exists $a\in\E$ where $f'(\bar x;d) = \ip{a,d}$ for all $d\in\E$,
+then we say $f$ is (Gateaux) differentiable at $\bar x$ with 
+(Gateaux) derivative $\nabla f(\bar x)= a$.
+\item The \textit{normal cone} to $C$ at $\bar x\in C$ is the convex cone 
+$\{d\in\E : \ip{d, x-\bar x}\leq 0\}$.
+\end{enumerate}
+\begin{proposition}[2.1.1 (First order necessary condition)]
+Suppose $C$ is a convex set in $\E$ and $\bar x$ is a local minimizer of 
+function $f: C\to\R$. Then for any point $x\in C$, the directional 
+derivative, if it exists, satisfies $f'(\bar x; x-\bar x)\geq 0$. 
+In particular, if $f$ is differentiable at $\bar x$, then $-\nabla f(\bar x)
+\in N_C(\bar x)$.
+\end{proposition}
+\begin{proposition}[(First order sufficient condition)] 
+Suppose that the set $C\subset\E$ is convex and that the function $f:C
+\to\R$ is convex. Then for any $\bar x,x\in C$, $f'(\bar x;x-\bar x)$ 
+exists in $[-\infty,+\infty)$. If $f'(\bar x;x-\bar x)\geq 0$ holds 
+for all $x\in C$, or $-\nabla f(\bar x)\in N_C(\bar x)$, then $\bar x$ 
+is a global minimizer of $f$ on $C$.
+\end{proposition}
+\begin{corollary}[2.1.3., (First order conditions for linear constraints)]
+For a convex set $C\subset\E$, a function $f:C\to\R$, a linear map 
+$A:\E\to\Y$ (where $\Y$ is a Euclidean space) and a point $b$ in $\Y$,
+consider the optimization problem 
+\begin{equation*}
+\inf\{f(x)\mid x\in C,Ax=b\}.
+\end{equation*}
+Suppose $\bar x\in\inter C$ satisfies $A\bar x=b$.
+\begin{enumerate}[(a)]
+\item If $\bar x$ is a local minimizer for the problem and $f$ is 
+differentiable at $\bar x$ then $\nabla f(\bar x)\in A^*\Y$.
+\item Conversely, if $\nabla f(\bar x)\in A^*\Y$ and $f$ is convex 
+then $\bar x$ is a global minimizer for the problem.
+\end{enumerate}
+\end{corollary}
+\begin{theorem}[2.1.5 (Second order conditions)]
+Suppose $f:\R^n\to\R$ is twice continuously differentiable and has a 
+critical point $\bar x$. If $\bar x$ is a local minimizer then the Hessian
+$\nabla^2 f(\bar x)$ is PSD. Conversely, if the Hessian is PD then 
+$\bar x$ is a local minimizer.
+\end{theorem}
+\begin{theorem}[2.1.6 (Basic separation)]
+If $C\in\E$ is convex and closed and $y\notin C$, then there exists 
+$a\in\E$ and $b\in\R$ such that for all $x\in C$, 
+$\ip{a,y} > b \geq \ip{a, x}$.
+\end{theorem}
+\begin{proposition}[2.1.7]
+If $f:\E\to\R$ is differentiable and bounded below then there are 
+points where $f$ has arbitrarily small derivative.
+\end{proposition}
+\subsection{Exercises for 2.1}
+\noindent\textbf{1.} Prove the normal cone is a closed convex cone.
+\bluea{
+\begin{proof}
+If $\ip{d, x-\bar x}\leq 0$ for all $x\in C$, then $\ip{rd,x-\bar x}
+\leq 0$ for all $x\in C$ too, for any $r\in\R_+$. Thus $N_{C}(\bar x)$ 
+is a cone. Furthermore, if $\ip{d_i,x-\bar x}\leq 0$ for $i\in\{1,2\}$, 
+then for any $\lambda\in[0,1]$, 
+\begin{equation*}
+\ip{\lambda d_1 + (1-\lambda)d_2, x-\bar x} = 
+\lambda \ip{d_1, x-\bar x} +(1-\lambda)\ip{d_2, x-\bar x} \leq 0.
+\end{equation*}
+Therefore $N_C(\bar x)$ is convex. Now let $d^i\to d$ be a convergent 
+sequence in $N_C(\bar x)$ and let $x\in C$ be arbitrary. 
+\begin{equation*}
+\ip{d^i, x-\bar x} \to \ip{d, x-\bar x},
+\end{equation*}
+and since each element of the sequence is $\leq 0$, the limit, 
+$\ip{d, x-\bar x}\leq 0$. Since $x$ was arbitrary, $d\in N_C(\bar x)$. 
+Therefore, $N_C(\bar x)$ is closed.
+\end{proof}}
+\noindent\textbf{2 (Examples of normal cones).} For the following sets 
+$C\subset\E$, check $C$ is convex and compute the normal cone $N_C(\bar x)$ 
+for points $\bar x$ in $C$:
+\begin{enumerate}[(a)]
+\item $C$ a closed interval in $\R$.  
+\bluea{
+\begin{equation*}
+a\leq x,y\leq b  \implies a\leq \lambda x+(1-\lambda)y\leq b.
+\end{equation*}
+If $\bar x$ is in the interior of $C$, then if $d$ is nonzero, then 
+$d\notin N_C(\bar x)$ because $\bar x + \epsilon d\in C$
+ for some $\epsilon > 0$. Thus, only the normal cones $N_C(a)$ and 
+$N_C(b)$ (if the interval is $[a,b]$) are nontrivial. By inspection, 
+$N_C(a) = -\R_+$ and $N_C(b) = \R_+$.}
+\item $C=B$, the unit ball. 
+\bluea{
+\begin{equation*}
+\|x\|,\|y\|\leq 1 \implies \|\lambda x + (1-\lambda)y\| 
+\leq \lambda \|x\| + (1-\lambda)\|y\| \leq 1.
+\end{equation*}
+As proved in (a), for $\|\bar x\| < 1$, $N_C(\bar x) = \{0\}$.
+Now suppose $\|\bar x\|=1$. We have $N_C(\bar x) = \R_+\bar x$.
+If $r\geq0$ then for $y\in B$,
+\begin{equation*}
+\ip{r\bar x, y-\bar x} = r\ip{\bar x, y} - r \leq r - r= 0
+\end{equation*}
+by Cauchy-Schwarz and $\|y\|\leq1$. Now if $d\notin\R_+\bar x$, 
+then $\ip{d, d\|d\|^{-1} - \bar x} > \|d\| - \|d\|\|\bar x\| = 0$.
+}
+\item $C$ a subspace.\\
+\bluea{
+Observe that for any set $C\in\E$, $N_C(\bar x) = N_{C-\bar x}(0)$. If 
+$C$ is a subspace, then $C-\bar x = C$. Therefore, the normal cone 
+is equal at any point of the subspace. Now let $0\in C$ and  
+$d\in N_C(0)$. If $\exists x\in C, \ip{d, x} < 0$, then 
+$- x\in C, d\in N_C(0)\implies \ip{d, - x} \leq 0$, 
+a contradiction. Therefore, $N_C(0) = 
+\{d\in \E: \ip{d, x} = 0\;\forall\,x\in C\} = C^\perp$, the orthogonal subspace to $C$. 
+By our earlier comment about the normal cones being equal, this 
+is true of $N_C(\bar x)$ for any $\bar x \in C$.}
+\item $C$ a closed halfspace: $\{x\mid\ip{a,x}\leq b\}$ where $0\neq a
+\in\E$ and $b\in\R$. \\
+\bluea{
+Noninterior points consist of the points $\delta C = \{x: \ip{a,x}
+= b\}$. Let $\bar x\in\delta C$. We have $N_C(\bar x) = \R_+ a$. 
+By definition of $C$, $\ip{a,x-\bar x} = \ip{a,x}-b \leq 0$, so 
+$r\ip{a,x-\bar x}\leq 0$ for every $r\in\R_+$. Furthermore, if 
+$z$ has a component orthogonal to $a$, we have $\ip{z, x-\bar x} > 0$ 
+by traveling in the direction of the orthogonal component on the 
+hyperplane $\delta C$.}
+\item $C=\{x\in\R^n\mid x_j\geq 0\text{ for all }j\in J\}$ (for 
+$J\subset\{1,2,\ldots,n\}$). \\
+\bluea{
+Noninterior points are those for which some constraint is tight. 
+Let $T\subset J$ be the set of indices of 
+tight constraints for the point $\bar x$. We have $N_C(\bar x) 
+= \{d\in\E: d_j\leq 0\forall j\in T, d_j=0\forall j\notin T\}$.
+ To see this, take $x\in C$.
+For each $j\in T$, since $\bar x_j = 0 $, $(x-\bar x)_j \geq 0$.
+This implies $\ip{d, x-\bar x} \leq 0$ for every $d\in N_C(\bar x)$.
+If $d\in\E$ is such that $d_j > 0$ for some $j\in T$, then 
+we can take $x=\bar x + \epsilon e_j$ for any $\epsilon > 0$ 
+to show $d$ cannot be in the normal cone. If $d_j \neq 0$ for some 
+$j\notin T$, Then we can take $x=\bar x + \sgn(d_j)\epsilon e_j$ for 
+small enough $\epsilon > 0$ for $x$ to be contained in $C$ (if $j\in J$,
+we are relying on $\bar x_j > 0$ not being tight).}
+\end{enumerate}
+\noindent\textbf{3 (Self-dual cones).} Prove each of the following cones 
+$K$ satisfy the relationship $N_K(0)=-K$.\\
+\bluea{The dual cone to $C$ is defined as $C^*=\{d\in\E:\ip{d,x}\geq 0 
+\,\forall x\in C\}$. We see that $C^* = -N_C(0)$. $N_C(0)$ is the set 
+of $d\in\E$ where $\ip{d,x}\leq 0$ for all $x\in C$, which is 
+precisely the negated elements $d\in\E$ for which $\ip{d,x}\geq 0$.}
+\begin{enumerate}[(a)]
+\item $\R_+^n$. \\
+\bluea{Let us compute $(\R_+^n)^*$. Suppose $d\in(\R_+^n)^*$. Then, it 
+must have nonnegative coordinates; otherwise if $d_j<0$, then $e_j\in
+\R_+^n$ would give $\ip{d, e_j} = d_j < 0$. Moreover, if $d\in \E$ has 
+all nonnegative coordinates, then $\ip{d,x}$ for $x\in \R_+^n$ is a 
+sum of nonnegative numbers, which is nonnegative. Therefore, 
+$(\R_+^n)^*=\R_+^n$.}
+\item $\S_+^n$. \\
+\bluea{Suppose $A\in(\S_+^n)^*$. Then, $A$ must be PSD. Otherwise, it 
+has an eigenvector $u$ with negative eigenvalue $\lambda < 0$, and 
+$uu^\top\in\S_+^n$ but $\ip{A, uu^\top} = u^\top A u = \lambda \|u\|^2 < 0$.
+Now suppose $A\in\S_n$ is PSD. Then, $\ip{A,X} \geq\;]\lambda(A)[^\top
+\lambda(X)\geq 0$ (Lower bound implied by Fan's inequality, $][$ denotes 
+rearrangement of a vector into nondecreasing order) for every $X\in\S_+^n$.
+Therefore, $(\S_{+}^n)^* = \S_+^n$. Note the first part of this proof,
+i.e. $(\S_+^n)^*$ only contains PSD matrices, would not be possible 
+without the assumption $A$ is symmetric (i.e. restricting to the universe 
+of symmetric matrices). Note that 
+\begin{equation*}
+x^\top \begin{bmatrix} 1 & -1 \\ 1 & 1\end{bmatrix} x = x_1^2 + x_2^2 
+\geq 0
+\end{equation*}
+for all $x\in\R^n$, but the matrix is not PSD.}
+\item $C=\{x\in\R^n\mid x_1\geq 0, x_1^2\geq x_2^2+\ldots+x_n^2\}$. \\
+\bluea{
+Suppose $d\in C^*$. Clearly $d_1\geq 0$, because $\R_+ e_1\in C$.
+Now suppose $d_1^2 < \sum_{j=2}^n d_j^2$. Consider the element 
+$x\in \E$ defined by $x_1=d_1$, and $x_i = -d_i|d_1|/\sqrt{\sum_{j=2}^n
+d_j^2}$ for $i=2,\ldots,n$. Then 
+\begin{equation*}
+\sum_{j=2}^n x_j^2 = \frac{d_1^2}{\sum_{j=2}^n d_j^2}\sum_{j=2}^n 
+d_j^2 = d_1^2 = x_1^2 \implies x \in C.
+\end{equation*}
+Now we compute 
+\begin{equation*}
+\ip{d,x} = x_1d_1+\sum_{j=2}^n x_jd_j = d_1^2 - \frac{|d_1|}{
+\sqrt{\sum_{j=2}^nd_j^2}}\sum_{j=2}^n d_j^2 = d_1^2 - |d_1|\sqrt{
+\sum_{j=2}^n d_j^2} < 0,
+\end{equation*}
+because $|d_1| < \sqrt{\sum_{j=2}^n d_j^2}$. Therefore, $d\notin C^*$.
+Now suppose $d\in C$. For any $x\in \E$, 
+denote $x_{2:}$ as the vector in $\R^{n-1}$ 
+of the 2nd through $n$th entries of $x$. Let $x\in C$. Then 
+\begin{equation*}
+\ip{d,x} \geq  d_1x_1 - \|d_{2:}\|\|x_{2:}\| \geq 0,
+\end{equation*}
+because $d_1\geq \|d_{2:}\|$ and $x_1\geq \|x_{2:}\|$.
+}
+\end{enumerate}
+\noindent\textbf{4 (Normals to affine sets).} Given a linear map $A:\E\to
+\Y$ (where $\Y$ is a Euclidean space) and a point $b\in\Y$, prove the 
+normal cone to the set $\{x\in\E\mid Ax=b\}$ at any point in it is $A^*\Y$.
+Hence deduce Corollary 2.1.3.
+\bluea{
+\begin{proof}
+Denote $C=\{x\in\E\mid Ax=b\}$. Given $\bar x\in C$, we have 
+$N_C(\bar x) = N_{C-\bar x}(0)$. $C-\bar x$ is the subspace 
+$\{x\in\E\mid Ax=0\}$. By problem 2, part (c), $N_{C-\bar x}(0)$ 
+is the perpendicular subspace to $\{x\in\E\mid Ax=0\} = \nul(A)$. 
+By the fundamental theorem of linear algebra, $\nul(A)^\perp = 
+\range(A^*)$. Therefore, $N_C(\bar x) = \range(A^*) = A^*\Y$. \\
+Corollary 2.1.3 states that a differentiable $f$ achieving a local 
+minimum at $\bar x\in \inter C$
+ subject to $Ax=b$ implies that $-\nabla f(\bar x)
+\in A^*\Y$, and that this is a sufficient condition for convex 
+functions. \\
+By Proposition 2.1.1, $-\nabla f(\bar x) \in N_{C'}(\bar x)$, 
+where $C'=C\cap \{x\in\E: Ax=b\}$. Since $x\in\inter C$, one can 
+move in any direction from $x$ a small amount and stay in $C$. 
+Therefore, for each direction that an element of $\{x\in \E: Ax=b\}$ 
+is away from $\bar x$, $C\cap\{x\in\E: Ax=b\}$ contains an element 
+that direction away from $\bar x$.
+Thus, $N_{C'}(\bar x) \subset N_{\{x:Ax=b\}}(\bar x) = A^*\Y$.
+\end{proof}}
+\noindent\textbf{5.} Prove that the differentiable function $x_1^2 + 
+x_2^2(1-x_1)^3$ has a unique critical point in $\R^2$, which is a local 
+minimizer, but has no global minimizer. Can this happen on $\R$?
+\bluea{
+\begin{proof}
+The derivative of this function is 
+\begin{equation*}
+\nabla f(x) = \begin{bmatrix}
+2x_1 - 3x_2^2(1-x_1)^2 \\
+2x_2(1-x_1)^3.
+\end{bmatrix}
+\end{equation*}
+If $x$ is a critical point, then $\nabla f(x) = 0$. This means 
+either $x_2 = 0$ or $x_1=1$. If $x_1=1$, then the first coordinate equals 
+$2$, which is a contradiction. Thus, $x_2=0$, which implies that 
+$x_1=0$. Thus, $x=0$ is the only critical point. \\ 
+To see it is a local minimizer, note that in a neighborhood of $0$,
+$|x_1|<1$, which implies the second term is nonnegative, and the first 
+term is always nonnegative. And $f(0) = 0$. \\
+This cannot happen on $\R$. If $x$ is a local minimizer and 
+the only critical point and $f$
+is differentiable, suppose $x$ is not a global minimum, i.e. 
+there exists $y$ where $f(y) < f(x)$. This implies there exists 
+$z$ between $y$ and $x$ where $f(z)=f(x)$ by the intermediate value 
+theorem. Then by the mean value theorem, there exists $w$ between 
+$z$ and $x$ where $f'(w)=0$. This is a contradiction, since we 
+assumed $x$ was the only critical point.
+% \begin{align*}
+% & 2x_1=3x_2^2(1-x_1)^2 \\
+% & x_1^2 = -2x_2(1-x_1)^3.
+% \end{align*}
+% It's not hard to see that we may assume that $x_1\notin\{0,1\}, x_2\neq 0$
+% (to look for points other than $x=0$).
+% Square the first equation to get $4x_1^2 = 9x_2^4(1-x_1)^4$. By the 
+% second equation, $4x_1^2 = -8x_2(1-x_1)^3$. Thus, 
+% \begin{equation}
+% \label{kap3}
+% 9x_2^4(1-x_1)^4 = -8x_2(1-x_1)^3 \implies 
+% 1-x_1 = -\frac{8}{9x_2^3} \implies x_1 = 1+\frac{8}{9x_2^3}.
+% \end{equation}
+% Plugging this result into the second equation, 
+% \begin{equation*}
+% \left(1+\frac{8}{9x_2^3}\right)^2 = -2x_2\left(-\frac{8}{9x_2^3}\right)^3
+% = \frac{2\cdot8^3}{9^3 x_2^8} 
+% \implies 1+\frac{8}{9x_2^3} = \frac{32}{27 x_2^4}.
+% \end{equation*}
+% Note $1+8/9x_2^3 = x_1 > 0$ by the first equation. Thus, we have 
+% $x_1 = 32/27x_2^4$. Plugging this into the first equation, we get 
+% \begin{equation*}
+% \frac{64}{27 x_2^4} = 3x_2^2\left(-\frac{8}{9x_2^3}\right)^2
+% = \frac{64}{27x_2^4},
+% \end{equation*}
+% which is true, which tells us that as long as \eqref{kap3} is true, 
+% $x_1=32/27x_2^4$ and $x_2$ satisfying
+% \begin{equation*}
+% 1+\frac{8}{9x_2^3} = \frac{32}{27x_2^4} \iff 
+% 27x_2^4 + 24 x_2 = 32
+% \end{equation*}
+% will satisfy the original two equations. However, there does exist 
+% an $x_2$ satisfying the above, because $27x_2^4 +24x_2$ is 0 at 
+% 0 and goes to infinity. So this means there is a nonzero 
+% critical point?
+\end{proof}}
+\noindent\textbf{6 (The Rayleigh quotient).} 
+\begin{enumerate}[(a)]
+\item Let the function $f:\R^n\setminus\{0\}\to\R$ be continuous, 
+satisfying $f(\lambda x)=f(x)$ for all $\lambda > 0$ in $\R$ and nonzero 
+$x\in\R^n$. Prove $f$ has a minimizer. \\
+\bluea{
+The minimum of $f$ over the unit circle $\{x\in\R^n:\|x\|=1\}$,
+which exists by compactness of the unit circle and continuity of 
+$f$, must be the minimum of $f$. To see why, if $x^*$ is the minimizer 
+over the unit circle, given $x\in\R^n\setminus\{0\}$, we have 
+$f(x) = f(x/\|x\|) \geq f(x^*)$.
+}
+\item Given a matrix $A\in\S^n$, define a function $g(x)=x^\top A x/\|x\|^2$
+for nonzero $x\in\R^n$. Prove $g$ has a minimizer. \\
+\bluea{
+First of all, $g$ is continuous. Also, it satisfies $f(x) = f(\lambda x)$ 
+for every $x\in\R^n\setminus\{0\}, \lambda\in\R$: 
+\begin{equation*}
+\frac{(\lambda x)^\top A(\lambda x)}{\|\lambda x\|^2} 
+= \frac{\lambda^2 x^\top A x}{\lambda^2\|x\|^2} = \frac{x^\top A x}{\|x\|^2}
+.
+\end{equation*}
+Then by part (a), $g$ has a minimizer.
+}
+\item Calculate $\nabla g(x)$ for nonzero $x$. \\
+\bluea{
+We compute the directional derivative directly. Let $d\in\E, t>0$.
+\begin{align*}
+g(x+td) - g(x) &= \frac{(x+td)^\top A(x+td)}{\|x+td\|^2} - \frac{x^\top Ax}{
+\|x\|^2} = \frac{x^\top Ax + 2td^\top A x + t^2\|d\|^2}{\|x+td\|^2}
+- \frac{x^\top Ax}{\|x\|^2}\\
+&= \frac{\|x\|^2 x^\top Ax + 2t\|x\|^2 d^\top Ax + t^2\|x\|^2\|d\|^2}{
+\|x\|^2\|x+td\|^2} - \frac{x^\top A x \|x+td\|^2}{\|x\|^2\|x+td\|^2}\\
+&= \frac{\|x\|^2 x^\top Ax + 2t\|x\|^2 d^\top Ax + t^2\|x\|^2\|d\|^2}{
+\|x\|^2\|x+td\|^2} - \frac{x^\top A x(\|x\|^2 + 2td^\top x+t^2\|d\|^2)
+}{\|x\|^2\|x+td\|^2} \\
+&= \frac{2t d^\top Ax}{\|x+td\|^2} - \frac{2tx^\top Ax d^\top x}{
+\|x\|^2\|x+td\|^2} + \overbrace{
+\frac{t^2\|x\|^2\|d\|^2 - t^2\|d\|^2(x^\top Ax)}{\|x\|^2\|x+td\|^2}
+}^{(\cdot)/t \xrightarrow{t\downarrow 0}{}0}.
+\end{align*}
+This implies that the directional derivative is 
+\begin{equation*}
+g'(x ;d) = \frac{2d^\top A x}{\|x\|^2} - \frac{2(x^\top A x)d^\top x}{\|x
+\|^4}.
+\end{equation*}
+This implies that the gradient is $\nabla g(x) = \frac{2Ax}{\|x\|^2}
+- \frac{2x^\top A x x}{\|x\|^4}$.
+}
+\item Deduce that minimizers of $g$ must be eigenvectors, and calculate 
+the minimum value. \\
+\bluea{
+By the first order necessary condition for local minima, for a minimizer 
+$x$ we have $\nabla g(x)=0$, in other words 
+\begin{equation*}
+\frac{2Ax}{\|x\|^2} = \frac{2x^\top Axx}{\|x\|^4} 
+\implies A x  = \frac{x^\top A x}{\|x\|^2} x,
+\end{equation*}
+i.e. $x$ has eigenvalue $x^\top A x/\|x\|^2$. Thus, the minimizer is 
+the eigenvector with the minimum eigenvalue of $A$.
+}
+\item Find an alternative proof of part (d) by using a spectral 
+decomposition of $A$. \\
+\bluea{
+Let $A = \sum_{i=1}^n \lambda_i u_iu_i^\top$ with $\{u_1,\ldots,u_n\}$ 
+an orthonormal basis. Any vector $x$ can be expressed as 
+$x=\sum_{i=1}^n c_iu_i, c_i\in\R$. If $\|x\|=1$ then by orthogonality
+$\sum_{i=1}^n c_i^2 = 1$. We have 
+\begin{align*}
+g(x) &= x^\top A x = \left(\sum_{i=1}^n c_iu_i\right)^\top\left(\sum_{i=1}^n 
+\lambda_i u_iu_i^\top\right)\left(\sum_{i=1}^n c_i u_i\right) 
+= \left(\sum_{i=1}^n c_iu_i\right)\sum_{i=1}^n \lambda_ic_iu_i\\
+&= \sum_{i=1}^n \lambda_i c_i^2 \geq \sum_{i=1}^n \lambda_{\min} c_i^2 
+= \lambda_{\min}.
+\end{align*}
+This implies that the minimum value is $\lambda_{\min}$, the minimum 
+eigenvalue, and is only achieved when all the weight of $c$ is on 
+the $i$ for which $\lambda_{\min} = \lambda_i$.
+}
+\end{enumerate}
+\noindent\textbf{7.} Suppose a convex function $g:[0,1]\to\R$ satisfies 
+$g(0)=0$. Prove the function $t\in(0,1]\mapsto g(t)/t$ is nondecreasing.
+Hence prove that for a convex function $f:C\to\R$ and points $\bar x,x\in C
+\subset\E$, the quotient $(f(\bar x+t(x-\bar x))-f(\bar x))/t$ is 
+nondecreasing as a function of $t\in(0,1]$, and complete the proof 
+of Proposition 2.1.2.
+\begin{proof}
+\bluea{
+Suppose $g(0)=0$ and is convex. Let $0 < t_1 < t_2.$ By convexity, 
+\begin{equation*}
+g(t_1) \leq \frac{t_1}{t_2}g(t_2) + \left(1-\frac{t_1}{t_2}\right)g(0)
+= \frac{t_1}{t_2}g(t_2).
+\end{equation*}
+By dividing both sides by $t_1$, we get $g(t_1)/t_1\leq g(t_2)/t_2$, 
+i.e. the function $g(t)/t$ is nondecreasing.  \\
+Now given a convex $f:C\to\R$ and points $\bar x, x\in C$, 
+let us examine the function $(0,1]\to\R$, 
+$g:= t\mapsto (f(\bar x + t(x-\bar x)
+) - f(\bar x))/t$. First of all, $f(\bar x + t(x-\bar x)) -f(\bar x)$ 
+as a function of $t$ is 0 at 0 and convex, because it is a composition of 
+a convex function, $f$, with an affine function, $\bar x + t(x-\bar x)$.
+Therefore, $g(t)$ is nondecreasing in $t$.
+Now let $s=\inf\{t\in(0,1]: g(t)\}$ 
+(if the set is unbounded below let $s=-\infty$). If $s\in(-\infty,
+\infty)$, then consider $\epsilon > 0$. There must exist $t_0\in(0,1]$ 
+such that $g(t_0) < s+\epsilon$. 
+Because $g$ is nondecreasing, we have $t\in(0,t_0] \implies 
+g(t) < s+\epsilon$. We have shown that for any $\epsilon$, if $t$ 
+is close enough to $0$ then $g(t)$ is $\epsilon$ close to $s$. 
+This proves that $\lim_{t\downarrow 0}g(t) = s$. If $s=-\infty$, 
+replace $\epsilon$ close to $s$ with less than an arbitrary $M\in\R$. 
+We have shown that $f'(\bar x; x-\bar x)$
+ exists and is in $[-\infty, \infty)$.\\
+Now to complete the proof of Proposition 2.1.2, we show that 
+$f'(\bar x;x-\bar x) \geq 0$ for all $x\in C$ implies that $\bar x$ 
+is a global minimizer. Let $x\in C$ be arbitrary.
+\begin{equation*}
+\lim_{t\downarrow 0} \frac{f(\bar x + t(x-\bar x))-f(\bar x)}{t}
+\geq 0, \quad \frac{f(\bar x + t(x-\bar x)) - f(\bar x)}{t}
+\text{ nondecreasing for }t\in(0,1]
+\end{equation*}
+implies, by setting $t=1$, that $f(x)-f(\bar x) \geq 0.$ This 
+proves that $\bar x$ is a global minimizer of $f$ on $C$.}
+\end{proof}
+\noindent\textbf{8 * (Nearest points).} 
+\begin{enumerate}[(a)]
+\item Prove that if $f:C\to\R$ is strictly convex then it has at most 
+one global minimizer on $C$. \\
+\bluea{
+Suppose $x$ and $y$ are both global minimizers. Then 
+\begin{equation*}
+f\left(\frac{x+y}{2}\right) < \frac{1}{2}f(x)+\frac{1}{2}f(y) = f(x).
+\end{equation*}
+This contradicts the fact that $x$ and $y$ are minimizers.
+}
+\item Prove $f(x)=\|x-y\|^2/2$ is strictly convex on $\E$ for any point 
+$y\in \E$. \\
+\bluea{
+We prove the function $\|x\|^2$ is strictly convex. Let $x,y\in\E$ and 
+$\lambda\in(0,1)$.
+\begin{align*}
+\|\lambda x + (1-\lambda)z\|^2 &\leq \lambda^2\|x\|^2 + 2\lambda(1-\lambda)
+\ip{x,z} + (1-\lambda)^2\|z\|^2\\
+& \leq \lambda^2\|x\|^2 + 2\lambda(1-\lambda)
+\|x\|\|z\| + (1-\lambda)^2\|z\|^2 \\
+&\leq \lambda^2\|x\|^2 + \lambda(1-\lambda)\left(|x\|^2 + \|z\|^2\right)
++ (1-\lambda)^2\|z\|^2 = \lambda \|x\|^2 + (1-\lambda)\|z\|^2.
+\end{align*}
+The third inequality is strict unless $\|x\|=\|z\|$, and the second 
+inequality is strict unless $z$ is a multiple of $x$. Therefore, 
+we have strict inequality unless $x=z$. This shows strict convexity of 
+$\|x\|^2$. To conclude for $\|x-y\|^2/2$, note that for $\lambda\in(0,1)$,
+\begin{equation*}
+\|\lambda x + (1-\lambda)z - y\|^2 = \|\lambda(x-y)+(1-\lambda)(z-y)\|^2
+\leq \lambda\|x-y\| + (1-\lambda)\|z-y\|
+\end{equation*}
+with strict inequality unless $x-y=z-y$, i.e. $x=z$.
+}
+\item Suppose $C$ is a nonempty, closed convex subset of $\E.$ 
+\begin{enumerate}[(i)]
+\item If $y$ is any point in $\E$, prove there is a unique nearest point 
+$P_C(y)$ to $y$ in $C$, characterized by 
+\begin{equation*}
+\ip{y-P_C(y), x-P_C(y)}\leq 0 \;\text{ for all }x\in C. 
+\end{equation*}
+\bluea{
+By definition, $P_C(y) = \min_{x\in C}\|x-y\|^2/2$. A minimizer exists, 
+because we can always consider a ball around $y$ sufficiently large to 
+include some point of $C$ intersected with $C$, which is compact. 
+Furthermore, it is unique by part (a). \\
+The gradient of $\|x-y\|^2/2$ is $x-y$. We know that $P_C(y)$ is 
+a global minimizer of this function over $C$, and thus by 
+Proposition 2.1.1 satisfies the first order condition. Furthermore, 
+by Proposition 2.1.2, any element satisfying the first order 
+condition is a global minimizer. Since the minimizer is unique, 
+it is precisely characterized by the first order condition:
+\begin{equation*}
+\ip{P_C(y)-y, x-P_C(y)} \geq0 \; \forall x\in C.
+\end{equation*}
+}
+\item For any $\bar x\in C$, deduce that $d\in N_C(\bar x)$ holds if 
+and only if $\bar x$ is the nearest point in $C$ to $\bar x + d$.
+\\
+\bluea{$d\in N_C(\bar x)$ holds iff $\ip{d,x-\bar x} \leq 0$ for every 
+$x\in C$. In other words, $\ip{\bar x + d - \bar x, x-\bar x} \leq 0$
+for every $x\in C$, i.e. $\bar x$ satisfies the nearest point 
+condition to $y=\bar x+d$.
+}
+\item Deduce, furthermore, that any points $y$ and $z$ in $\E$ 
+satisfy 
+\begin{equation*}
+\|P_C(y) - P_C(z)\|\leq\|y-z\|,
+\end{equation*}
+so in particular the \textit{projection} $P_C:\E\to C$ is continuous. \\
+\bluea{
+The characterization of the nearest point says that the line segment from 
+$y$ to $P(y)$ and the line segment from $P(y)$ to $x$ for any $x\in C$ 
+forms an obtuse angle. Because $P(x),P(y)\in C$, it suffices to prove
+essentially that for any quadrilateral (multidimensional, so all four 
+points may not be in the same plane), if a side forms obtuse angles 
+with its neighboring sides then it is shorter than the side across it.
+One can loosely relate this to triangles; the side across an obtuse 
+angle of a triangle is the longest. For quadrilaterals, the side 
+across a pair of obtuse angles is longer than the side between the obtuse 
+angles. Here is a picture for clarity.\\
+\begin{minipage}{0.4\textwidth}
+\begin{tikzpicture}[scale=1.5]
+\node[label=above left:{$y$}, circle, fill, inner sep=1pt] (a) at (0,2)
+{};
+\node[label=above right:{$x$},circle,fill,inner sep=1pt] (b) at (3,2) {};
+\node[label=below right:{$P_C(x)$},circle,fill,inner sep=1pt] (c) at (2.4,0) {};
+\node[label=below left:{$P_C(y)$},circle,fill,inner sep=1pt]
+ (d) at (0.5,0) {};
+\draw (a)--(b) node[above, pos=0.5] {$A$}--(c) node[right, pos=0.5] {$C$}
+--(d)node[below, pos=0.5] {$D$} -- node[left, pos=0.5]{$B$} (a);
+\draw[green] (d)--(b)node[left, pos=0.75, blue] {$F$};
+\draw[green] (a)--(c) node[right, pos=0.25, blue] {$E$};
+\pic[draw, angle eccentricity=1,angle radius=8pt, red] {angle = c--d--a};
+\pic[draw, angle eccentricity=1,angle radius=8pt, red] {angle = b--c--d};
+\pic[draw, angle eccentricity=1,angle radius=8pt] {angle = d--a--b};
+\pic[draw, angle eccentricity=1,angle radius=8pt] {angle = a--b--c};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+\textbf{Step 1:} Show that $E^2 \geq B^2+D^2$ and $F^2\geq D^2+C^2$, because 
+the red angles are obtuse. \\
+\textbf{Step 2:} Show that $A^2+B^2+A^2+C^2\geq E^2+F^2$ because the red angles 
+are obtuse. (Perhaps this can be interpreted as being because the sum 
+of the blue angles is less than 180). \\
+\textbf{Step 3:} Then add the equations to get $D\leq A$ as desired.
+\end{minipage}
+Recall that the nearest point characterization implies
+\begin{align}
+\label{kap5}
+&\ip{y-P_C(y), P_C(x)-P_C(y)} \leq 0\\
+\label{kap6}
+&\ip{x-P_C(x), P_C(y)-P_C(x)} \leq 0
+\end{align}
+We perform step 1 (for brevity $P:=P_C$): 
+\begin{align*}
+E^2&=\|y-P(x)\|^2 = \|y-P(y) - (P(x)-P(y))\|^2 \\
+&= \|y-P(y)\|^2 
+-2\ip{y-P(y), P(x)-P(y)} + \|P(x)-P(y)\|^2 \\
+&\overbrace{\geq}^{\eqref{kap5}}
+ \|y-P(y)\|^2 + \|P(x)-P(y)\|^2 = B^2 + D^2.
+\end{align*}
+The proof for $F^2 \geq C^2 + D^2$ using \eqref{kap6} is essentially the 
+same. \\
+Now we perform step 2. 
+\begin{align*}
+E^2 + F^2 &= \|y-P(x)\|^2 + \|x-P(y)\|^2 = \|y-x-(P(x)-x)\|^2 
++ \|x-y-(P(y)-y)\|^2 \\
+&= 2\|x-y\|^2 + \|P(x)-x\|^2 + \|P(y)-y\|^2 - 2\ip{y-x, P(x)-x}
+-2\ip{x-y, P(y)-y} \\
+&= 2\|x-y\|^2 + \|P(x)-x\|^2 + \|P(y)-y\|^2 + 2\ip{x-y, P(x)-P(y)-(x-y)}.
+\end{align*}
+Now by adding \eqref{kap5} and \eqref{kap6}, we obtain 
+\begin{equation*}
+\ip{P(x)-P(y) - (x-y), P(x)-P(y)} \leq 0 
+\implies -\ip{P(x)-P(y), P(x)-P(y)-(x-y)} \geq 0.
+\end{equation*}
+Thus, adding this to the end of the previous derivation, 
+\begin{align*}
+E^2 + F^2 &\leq 2\|x-y\|^2 + \|P(x)-x\|^2 + \|P(y)-y\|^2 - 
+\|P(x)-P(y)-(x-y\|^2 \\
+&\leq 2\|x-y\|^2 + \|P(x)-x\|^2 + \|P(y)-y\|^2 = 2A^2 + B^2 + C^2.
+\end{align*}\\
+Now for step three: 
+\begin{gather*}
+E^2 \geq B^2 + D^2, F^2 \geq C^2+D^2, \quad 2A^2 + B^2 + C^2 \geq E^2 
++ F^2 \\
+\implies 2A^2 + B^2 + C^2 \geq B^2 + D^2 + C^2 + D^2 
+\implies 2A^2 \geq 2D^2 \\
+\implies A\geq D, \text{ i.e. } \|x-y\| \geq \|P(x)-P(y)\|.
+\end{gather*}
+}
+\end{enumerate}
+\item Given a nonzero element $a$ of $\E$, calculate the nearest point 
+in the subspace $\{x\in\E\mid \ip{a,x}=0\}$ to the point $y\in \E$.\\
+\bluea{
+Since $\E = \spn\{a\}\oplus\spn\{a\}^\perp$, $y=ca+a_\perp$ for 
+some $a_\perp\in\spn\{a\}^\perp$ and $c\in\R$.
+Further, $\{x\in\E\mid\ip{a,x}=0\}=\spn\{a\}^\perp$. 
+$\ip{y-a_\perp, a'_\perp - a_\perp} = 0$ for every $a'_\perp\in\spn\{a\}^{
+\perp}$, so $a_\perp$ is the nearest point in $\{x\in\E:\ip{a,x}=0\}$ 
+to $y$. A way to see this without the nearest point characterization 
+is, $\|y-a'_\perp\|^2 = c^2\|a\|^2 + \|a_\perp-a'_\perp\|^2 
+\geq c^2\|a\|^2 = \|y-a_\perp\|^2$. To compute $a_\perp$, 
+realize that 
+\begin{equation*}
+\ip{a, y} = c\|a\|^2 \implies c=\frac{\ip{a,y}}{\|a\|^2}.
+\end{equation*}
+Therefore, 
+\begin{equation*}
+a_\perp = y-ca = y-\frac{\ip{a,y}}{\|a\|^2}a.
+\end{equation*}
+}
+\item \textbf{(Projection on $\R_+^n$ and $\S_+^n$).} Prove the 
+nearest point in $\R_+^n$ to a vector $y\in\R^n$ is $y^+$, where $y_i^+
+= \max\{y_i, 0\}$ for each $i$. For a matrix $U\in\O^n$ and $y\in\R^n$,
+prove that the nearest PSD matrix to $U\diag y U^\top$ is 
+$U\diag y^+ U^\top$.\\
+\bluea{
+Let $x\in\R_+^n$. Suppose $I=\{i:y_i\leq 0\}$.
+\begin{equation*}
+\|y-x\|^2 = \sum_{i=1}^n (y_i-x_i)^2 \geq \sum_{i\in I} (y_i-x_i)^2 
+\geq \sum_{i\in I} y_i^2,
+\end{equation*}
+because $y_i\leq 0$ and $x_i\geq 0$, so $|y_i-x_i| \geq |y_i|$. 
+Now observe that $\|y-y^+\|^2 = \sum_{i\in I} y_i^2$, achieving the 
+minimum. Therefore $y^+$ is the nearest point to $y$ in $\R_+^n$.
+Now let $X\in\S^+_n$ with eigendecomposition $X=V\diag x V^\top$, 
+with $x = \lambda(X)$. First we assume $y=[y]$, i.e. $y$'s entries 
+are sorted in nonincreasing order.
+\begin{align*}
+\|X-U\diag y U^\top\|^2 &= \|X\|^2 + \|U\diag y U^\top\|^2 - 2\ip{X,
+U\diag y U^\top} \\
+&= \|x\|^2 + \|y\|^2 - 2\ip{X, U\diag y U^\top}
+\geq \|x\|^2 + \|y\|^2 -2\ip{x,y} = \|x-y\|^2.
+\end{align*}
+Since $x\in\R_+^n$, by the above part, the RHS is minimized by 
+$x=y^+$. By Fan's Theorem, the inequality is an equality iff 
+$X = U\diag x U^\top$. Therefore, if $y=[y]$, we have shown 
+that the nearest PSD matrix is $U\diag y^+ U^\top$. If $y\neq [y]$, 
+we can always rearrange the columns of $U$ to get a matrix $U'\diag[y]
+(U')^\top= U\diag y U^\top$. We have the nearest PSD matrix is 
+$U'\diag[y^+] (U')^{\top}$. But this equals $U\diag y^+ U^\top$.
+}
+\end{enumerate}
+\noindent\textbf{9 * (Coercivity).} Suppose that the function $f:\E\to\R$ 
+is differentiable and satisfies the growth condition $\lim_{\|x\|\to\infty}
+f(x)/\|x\|=\infty$. Prove that the gradient map $\nabla f$ has range 
+$\E$. (Hint: Minimize the function $f(\cdot)-\ip{a,\cdot}$ for elements 
+$a$ of $\E$.)
+\bluea{
+\begin{proof}
+Let $a\in\E$ be arbitrary.
+If there exists $x$ a minimizer of $f(\cdot)-\ip{a,\cdot}$, then 
+the first order necessary condition says that $\nabla f(x) - a = 0$, 
+i.e. $x=a$. So all we have to do is show a minimizer exists. Since 
+\begin{equation*}
+\lim_{\|x\|\to\infty}\frac{f(x)}{\|x\|} - \frac{\ip{a,x}}{\|x\|}
+\geq \lim_{\|x\|\to\infty}\frac{f(x)}{\|x\|} - \|a\| \to \infty,
+\end{equation*}
+There exists an $r\geq 1$ where $\|x\|\geq r$ implies 
+$f(x)/\|x\| - \ip{a,x}/\|x\|\geq f(0) \implies f(x)-\ip{a,x}\geq 
+f(0)r \geq f(0)$. Therefore, we can restrict $f(\cdot)-\ip{a,\cdot}$ to 
+$rB$, a compact set, over which a minimizer exists. This minimizer $x^*$ is 
+also a global minimizer over $\E$ because 
+\begin{equation*}
+f(x^*)-\ip{a,x^*}\leq f(0) \leq f(x)-\ip{a,x}\; \forall x\in\E.
+\end{equation*}
+\end{proof}}
+\noindent \textbf{10.} 
+\begin{enumerate}[(a)]
+\item Prove $f:\S_{++}^n\to\R$ defined by $f(X)=\tr X^{-1}$ is
+differentiable on $\S_{++}^n$. (Hint: Expand the expression $(X+tY)^{-1}$
+as a power series.) 
+\\
+\bluea{
+First observe that $(X+tY)^{-1} = X^{-1}(I+tYX^{-1})^{-1}$, since 
+$(X+tY)X^{-1} = I+tYX^{-1}$. Now recall that if $|x|<1$, 
+\begin{equation*}
+\frac{1}{1+x} = \sum_{n=0}^\infty (-1)^n x^n.
+\end{equation*}
+We can apply this to compute a power series for $(I+tYX^{-1})^{-1}$ assuming
+$t$ is small enough, because $YX^{-1}$ is diagonalizable: if 
+$UDU^\top$ is an eigendecomposition of the symmetric 
+matrix $X^{-1/2} Y X^{-1/2}$ (we are using PDness of $X$)
+\begin{equation*}
+YX^{-1} = X^{1/2}U D 
+U^\top X^{-1/2} = MDM^{-1}
+\end{equation*}
+with $M=X^{1/2}U$. Because $I$ is simultaneously diagonalizable with 
+any matrix, we can apply the scalar power series to each diagonal 
+entry of diagonalized $YX^{-1}$ to obtain 
+\begin{equation*}
+(X+tY)^{-1}=
+X^{-1}(I+tYX^{-1}) = X^{-1}\sum_{n=0}^\infty (-1)^n (tYX^{-1})^n 
+\quad \text{ if } \|YX^{-1}\| < 1/t.
+\end{equation*}
+As $t$ approaches 0, this power series becomes valid. Now we have 
+\begin{align*}
+\tr(X+tY)^{-1} - \tr X^{-1}
+&= \tr\left(X^{-1} + X^{-1}\sum_{n=1}^\infty (-1)^n (tYX^{-1})^n\right)
+- \tr X^{-1}  \\
+&= \tr\left(X^{-1}\sum_{n=1}^\infty (-1)^n (tYX^{-1})^n\right)\\
+&= \tr\left(-tX^{-1}YX^{-1}+\sum_{n=2}^\infty (-1)^n (tYX^{-1})^n\right).
+\end{align*}
+Therefore, 
+\begin{equation*}
+\lim_{t\downarrow0}\frac{\tr(X+tY)^{-1}-\tr X^{-1}}{t} 
+= -\tr(X^{-1}YX^{-1}) = -\tr(X^{-2}Y) = -\ip{X^{-2}, Y}.
+\end{equation*}
+Since $Y\in\S_n$ was arbitrary, we have $\nabla \tr X^{-1} = -X^{-2}$.
+}
+\item Define a function $f:\S_{++}^n\to\R$ by $f(X)=\log\det X$. Prove 
+$\nabla f(I) = I$. Deduce $\nabla f(X) = X^{-1}$ for any $X\in\S_{++}^n$.
+\\
+\bluea{
+Given a matrix $X\in\S_{++}^n$, notice that $\log\det X = \log \prod_{i=1}^{
+n} \lambda(X)_i = \sum_{i=1}^n \log\lambda(X)_i$. We can do something 
+similar to the previous part, noting that $\log(1+x)$ has the series 
+\begin{equation*}
+\log(1+x) = \sum_{n=1}^\infty (-1)^{n+1} \frac{x^n}{n}, \quad 
+|x|<1.
+\end{equation*}
+Now consider that for $X\in\S_n$ satisfying $I+tX\in\S_{++}^n$,
+\begin{align*}
+\log\det(I+tX) &= \sum_{i=1}^n \log(1+t\lambda(X)_i)
+= \tr\log(I+tX) \\
+&= \tr\left[\sum_{i=1}^\infty (-1)^{i+1}\frac{(tX)^i}{i}\right].
+\end{align*}
+Further noting that $\log\det I = 0$, we have 
+\begin{align*}
+\lim_{t\downarrow 0} \frac{\log\det(I+tX) - \log\det I}{t} 
+&= \lim_{t\downarrow0} \tr\left(X + \sum_{i=2}^\infty (-1)^{i+1}t^{i-1}
+\frac{X^i}{n}\right) = \tr(X) = \ip{X,I}.
+\end{align*}
+Thus, $\nabla f(I) = I$. \\
+Now for $X\in\S_{++}^n$ and $Y\in\S^n$, $t>0$ such that $X+tY\in\S_{++}^n$,
+\begin{align*}
+\log\det(X+tY) = \log\det(X)+\log\det(I+tX^{-1}Y).
+\end{align*}
+So 
+\begin{align*}
+\lim_{t\downarrow 0}
+ \frac{\log\det(X+tY)-\log\det(X)}{t} = \lim_{t\downarrow 0}
+\frac{\log\det(I+tX^{-1}Y)}{t} = \ip{I, X^{-1}Y} = \ip{X^{-1}, Y}.
+\end{align*}
+Therefore, $\nabla f(X) = X^{-1}$.
+}
+\end{enumerate}
+\noindent\textbf{11 ** (Kirchhoff's law).} Consider a finite, undirected,
+connected graph with vertex set $V$ and edge set $E$. Suppose that 
+$\alpha$ and $\beta$ in $V$ are distinct vertices and that each edge 
+$ij$ in $E$ has an associated ``resistance'' $r_{ij}>0$ in $\R$. We 
+consider the effect of applying a unit ``potential different'' between 
+the vertices $\alpha$ and $\beta$. Let $V_0=V\setminus\{\alpha,\beta\}$,
+and for ``potentials'' $x\in\R^{V_0}$ we define the ``power'' $p:\R^{V_0}
+\to\R$ by 
+\begin{equation*}
+p(x) = \sum_{ij\in E} \frac{(x_i-x_j)^2}{2r_{ij}},
+\end{equation*}
+where we set $x_{\alpha}=0$ and $x_\beta=1$.
+\begin{enumerate}[(a)]
+\item Prove the power function $p$ has compact level sets. \\
+\bluea{
+For an arbitrary $M>0$,
+suppose that there exists an $i\in V$ with $|x_i| > M$. Since the graph is 
+connected, there is a path from $\beta$ to $i$, $\beta=v_1, v_2,\ldots, 
+v_k = i.$ Letting $r = \max_{ij\in E} r_{ij}$, We have 
+\begin{align*}
+\sum_{j=1}^{k-1} \frac{(x_{v_j} - x_{v_{j+1}})^2}{r_{v_jv_{j+1}}}
+&\geq  \sum_{j=1}^{k-1} \frac{(|x_{v_j}| - |x_{v_{j+1}}|)^2}{r}
+\\
+&\geq \frac{k-1}{r} \left(\sum_{j=1}^{k-1}
+\frac{ |x_{v_j}|-|x_{v_{j+1}}|}{k-1}\right)^2
+= \frac{k-1}{r}\left(\frac{|x_i|}{k-1}\right)^2\\
+&\geq \frac{M}{r(k-1)} \geq \frac{M}{r(|V|-1)}.
+\end{align*}
+Therefore, $\|x\|_{\infty} > M \implies p(x) > \frac{M}{r(|V|-1)}$.
+In other words, $p(x)\leq \alpha$ for $\alpha>0$ implies that 
+$\|x\|_{\infty}\leq \alpha r(|V|-1)$. Therefore, $p$ has bounded level
+sets. Since $p$ is continuous with closed domain, the level sets are 
+compact.
+}
+\item Deduce the existence of a solution to the following equations
+(describing ``conservation of current''): 
+\begin{equation*}
+\begin{aligned}
+\sum_{j:ij\in E} \frac{x_i-x_j}{r_{ij}} & = && 0 &&\text{ for }i\text{ in }
+V_0 \\
+x_\alpha & = && 0 && \\
+x_\beta & = && 1. &&
+\end{aligned}
+\end{equation*}
+\bluea{
+\begin{align*}
+p'(x;\pm e_i) =
+\frac{\partial p}{\partial x_i} &=  2\sum_{j\,:\,ij\in E} \frac{x_i-x_j}{
+r} = 0 \; \forall i\in V_0
+\end{align*}
+implies the aforementioned solution. There is an $x\in\R^{V_0}$ satisfying
+the above because we showed $p$ has a minimizer (due to $\R^{V_0}$ being 
+nonempty and closed and $p$'s level sets being bounded), and the above is a 
+necessary condition of a minimizer.
+}
+\item Prove the power function $p$ is strictly convex. \\
+\bluea{
+Let $x\neq y\in\R^{V_0}$. Suppose that $x_k-x_l\neq y_k-y_l$ for some 
+$kl\in E$. Then 
+\begin{align*}
+p(\lambda x+(1-\lambda y)) &= \sum_{ij\in E}\frac{(\lambda(x_i-x_j)
++(1-\lambda)(y_i-y_j))^2}{r_{ij}} \\
+&< \frac{\lambda(x_k-x_l)^2+(1-\lambda)(y_k-y_l)^2}{r_{kl}}
++ \sum_{ij\neq kl \in E} \frac{\lambda(x_i-x_j)^2
++(1-\lambda)(y_i-y_j)^2}{r_{ij}}\\
+&  = \lambda p(x) + (1-\lambda)p(y),
+\end{align*}
+using convexity of $(\cdot)^2$ (Exercise 8 (b))
+ for $ij\neq kl$ and strict convexity for
+ $x_k-x_l\neq y_k-y_l$. Therefore, we just need to check when 
+$x_i-x_j = y_i=y_j$ for all $ij\in E$. In this case, $x=y$, because 
+the graph is connected; by starting from vertex $\beta$, whose value 
+is shared in both graphs, the value of neighboring vertices must equal
+between the graphs, and so on. 
+}
+\item Use part (a) of Exercise 8 to show that the conservation of 
+current equations in part (b) have a unique solution. \\
+\bluea{Since $p$ is strictly convex, it has at most one minimizer.
+Any solution to the conservation of current equations is a minimizer,
+because it satisfies the first order sufficient condition for convex 
+functions. And we have shown that a solution exists.}
+\end{enumerate}
+\noindent\textbf{12 ** (Matrix completion).} For a set $\delta\subset 
+\{(i,j)\mid 1\leq i\leq j\leq n\}$, suppose the subspace $L\subset\S^n$ 
+of matrices with $(i,j)$th entry of zero for all $(i,j)$ in $\delta$ 
+satisfies $L\cap S_{++}^n\neq\emptyset$. By considering the problem 
+(for $C\in\S_{++}^n$) 
+\begin{equation*}
+\inf\{\ip{C,X}-\log\det X\mid X\in L\cap\S_{++}^n\},
+\end{equation*}
+use Section 1.2, Exercise 14 and Corollary 2.1.3 to prove there exists 
+a matrix $X$ in $L\cap\S_{++}^n$ with $C-X^{-1}$ having $(i,j)$th entry 
+of zero for all $(i,j)$ not in $\delta$. \\
+\bluea{
+This is saying that there is a matrix whose inverse matches $C$ up 
+to a set of entires not on the diagonal? 
+\begin{proof}
+By Section 1.2, exercise 14, $\ip{C,X} - \log\det X$ has compact 
+level sets, whose intersection with $L$ (a closed set) is another 
+compact set. Therefore, it has a minimizer. Using Exercise 10b, 
+the gradient is $C-X^{-1}$, and if $X$ is a minimizer, then for 
+all $Y\in L\cap\S_{++}^n$ we have $\ip{C-X^{-1},Y-X} \geq 0$. 
+If $C-X^{-1}$ had a nonzero entry $c$ for some $(i,j)\notin\delta$, then 
+we could pick $Y= X-c\epsilon (e_ie_j^\top + e_je_i^\top)$ for a small
+enough $\epsilon$ (because $\S_{++}^n$ is open) to obtain 
+$\ip{C-X^{-1}, Y-X} = -2c^2\epsilon  < 0$, a contradiction. Therefore, 
+for all $(i,j)\notin\delta$, $(C-X^{-1})_{ij}=0$.
+\end{proof}
+}
+\noindent\textbf{13 ** (BFGS update, cf 80).} Given a matrix $C\in\S_{++}^n$
+and vectors $s,y\in\R^n$ satisfying $s^\top y > 0$, consider the problem 
+\begin{equation*}
+\inf\{\ip{C,X}-\log\det X\mid Xs = y, X\in\S_{++}^n\}.
+\end{equation*}
+\begin{enumerate}[(a)]
+\item Prove that for the problem above, the point 
+\begin{equation*}
+X=\frac{(y-\delta s)(y-\delta s)^\top}{s^\top(y-\delta s)} + \delta I
+\end{equation*}
+is feasible for small $\delta >0$. \\
+\bluea{
+For small enough $\delta$, $s^\top y > \delta \|s\|^2$, so 
+$(y-\delta s)^\top s > 0$. Furthermore, if this holds then $X$ is 
+positive definite because the left term is PSD and the right is PD. Then 
+\begin{equation*}
+Xs = \frac{(y-\delta s)(y-\delta s)^\top s}{(y-\delta s)^\top s} 
++ \delta s = y-\delta s + \delta s = y.
+\end{equation*}
+}
+\item Prove the problem has an optimal solution using Section 1.2, 
+Exercise 14. \\
+\bluea{
+We know the function $\ip{C,X} - \log\det X$ has compact level sets in 
+$\S_{++}^n$. We can intersect these with the closed set $\{X\in\S^n : 
+Xs = y\}$ ($\cdot s$ is continuous) to obtain more compact level sets 
+restricted to $Xs=y$. By part (a) some level set is nonempty. Thus 
+there exists a minimizer.
+}
+\item Use Corollary 2.1.3 to find the solution. (The solution is called 
+the BFGS update of $C^{-1}$ under the secant condition $Xs=y$.) \\
+\bluea{
+By Corollary 2.1.3, $X$ is optimal if and only if for all $Y\in\S_{++}^n$ 
+such that $Ys = y$, 
+\begin{equation*}
+\ip{C-X^{-1}, Y-X} \geq 0.
+\end{equation*}
+Note that $(Y-X)s=0$, i.e. $Y-X\in\nul(\cdot s)$. And in fact, since 
+$\S_{++}^n$ is open, there exists $\epsilon > 0$ such that for all 
+$N\in\nul(\cdot s)$, $X+\epsilon N \in \S_{++}^n$. In other words, 
+we must have 
+\begin{equation*}
+\ip{C-X^{-1}, N} = 0 \quad \forall\; N\in \nul(\cdot s).
+\end{equation*}
+We have equality because $\nul(\cdot s)$ is a subspace. 
+Consider elements in $\S^n$ of the form $zs^\top + sz^\top$ for any 
+$z\in\R^n$. We have 
+\begin{equation*}
+\ip{zs^\top + sz^\top, N} = \tr(zs^\top N) + \tr(Nsz^\top) = 0,
+\end{equation*}
+because $Ns=0$ and $s^\top N = (Ns)^\top = 0$. Therefore, if 
+$C-X^{-1} = zs^\top + sz^\top$ for some $z$ and $X\in\S_{++}^n,\,Xs=y$,
+ then 
+$X$ is optimal. Let's now check that $X$ is feasible if
+\begin{equation*}
+z = \frac{1}{s^\top y}\left[Cy - \left(\frac{1}{2}+\frac{y^\top Cy}{
+2s^\top y}\right)s\right].
+\end{equation*}
+First let's check that $X^{-1}\in\S_{++}^n$ (which justifies the inverse
+notation). Let $x\in\R^n$.
+\begin{align*}
+x^\top X^{-1} x &= x^\top Cx - x^\top(sz^\top +zs^\top)x \\
+&= x^\top Cx - 2(x^\top s)(x^\top z)\\
+&= x^\top Cx - 2(x^\top s)\frac{1}{s^\top y}\left[x^\top Cy - 
+\left(\frac{1}{2}+\frac{y^\top Cy}{2s^\top y}\right)x^\top s\right]\\
+&= x^\top Cx - 2\frac{s^\top x}{s^\top y} x^\top Cy + \left(\frac{s^\top x}{
+s^\top y}\right)^2 y^\top C y  + \frac{(x^\top s)^2}{s^\top y} \\
+&= \left(x-\frac{s^\top x}{s^\top y} y\right)^\top C
+\left(x-\frac{s^\top x}{s^\top y} y\right) + \frac{(x^\top s)^2}{s^\top y}.
+\end{align*}
+If $x \not\perp s$, then since $C$ is PD and $(x^\top s)^2>0$, the 
+whole expression is $>0$. If $x\neq 0$ but $x\perp s$, then then 
+the first term becomes $x^\top C x > 0$. Thus, $X^{-1}\in\S_{++}^n$. \\
+Now we show that $Xs = y$, which since $X$ is invertible is equivalent
+to $X^{-1}y = s$. 
+\begin{align*}
+X^{-1}y &= (C - sz^\top - zs^\top)y \\
+&= Cy - s\left[\frac{y^\top Cy}{s^\top y} - \left(\frac{1}{2}+\frac{
+y^\top Cy}{2s^\top y}\right)\right]
+- \left[Cy - \left(\frac{1}{2}+\frac{y^\top Cy}{2s^\top y}\right)s\right]\\
+&= -s\frac{y^\top Cy}{s^\top y} + \left(1+\frac{y^\top Cy}{s^\top y}
+\right)s = s.
+\end{align*}
+Therefore, $X$ defined by $X^{-1} = C-sz^\top - zs^\top$ is optimal.
+More explicitly, 
+\begin{equation*}
+X = \left\{C + \frac{1}{s^\top y}\left[\left(1+\frac{y^\top Cy}{s^\top y}
+\right)ss^\top - sy^\top C - Cys^\top\right]\right\}^{-1}.
+\end{equation*}
+This solution also happens to be unique, though it would take more 
+effort to show.
+}
+\end{enumerate}
+\textbf{14. **} Suppose intervals $I_1,I_2,\ldots, I_n\subset\R$ are 
+nonempty and closed and the function $f:I_1\times I_2\times\ldots\times
+I_n\to\R$ is differentiable and bounded below. Use the idea of the 
+proof of Proposition 2.1.7 to prove that for any $\epsilon > 0$ there 
+exists a point $x^\epsilon\in I_1\times I_2\times\ldots\times I_n$ 
+satisfying 
+\begin{equation*}
+(-\nabla f(x^\epsilon))_j\in N_{I_j}(x^{\epsilon}_j) + [-\epsilon,
+\epsilon]\quad (j=1,2,\ldots, n).
+\end{equation*}
+\bluea{
+\begin{proof}
+Consider the function $f(x) + \epsilon \|x\|_1$. This function has 
+compact levels sets because $f$ is lower bounded and its domain is 
+closed. Therefore there exists a minimizer $x^\epsilon$. 
+Now suppose there exists a $j\in [n]$ where 
+\begin{equation*}
+(-\nabla f(x^\epsilon))_j \notin N_{I_j}(x_j^\epsilon) + [-\epsilon, 
+\epsilon].
+\end{equation*}
+This implies that for some $x_j\in I_j$, $\sgn(x_j-x_j^\epsilon)
+\nabla f(x^\epsilon)_j < -\epsilon$. In other words, 
+\begin{equation*}
+\lim_{t\downarrow 0} 
+\frac{f(x^\epsilon + te_j\sgn(x_j-x_j^\epsilon)) - f(x^\epsilon)}{t} < 
+- \epsilon.
+\end{equation*}
+Then for small enough $t$, 
+\begin{align*}
+&f(x^\epsilon + te_j\sgn(x_j-x_j^\epsilon)) + \epsilon\|x^\epsilon 
++ te_j\sgn(x_j-x_j^\epsilon)\|_1
+ - f(x^\epsilon) - \epsilon \|x^\epsilon\|_1\\ 
+&< -t\epsilon + \epsilon\|x^\epsilon- te_j\sgn(x_j-x_j^\epsilon)\|- 
+\epsilon\|x^\epsilon\|_1\\
+&\leq -t\epsilon + \epsilon\|x^\epsilon - te_j\sgn(x_j-x_j^\epsilon)
+- x^\epsilon\|_1 = t\epsilon - t\epsilon = 0,
+\end{align*}
+contradicting minimality of $x^\epsilon$. (looks like $\ell_1$ norm 
+wasn't necessary?)
+\end{proof}
+}
+\noindent\textbf{15 * (Nearest polynomial with a given root).} 
+Consider the Euclidean space of copmlex polynomials of degree no more than 
+$n$, with inner product 
+\begin{equation*}
+\left\langle \sum_{j=0}^n x_jz^j, \sum_{j=0}^n y_jz^j\right\rangle 
+= \sum_{j=0}^n \bar{x_j}y_j.
+\end{equation*}
+Given a polynomial $p$ in this space, calculate the nearest polynomial 
+with a given complex root $\alpha$, and prove the distance to this 
+polynomial is $(\sum_{j=0}^n |\alpha|^{2j})^{-1/2}|p(\alpha)|$. 
+\bluea{
+\begin{proof}
+If $p(\alpha)=q(\alpha)=0$, then $a p(\alpha)+bq(\alpha)=0$ for any 
+$a,b\in \R$. Therefore, the set $C = \{p: p(\alpha)=0\}$ is a subspace.
+In fact, $C=\nul(p\mapsto p(\alpha))$, and $p\mapsto p(\alpha)$ is a 
+linear functional, so in fact $\dim C = n$. Actually, even more, 
+\begin{equation*}
+p(\alpha) = \ip{\bar{\vec a}, p}, \quad 
+\bar{\vec a}_j := \bar{\alpha}^j, \; j=0,\ldots, n.
+\end{equation*}
+From exercise 8 part (d), we know the distance from $q$ to the nearest 
+point in $C = \{p: \ip{\bar{\vec a},p} = 0\}$ is 
+\begin{equation*}
+\frac{\ip{\bar{\vec a}, q}}{\|\bar{\vec a}\|} = \left(\sum_{j=0}^n
+ |\alpha^{2j}|
+\right)^{-1/2} q(\alpha).
+\end{equation*}
+\end{proof}
+}
+\end{document}

@@ -1,0 +1,1654 @@
+\documentclass[../borwein-lewis_notes.tex]{subfiles}
+\begin{document}
+\maketitle
+\subsection{3.3 The Fenchel Conjugate}
+The \textit{Fenchel conjugate} of a function $h:\E\to[-\infty,+\infty]$ 
+is the function $h^*:\E\to[-\infty,+\infty]$ defined by 
+\begin{equation*}
+h^*(\phi) = \sup_{x\in\E}\{\ip{\phi, x}-h(x)\}.
+\end{equation*}
+The function $h^*$ is convex and if the domain of $h$ is nonempty 
+then $h^*$ never takes the value $-\infty$. The conjugacy operation 
+is \textit{order-reversing}: $f\geq g\implies f^*\leq g^*$. \\
+A subtle example is the function $g:\E\to(-\infty,+\infty]$ defined,
+for points $a^0,a^1,\ldots, a^m\in \E$, by 
+\begin{equation}
+g(z) = \inf_{x\in\R^{m+1}}\left\{\sum_i \exp^*(x_i)\,\bigg|\,
+\sum_i x_i=1,\;\sum_i x_ia^i=z\right\}.
+\label{3.3.1}
+\end{equation}
+The conjugate is the function in Section 2.2: 
+\begin{equation}
+g^*(y) = 1+\log\left(\sum_i\exp\ip{a^i,y}\right).
+\label{3.3.2}
+\end{equation}
+Many important convex functions $h$ equal their \textit{biconjugates}
+$h^{**}$.
+\begin{proposition}[Log barriers (3.3.3)]
+The functions $\lb:\R^n\to(-\infty,+\infty]$ and $\ld:\S^n\to(-\infty,
++\infty]$ defined by 
+\begin{equation*}
+\lb(x) = \begin{cases} -\sum_{i=1}^n \log x_i &\text{if }x\in\R_{++}^n\\
++\infty &\text{otherwise}\end{cases}
+\end{equation*}
+and 
+\begin{equation*}
+\ld(X) = \begin{cases} -\log\det X& \text{if }X\in\S_{++}^n \\
++\infty &\text{otherwise}\end{cases}
+\end{equation*}
+are essentially smooth, and strictly convex on their domains. They 
+satisfy the conjugacy relations
+\begin{align*}
+\lb^*(x) &= \lb(-x)-n\text{ for all }x\in\R^n, \text{ and}\\
+\ld^*(X) &= \ld(-X)-n \text{ for all }X\in\S^n.
+\end{align*}
+The perturbed functions $\lb+\ip{c,\cdot}$ and $\ld+\ip{C,\cdot}$ have 
+compact level sets for any vector $c\in\R_{++}^n$ and matrix 
+$C\in\S_{++}^n$, respectively.
+\label{3.3.3}
+\end{proposition}
+Note the simple relationships $\lb = \ld\circ\diag$ and $\ld = \lb\circ
+\lambda$.
+\begin{proposition}[Fenchel-Young inequality (3.3.4)]
+Any points $\phi\in\E$ and $x$ in the domain of a function $h:\E\to
+(-\infty,+\infty]$ satisfy the inequality
+\begin{equation*}
+h(x)+h^*(\phi)\geq \ip{\phi, x}.
+\end{equation*}
+Equality holds if and only if $\phi\in\partial h(x)$.
+\label{3.3.4}
+\end{proposition}
+Analogue of perturbation method gives convex analogue of the chain rule 
+for differentiable functions: 
+\begin{equation*}
+\nabla (f+g\circ A)(x) = \nabla f(x) + A^*\nabla g(Ax)
+\end{equation*}
+for a linear map $A$. When $A=I$ we obtain a \textit{sum rule}.\\
+In this section we fix a Euclidean space $\Y$ and denote the set of 
+points where a function $g:\Y\to[-\infty,+\infty]$ is finite and 
+continuous by $\cont g$.
+\begin{theorem}[Fenchel duality and convex calculus (3.3.5)]
+For given functions $f:\E\to(-\infty,+\infty]$ and $g:\Y\to(-\infty,
++\infty]$ and a linear map $A:\E\to\Y$, let $p,d\in[-\infty,+\infty]$ 
+be primal and dual values defined, respectively, by the 
+\textbf{Fenchel problems}
+\begin{align}
+& p = \inf_{x\in\E}\{f(x) + g(Ax)\} \label{3.3.6}\\
+& d = \sup_{\phi\in\Y}\{-f^*(A^*\phi)-g^*(-\phi)\}.
+\label{3.3.7}
+\end{align}
+These values satisfy the \textbf{weak duality} inequality $p\geq d$. 
+If, furthermore $f$ and $g$ are convex and satisfy the condition 
+\begin{equation}
+0\in\core(\dom g- A\dom f)
+\label{3.3.8}
+\end{equation}
+or the stronger condition 
+\begin{equation}
+A\dom f\cap \cont g\neq \emptyset
+\label{3.3.9}
+\end{equation}
+then the values are equal ($p=d$) and the supremum in the dual problem 
+\eqref{3.3.7} is attained if finite. \\
+At any point $x\in\E$, the calculus rule 
+\begin{equation}
+\partial (f+g\circ A)(x) \supset \partial f(x) + A^*\partial g(Ax)
+\label{3.3.10}
+\end{equation}
+holds, with equality if $f$ and $g$ are convex and either condition 
+\eqref{3.3.8} or \eqref{3.3.9} holds.
+\label{3.3.5}
+\end{theorem}
+\begin{corollary}[Fenchel duality for linear constraints (3.3.11)]
+Given any function $f:\E\to(-\infty,+\infty]$, and linear map 
+$A:\E\to\Y$, and any element $b$ of $\Y$, the weak duality inequality 
+\begin{equation*}
+\inf_{x\in\E}\{f(x)\mid Ax=b\} \geq \sup_{\phi\in\Y}\{\ip{b,\phi}
+- f^*(A^*\phi)\}
+\end{equation*}
+holds. If $f$ is convex and $b$ belongs to $\core(A\dom f)$ then 
+equality holds, and the supremum is attained when finite. 
+\label{3.3.11}
+\end{corollary}
+The \textit{(negative) polar cone} of the set $K\subset\E$ is the 
+convex cone 
+\begin{equation*}
+K^- = \{\phi\in\E\mid\ip{\phi,x}\leq 0\text{ for all }x\in K\}
+\end{equation*}
+and the cone $K^{--}$ is called the \textit{bipolar}. Note 
+$N_C(x) = (C-x)^-$.
+\begin{proposition}[Self-dual cones (3.3.12)]
+\begin{equation*}
+(\R_+^n)^- = -\R_+^n\text{ and }(\S_+^n)^- = -\S_+^n.
+\end{equation*}
+\label{3.3.12}
+\end{proposition}
+\begin{corollary}[Krein-Rutman polar cone calculus (3.3.13)]
+Any cones $H\subset \Y$ and $K\subset\E$ and linear map $A:\E\to\Y$ 
+satisfy 
+\begin{equation*}
+(K\cap A^{-1}H)^- \supset A^* H^- + K^-.
+\end{equation*}
+Equality holds if $H$ and $K$ are convex and satisfy $H-AK=Y$ 
+(or in particular $AK\cap\inter H\neq \emptyset$).
+\label{3.3.13}
+\end{corollary}
+\begin{theorem}[Bipolar cone (3.3.14)]
+The bipolar cone of any nonempty set $K\subset\E$ is given by $K^{--}=
+\cl(\conv(R_+K))$.
+\label{3.3.14}
+\end{theorem}
+For example, we deduce immediately that the normal cone $N_C(x)$ to 
+a convex set $C$ at a point $x\in C$ and the \textit{(convex) tangent 
+cone} to $C$ at $x$ defined by $T_C(x) = \cl\R_+(C-x)$ are polars of 
+each other.
+\begin{theorem}[Pointed cones (3.3.15)]
+If $K\subset\E$ is a closed convex cone, then $K$ is pointed if and only
+if there is an element $y$ of $\E$ for which the set $C=\{x\in K\mid 
+\ip{x,y}=1\}$ is compact and generates $K$ (that is, $K=\R_+C$).
+\label{3.3.15}
+\end{theorem}
+\subsection{Exercises for 3.3}
+\textbf{1. }For each of the functions $f$ in Table 3.1, check the 
+calculation of $f^*$ and check $f=f^{**}$. 
+\bluea{
+Fenchel conjugate pairs along with domains will be denoted 
+$(f, \dom f)\lra (g, \dom g) = (f^*, \dom f^*)$.
+\begin{enumerate}
+\item $(0,\R)\lra (0, \{0\})$. $f^*(y) = \sup_{x\in\R} yx-0x$. If 
+$y\neq 0$, then we can take $x\to+\infty$ or $x\to-\infty$ to get 
+$g(y) = +\infty$. If $y=0$, clearly $g(y)=0$. This proves $g=f^*$. \\
+Now consider $f^{**}(x) = \sup_{y\in\R} xy - g(y) = x0-g(0) = 0$, since 
+any $y\neq 0$ results in $-\infty$. Thus $f^{**}=f$. \\
+\item $(0,\R_+)\lra (0, -\R_+)$. We may as well do $\R_+^n$ and 
+$-\R_+^n$.
+$f^*(y) = \sup_{x\in\E} 
+\ip{y,x}-\delta_{\R_+^n}(x) = \sup_{x\in\delta_{\R_+^n}} \ip{y,x}$,
+ since any $x$ not in the set defined 
+by the indicator returns $-\infty$. If $y$ has a positive coordinate, 
+then the $\sup$ returns $+\infty$ by taking $x$ to $+\infty$ in that 
+coordinate. Otherwise, $y\in-\R_+^n$, and $\ip{y,x}=0$ with equality at 
+$x=0$. Thus $f^*=g$. \\
+Now $f^{**}(x) = \inf_{y\in\E}\ip{x,y} - \delta_{-\R_+^n}(y) 
+= \inf_{y\in-\R_+^n}\ip{x,y} = \delta_{\R_+^n}(x) = f(x)$ by the 
+same reasoning.
+\item $(0, [-1,1])\lra (|y|, \R)$. Let us remember from now on that 
+$\delta^*_C(y) = \sup_{x\in C}\ip{y,x}$. Thus, 
+$f^*(y) = \sup_{x\in[-1,1]} yx = |y| = g(y)$ (duh).  \\
+$f^{**}(x) = \sup_{y\in\R} xy - |y|$. If $|x|>1$, then taking 
+$y\to\sgn(x)\infty$ returns $+\infty$. For $x\in[-1,1]$, we have 
+$xy - |y| \leq |x||y|-|y| \leq |y|-|y| = 0$, with equality when 
+$y=0$. Therefore, $f^{**}(x) = \delta_{[-1,1]}(x) = f(x)$.
+\item $(0, [0,1])\lra (y^+, \R)$. $f^*(y) = \sup_{x\in[0,1]} yx =y^+
+= g(y)$. 
+$f^{**}(x) = \sup_{y\in\R} xy - y^+$. If $x<0$, then $y<0$ 
+implies $xy-y^+ = |xy| \to +\infty$ as $y\to-\infty$. If $x>1$, 
+then for $y>0,\; xy-y^+ = (x-1)y \to +\infty$ as $y\to\infty$. 
+If $x\in[0,1], xy-y^+ \leq y^+-y^+ = 0$, with equality at $x=0$. 
+Thus $f^{**}(x) = \delta_{[0,1]}(x) = f(x)$. 
+\item $(\frac{|x|^p}{p}, \R)\lra (\frac{|y|^q}{q}, \R),\; p>1,\,
+\frac{1}{p}+\frac{1}{q}=1$. $f^*(y) = \sup_{x\in\R} yx - \frac{|x|^p}{p}$.
+The derivative of the objective wrt $x$ is $y-|x|^{p-2}x$, which after 
+setting to 0 yields $x=y|y|^{q-2}$ (see Section 2.3, Exercise 6 for 
+H\"older's inequality). By strict concavity, this yields the unique 
+maximum. Plugging it back in, we get $f^*(y) = |y|^q - \frac{|y|^{p(q-1)}}{
+p} = |y|^q\left(1-\frac{1}{p}\right) = \frac{|y|^q}{q}$. $f^{**}=f$ by 
+symmetry of conjugates $p,q$. 
+\item $(\frac{|x|^p}{p}, \R_+) \lra (\frac{|y^+|^q}{q}, \R),\; 
+p>1,\,\frac{1}{p}+\frac{1}{q}=1$. Applying similar reasoning as before,
+we can restrict the supremum to $\dom f$. Our optimality condition for 
+$\sup_{x\in\R_+} yx-\frac{|x|^p}{p}$ is now $x=y|y|^{q-2}$ for $x>0$ 
+or $y-x|x|^{p-2} \leq 0$ for $x=0$, i.e. $y \leq 0$. By inspection, 
+this implies that the optimal $x=|y^+|^{q-1}$. Plugging this back 
+in, when $y<0$ we get $f^*(y) = 0$. Otherwise, 
+$f^*(y) = \frac{y^q}{q}$ by the same steps as the previous part, 
+so $f^*(y) = \frac{|y^+|^q}{q}$. \\
+$f^{**}(x) = \sup_{y\in\R}xy - \frac{|y^+|^q}{q}$. If $x<0$, then taking
+$y\to-\infty$ returns $+\infty$. For $x>0$, we can take the derivative 
+and find the unique maximum at $y=x^{p-1}$ giving $\frac{x^p}{p}$. 
+Thus $f^{**} = f$.
+\item $(-\frac{x^p}{p}, \R_+)\lra (-\frac{(-y)^q}{q}, -\R_{++}),\;
+0<p<1,\; \frac{1}{p}+\frac{1}{q}=1$. $f^*(y) = \sup_{x\in\R_+} yx 
++ \frac{x^p}{p}$. If $y\geq 0$, then we can take $x\to+\infty$ to 
+obtain $f^*(y) = +\infty$. If $y<0$, let us compute the derivative: 
+$y + x^{p-1}=0\implies x^{p-1} = -y = |y| \implies x = (-y)^{q-1}$. 
+Plugging this back in, $f^*(y) = -(-y)^q + \frac{(-y)^q}{q} = 
+-\left(1-\frac{1}{p}\right)(-(-y)^q) = -\frac{(-y)^q}{q}$. \\
+$f^{**}(x) = \sup_{y\in-\R_{++}} xy + \frac{|y|^q}{q}$. If $x<0$, 
+then we can take $y\to-\infty$ to get $f^{**}=+\infty$. Otherwise, 
+the derivative is $x + y|y|^{q-2} \implies x = |y|^{q-1} \implies 
+y = -x^{p-1}$. Plugging this back in, we get 
+$f^{**} = -x^p + \frac{x^{q(p-1)}}{q} = -\frac{x^p}{p}$.
+\item $(\sqrt{1+x^2},\R)\lra (-\sqrt{1-y^2}, [-1,1])$. 
+$f^*(y) = \sup_{x\in\R} yx - \sqrt{1+x^2}$. If $|y|>1$, then by 
+taking $x$ with the same sign as $y$ and the inequality 
+$\sqrt{1+r} \leq 1+\frac{r}{2}$ (well $\sqrt{1+r} \leq 1+\sqrt{r}$ 
+would also work, for $r\geq 1$)
+\begin{equation*}
+yx-\sqrt{1+x^2} = |y||x| - |x|\sqrt{1+\frac{1}{x^2}}
+\geq |y||x| - |x| - \frac{1}{2|x|} = (|y|-1)|x| - \frac{1}{2|x|} 
+\xrightarrow{|x|\to\infty}{} +\infty
+\end{equation*}
+Therefore, $\dom f^* \subset [-1,1]$. Taking the derivative and setting it 
+equal to zero, $y=\frac{x}{\sqrt{1+x^2}} \implies y^2 = \frac{x^2}{1+x^2}
+\implies x^2 = \frac{y^2}{1-y^2}\implies x = \frac{y}{\sqrt{1-y^2}}$, 
+which is valid for $y\in(-1,1)$. Plugging this back in, 
+$f^*(y) = \frac{y^2}{\sqrt{1-y^2}} - \sqrt{1+y^2/(1-y^2)} 
+= \frac{y^2-1}{\sqrt{1-y^2}} = -\sqrt{1-y^2}$. When $|y|=1$, 
+$yx-\sqrt{1+x^2}$ is always negative, but since it can equal 
+$|x|-\sqrt{1+x^2} \geq -\frac{1}{2|x|}$, we can take $x\to\sgn(y)\infty$ 
+to make the $\sup$ 0, i.e. $-\sqrt{1-y^2}$ with $y=1$. \\
+$f^{**}(x) = \sup_{y\in[-1,1]} xy +\sqrt{1-y^2}$. The derivative is 
+$x-\frac{y}{\sqrt{1-y^2}}=0\implies y=\frac{x}{\sqrt{1+x^2}}$. 
+This returns $f^{**}(x) = \frac{x^2}{\sqrt{1+x^2}} + \frac{1}{\sqrt{1+x^2}}
+= \sqrt{1+x^2}$.
+\item $(-\log x,\R_{++})\lra (-1-\log(-y), -\R_{++})$. 
+$f^*(y) = \sup_{x\in\R_{++}} yx + \log x$. When $y\geq 0, x\to+\infty
+\implies f^*(y) = +\infty$. Otherwise, the derivative is 
+$y + \frac{1}{x} = 0 \implies x = -\frac{1}{y}$, giving 
+$f^*(y) = -1 + \log(-1/y) = -\log(-y) - 1$. \\
+$f^{**}(x) = \sup_{y\in -\R_{++}} xy + 1 + \log(-y)$. When $x\leq 0$, 
+$y\to-\infty\implies f^{**}(x) = +\infty$. Otherwise, the derivative 
+is $x + \frac{1}{y} = 0 \implies y = -\frac{1}{x}$. This yields 
+$f^{**}(x) = -1 + 1 + \log(1/x) = - \log x$.
+\item $(\cosh x,\R)\lra (y\sinh^{-1}(y) - \sqrt{1+y^2}, \R)$.
+In Section 3.1 Exercise 14, we found that $\sinh^{-1} = \log(y + 
+\sqrt{y^2+1})$. $f^*(y) = \sup_{x\in \R} yx - \cosh x$. Taking 
+the derivative, $y - \sinh x = 0 \implies x = \sinh^{-1} y$.
+Plugging back in, $f^*(y) = y\sinh^{-1} y - \cosh(\sinh^{-1} y)$.
+By the relation $\cosh = \sqrt{1 + \sinh^2}$, we obtain 
+$f^*(y) = y\sinh^{-1}(y) - \sqrt{1+y^2}$. \\
+$f^{**}(x) = \sup_{y\in \R} xy - y\sinh^{-1}(y) + \sqrt{1+y^2}$. 
+In Section 3.1 Exercise 14, we computed the derivative 
+$g'(y) = \log(y+\sqrt{y^2+1}) = \sinh^{-1}(y)$. Thus, we get 
+$x - \sinh^{-1}(y) = 0 \implies y = \sinh x$. This gives 
+$f^{**}(x) = x\sinh x - (\sinh x)x + \sqrt{1+\sinh^2 x}
+= \cosh x$.
+\item $(-\log(\cos x), (-\frac{\pi}{2}, \frac{\pi}{2}))\lra 
+(y\tan^{-1}(y) - \frac{1}{2}\log(1+y^2), \R)$. $f^*(y) = \sup_{x\in 
+(-\pi/2,\pi/2)} yx +\log\cos x$. The derivative is $y + \tan x = 0
+\implies x = \tan^{-1} y$. Plugging this back in, 
+$f^*(y) = y\tan^{-1} y + \log\cos\tan^{-1} y$. Since $\tan^2 + 1 = 
+\sec^2$ and $x\in (-\pi/2,\pi/2)$ implies $\cos x \geq 0$, we have 
+$\cos x = \frac{1}{\sqrt{\tan^2 x + 1}}$. Therefore, 
+$f^*(y) = y\tan^{-1} y + \log(1/(\sqrt{1+y^2})) = y\tan^{-1} y 
+- \frac{1}{2}\log(1+y^2)$. \\
+$f^{**}(x) = \sup_{y\in\R} xy - y\tan^{-1}(y) + \frac{1}{2}\log(1+y^2)$.
+The derivative is $x - \tan^{-1}(y) - \frac{y}{1+y^2} + \frac{y}{1+y^2}
+= 0 \implies y = \tan x$. This yields $f^{**}(x) = x\tan x - (\tan x)x
++ \frac{1}{2}\log(1+\tan^2 x) = \frac{1}{2}\log \sec^2(x) = 
+- \log\cos x$ (for $x\in (-\frac{\pi}{2},\frac{\pi}{2})$). If $x
+\notin (-\frac{\pi}{2}, \frac{\pi}{2})$, then $(x-\tan^{-1}(y))y$ 
+is always nonnegative for one of when $y\to+\infty$ or $y\to-\infty$,
+which cause $\log(1+y^2)\to+\infty$, returning $f^{**}(x)=+\infty$.
+\item \text{}\vspace{-0.2in}
+\begin{equation*}
+(e^x,\R)\lra \left(
+\begin{cases} y\log y - y &(y>0) \\ 0 & (y=0)\end{cases},
+\;\R_+\right).
+\end{equation*}
+$f^*(y) = \sup_{x\in\R} yx - e^x$. When $y<0$, we can take $x\to-\infty$
+to get $f^*(y) = +\infty$. Otherwise, taking the derivative gives 
+$y-e^x=0\implies x=\log y$ (if $y=0$, then taking $x\to-\infty$ gives 
+$f^*(y)=0$), which gives $f^*(y) = y\log y - y$. \\
+$f^{**}(x) = \sup_{y\in\R_+} xy - y\log y + y$. Taking the derivative 
+gives $x-\log y - 1 + 1 = x - \log y = 0\implies y = e^x$. Thus, 
+$f^{**}(x) = xe^x - xe^x + e^x = e^x$.
+\item \text{}\vspace{-0.2in}
+\begin{equation*}
+(\log(1+e^x),\R) \lra \left(\begin{cases} y\log y + (1-y)\log(1-y)
+& (y\in(0,1)) \\
+0 & (y=0,1) \end{cases}, [0,1]\right).
+\end{equation*}
+$f^*(y) = \sup_{x\in\R} yx - \log(1+e^x)$. If $y < 0$, then 
+$x\to-\infty \implies f^*(y)=+\infty$. If $y=0$, $x\to-\infty\implies
+f^*(0) = 0$. If $y=1$, then $x-\log(1+e^x) > 0$ but goes to 0 when 
+$x\to\infty$ since it equals $-\log(1+e^{-x})$.
+ For $y>1$, taking the derivative, $y - \frac{e^x}{1+e^x} = 0
+\implies x=\log\frac{y}{1-y}$. Thus, $f^*(y) = y(\log y-\log(1-y))
++\log(1-y) = y\log y + (1-y)\log(1-y)$. \\
+$f^{**}(x) = \sup_{y\in[0,1]}xy - y\log y - (1-y)\log(1-y)$. 
+Taking the derivative, $x-\log y - 1 +\log(1-y) + 1 = x -\log\frac{y}{1-y}
+= 0\implies y = \frac{e^x}{1+e^x}$. This gives $f^{**}(x) 
+= \frac{xe^x}{1+e^x} + \frac{e^x}{1+e^x}(\log(1+e^{x})-x) + 
+\frac{1}{1+e^x}\log(1+e^x)=\log(1+e^x)$.
+\item \text{}\vspace{-0.2in}
+\begin{equation*}
+(-\log(1-e^x),-\R_{++})\lra \left(\begin{cases} y\log y - (1+y)\log(1+y) 
+&(y>0) \\ 0 & (y=0)\end{cases}, \R_+\right).
+\end{equation*}
+$f^*(y) = \sup_{x<0} yx +\log(1-e^x)$. If $y<0,\;x\to-\infty\implies 
+f^*(y) = +\infty$. If $y=0$, then $\log(1-e^x)<0$ but approaches it 
+as $x\to-\infty$ so $f^*(0)=0$. If $y>0$, then taking the derivative 
+$y - \frac{e^x}{1-e^x} = 0 \implies x = \log\frac{y}{1+y}$. Plugging 
+this back in, $f^*(y) = y(\log y - \log(1+y)) -\log(1+y) 
+= y\log y - (1+y)\log(1+y)$. \\
+$f^{**}(x) = \sup_{y\in\R_+} xy -y\log y + (1+y)\log(1+y)$. If 
+$x\geq 0$, then since $y\log(1+y) \geq y\log y$, we can take $y\to\infty$
+to get $f^{**}(x)=+\infty$. Otherwise, we can notice the pattern that 
+the relationship between $x$ and $y$ stays the same when computing the 
+biconjugate, i.e. $y = \frac{e^x}{1-e^x}$. This gives 
+$f^{**}(x) = \frac{xe^x}{1-e^x} -\frac{e^x}{1-e^x}(x-\log(1-e^x))
+- \frac{1}{1-e^x}\log(1-e^x) = -\log(1-e^x)$.
+\end{enumerate}
+}\noindent
+\textbf{2 (Quadratics).} For all matrices $A\in\S_{++}^n$, prove the 
+function $x\in\R^n\mapsto x^\top Ax/2$ is convex and calculate its 
+conjugate. Use the order reversing property of the conjugacy operation
+to prove 
+\begin{equation*}
+A\succeq B\iff B^{-1}\succeq A^{-1} \text{ for }A\text{ and }
+B\text{ in }\S_{++}^n.
+\end{equation*}
+\bluea{
+\begin{proof}
+The Hessian is $A$ which is PD, making it strictly convex. The 
+conjugate is $f^*(y) = \sup_{x\in\R^n} \ip{y,x} - \frac{1}{2}x^\top Ax$.
+Taking gradient, $y = Ax\implies x = A^{-1}y\implies f^*(y) 
+= \frac{1}{2}y^\top A^{-1} y$. \\
+If $A\succeq B$, then $\frac{1}{2}x^\top A x \geq \frac{1}{2}x^\top B x$ 
+for all $x\in\E$, which implies their conjugates have the reverse 
+relationship, i.e. $\frac{1}{2}x^\top A^{-1} x \leq \frac{1}{2}x^\top 
+B^{-1} x$. Thus, $A,B\in\S_{++}^n,\; A\succeq B \implies B^{-1}\succeq 
+A^{-1}$. We can apply this again to get $B^{-1} \succeq A^{-1}$ 
+implies $(A^{-1})^{-1}= A \succeq (B^{-1})^{-1} = B$.
+\end{proof}
+}
+\noindent 
+\textbf{3. }Verify the conjugates of the log barriers $\lb$ and 
+$\ld$ claimed in Proposition 3.3.3 \eqref{3.3.3}.
+\bluea{
+\begin{proof}
+$\lb^*(y) = \sup_{x\in\R_{++}^n} \ip{y,x} + \sum_{i=1}^n \log x_i$.
+If $y_i\geq 0$ for some $i\in[n]$, then taking $x_i\to+\infty
+\implies \lb^*(y) = +\infty$. If $y\in -\R_{++}^n$, taking gradient, 
+$y = - \frac{1}{x}$ where the division is pointwise, implying 
+$x=-\frac{1}{y}$. Then $\lb^*(y) = -n + \sum_{i=1}^n \log(-1/y_i) 
+= -\sum_{i=1}^n \log(-y_i) - n = \lb(-y) - n$, as expected. \\
+$\ld^*(Y) = \sup_{X\in\S_{++}^n} \ip{Y,X} + \log\det X$. If 
+$x^\top Y x \geq 0$ for some nonzero $x$, then we can take 
+$X=I+ Mxx^\top$ for $M\to+\infty$ to show $\ld^*(Y)=+\infty$.
+Otherwise, $Y\in-\S_{++}^n$. Taking the gradient, 
+$Y = -X^{-1} \implies X=-Y^{-1}\implies f^{*}(Y) = -\ip{Y,Y^{-1}}
++\log\det(-Y^{-1}) = -\log\det(-Y) -n=\ld(-Y)-n$, as expected.
+\end{proof}
+}
+\noindent
+\textbf{4 * (Self-conjugacy).} Consider functions $f:\E\to (-\infty,
++\infty]$.
+\begin{enumerate}[(a)]
+\item Prove $f=f^*$ if and only if $f(x)=\|x\|^2/2$ for all points 
+$x\in\E$. \\
+\bluea{
+We have for any $y\in\E$,
+$f(y) = \sup_{x\in \E} \ip{y,x}-f(x).$ This implies that $f(y) 
+\geq \ip{y,y}-f(y) \implies f(y)\geq \|y\|^2/2$. Then,
+\begin{align*}
+f(y) &= \sup_{x\in\E}\ip{y,x}-f(x) \leq \sup_{x\in\E}
+ \ip{y,x}-\frac{\|x\|^2}{2} 
+\leq \frac{\|y\|^2}{2},
+\end{align*}
+because $\ip{y,x}-\frac{\|x\|^2}{2}$ is maximized by $x=y$. The other 
+direction is implied by Exercise 2, taking $A=I$.
+}
+\item Find two distinct functions $f$ satisfying $f(-x) = f^*(x)$ 
+for all points $x\in\E$. \\
+\bluea{
+Consider $\delta_{\R_+^n}$, the indicator function of the set of points
+with nonnegative coordinates. Given a cone $K$, we have $\delta^*_K 
+= \delta_{K^-}$, the indicator of the bipolar cone. To see this, 
+$\delta^*_K(y) = \sup_{x\in K} \ip{y,x}$. If $y\notin K^-$, then there 
+exists $x\in K$ where $\ip{y,x} > 0$, and we can take $rx\in K$ with 
+$r \to\infty$ to show $\delta^*_K(y)=+\infty$. Otherwise if $y\in K^-$, 
+every $x\in K$ satisfies $\ip{y,x}\leq 0$, with attainment at $x=0\in K$.
+Thus, $\delta^*_K = \delta_{K^-}$. We happen to have $(\R_+^n)^- = 
+-\R_+^n$. Therefore, $\delta_{\R_+^n}^*(x) = \delta_{-\R_+^n}(x) = 
+\delta_{\R_+^n}(-x)$. \\
+\green{Is there a more satisfying answer, i.e. a function that is 
+differentiable, or even just finite, everywhere? XD}
+}
+\end{enumerate}
+\textbf{5 * (Support functions).} The conjugate of the indicator function
+of a nonempty set $C\subset\E$, namely $\delta_C^*:\E\to(-\infty, +\infty]$
+is called the \textit{support function} of $C$. Calculate it for the 
+following sets: \bluea{(For each of these sets, we will preemptively 
+consider $\delta^*_C(y) = \sup_{x\in C}\ip{y,x}$.)}
+\begin{enumerate}[(a)]
+\item the halfspace $\{x\mid \ip{a,x}\leq b\}$ for $0\neq a\in\E$ and 
+$b\in\R$ \\
+\bluea{
+Decompose $y = ca + v$ where $\ip{v,a} = 0$. The halfspace contains 
+some feasible point, because $-ra$ for $r$ large enough is feasible.
+Then $\ip{a, ra+v} = \ip{a,ra}$, so that adding any $v$ perpendicular
+to $a$ returns a feasible point. If $v\neq 0$, then note 
+$\ip{a, ra + sv} = \ip{a, ra}\leq b$, i.e. $ra+sv$ is feasible. But 
+$\ip{y, ra+sv} = rc + s\ip{v,v}\to+\infty$ as $s\to+\infty$. \\
+Otherwise, $y=ca$. Then $\delta^*_C(y) = \sup_{x:\ip{a,x}\leq b}
+\ip{ca, x}$. If $c<0$, then we can take $x=ra,\,r\to-\infty
+\implies \delta^*_C(y) = +\infty$. If $c=0$, then $\delta^*_C(y)
+=\delta^*_C(0)=0$. If $c>0$, then $\ip{ca,x} = c\ip{a,x} \leq cb$ 
+with equality at appropriate choice of $x$ (since $a$ is nonzero).
+Thus $\delta_C^*(ca) = cb$ when $c\geq 0$. \\
+Summarizing, $\delta_C^*(y) = \delta_{\R_+a}(y) + \frac{\ip{y,a}}{\|a\|^2}
+b$.
+}
+\item the unit ball $B$ \\
+\bluea{
+$\delta^*_C(y) = \sup_{x\in B} \ip{y,x} = \|y\|$ by Cauchy-Schwartz
+(or Section 2.3, Exercise 5).
+}
+\item $\{x\in\R_+^n\mid \|x\|\leq1\}$ \\
+\bluea{
+For $y\in\R_+^n$, since $\argmax_{x\in B} \ip{y, x} = y/\|y\|$, 
+we still have $\delta^*_C(y) = \|y\|$. Notice that for $x\in\R_+^n$, 
+$\ip{y,x} \leq \ip{y^+, x}$. Thus, $\delta^*_C(y) = \sup_{x\in\R_+^n,
+\, \|x\|\leq 1} \ip{y^+, x} = \|y^+\|$. So actually, 
+$\delta^*_C(y) = \|y^+\|$.
+}
+\item the \textit{polytope} $\conv\{a^1,a^2,\ldots, a^m\}$ for given 
+points $a^1, a^2,\ldots, a^m$ in $\E$. \\
+\bluea{
+Given $\lambda_1,\ldots,\lambda_m\geq 0$ summing to 1, 
+\begin{equation*}
+\ip{y, \sum_{i=1}^m \lambda_i a_i} = \sum_{i=1}^m \lambda_i\ip{y, a_i}
+\leq \max_{i\in[m]} \ip{y, a_i}.
+\end{equation*}
+We get equality by setting $\lambda_{i^*}=1$ for some $i^*$ achieving 
+the maximum. Therefore, $\delta^*_C(y) = \max_{i\in[m]}\ip{y,a_i}$.
+}
+\item A cone $K$ \\
+\bluea{
+In 4(b), I proved that $\delta^*_K = \delta_{K^-}$.
+}
+\item the epigraph of a convex function $f:\E\to(-\infty,+\infty]$\\
+\bluea{
+$\delta^*_C(y, b) = \sup_{(x,r):f(x)\leq r} \ip{y,x} + rb 
+= \sup_{(x,r): f(x)\leq r,\, x\in\dom f} \ip{y,x} + rb$.  We 
+can restrict to $\dom f$ because $\{(x,r): f(x)\leq r, \, f(x)=+\infty\}
+= \emptyset$. If $b>0$, then we can take $r\to+\infty$ to get 
+$\delta^*_C(y,b) =+\infty$. Otherwise, $b\leq 0$, and we can always 
+take $r=f(x)$ to maximize (otherwise $r$ would be larger, which since 
+$b\leq 0$ could only decrease the objective). Thus we obtain 
+$\delta^*_C(y,b)= \sup_{x\in\dom f} \ip{y,x} - |b|f(x)$. Therefore, 
+$\delta^*_C(y,b) = (-bf)^*(y)$ if $b\leq 0$ and $+\infty$ otherwise. \\
+\green{Perhaps it's possible to show that $f^* = +\infty$ if $f$ is 
+concave, which would let us just have $\delta^*_C(y,b) = (-bf)^*(y)$, 
+but I'm too lazy to show it right now.}
+}
+\item the subdifferential $\partial f(\bar x),$ where the function 
+$f:\E\to(-\infty, +\infty]$ is convex and the point $\bar x$ lies 
+in $\core(\dom f)$ \\
+\bluea{
+Since $f$ does not take on $-\infty$ and $\bar x\in\core(\dom f)$, 
+by Theorem 3.1.8 (max formula)
+\begin{equation*}
+f'(\bar x;d) = \max_{\phi\in\partial f(\bar x)}\ip{\phi, d}
+= \delta_{\partial f(\bar x)}^*(d).
+\end{equation*}
+}
+\item $\{Y\in\S_+^n\mid \tr Y=1\}$ \\
+\bluea{
+\begin{equation*}
+\sup_{Y\in\S_+^n\mid \tr Y=1} \ip{X,Y} \leq \sum_{i=1}^n \lambda_i(X)
+\lambda_i(Y) \leq \lambda_1(X),
+\end{equation*}
+with equality when $\lambda_1(Y) = 1$ and $Y$ has a simultaneous 
+decomposition with $X$, i.e. for an orthogonal $U\in\R^{n\times n},\,
+X=U\diag\lambda(X)U^\top,\,Y=U\diag\lambda(Y)U^\top$. Thus,
+$\delta^*_C(X) = \lambda_1(X)$. \\
+Note that in Section 3.1 Exercise 9, we proved that $C=\partial\lambda_1
+(0)$. Thus, using the previous part of this question, we could compute 
+$\delta^*_C(X)$ by computing $\lambda_1'(0;X)$. Interestingly, this 
+works out to $\lambda_1(X)$, i.e. $\lambda_1'(0;\cdot) = \lambda_1(\cdot)$.
+}
+\end{enumerate}
+\noindent
+\textbf{6. }Calculate the conjugate and biconjugate of the function 
+\begin{equation*}
+f(x_1,x_2) = \begin{cases} \frac{x_1^2}{2x_2} + x_2\log x_2 - x_2 & 
+\text{ if }x_2 > 0 \\
+0 & \text{ if }x_1=x_2=0 \\
++\infty & \text{ otherwise.}\end{cases}
+\end{equation*}
+\bluea{
+\begin{equation*}
+f^*(y_1,y_2) = \sup_{x\in\R^2: x=0,\, x_2>0} x_1y_1 + x_2y_2 - 
+\frac{x_1^2}{2x_2} - x_2\log x_2 + x_2.
+\end{equation*}
+Taking the derivative of the objective and setting it equal to zero, 
+\begin{equation*}
+\begin{bmatrix}
+y_1-\frac{x_1}{x_2} \\
+y_2+\frac{x_1^2}{2x_2^2} - \log x_2
+\end{bmatrix} = 0, \implies 
+x_1=y_1x_2 \implies x=\begin{bmatrix}
+y_1 e^{y_2 + \frac{y_1^2}{2}} \\
+e^{y_2+\frac{y_1^2}{2}}
+\end{bmatrix}
+\end{equation*}
+Plugging this back in, 
+\begin{align*}
+f^*(y_1, y_2) &=
+ y_1^2 e^{y_2 + \frac{y_1^2}{2}} + y_2 e^{y_2 + \frac{y_1^2}{
+2}} - \frac{y_1^2}{2}e^{y_2+\frac{y_1^2}{2}} - (y_2 + \frac{y_1^2}{2})
+e^{y_2+\frac{y_1^2}{2}} + e^{y_2+\frac{y_1^2}{2}} \\
+&= e^{y_2+\frac{y_1^2}{2}}.
+\end{align*}
+}
+\noindent
+\textbf{7 ** (Maximum entropy example).}
+\begin{enumerate}[(a)]
+\item Prove the function $g$ defined by \eqref{3.3.1} is convex. \\
+\bluea{
+The function $g$ was 
+\begin{equation*}
+g(z) = \inf_{x\in\R^{m+1}}\left\{\sum_{i=0}^m \exp^*(x_i)\,\bigg|\,
+\sum_{i=0}^m x_i=1,\; \sum_{i=0}^m x_ia^i = z\right\}.
+\end{equation*}
+$g(z) = v(z,-z,1)$ with the value function $v(b)=\inf_x \{f(x)\mid 
+g(x) \leq b\}$ with $f(x) = \sum_i \exp^*(x)$ and $g_j(x) = 
+\sum_{i=0}^m a^i_j x_i,\; g_{-j}(x) = -\sum_{i=0}^m a^i_j x_i$ for 
+$j\in[n]$. $g_{n+1}(x) = \sum_{i=0}^m x_i$. Since $f, g$ are convex, 
+the value function $v$ is convex; we proved this in Section 3.2, 
+Exercise 6. Thus for all $z_1, z_2\in\dom g$ and $\lambda\in(0,1)$, 
+we have 
+\begin{align*}
+g(\lambda z_1+(1-\lambda)z_2) &= v(\lambda(z_1,-z_1,1)
++ (1-\lambda)(z_2,-z_2,1)) \\
+&\leq \lambda v(z_1, -z_1, 1) + (1-\lambda)v(z_2, -z_2, 1)
+= \lambda g(z_1) + (1-\lambda)g(z_2).
+\end{align*}
+Therefore, $g$ is convex (see Section 3.2, Exercise 6).
+}
+\item For any point $y\in\R^{m+1}$, prove 
+\begin{equation*}
+g^*(y) = \sup_{x\in\R^{m+1}} \left\{\sum_i (x_i\ip{a^i, y} - \exp^*(x_i))
+\,\bigg|\, \sum_i x_i=1\right\}.
+\end{equation*}
+\bluea{
+\begin{align*}
+g^*(y) &= \sup_{z\in\R^n}\left[
+ \ip{y,z} - \inf_{x\in\R^{m+1}}\left\{\sum_{i=0}^m
+\exp^*(x_i)\,\bigg|\, \sum_{i=0}^m x_i=1,\; \sum_{i=0}^m x_ia^i=z\right\}
+\right] \\
+&= \sup_{z\in\R^n,\, x\in\R^{m+1}}\left\{\ip{y,z} - \sum_{i=0}^m 
+\exp^*(x_i)\,\bigg|\, \sum_{i=0}^m x_i=1,\, \sum_{i=0}^m x_ia^i = z
+\right\} \\
+&= \sup_{z\in\R^n,\; x\in\R^{m+1}}\left\{\sum_{i=0}^m(x_i\ip{y,a^i}
+- \exp^*(x_i))\,\bigg|\, \sum_{i=0}^m x_i=1\right\}
+\end{align*}
+and we can drop the $z$ in the sup since it is independent of the 
+quantity in the set notation.
+}
+\item Apply Exercise 27 in Section 3.1 to deduce the conjugacy formula 
+\eqref{3.3.2}. \\
+\bluea{
+Notice that we can express $g^*$ as 
+\begin{equation*}
+g^*(y) = -\inf_{x\in\R^{m+1}}\left\{\sum_{i=0}^m \exp^*(x_i) + \ip{c,x}\,
+\bigg|\, \vec1^\top x = 1\right\},
+\end{equation*}
+where $c_i=-\ip{a^i,y}$. By Exercise 27 of Section 3.1, the optimal 
+solution exists and is unique (the point $\hat x=\vec 1/(m+1)$ satisfies 
+$\vec 1^\top \hat x = 1$ and is in the interior of $\R_+^{m+1}$), and 
+moreover the optimal 
+$\bar x\in\R_{++}^{m+1}$ satisfies $\bar x = \exp(\lambda\vec 1 - c)$ 
+for some $\lambda\in\R$. By feasibility of $\bar x$, 
+\begin{equation*}
+\sum_{i=0}^m \exp(\lambda+\ip{a^i, y}) = 1 \implies 
+\lambda = -\log\left(\sum_{i=0}^m \exp\ip{a^i,y}\right).
+\end{equation*}
+Now we can simply evaluate $g^*(y)$: 
+\begin{align*}
+-g^*(y) &= \sum_{i=0}^m \bar x_i\log \bar x_i - \bar x_i - \ip{a^i,y} x_i\\
+&= \sum_{i=0}^m \exp(\lambda + \ip{a^i,y})(\lambda+\ip{a^i,y}) - 
+\exp(\lambda + \ip{a^i,y}) - \ip{a^i,y}\exp(\lambda + \ip{a^i,y}) \\
+&= (\lambda-1)\sum_{i=0}^m \exp(\lambda + \ip{a^i,y}) = \lambda - 1 \\
+&= -\log\left(\sum_{i=0}^m \exp\ip{a^i,y}\right) - 1.
+\end{align*}
+Negating, we obtain the conjugacy formula \eqref{3.3.2}.
+}
+\item Compute the conjugate of the function of $x\in\R^{m+1}$, 
+\begin{equation*}
+\begin{cases}
+\sum_i\exp^*(x_i) &\text{ if }\sum_i x_i = 1 \\
++\infty & \text{ otherwise.}
+\end{cases}
+\end{equation*}
+\bluea{
+The conjugate is 
+\begin{equation*}
+h(y) = \sup_{x\in\R^{m+1}_+,\;\sum_i x_i=1} \sum_i y_ix_i-\exp^*(x_i),
+\end{equation*}
+where we may restrict to $\R^{m+1}$ because the domain of $\exp^*$ is 
+$\R_+$. Taking the derivative returns $y=\log x$, i.e. $x=\exp^y$.
+Plugging this back in, 
+\begin{equation*}
+h(y) = \sum_i x_i\log x_i - x_i\log x_i + x_i = \sum_i \exp(y_i).
+\end{equation*}
+}
+\end{enumerate}
+\noindent
+\textbf{8. }Prove the Fenchel-Young inequality.
+\bluea{
+\begin{proof}
+$f^*(y) = \sup_x \ip{y,x} - f(x)$ implies that for any $x$, 
+\begin{equation*}
+f^*(y) \geq \ip{y,x} - f(x) \implies f(x)+f^*(y) \geq \ip{y,x}.
+\end{equation*}
+\end{proof}}
+\noindent
+\textbf{9 * (Fenchel duality and convex calculus).} Fill in the details 
+for the proof of Theorem 3.3.5 as follows. 
+\begin{enumerate}[(a)]
+\item Prove the weak duality inequality.\\
+\bluea{
+The weak duality inequality is 
+\begin{equation*}
+p = \inf_{x\in\E} f(x) + g(Ax) \geq \sup_{\phi\in\Y} -f^*(A^*\phi)-g^*(-
+\phi)=d.
+\end{equation*}
+By Fenchel duality, $f(x)+f^*(A^*\phi)\geq \ip{x, A^*\phi}$ and 
+$g(Ax) + g^*(-\phi) \geq \ip{Ax, -\phi}$. Adding these together 
+gives 
+\begin{equation*}
+f(x) + f^*(A^*\phi) + g(Ax) + g^*(-\phi) \geq 0.
+\end{equation*}
+In other words, for any $x\in\E$ and $\phi\in\Y$, 
+$f(x)+g(Ax) \geq -f^*(A^*\phi)-g(-\phi)$, i.e. $p\geq d$.
+}
+\item Prove the inclusion \eqref{3.3.10}.\\
+\bluea{
+Let $\phi_f\in\partial f(x)$ and $\phi_g\in \partial g(Ax)$. Then, 
+for any $y\in\E$,
+\begin{equation*}
+\ip{\phi_f + A^*\phi_g, y-x} = \ip{\phi_f, y-x} + \ip{\phi_g, Ay-Ax}
+\leq f(y)-f(x) + g(Ay) - g(Ax).
+\end{equation*}
+This implies that $\phi_f+A^*\phi_g\in \partial(f+g\circ A)(x)$.
+Thus, $\partial f(x) + A^*\partial g(Ax) \subset \partial(f+g\circ A)(x)$.
+}
+\end{enumerate}
+Now assume $f$ and $g$ are convex. \\
+\begin{enumerate}[(a),resume]
+\item Prove the function $h$ defined in the proof is convex with domain 
+$\dom g- A\dom f$.
+\bluea{
+For reference, $h$ was defined as $h(u) = \inf_{x\in\E} f(x) + g(Ax+u)$.
+Let $(u_1,r_1),(u_2,r_2)$ be in $\epi h$. Let $\lambda\in[0,1]$.
+Then there exist $x_1,x_2$ such that $f(x_1) + g(Ax_1+u_1)\leq r_1$ 
+and $f(x_2) + g(Ax_2 + u_2) \leq r_2$. Thus 
+\begin{align*}
+&f(\lambda x_1+(1-\lambda)x_2) + g(A(\lambda x_1+(1-\lambda)x_2)
++ \lambda u_1 + (1-\lambda)u_2) \\
+&\quad\leq \lambda f(x_1) + (1-\lambda)f(x_2) + \lambda g(Ax_1+u_1)
++ (1-\lambda) g(Ax_2+u_2)\leq \lambda r_1+(1-\lambda)r_2.
+\end{align*}
+Therefore, $\lambda(u_1,r_1)+(1-\lambda)(u_2,r_2)\in\epi h$. Therefore, 
+$h$ is convex.\\
+Note $u\in\dom h \iff \exists x\in\E,\; x\in\dom f \land 
+Ax+u\in\dom g$. I.e., $u\in\dom g\iff \exists x\in\dom f,\; 
+u\in\dom g-Ax \iff u\in\dom g-A\dom f$.
+}
+\item Prove the implication \eqref{3.3.9}$\implies$\eqref{3.3.8}. \\
+\bluea{
+We wish to prove $A\dom f\cap\cont g\neq\emptyset \implies 0\in
+\core(\dom g - A\dom f)$. Suppose $y\in A\dom f\cap \cont g$. 
+Let $d\in\E$. Since $g$ is continuous and finite at $y$, given any 
+fixed $\epsilon>0$, for all 
+$t\geq0$ smaller than some positive number, $|g(y+td)-g(y)|\leq \epsilon$,
+implying $y+td\in\dom g$. Thus, since $y\in A\dom f$, we have 
+$td \in \dom g-A\dom f$. herefore, $0\in\core(\dom g-A\dom f)$.
+}
+\end{enumerate}
+Finally, assume in addition that condition \eqref{3.3.8} holds. 
+\begin{enumerate}[(a),resume]
+\item Suppose $\phi\in\partial (f+g\circ A)(\bar x)$. Use the first 
+part of the theorem and the fact that $\bar x$ is an optimal solution
+of the problem 
+\begin{equation*}
+\inf_{x\in\E}\{(f(x)-\ip{\phi, x}) + g(Ax)\}
+\end{equation*}
+to deduce equality in part (b). \\
+\bluea{
+We have for any $x\in \E$,
+\begin{equation*}
+\ip{\phi, x-\bar x} \leq f(x)+g(Ax)-f(\bar x)-g(A\bar x),\;\text{ i.e. }\;
+f(\bar x)+g(A\bar x) - \ip{\phi, \bar x} \leq f(x)+g(Ax) - \ip{\phi, x},
+\end{equation*}
+which shows that $\bar x$ is an optimal solution to 
+$\inf_{x\in\E} f(x)-\ip{\phi,x} + g(Ax)$. It's worth noting how this 
+observation relates to Fenchel conjugates; if $\phi\in\partial f(\bar x)$,
+then $f^*(\phi)$ is obtained by plugging $\bar x$ into $\ip{\phi, x} 
+- f(x)$. \\
+Since $\bar x$ is a solution to the above primal problem, by the first 
+part of the theorem, there is a dual variable which makes the dual 
+objective equal the primal objective with $\bar x$ plugged in. First, 
+let us compute $(f(\cdot)+\ip{\phi,\cdot})^*(y) = \sup_x \ip{y+\phi, x}
+- f(x) = f^*(y+\phi)$. Thus, there exists $\phi'\in\Y$ such that 
+\begin{equation*}
+f(\bar x)-\ip{\phi,\bar x} + g(Ax) = -f^*(A\phi'+\phi) - g(-\phi').
+\end{equation*}
+Rearranging and adding and subtracting $\ip{A^*\phi, \bar x} = 
+\ip{\phi, Ax}$, 
+\begin{equation*}
+f^*(A^*\phi'+\phi) + g^*(-\phi') = \ip{A^*\phi'+\phi,\bar x}-f(\bar x)
++ \ip{-\phi', Ax} - g(Ax).
+\end{equation*}
+By definition, $f^*(A^*\phi'+\phi) \geq\ip{A^*\phi'+\phi,\bar x}- f(\bar x)$ 
+and $g^*(-\phi') \geq \ip{-\phi', A\bar x} - g(A\bar x)$,
+ so we must have equality
+in both cases. Therefore, $\ip{A^*\phi'+\phi, \bar x} - f(\bar x) 
+\geq \ip{A^*\phi'+\phi, x} - f(x)$ for every $x\in\E$, i.e. 
+$A^*\phi'+\phi\in\partial f(\bar x)$. Similarly, $-\phi'\in\partial 
+g(A\bar x)$. Thus, $\phi = A^*\phi'+\phi - A^*\phi' \in\partial f(\bar x) 
++ A^*\partial g(Ax)$, showing the other inclusion. Therefore 
+$\partial (f+g\circ A)(\bar x) = \partial f(\bar x) + A^*\partial 
+g(A\bar x)$, as long as $0\in\core(\dom g - A\dom f)$.
+}
+\item Prove points $\bar x\in\E$ and $\bar\phi\in\Y$ are optimal for 
+problems \eqref{3.3.6} and \eqref{3.3.7}, respectively, if and only if 
+they satisfy the conditions $A^*\bar\phi\in\partial f(\bar x)$ and 
+$-\bar\phi\in\partial g(A\bar x)$. \\
+\bluea{
+% If $A^*\bar\phi\in\partial f(\bar x)$ and $-\bar\phi\in\partial g(A\bar x)$,
+% then $0\in\partial f(\bar x) + A^*\partial g(A\bar x) \subset 
+% \partial (f+g\circ A)(\bar x)$, which implies that $\bar x$ is optimal
+% for the primal. 
+Since $\phi\in\partial f(x)$ iff $f^*(\phi) = \ip{\phi,x}-f(x)$,
+if $A^*\bar\phi\in\partial f(\bar x)$ and $-\bar\phi\in\partial g(A\bar x)$,
+then $f^*(A^*\bar\phi) = \ip{A^*\phi, \bar x}-f(\bar x)$ and 
+$g^*(-\bar\phi) = \ip{-\bar\phi, Ax} - g(A\bar x)$. Adding these 
+together and rearranging, we obtain 
+\begin{equation*}
+p \leq f(\bar x) + g(A\bar x) = -f^*(A^*\bar\phi) - g^*(-\bar\phi)
+\leq d \leq p.
+\end{equation*}
+This implies $\bar x$ achieves the primal optimum value and $\bar\phi$ 
+achieves the dual optimum value. \\
+Now suppose $\bar x$ and $\bar\phi$ are a pair of optima for the 
+primal and dual. Then, 
+\begin{gather*}
+f(\bar x) + g(A\bar x) = -f^*(A^*\bar\phi) - g^*(-\bar\phi) \\
+\implies f^*(A^*\bar\phi) + g^*(-\bar\phi) = \ip{A^*\bar\phi,\bar x}
+- f(\bar x) + \ip{-\bar\phi, Ax} - g(A\bar x),
+\end{gather*}
+which by similar reasoning to the previous part implies 
+$f^*(A^*\bar\phi) = \ip{A^*\bar\phi, \bar x}-f(\bar x)$, and 
+$g^*(-\bar\phi) = \ip{-\bar\phi, Ax} - g(A\bar x)$, and subsequently
+$A^*\bar\phi\in\partial f(\bar x)$ and $-\bar\phi\in\partial g(A\bar x)$.
+}
+\end{enumerate}
+\noindent
+\textbf{10 (Normals to an intersection).} If the point $x$ lies in 
+two convex subsets $C$ and $D$ of $\E$ satisfying $0\in\core(C-D)$ 
+(or in particular $C\cap\inter D\neq \emptyset$), use Section 3.1, 
+Exercise 4 (Subgradients and normal cones) to prove 
+\begin{equation*}
+N_{C\cap D}(x) = N_C(x) + N_D(x).
+\end{equation*}
+\bluea{
+If $0\in\core(C-D)$, then $0\in\core(\dom\delta_C-\dom\delta_D)$.
+Furthermore, the functions $\delta_C$ and $\delta_D$ are convex.
+Therefore, by Theorem 3.3.5 \eqref{3.3.5}, 
+\begin{equation*}
+\partial(\delta_C+\delta_D)(\cdot) = \partial\delta_C(\cdot)
+ + \partial\delta_D(\cdot).
+\end{equation*}
+Note that $\delta_C+\delta_D = \delta_{C\cap D}$. By Section 3.1, 
+Exercise 4, for any set $S,\,\partial\delta_S(\bar x) = N_S(\bar x)$.
+Thus, 
+\begin{equation*}
+N_{C\cap D}(\cdot) = N_C(\cdot) + N_D(\cdot).
+\end{equation*}
+}
+\textbf{11 * (Failure of convex calculus).}
+\begin{enumerate}[(a)]
+\item Find convex functions $f,g:\R\to(-\infty, +\infty]$ with 
+\begin{equation*}
+\partial f(0) + \partial g(0) \neq \partial (f+g)(0).
+\end{equation*}
+(Hint: Section 3.1, Exercise 5.) \\
+\bluea{
+Consider the function 
+\begin{equation*}
+f(x) = \begin{cases} 0 &\text{if }x<0 \\  1 &\text{if }x=0 \\
++\infty&\text{otherwise.}\end{cases}.
+\end{equation*}
+$\partial f(0)=\emptyset$, since for any $\phi\in\R$, 
+ $\phi x > -1 = f(x)-f(0)$ if we choose $x<0$ with small enough 
+magnitude. However, $\delta_{\{0\}} + f = \delta_{\{0\}}+1$.
+The RHS has subgradient $\R$ at $0$. This gives a contradiction.
+}
+\item Find a convex function $g:\R^2\to(-\infty, +\infty]$ and a linear 
+map $A:\R\to\R^2$ with $A^*\partial g(0) \neq \partial(g\circ A)(0)$. \\
+\bluea{
+Consider a 2d version of the function in the previous part: 
+$g(x,y) = f(x)$. Take $\phi\in\E$. By taking $(x,y)$ 
+with $x$ negative and $\|(x,y)\|^2$ small enough, 
+\begin{equation*}
+\ip{\phi, (x,y)} > -1 = g(x,y)-g(0).
+\end{equation*}
+Therefore, $\partial g(0) = \emptyset$. So if $A=\begin{bmatrix} 0\\0
+\end{bmatrix}$, then $A^*\partial g(0) = \emptyset$. On the other hand, 
+$g\circ A = g(0) = 1$, a constant. Therefore, $\partial(g\circ A)(0) =
+\{0\}$, which does not equal the empty set.
+}
+\end{enumerate}
+\textbf{12 * (Infimal convolution).} If the functions $f,g:\E\to(-\infty,
++\infty]$ are conex, we define the \textit{infimal convolution} 
+$f\odot g:\E\to[-\infty, +\infty]$ by 
+\begin{equation*}
+(f\odot g)(y) = \inf_x\{f(x) + g(y-x)\}.
+\end{equation*}
+\begin{enumerate}[(a)]
+\item Prove $f\odot g$ is convex. (On the other hand, if $g$ is concave 
+prove so is $f\odot g$.) \\
+\bluea{
+Let $y_1, y_2\in\E$ and $\lambda\in[0,1]$. For any $x_1, x_2 \in\E$, 
+\begin{align*}
+&f(\lambda x_1 + (1-\lambda)x_2) + g(\lambda y_1 + (1-\lambda)y_2 - 
+\lambda x_1 + (1-\lambda)x_2)\\ &\qquad \leq \lambda 
+[f(x_1) + g(y_1-x_1)] + (1-\lambda)[f(x_2)+g(y_2-x_2)].
+\end{align*}
+Taking the infimum over $x_1$ and $x_2$ on the RHS, we obtain 
+$(f\odot g)(\lambda y_1 + (1-\lambda)y_2)\leq \lambda (f\odot g)(y_1)
++ (1-\lambda) (f\odot g)(y_2)$. \\
+Now suppose $g$ is concave. For any $x\in\E$, we have 
+\begin{align*}
+f(x) + g(\lambda y_1 + (1-\lambda)y_2 - x) 
+&\geq \lambda(f(x) + g(y_1-x)) + (1-\lambda)(f(x) + g(y_2-x))\\
+&\geq \lambda (f\odot g)(y_1) + (1-\lambda)(f\odot g)(y_2),
+\end{align*}
+which after taking an infimum on the LHS implies that 
+$(f\odot g)(\lambda y_1 + (1-\lambda)y_2) \geq \lambda (f\odot g)(y_1)
++ (1-\lambda)(f\odot g)(y_2).$ Notice that we didn't need $f$ to be 
+convex or concave.
+}
+\item Prove $(f\odot g)^*=f^*+g^*$.
+\bluea{
+\begin{align*}
+(f\odot g)^*(z) &= \sup_{y\in\E}\left\{\ip{z,y} - \inf_{x\in\E}\{f(x) 
++ g(y-x)\}\right\} \\
+&= \sup_{y,x\in\E}\left\{\ip{z,y}-f(x) - g(y-x)\right\}\\
+&= \sup_{y,x\in\E}\left\{\ip{z, y-x} - g(y-x) + \ip{z,x}-f(x)\right\}\\
+&= g^*(z) + f^*(z),
+\end{align*}
+The last step follows by taking the supremum over 
+$x$ and then the supremum over $y$.
+}
+\item If $\dom f\cap\cont g\neq\emptyset$, prove $(f+g)^*=f^*\odot g^*$.\\
+\bluea{
+\green{Is there a reason why the condition $0\in\core(\dom f-\dom g)$ 
+is not used here?}
+Theorem 3.3.5 \eqref{3.3.5} can be rephrased as saying that if 
+$0\in\core(\dom g-\dom f)$ or in particular
+$\dom f \cap\cont g\neq \emptyset$, then 
+\begin{equation*}
+\sup_{x\in\E}\{-f(x) - g(x)\} = \inf_{\phi\in\E}\{f^*(\phi) + g^*(\phi)\}.
+\end{equation*}
+Noting that $\dom(f-\ip{y,\cdot})=\dom(f)$ for any $y\in\E$, and 
+that $(f-\ip{y,\cdot})^*(\phi) = f^*(\phi+y)$, we have 
+\begin{equation*}
+\sup_{x\in\E}\{\ip{y,x} - f(x) - g(x)\} = \inf_{\phi\in\E}\{f^*(\phi+y)
++ g^*(-\phi)\}.
+\end{equation*}
+But the LHS is $(f+g)^*(y)$ and the RHS is $(f^*\odot g^*)(y)$.
+}
+\item Given a nonempty set $C\subset\E$, define the \textit{distance 
+function} by 
+\begin{equation*}
+d_C(x) = \inf_{y\in C}\|x-y\|.
+\end{equation*}
+\begin{enumerate}[(i)]
+\item Prove $d_C^2$ is a difference of convex functions, by observing 
+\begin{equation*}
+(d_C(x))^2 = \frac{\|x\|^2}{2} - \left(\frac{\|\cdot\|^2}{2} + 
+\delta_C\right)^*(x).
+\end{equation*} 
+\bluea{
+$(\inf_{y\in C}\|x-y\|)^2 = \inf_{y\in C}\|x-y\|^2$, because 
+$\|a\|\geq \|b\|\iff \|a\|^2\geq \|b\|^2$. Therefore, $d_C(x)^2 
+= \inf_{y\in C}\|x-y\|^2=\inf_{y\in C}\{\|x\|^2 - 2\ip{x,y} +\|y\|^2\}$.
+Continuing, 
+\begin{align*}
+d_C(x)^2 &= \|x\|^2 + \inf_{y\in C}\{-2\ip{x,y} +\|y\|^2\} \\
+&= \|x\|^2 - 2\sup_{y\in C}\{\ip{x,y} - \frac{\|y\|^2}{2}\}\\
+&= \|x\|^2 - 2\left(\frac{\|\cdot\|^2}{2} + \delta_C\right)^*(x).
+\end{align*}
+I think the LHS in the question is missing a factor of $\frac{1}{2}$.
+}
+\end{enumerate}
+Now suppose $C$ is convex. 
+\begin{enumerate}[(i),resume]
+\item Prove $d_C$ is convex and $d_C^* = \delta_B+\delta_C^*$.\\
+\bluea{
+For any $y_1,y_2\in C$ and $\lambda\in[0,1]$, the point $\lambda y_1
++(1-\lambda)y_2$ is also in $C$, by convexity. Also, 
+\begin{equation*}
+\|\lambda x_1 + (1-\lambda)x_2 - \lambda y_1 - (1-\lambda)y_2\|
+\leq \lambda\|x_1-y_1\| + (1-\lambda)\|x_2-y_2\|.
+\end{equation*}
+This implies that $d_C(\lambda x_1+(1-\lambda)x_2)\leq \lambda d_C(x_1)
++ (1-\lambda) d_C(x_2)$, i.e. $d_C$ is convex. Now for the conjugate, 
+\begin{equation*}
+d_C^*(z) = \sup_{x\in\E}\left\{\ip{z,x} -\inf_{y\in C}\|x-y\|\right\}
+= \sup_{x\in \E, y\in C} \ip{z,x} - \|x-y\|.
+\end{equation*}
+To handle $\|z\| > 1$, notice
+ $\ip{z,x} - \|x-y\| \geq \ip{z,x} - \|x\|-\|y\|$.
+If we pick $x$ in the same direction as $z$, this is equal to 
+$(\|z\|-1)\|x\|-\|y\|\to+\infty$ as $\|x\|\to+\infty$. This explains 
+the presence of the $\delta_B$. Otherwise, $\|z\|\leq 1$. Then, 
+$\ip{z, x-y} - \|x-y\|\leq \|z\|\|x-y\| - \|x-y\|\leq 0$, which 
+implies $\ip{z,x}-\|x-y\| \leq \ip{z,y}$. Thus, we can restrict the 
+$\sup$ to  $x=y$, giving
+\begin{equation*}
+d_C^*(z) = \sup_{y\in C} \ip{z,y}.
+\end{equation*}
+This proves $d_C^*(z) = \delta_B + \delta_C^*$.
+}
+\item For $x\in C$ prove $\partial d_C(x) = B\cap N_C(x)$. \\
+\bluea{
+For the inclusion $\partial d_C(x)\subset B\cap N_C(x)$, suppose 
+$\phi\in\partial d_C(x)$. Then for any $z\in\E$ and $y\in\E$,
+\begin{equation*}
+\ip{\phi,z-x} \leq \inf_{y\in C}\|z-y\| - \inf_{y\in C}\|x-y\| 
+\leq \|z-y\|-\inf_{y\in C}\|x-y\|.
+\end{equation*}
+Since $C$ is nonempty ($x\in C$), for any $\epsilon>0$ there exists 
+$y\in \E$ such that $\|x-y\|\leq \inf_{y\in C}\|x-y\|+\epsilon$. 
+Therefore, 
+\begin{equation*}
+\ip{\phi, z-x}\leq \|z-y\| -\|x-y\|+\epsilon \leq \|z-x\|+\epsilon.
+\end{equation*}
+Since $\epsilon > 0$ is arbitrary, $\ip{\phi, z-x}\leq \|z-x\|$. 
+By taking $z=x+\phi$, this implies $\phi\in B$.  Finally, by the subgradient property, for $y\in C$, 
+\begin{equation*}
+\ip{\phi, y-x} \leq -\inf_{y\in C}\|x-y\| \leq 0.
+\end{equation*}
+\green{Wait, we were 
+supposed to assume $x\in C$ which implies $d_C(x)=0$, but I think this 
+proves $\partial d_C(x) \subset B\cap N_C(x)$ without assuming 
+$x\in C$.} Now we show $B\cap N_C(x) \subset\partial d_C(x)$. 
+Suppose $\phi\in B\cap N_C(x)$. For any other $y\in C$, 
+\begin{equation*}
+\ip{\phi, y-x} \leq 0 = d_C(y) - d_C(x),
+\end{equation*}
+since $d_C(y) = d_C(x) = 0$. If $z\in \E$ in general, then since 
+$\ip{\phi, y-x}\leq 0$,
+\begin{equation*}
+\ip{\phi, z-x} \leq \ip{\phi, z-y} \leq \|z-y\|.
+\end{equation*}
+By taking the $\inf$ over $y$, we get $\ip{z-x}\leq d_C(z)$, 
+implying $\phi\in\partial d_C(x)$.
+}
+\item If $C$ is closed and $x\notin C$, prove 
+\begin{equation*}
+\nabla d_C(x) = d_C(x)^{-1}(x-P_C(x)),
+\end{equation*}
+where $P_C(x)$ is the nearest point to $x$ in $C$. \\
+\bluea{
+First we show that $\frac{x-P_C(x)}{d_C(x)}$ is a subgradient. Let 
+$z\in \E$.
+By the nearest point characterization, $\ip{x-P_C(x), P_C(x)-P_C(z)}
+\geq 0$. Therefore, 
+\begin{align*}
+\left\langle\frac{x-P_C(x)}{d_C(x)}, z-x\right\rangle& \leq 
+\left\langle\frac{x-P_C(x)}{d_C(x)}, z-P_C(z) + P_C(x) - x\right\rangle\\
+&\leq \|z-P_C(z)\| - \|x-P_C(x)\| = d_C(z) - d_C(z).
+\end{align*}
+The second inequality follows because $\|\frac{x-P_C(x)}{d_C(x)}\|=1$ 
+and $\ip{x-P_C(x),x-P_C(x)}/d_C(x) = d_C(x)$. Now let us show 
+this must be the only subgradient. \\
+Suppose $\phi\in\partial d_C(x)$. First we show that $\phi\in B$.
+\begin{equation*}
+\ip{\phi, z-x} = \|z-P_C(z)\|-\|x-P_C(x)\|\leq \|z-P_C(x)\| -
+\|x-P_C(x)\| \leq \|z-x\|.
+\end{equation*}
+Since $z$ was arbitrary, $\|\phi\|\leq 1$. Now we conclude 
+$\phi$ must equal $x-P_C(x)$, scaled to unit norm.
+ Applying the subgradient inequality to 
+$P_C(x)$, we obtain 
+\begin{equation*}
+\ip{\phi, P_C(x)- x} \leq -\|x-P_C(x)\|.
+\end{equation*}
+By Cauchy-Schwarz, the only way this is possible while $\|\phi\|\leq 1$ 
+is if $\phi = \frac{x-P_C(x)}{d_C(x)}$.
+}
+\item If $C$ is closed, prove 
+\begin{equation*}
+\nabla\frac{d_C^2}{2}(x) = x-P_C(x)
+\end{equation*}
+for all points $x$.\\
+\bluea{
+Recall the formula $\frac{d_C^2}{2}(x) = \frac{\|x\|^2}{2} - \left(
+\frac{\|\cdot\|^2}{2} + \delta_C\right)^*(x)$. If we can show that 
+$\frac{\|x\|^2}{2}$ and $-\left(\frac{\|\cdot\|^2}{2}+\delta_C\right)$ 
+are differentiable, then we can simply compute their gradients and 
+add them. By calculus, $\nabla\frac{\|x\|^2}{2} = x$. \\
+To compute the other gradient, we make two general observations
+about subgradients and conjugates. First of all, 
+\begin{equation}
+\label{subconj1}
+f^*(\phi) = \ip{\phi, x} - f(x) \iff \phi\in\partial f(x).
+\end{equation}
+This is because $\forall x'\in\E,\;\ip{\phi,x} - f(x) \geq 
+\ip{\phi,x'} - f(x') \iff \forall x'\in\E,\; \ip{\phi, x'-x}
+\leq f(x')-f(x)$. In other words, the argmax of the expression 
+whose sup defines the conjugate is the set of points at which
+$\phi$ is a subgradient of $f$. \\
+Next, if $\partial f(x)\neq\emptyset$, then 
+\begin{equation}
+\label{subconj2}
+x\in\partial f^*(y) 
+\iff y\in\partial f(x).
+\end{equation}
+First, suppose $x\in\partial f^*(y)$. Then,
+$\forall y',\;\ip{x,y'-y} \leq f^*(y') - f^*(y)$. Because of 
+\eqref{subconj1} and $\partial f(x)\neq\emptyset$, we can take 
+$y'=\bar y\in\partial f(x)$, giving
+$\forall x',\;\ip{x,\bar y-y}
+ \leq \ip{\bar y, x} - f(x) - \ip{y, x'} + f(x')$.
+So, $\forall x',\; \ip{y, x'-x} \leq f(x')- f(x)$, i.e. $y\in\partial 
+f(x)$. \\
+On the other hand, if $y\in\partial f(x)$, 
+then since for any $y',\; \ip{x,y'} \leq f^*(y') + f(x)$ and by 
+\eqref{subconj1}, $-\ip{x,y} = -f^*(y) - f(x)$, we have 
+$\ip{x, y'-y} \leq f^*(y') - f^*(y)$, i.e. $x\in\partial f^*(y)$.\\
+Now we can compute $\partial\left(\frac{\|\cdot\|^2}{2} + \delta_C
+\right)^*(x)$. We have 
+\begin{equation*}
+\left(\frac{\|\cdot\|^2}{2} + \delta_C\right)^*(x)
+= \sup_{y\in C}\ip{x,y}- \frac{\|y\|^2}{2} = \frac{\|x\|^2}{2}
+- \frac{\|x-P_C(x)\|^2}{2}.
+\end{equation*}
+i.e. $y=P_C(x)$ uniquely achieves the sup (see Section 2.1, 
+Exercise 8, which proves the nearest point in a closed convex set 
+exists and is unique). By \eqref{subconj1}, $x\in\partial\left(
+\frac{\|\cdot\|^2}{2} + \delta_C(\cdot)\right)(P_C(x))$. 
+By \eqref{subconj2}, $\{P_C(x)\}=\partial\left(\frac{\|\cdot\|^2}{2}
++ \delta_C\right)^*(x)$, where $P_C(x)$ is the only point in the 
+subgradient because it uniquely achieves the above sup. Therefore, 
+having a unique subgradient, $-\left(\frac{\|\cdot\|^2}{2}+\delta_C
+\right)^*$ is differentiable, and
+\begin{equation*}
+\partial\frac{d_C^2}{2}(x) = \nabla\frac{\|x\|^2}{2} - \nabla 
+\left(\frac{\|\cdot\|^2}{2} + \delta_C\right)^*(x) = x - P_C(x).
+\end{equation*}
+\green{I bashed out the solution manually previously. This approach,
+which applies seemingly general facts of subgradients/conjugates, 
+seems much better. Although it might be useful to write down the 
+bashy approach to compare.}
+}
+\end{enumerate}
+\item Define the \textit{Lambert $W$-function} $W: \R_+\to\R_+$ as the 
+inverse of $y\in\R_+\mapsto ye^y$. Prove the conjugate of the function 
+\begin{equation*}
+x\in\R\mapsto \exp^*(x) + \frac{x^2}{2}
+\end{equation*}
+is the function 
+\begin{equation*}
+y\in\R \mapsto W(e^y)+ \frac{(W(e^y))^2}{2}.
+\end{equation*}
+\green{
+It's really not hard to solve this by calculating $\sup_{x\in\R_+} 
+yx - x\log x + x -\frac{x^2}{2}$ by taking the derivative, but in
+the interest of the theme of this question and trying to use general 
+theory we'll use a different particular approach.
+} \\
+\bluea{
+We notice that by part (b), $\exp^*(y) + \frac{y^2}{2} = \left(\exp\odot
+\frac{(\cdot)^2}{2}\right)^*(x)$. Let us compute 
+$\left(\exp\odot\frac{(\cdot
+)^2}{2}\right)(y) =: f(y)$.
+\begin{align*}
+f(y) = \sup_{x\in\R}\left\{ \exp(x) + \frac{(y-x)^2}{2}\right\}.
+\end{align*}
+Solving for the $\sup$ by setting the derivative to 0, 
+$\exp(x) + x-y=0 \implies \exp(x) = y-x$. Therefore, if $x$ is optimal
+for the sup, then $f(y) = \exp(x) + \frac{\exp(x)^2}{2}$. 
+By $\exp(x)\exp(\exp(x)) = \exp(y)$, we obtain $\exp(x) = W(\exp(y))$.
+Thus, $f(y) = W(\exp(y)) + \frac{W(\exp(y))^2}{2}$.\\
+ If we knew that $\left(\exp\odot
+\frac{(\cdot)^2}{2}\right)^{**} = \exp\odot\frac{(\cdot)^2}{2}$, we 
+would be done. We'll prove this by showing that for any convex 
+$f:\E\to(-\infty,+\infty]$ with $x\in\core(\dom f)$, $f(x)=f^{**}(x)$.
+\begin{equation*}
+f^{**}(x) = \sup_{y\in\E} \ip{x,y} - f^*(y) = \sup_{y\in \E} 
+\ip{x,y} - \sup_{z\in\E} \ip{y,z} - f(z).
+\end{equation*}
+Recall \eqref{subconj2}; since $\partial f(x)$ is nonempty by Theorem
+3.1.8 (Max formula), if $y\in\partial f(x)$, then applying 
+\eqref{subconj1} to both sups,
+\begin{equation*}
+f^{**}(x) = \ip{x,y} - \ip{y,x} + f(x) = f(x).
+\end{equation*}
+Since the function $W(e^y) + \frac{W(e^y)^2}{2}$ is finite everywhere,
+its biconjugate equals itself.
+}
+\end{enumerate}
+\noindent
+\textbf{13 * (Applications of Fenchel duality).}
+\begin{enumerate}[(a)]
+\item \green{\textbf{(Sandwich theorem).}}
+ Let the functions $f:\E\to(-\infty,
++\infty]$ and $g:\Y\to(-\infty,+\infty]$ be convex and the map 
+$A:\E\to\Y$ be linear. Suppose $f\geq -g\circ A$ and $0\in\core(\dom g
+- A\dom f)$ (or $A\dom f\cap \cont g\neq\emptyset)$. Prove there is an 
+affine function $\alpha:\E\to\R$ satisfying $f\geq\alpha\geq -g\circ A$.\\
+\bluea{
+By Fenchel duality (Theorem 3.3.5), 
+\begin{equation*}
+\inf_{x\in\E} f(x) + g(Ax) = \sup_{\phi\in\Y} -f^*(A^*\phi) - g^*(-\phi).
+\end{equation*}
+Since $f\geq -g\circ A$, we have $f(x) + g(Ax) \geq 0$ for all $x\in\E$.
+Therefore, both sides of the equation are finite and in particular 
+at least 0, which again by 
+Fenchel duality implies the supremum is attained by some $\phi\in\Y$. 
+In other words, 
+\begin{equation*}
+\inf_{x\in\E} f(x) + g(Ax) = \inf_{x\in\E}\left\{f(x) - \ip{A^*\phi, x} 
+\right\}+ \inf_{y\in\Y}\left\{ g(y) + \ip{\phi, y}\right\} \geq 0.
+\end{equation*}
+Thus, for any $\bar x\in\E$,
+\begin{align*}
+&\ip{A^*\phi, \bar x} + \inf_{x\in\E}\{f(x)-\ip{A^*\phi, x}\} \leq f(
+\bar x)\\
+&\ip{-\phi, A\bar x} + \inf_{y\in\Y}\{g(y) + \ip{\phi,y}\} 
+\leq \ip{-\phi, A\bar x} + \inf_{x\in\E}\{g(Ax) + \ip{\phi, Ax}\} 
+\leq g(A\bar x).
+\end{align*}
+Negating the second inequality gives 
+\begin{equation*}
+\ip{A^*\phi, \bar x}
+ - \inf_{y\in\Y}\{g(y)+\ip{\phi,y}\} \geq - g(A\bar x).
+\end{equation*}
+Since $\inf_x\{f(x) - \ip{A^*\phi,x}\} \geq - \inf_y\{g(y) + \ip{\phi,y}
+\}$, with $C = \inf_x\{f(x)-\ip{A^*\phi, x}\}$, we have for any 
+$\bar x\in\E$
+\begin{align*}
+-g(A\bar x)\leq \ip{A^*\phi, \cdot} + C \leq f(\bar x),
+\end{align*}
+which proves the desired statement.
+}
+\item Interpret the Sandwich theorem geometrically in the case when 
+$A$ is the identity. \\
+\bluea{
+It means we can fit a hyperplane between the graphs of a convex function
+and a concave function, assuming the former upper bounds the latter.
+}
+\item \textbf{(Pshenichii-Rockafellar conditions [159]).} If the convex
+set $C$ in $\E$ satisfies the condition $C\cap\cont f\neq\emptyset$
+(or the condition $\inter C\cap\dom f\neq\emptyset$), and if $f$ is bounded
+below on $C$, use part (a) to prove there is an affine function 
+$\alpha\leq f$ with $\inf_C f = \inf_C\alpha$. Deduce that a point 
+$\bar x$ minimizes $f$ on $C$ if and only if it satisfies 
+$0\in\partial f(\bar x) + N_C(\bar x)$. \\
+\bluea{
+Define $M=\inf_{x\in C} f(x)$. $M\in\R$, because $f$ is bounded below on 
+$C$ and $C\cap \dom f\neq 0$. Notice for all $x\in C$, 
+$f(x) - M \geq 0$, and $\inf_{x\in C}\{f(x) - M\} = 0$. By the former,
+the convex function $\delta_C$ upper bounds $M-f$. By the condition 
+$C\cap \cont f\neq \emptyset$, we may apply part (a) to deduce the 
+existence of an affine function $\alpha$ such that 
+\begin{equation*}
+\delta_C \geq \alpha \geq M - f.
+\end{equation*}
+Therefore 
+\begin{equation*}
+0=\sup_{x\in C} \delta_C(x) \geq \sup_{x\in C}\alpha(x) \geq 
+\sup_{x\in C} \{M-f\} = 0.
+\end{equation*}
+So, the affine function $M-\alpha$ satisfies $M-\alpha\leq f$ and 
+$\inf_{x\in C} \{M-\alpha(x)\} = M-\sup_{x\in C}\alpha(x) = M
+= \inf_{x\in C} f(x)$, as desired. \\
+Let $\alpha(x) = \ip{\phi, x} + b$ with $\inf_C\alpha=\inf_C f$.
+If $\bar x$ is a minimizer of $f$ over $C$, then $\ip{\phi, \bar x}
++ b = f(\bar x)$, and thus $b=f(\bar x) - \ip{\phi, \bar x}$. As a 
+result, $\phi\in\partial f(\bar x)$. Furthermore, $x'\in C$ implies 
+$\alpha(x')-\alpha(\bar x)\geq 0$, i.e. $\ip{\phi, x'-\bar x}\geq 0$. 
+Therefore, $-\phi\in N_C(\bar x)$. As a result, $0\in \partial f(\bar x)
++ N_C(\bar x)$.
+}
+\item Apply part (c) to the following two cases:
+\begin{enumerate}[(i)]
+\item $C$ a single point $\{x^0\}\subset\E$ \\
+\bluea{
+Part (c) for this case simply says that if $x^0\in\cont f$, then 
+$\bar f(x^0)\neq \emptyset$.
+}
+\item $C$ a polyhedron $\{x\mid Ax\leq b\}$, where $b\in\R^n=\Y$ \\
+\bluea{
+If $\cont f \cap C \neq \emptyset$, then there exist $c\in\R,\, 
+\phi\in\E$ such that 
+\begin{equation*}
+\inf_{x:Ax\leq b} f(x) = \inf_{x: Ax\leq b} \ip{\phi,w} + c.
+\end{equation*}
+Is the conclusion something like $\phi = -A^\top\lambda$ for some 
+$\lambda\in\R_+^n$ with nonzero entries in the entries where 
+$Ax=b$?
+\green{I am not sure this is the conclusion I was supposed to derive.}
+}
+\end{enumerate}
+\item \textbf{(Hahn-Banach extension)} If the function $f:\E\to\R$ is 
+everywhere finite and sublinear, and for some linear subspace $L$ of 
+$\E$ the function $h:L\to\R$ is linear and \textit{dominated} by 
+$f$ (in other words $f\geq h$ on $L$), prove there is a linear function 
+$\alpha:\E\to\R$, dominated by $f$, which agrees with $h$ on $L$.\\
+\bluea{
+Define the function $h_{-\infty}:\E\to\R$ by $h_{-\infty}=h$ on $L$ 
+and otherwise $h_{-infty}=-\infty$. This function is concave and 
+dominated by $f$. Furthermore, being sublinear, $f$ is continuous 
+everywhere (examine the maximum absolute value of $f$ over a basis).
+Therefore, by the sandwich theorem (part (a)), there exists an affine 
+$\alpha$ such that 
+\begin{equation*}
+f \geq \alpha \geq h_{-\infty}.
+\end{equation*}
+Using sublinearity of $f$ and linearity of $h$,
+$f(0) = h_{-\infty} = 0$, so we have $\alpha=0$, i.e. $\alpha$ is 
+linear. Furthermore, for $x\in L$, $\alpha(x) \geq h(x)$ and 
+$-\alpha(x) = \alpha(-x) \geq h(-x) = -h(x)$, implying $\alpha=h$ on $L$.
+This completes the proof.
+}
+\end{enumerate} 
+\noindent
+\textbf{14. }Fill in the details of the proof of the Krein-Rutman 
+calculus \eqref{3.3.13}.
+\bluea{
+\begin{proof}
+Note that for any cone $K$, $K^- = \partial\delta_K(0)$. Further note that 
+$\delta_K + \delta_H\circ A = \delta_{K\cap A^{-1}H}$, and that 
+$K\cap A^{-1}H$ is a cone. Finally, note that if $H-AK = \Y$, then 
+$0 \in \core(H-AK) = \core(\dom\delta_H - A\dom\delta_K)$, so that we can 
+apply the subgradient equality in Theorem 3.3.5 (Fenchel duality):
+\begin{equation*}
+\partial\delta_{K\cap A^{-1}H}(0) = \partial(\delta_K + \delta_H\circ 
+A)(0) = \partial \delta_K(0) + A^*\partial\delta_H(0).
+\end{equation*}
+Since for any cone $K,K^-=\delta_K(0)$, we have 
+\begin{equation*}
+(K\cap A^{-1}H)^- = A^*H^- + K^-.
+\end{equation*}
+\end{proof}}
+\noindent
+\textbf{15 * (Bipolar theorem)} For any nonempty set $K\subset\E$, prove
+the set $\cl(\conv(\R_+K))$ is the smallest closed convex cone containing
+$K$. Deduce Theorem 3.3.14 (Bipolar cones) \eqref{3.3.14}. \\
+\bluea{
+Clearly, any cone containing $K$ contains $\R_+K$. Any convex cone 
+containing $K$ contains $\R_+K$ and is convex, and thus contains the 
+smallest convex set containing $\R_+K,\; \conv(\R_+K)$ (see Section 1.1 
+Exercise 2). Therefore, any closed convex cone containing $K$ contains 
+$\conv(\R_+K)$ and is closed. Therefore, it contains the smallest closed
+set containing $\conv(\R_+K)$, which is $\cl\conv(\R_+K)$. \\
+We have shown
+that any closed convex cone containing $K$ contains $\cl\conv(\R_+K)$. 
+It remains to show that $\cl\conv(\R_+K)$ is a closed convex cone.
+By Section 1.1, Exercise 3, this set is closed and convex. It is a
+cone, first because $\R_+K$ is a cone, then because $\conv(\R_+K)$ 
+is a cone ($c\in\R_+,\; \sum_i\lambda_i c_ik^i\in \conv(\R_+K)
+\implies c\sum_i\lambda_ic_ik^i = \sum_i\lambda_icc_ik^i\in \conv(\R_+K)$),
+then because the closure of a cone is a cone ($y^i\to y\in C \implies 
+c^iy^i\to cy \in C$ for $c\in \R_+$). \\
+Finally we deduce Theorem 3.3.14 (Bipolar cones) \eqref{3.3.14}. Let 
+$y\notin \cl\conv(\R_+ K)$. We'll show $y\notin K^{--}$, which means 
+$K^{--}\subset \cl\conv(\R_+ K)$. By basic separation, there exists 
+$a\in \E$ not equal to 0 and $b\in\R$ such that for all $x\in \cl\conv
+(\R_+K)$, $\ip{a,y} > b \geq \ip{a,x}$. Let's prove we can take $b=0$.
+If any $x\in \cl\conv(\R_+K)$ satisfies $\ip{a,x} > 0$, then by scaling 
+$x$ by a large enough positive constant, we contradict $b\geq \ip{a,x}$.
+So, if $b>0$, then we can safely set it to 0.
+If $b < 0$, then setting $x=0$ gives another contradiction.
+Therefore, we have $\ip{a,y} > 0 \geq \ip{a,x}$ for each $x\in\cl\conv
+(\R_+K)$. The second inequality implies $a\in K^{-}$, after 
+which the first implies $y\notin K^{--}$. The polar cone is a closed 
+and convex cone ($c,\mu\geq 0,\; \ip{\phi_1,x}\leq0,\;\ip{\phi_2,x}
+\leq 0 \implies \ip{c\phi_1 + \mu\phi_2, x}\leq0$, and if 
+$\phi^i\to \phi,\, \ip{\phi^i, x}\leq 0,$ then $\ip{\phi, x}\leq 0$). 
+Therefore, $K^{--} = \cl\conv(\R_+K)$, which is the content of Theorem
+3.3.14 (Bipolar cones)\eqref{3.3.14}.
+}\\
+\noindent
+\textbf{16 * (Sums of closed cones)}
+\begin{enumerate}[(a)]
+\item Prove that any cones $H,K\subset\E$ satisfy $(H+K)^- = H^-\cap 
+K^-$. \\
+\bluea{
+Suppose $x\in H^-\cap K^-$. Then, for any $h\in H,\; k\in K$, 
+we have $\ip{x, h+k}=\ip{x,h}+\ip{x,k}\leq 0$, so that $x\in (H+K)^-$.
+Conversely, if $x\in (H+K)^-$, we must have $\ip{x,h}\leq 0$ and 
+$\ip{x,k}\leq 0$ for every $h\in H, k\in K$, since $0\in H\cap K$.
+Thus, $x\in H^-\cap K^-$.
+}
+\item Deduce that if $H$ and $K$ are closed convex cones then they satisfy 
+$(H\cap K)^- = \cl(H^- + K^-)$, and prove that the closure can be 
+omitted under the condition $K\cap \inter H\neq \emptyset$.\\
+\bluea{
+By part (a) applied to $H^-, K^-,\; H^{--}\cap K^{--} = (H^- + K^-)^-$.
+Taking polars on both sides and applying Theorem 3.3.14 \eqref{3.3.14},
+we get $(H^{--}\cap K^{--})^- = \cl(H^- + K^-)$ (since $H^-+K^-$ is 
+a convex cone already). By Theorem 3.3.14, $H^{--}=H$ and $K^{--}=K$.
+This completes the proof. \\
+If $K\cap \inter H\neq\emptyset$, then $H-K=\E$, as if $k\in K\cap\inter H$
+then for any $d\in\E$ there exists $h\in H$ such that $h-k = td$ for some 
+$t>0$, then $h/t-k/t = d$. By the polar calculus (Corollary 3.3.13 
+\eqref{3.3.13}), $(H\cap K)^- = H^-+K^-$.
+} 
+\end{enumerate}
+In $\R^3$, define sets 
+\begin{align*}
+& H= \{x\mid x_1^2+x_2^2 \leq x_3^4,\; x_3\leq 0\} \text{ and }\\
+&K=\{x\mid x_2=-x_3\}.
+\end{align*}
+\begin{enumerate}[(a), resume]
+\item Prove $H$ and $K$ are closed convex cones.  \\
+\bluea{
+$H$ is a cone, since $x_1^2+x_2^2 \leq x_3^2 \implies 
+c^2x_1^2 + c^2x_2^2 \leq c^2x_3^2$ for any $c\geq 0$, and 
+$cx_3\leq 0$ if $x_3\leq 0$. It is closed since $f(x) = x_1^2 + x_2^2
+-x_3^2$ is a continuous function, and thus $f^{-1}((-\infty,0])$
+is closed. It is convex because of the triangle inequality, which follows
+from Cauchy Schwarz: 
+\begin{align*}
+&\|x+y\|^2 = \|x\|^2 + \|y\|^2 + 2x^\top y \leq \|x\|^2 + \|y\|^2 
++ 2\|x\|\|y\| = (\|x\|+\|y\|)^2\\
+\implies & \sqrt{(x_1+y_1)^2 + (x_2+y_2)^2} =
+\|x+y\|\leq \|x\|+\|y\| = \sqrt{x_1^2 + x_2^2} + \sqrt{y_1^2 + y_2^2}.
+\end{align*}
+$K$ is a linear subspace, which is closed, convex, and a cone.
+}
+\item Calculate the polar cones $H^-, K^-,$ and $(H\cap K)^-$. \\
+\bluea{
+Let $y\in -H$. If $x\in H$, then 
+\begin{equation*}
+\ip{y,x} \leq \sqrt{y_1^2+y_2^2}\sqrt{x_1^2 + x_2^2} - |y_3||x_3|\leq 0,
+\end{equation*}
+which holds because $\sqrt{y_1^2+y_2^2}\leq |y_3|$ and 
+$\sqrt{x_1+x_2^2}\leq |x_3|$ and these quantities are nonnegative.
+Thus, $-H\in H^-$. Now let $y\in H^-$. We have 
+\begin{equation*}
+\ip{y, (y_1, y_2, -\|(y_1,y_2)\|)} = \|(y_1, y_2)\|^2 - y_3\|(y_1,y_2)\|
+\leq 0
+\end{equation*}
+which if $(y_1,y_2)\neq 0$ implies $\|(y_1,y_2)\|\leq y_3$, i.e. 
+$y\in -H$. If $(y_1,y_2)=0$, we need $y_3\geq 0$ or else we can take 
+any $x\in H$ to get a positive dot product. Thus, $y\in H^- \implies 
+y\in -H$. We conclude $-H = H^-$. \\
+Since $K$ is a linear subspace and $K^- = N_K(0)$, by Section 2.1, 
+Exercise 2(c), $K^- = K^\perp$. By definition, $K=\spn\{(0,1,1)\}^\perp$.
+Since $V$ a subspace of a finite dimensional linear space satisfies 
+$(V^{\perp})^{\perp} = V$, we have $K^- = \spn\{(0,1,1)\}$. \\
+$H\cap K = \R_+(0, 1,-1)$, since if $y_1\neq 0$ and $y_2=-y_3$ then 
+$y_1^2 + y_2^2 > y_2^2 = y_3^2$. The polar is $\{x\in\R^3: 
+x_2-x_3 \leq 0\}$, i.e. the half space passing through 0 with 
+normal vector $(0,1,-1)$.
+}
+\item Prove $(1,1,1)\in (H\cap K)^-\setminus (H^-+K^-)$, and deduce 
+that the sum of two closed convex cones is not necessarily closed. \\
+\bluea{
+$(1,1,1)^\top (0,1,-1) = 0$, so $(1,1,1)\in (H\cap K)^-$.
+Suppose $h^-\in H^-$ and $k^-=c(0,1,1)\in K^-$. Thus, if 
+$h^- + k^- = (1,1,1)$, then $h^- = (1, 1-c, 1-c)$. But this is a 
+contradiction, since $1+(1-c)^2 > (1-c)^2$. Thus, $(1,1,1)\notin 
+H^- + K^-$. \\
+If $H^-+K^-$ were closed, then by part (b) $(H\cap K)^- = 
+\cl(H^- + K^-) = H^-+K^-$. Thus, $H^-+K^-$ is not closed, despite 
+$H^-$ and $K^-$ being closed convex cones.
+}
+\end{enumerate}
+\noindent
+\textbf{17 * (Subdifferential of a max-function).} With the notation
+of Section 3.2, Exercise 13, suppose 
+\begin{equation*}
+\dom g_j \cap \bigcap_{i\in I\setminus\{j\}} \cont g_i \neq \emptyset
+\end{equation*}
+for some index $j$ in $I$. Prove 
+\begin{equation*}
+\partial(\max_i g_i)(\bar x) = \conv \bigcup_{i\in I}\partial g_i(\bar 
+x).
+\end{equation*}
+\bluea{
+From Section 3.2, Exercise 13, we have 
+\begin{equation*}
+\partial g(\bar x) = \bigcup\left\{\partial\left(\sum_{i\in I}
+\lambda_i g_i\right)(\bar x)\,\bigg|\, \lambda\in\R_+^I,\,
+\sum_{i\in I}\lambda_i=1\right\}.
+\end{equation*}
+Note that for any $c> 0$ and function $f$, 
+$\partial (cf) = c\partial f$. This is because for $\bar x\in \E$, 
+if $c>0$,
+\begin{equation*}
+\forall x,\;\ip{\phi, x-\bar x} \leq cf(x) -f(\bar x) \iff 
+\forall x,\;\ip{\phi/c, x-\bar x} \leq f(x)-f(\bar x).
+\end{equation*}
+By the condition $\dom g_j \cap \bigcap_{i\in I\setminus\{j\}} \cont g_i$
+and inducting with Theorem 3.3.5 \eqref{3.3.5}, for any $I'\subset I$ 
+such that $\forall i\in I',\,\lambda_i > 0, \sum_{i\in I'} \lambda_i=1$,
+\begin{equation*}
+\partial\left(\sum_{i\in I'}\lambda_i g_i\right)(\bar x) 
+= \sum_{i\in I'} \partial(\lambda_i g_i)(\bar x)
+= \sum_{i\in I'}\lambda_i\partial g_i(\bar x).
+\end{equation*}
+We obtain
+\begin{equation*}
+\partial\max g_i(\bar x) = \bigcup\left\{\sum_{i\in I'} \lambda_i
+\partial g_i(\bar x) \,\bigg|\, I'\subset I, \lambda\in \R_{++}^{I'},
+\, \sum_{i\in I'}\lambda_i=1
+\right\} = \conv\bigcup\partial g_i(\bar x).
+\end{equation*}
+}
+\textbf{18 * (Order convexity).} Given a Euclidean space $\Y$ and 
+a closed convex cone $S\subset \Y$, we write $u\leq_S v$ for points 
+$u$ and $v$ in $\Y$ if $v-u$ lies in $S$.
+\begin{enumerate}[(a)]
+\item Identify the partial order $\leq_S$ in the following cases: 
+\begin{enumerate}[(i)]
+\item $S=\{0\}$ \bluea{$\; \leq_S = =$}.
+\item $S=\Y$ \bluea{$\; \leq_S$ returns true for every pair of elements.}
+\item $\Y=\R^n$ and $S=\R_+^n$. \bluea{$\; u\leq_S v \iff u\leq v$ 
+entrywise}.
+\end{enumerate}
+\end{enumerate}
+Given a convex set $C\subset\E$, we say a function $F:C\to\Y$ is 
+$S$-\textit{convex} if it satisfies
+\begin{equation*}
+F(\lambda x+\mu z) \leq_S \lambda F(x) + \mu F(z)
+\end{equation*}
+for all points $x$ and $z$ in $\E$ and nonnegative reals $\lambda$ and 
+$\mu$ satisfying $\lambda+\mu=1$. If, furthermore, $C$ is a cone and 
+this inequality holds for all $\lambda$ and $\mu$ in $\R_+$, then 
+we say $F$ is $S$-\textit{sublinear}.
+\begin{enumerate}[(a), resume]
+\item Identify $S$-convexity in the cases listed in part $(a)$.
+\bluea{
+\begin{enumerate}[(i)]
+\item $F(\lambda x + (1-\lambda)y) = \lambda F(x) + (1-\lambda)F(y)$
+for all $x,y\in C$. For $\Y = \R$, I think this is called being 
+affine. Since if $F(0)=0$,
+ $F(cx) = cF(x)$ if $c\in[0,1]$ and $F(x)=F(cx/c) = F(cx)/c
+\implies cF(x) = F(cx)$. Further, $0=F(0) = F(x/2) + F(-x/2)
+= (F(x)+F(-x))/2$ implies that $F(-x)=F(x)$. Finally 
+$F(x+y) = F(1/2(2x + 2y)) = F(2x)/2 + F(2y)/2 = F(x) + F(y)$ proves that 
+$F$ is linear.
+\item This is just any ordinary function.
+\item We have $F(\lambda x+(1-\lambda)y) \leq \lambda F(x) + 
+(1-\lambda)F(y)$ entrywise, i.e. each component of $F$ is convex.
+\end{enumerate}
+}
+\item Prove $F$ is $S$-convex if and only if the function $\ip{\phi,
+F(\cdot)}$ is convex for all elements $\phi$ of $-S^-$. \\
+\bluea{
+Suppose $F$ is $S$-convex. Then, given $\lambda\in[0,1]$ and 
+$\phi\in -S^-$,
+\begin{gather*}
+\ip{\phi, \lambda F(x) + (1-\lambda)F(y) - F(\lambda x + (1-\lambda)y)}
+\geq 0 \\
+\implies \lambda \ip{\phi, F(x)}+(1-\lambda)\ip{\phi, F(y)} 
+\geq \ip{\phi, F(\lambda x + (1-\lambda)y)}.
+\end{gather*}
+If $\ip{\phi, F(\cdot)}$ is convex for any $\phi\in -S^-$, then 
+given $x,y\in C$ and $\lambda\in[0,1]$, we have 
+\begin{gather*}
+\forall \phi\in -S^-,\; \ip{\phi, \lambda F(x) +(1-\lambda)F(y)
+- F(\lambda x + (1-\lambda)y)} \geq 0 \\
+\implies \lambda F(x)+(1-\lambda)F(y) - F(\lambda x + (1-\lambda)y)
+\in S^{--} = S,
+\end{gather*}
+using the fact that $S$ is a closed convex cone so $S^{--}=S$.
+}
+\item Prove the following functions are $\S_+^n$-convex: 
+\begin{enumerate}[(i)]
+\item $X\in\S^n\mapsto X^2$
+\item $X\in \S_{++}^n\mapsto X^{-1}$
+\item $X\in\S_+^n\mapsto -X^{1/2}$
+\end{enumerate}
+Hint: Use Exercise 25 in Section 3.1. \\
+\bluea{
+By Section 3.1 Exercise 25 (which I have corrected per Sinho's 
+suggestion to look at the coefficient of the quadratic term in the 
+power series), if $F$ is any of these functions, $\ip{C, F(\cdot)}
+\geq 0$ for all $C\in\S_+^n$. Therefore, $F$ is $-(\S_+^n)^- = 
+\S_+^n$ convex, using the fact that $\S_+^n$ is self-dual in 
+the symmetric matrices (Proposition 3.3.12, \eqref{3.3.12}).
+}
+\item Prove the function $X\in\S^2\mapsto X^4$ is not $\S_+^2$-convex. 
+Hint: Consider the matrices 
+\begin{equation*}
+\begin{bmatrix} 4 & 2\\ 2 & 1 \end{bmatrix}
+\text{ and } \begin{bmatrix} 4&0 \\ 0 & 8\end{bmatrix}.
+\end{equation*}
+\includegraphics[width=0.7\linewidth]{18e.png}
+\end{enumerate}
+\textbf{19 (Order convexity of inversion).} For any matrix $A$ in 
+$\S_{++}^n$, define a function $q_A:\R^n\to\R$ by $q_A(x) = x^\top A 
+x/2$.
+\begin{enumerate}[(a)]
+\item Prove $q_A^*= q_{A^{-1}}$.\\
+\bluea{
+$q_A^*(y) = \sup_{x\in\R^n} \ip{y,x} - x^\top A x/2$. Setting the 
+gradient to 0, $y = Ax \implies x = A^{-1}y$. This returns 
+$q_A^*(y) = y^\top A^{-1}y/2 = q_{A^{-1}}(y)$.
+}
+\item For any other matrix $B$ in $\S_{++}^n$, prove $2(q_A\odot q_B)
+\leq q_{(A+B)/2}$ (See Exercise 12). \\
+\bluea{
+\begin{align*}
+2(q_A\odot q_B)(y) &= \inf_{x\in\E} x^\top A x + (y-x)^\top B(y-x) 
+\leq \frac{y^\top A y}{4} + \frac{y^\top B y}{4} 
+= q_{(A+B)/2}.
+\end{align*}
+}
+\item Deduce $(A^{-1}+B^{-1})/2 \succeq ((A+B)/2)^{-1}$. \\
+\bluea{
+If $f\leq g$, then $f^* \leq g^*$. Moreover, if $c>0$, then 
+$(cf)^*(x) = cf^*(x/c)$. Thus, 
+\begin{equation*}
+2(q_A\odot q_B)^*(\cdot/2) = (2(q_A\odot q_B))^* \geq q_{(A+B)/2}^* 
+= q_{((A+B)/2)^{-1}}.
+\end{equation*}
+Using Exercise 12, part (b), 
+\begin{equation*}
+2(q_A\odot q_B)^*(\cdot/2)=2q_{A^{-1}}(\odot/2) + 2q_{B^{-1}}(\odot/2).
+\end{equation*}
+Combining this with the above, we obtain for all $x\in\E$, 
+\begin{equation*}
+x^\top\left(\frac{A^{-1}+B^{-1}}{2}\right)x \geq x^\top\left(
+\frac{A+B}{2}\right)^{-1}x.
+\end{equation*}
+}
+\end{enumerate}
+\textbf{20 ** (Pointed cones and bases).} Consider a closed convex cone 
+$K$ in $\E$. A \textit{base} for $K$ is a convex set $C$ with $0\notin
+\cl C$ and $K=\R_+C$. Using Exercise 16, prove the following properties
+are equivalent by showing the implications 
+\begin{equation*}
+(a)\Rightarrow(b)\Rightarrow(c)\Ra(d)\Ra(e)\Ra(f)\Ra(a).
+\end{equation*}
+\begin{enumerate}[(a)]
+\item $K$ is pointed. \\
+\bluea{
+$(a)\Ra(b)$: By Exercise 16 part (b), since $K$ and $-K$ are closed 
+convex cones, $(K\cap -K)^- = \cl(K^- - K^-)$ (note $(-K)^- = -K^-$).
+But $(K\cap -K)^- = (\{0\})^- = \E$, which proves $(a)\Ra(b)$.
+}
+\item $\cl (K^- - K^-) = \E$. \\
+\bluea{
+If $C$ is convex and $\cl C=\E$, then $C=\E$. Applying this to the 
+convex set $K^- - K^-$ gives $(b)\Ra (c)$. The reason why 
+$\cl C=\E$ is, if $\{e_1,\ldots, e_n\}$ is a basis of $\E$, for any 
+$M>0$ and $\epsilon >0$,
+ $C$ contains vectors of the form $\{\pm Me_i + \eta_{i,\pm}\}_{i
+=1}^n$, where each $\|\eta_{i,\pm}|\leq \epsilon$. Therefore we 
+can assume that $M>n$ and
+\begin{equation*}
+e_1 = Me_1 + \sum_{i=2}^n c_i e_i, \quad \|c_i\|\leq 
+\end{equation*}
+}
+\item $K^- - K^- =  \E$.
+\item $K^-$ has nonempty interior. (Here you may use the fact that 
+$K^-$ has nonempty relative interior--see Section 1.1, Exercise 13.)
+\item There exists a vector $y$ in $\E$ and real $\epsilon>0$ with 
+$\ip{y,x}\geq \epsilon\|x\|$ for all points $x\in K$.
+\item $K$ has a bounded base.
+\end{enumerate}
+\textbf{21 ** (Order-subgradients).} This exercise uses the terminology 
+of Exercise 18, and we assume the cone $S\subset\Y$ is pointed: 
+$S\cap -S=\{0\}$. An element $y$ of $\Y$ is the $S$-infimum of a set 
+$D\subset\Y$ (written $y=\inf_S D$) if the conditions
+\begin{enumerate}[(i)]
+\item $D\subset y+S$ and 
+\item $D\subset z+S$ for some $z$ in $Y$ implies $y\in z+S$
+\end{enumerate}
+both hold. 
+\begin{enumerate}[(a)]
+\item Verify that this notion corresponds to the usual infimum when 
+$\Y=\R$ and $S=\R_+$.
+\item Prove every subset of $\Y$ has at most one $S$-infimum. 
+\item Prove \textit{decreasing} sequences in $S$ converge:
+\begin{equation*}
+x_0\geq_S x_1\geq_S x_2\geq_S\ldots\geq_S 0
+\end{equation*}
+implies $\lim_n x_n$ exists and equals $\inf_S(x_n)$. (Hint: Prove 
+first that $S\cap (x_0-S)$ is compact using Section 1.1, Exercise 6 
+(Recession cones).)
+\end{enumerate}
+An $S$-subgradient of $F$ at a point $x$ in $C$ is a linear map 
+$T:\E\to\Y$ satisfying 
+\begin{equation*}
+T(z-x) \leq_S F(z) - F(x) \quad \text{for all }z\in C.
+\end{equation*}
+The set of $S$-subgradients is denoted $\partial_SF(x)$. Suppose now 
+$x\in\core C$. Generalize the arguments of Section 3.1 in the following 
+steps.
+\begin{enumerate}[(a),resume]
+\item For any direction $h\in\E$, prove 
+\begin{equation*}
+\nabla_S F(x;h) = \inf_S\{t^{-1}(F(x+th)-F(x))\mid t>0, x+th\in C\}
+\end{equation*}
+exists and, as a function of $h$, is $S$-sublinear.
+\item For any $S$-subgradient $T\in\partial_SF(x)$ and direction $h\in
+\E$, prove $Th\leq_S \nabla_SF(x;h)$.
+\item Given $h\in\E$, prove there exists $T\in\partial_SF(x)$ satisfying
+$Th=\nabla_SF(x;h)$. Deduce the max formula 
+\begin{equation*}
+\nabla_SF(x;h) = \max\{Th\mid T\in\partial_SF(x)\}
+\end{equation*}
+and, in particular, that $\partial_SF(x)$ is nonempty. (You should 
+interpret the "max" in the formula.)
+\item The function $F$ is \textit{Gateaux differentiable} at $x$ 
+(with derivative the linear map $\nabla F(x):\E\to\Y)$ if 
+\begin{equation*}
+\lim_{t\to0}t^{-1}(F(x+th)-F(x)) = (\nabla F(x))h
+\end{equation*}
+holds for all $h\in\E$. Prove this is the case if and only if 
+$\partial_SF(x)$ is a singleton.
+\end{enumerate}
+Now fix an element $\phi$ of $-\inter(S^-)$.
+\begin{enumerate}[(a),resume]
+\item Prove $\ip{\phi, F(\cdot)}'(x;h) = \ip{\phi,\nabla_SF(x;h)}.$
+\item PRove $F$ is Gateaux differentiable at $x$ if and only if
+$\ip{\phi, F(\cdot)}$ is likewise.
+\end{enumerate}
+\end{document}

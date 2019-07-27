@@ -1,0 +1,748 @@
+\documentclass[../borwein-lewis_notes.tex]{subfiles}
+\begin{document}
+\subsection{1.2 Symmetric matrices}
+\begin{enumerate}
+\item $\S^n$ is the set of $n\times n$ symmetric matrices. 
+\item $\S^n_+$ is the set of positive semidefinite matrices, 
+matrices $X\in \S^n$ such that $x^\top Xx\geq 0$ for all $x\in\R^n$. 
+$\S^n_{++}$ is the set of positive definite matrices, for which 
+the inequality is strict for all $x\neq 0$.
+\item $\S^n$ is made into a Euclidean space by the inner product 
+\begin{equation*}
+\ip{X,Y} = \tr(XY).
+\end{equation*}
+\item Any matrix $X\in\S^n$ has $n$ real eigenvalues (counted by 
+multiplicity), which we write in nonincreasing order $\lambda_1(X) 
+\geq \ldots \geq \lambda_n(X)$. This defines a function $\lambda : 
+\S^n\to\R^n$.
+\item Let $\diag:\R^n\to\S^n$ be the linear map taking $x$ to 
+$\diag x$, a diagonal matrix with the entries of $x$ on its diagonal.
+\item Let $\O^n$ denote the group of $n\times n$ orthogonal matrices.
+\item A doubly stochastic matrix is a square matrix with all nonnegative
+entries, and each row and column summing to one (the set of such 
+matrices is denoted $\Gamma^n$).
+\item The \textit{adjoint} of the linear map $A$ is the linear map 
+$A^*:\Y\to\E$ defined by the property 
+\begin{equation*}
+\ip{A^*y, x} = \ip{y, Ax} \text{ for all points }x\in\E\text{ and }
+y\text{ in }\Y.
+\end{equation*}
+\end{enumerate}
+\begin{theorem}[1.2.1, (Fan)]
+Any matrices $X$ and $Y$ in $\S^n$ satisfy the inequality 
+\begin{equation*}
+\tr (XY)\leq \lambda(X)^\top\lambda(Y).
+\end{equation*}
+Equality holds if and only if $X$ and $Y$ have a simultaneous ordered 
+spectral decomposition: there is an orthogonal matrix $U\in\O^n$ with 
+\begin{equation*}
+X = U^\top \diag(\lambda(X)) U, \quad Y=U^\top \diag(\lambda(Y)) U.
+\end{equation*}
+\end{theorem}
+For a vector $x\in\R^n$, denote $[x]$ as the vector with components 
+permuted into nonincreasing order. 
+\begin{proposition}[1.2.4 (Hardy-Littlewood-Polya)]
+Any vectors $x$ and $y$ in $\R^n$ satisfy the inequality 
+\begin{equation*}
+x^\top y \leq [x]^\top[y].
+\end{equation*}
+\end{proposition}
+Note: this is called the rearrangement inequality.
+\begin{theorem}[1.2.5 (Birkhoff)]
+Doubly stochastic matrices are convex combinations of permutation 
+matrices.
+\end{theorem}
+\subsection{Exercises for 1.2}
+\noindent\textbf{1.} Prove $\S_+^n$ is a closed convex cone with 
+interior $\S^n_{++}$.
+\begin{proof}
+Suppose $X$ and $Y$ in $\S^n_+$, i.e. $x^\top Xx\geq 0$ and 
+$x^\top Y x\geq0$ for all $x\in\R^n$. Then for and $\lambda\in[0,1],
+\,x\in\R^n$,
+\begin{equation*}
+x^\top(\lambda X + (1-\lambda)Y)x = \lambda x^\top X x + (1-\lambda) x^\top
+Y x \geq 0.
+\end{equation*}
+Therefore, $\S_+^n$ is convex. Also, $\R_+\S_n^+=\S_n^+$, as $r\geq 0$ 
+implies $rx^\top X x\geq 0$.
+ To see that $\S_+^n$ is closed, take a sequence 
+$X^n\to X$. Let $x\in\R^n$ be arbitrary. Because $x^\top (\cdot) x 
+: \R^{n\times n}\to \R$ is continuous, 
+\begin{equation*}
+0 \leq x^\top X^n x \to x^\top X x.
+\end{equation*}
+This implies that $x^\top X x \geq 0$. Since $x$ was arbitrary, $X\in
+\S_+^n$. Thus, $\S_+^n$ is closed. \\
+Now we show that $\S_{++}^n = \inter \S_+^n$. If $X\in\S_{++}^n$, then 
+let 
+\begin{equation*}
+\tau = \min_{x\in\R^n\,:\,\|x\|=1} x^\top X x > 0.
+\end{equation*}
+The minimum exists because $\cdot X \cdot$ is continuous and it is 
+taken over a compact set. Now for any $\epsilon > 0$, consider the 
+$Y$ in the ball of radius $\epsilon/n$ around $X$. For any 
+$x\in\R^n$ with $\|x\|=1$, 
+\begin{equation*}
+x^\top Y x = x^\top X x + x^\top (Y-X)x \geq x^\top X x - |x^\top(Y-X)x|.
+\geq \tau - |x^\top(Y-X)x|.
+\end{equation*}
+Now since $\|Y-X\|\leq\epsilon/n$, each column of $Y-X$ has norm $\leq 
+\epsilon/n$. Let $z_i$ denote the $i$th column of $Y-X$. Since $\|x\|\leq
+1$, each entry $|x_i|\leq 1$. Putting these facts together, 
+\begin{equation*}
+|x^\top (Y-X)x| = \left|x^\top(\sum_{i=1}^n x_i z_i)\right|
+\leq \sum_{i=1}^n |x_i| |x^\top z_i| \leq \sum_{i=1}^n |x^\top z_i|
+\leq n(\epsilon/n)=\epsilon.
+\end{equation*}
+If we take $\epsilon = \tau$, i.e. consider the $\tau/n$ ball around 
+$X$, we get 
+\begin{equation*}
+x^\top Y x \geq \tau - |x^\top (Y-X)x| \geq \tau-\tau = 0.
+\end{equation*}
+Therefore, the $\tau/n$ ball around $X$ is contained in $\S_+^n$. 
+Since $X\in\S_{++}^n$ was arbitrary, $\S_{++}^n$ is open.
+(Actually using $\|Y-X\| = 
+\max_{\|x\|=1} x^\top(Y-X)x$
+ we could have taken $\epsilon=\tau$.\\
+Now we prove that any $X\in\S_+^n\setminus \S_{++}^n$ does not have 
+a ball around it is contained in $\S_+^n$. Let $\epsilon>0$ be arbitrary.
+Let $x\neq 0$ be such that $x^\top X x = 0$. Notice that 
+$X-\epsilon I/\sqrt{n}$ is in the $\epsilon$ ball around $X$. Then 
+\begin{equation*}
+x^\top (X-\frac{1}{\sqrt{n}}\epsilon I)x = -\frac{\epsilon
+}{\sqrt{n}}x^\top I x = -\frac{\epsilon \|x\|^2}{\sqrt{n}} < 0.
+\end{equation*}
+This proves the claim. So, any open subset of $\S_+^n$ does not 
+contain any element of $\S_{+}^n\setminus \S_{++}^n$. Therefore, 
+$\S_{++}^n = \inter \S_+^n$.
+\end{proof}
+\noindent\textbf{2.} Explain why $\S_+^2$ is not a polyhedron. 
+\begin{proof}
+Suppose $\ip{W,\cdot}=C$ is the equation of
+ a bounding hyperplane $H$ of $\S_+^2$, and 
+$X\in\S_+^2\cap H$. 
+By the previous problem, this implies that $X\in\S_+^2\setminus\S_{
+++}^2$, i.e. there exists $x\neq 0$ such that $x^\top X x = 0$.
+Note that this implies $Xx=0$. To see why, if $Xx\neq 0$, then 
+$X^{1/2}x\neq 0$. and then $x^\top Xx = \|X^{1/2}x\|>0$. Note 
+\begin{equation*}
+x^\top (\cdot)x :\S^2 \to \R, \quad \dim\range(x^\top
+(\cdot)x)=1 
+\implies \dim\nul(x^\top(\cdot)x) = 2,
+\end{equation*}
+$x^\top(\cdot)x$ is a linear map on the vector space 
+$\S^2$ of dimension 3; $\dim\range(x^\top(\cdot)x)=1$
+ because $x\neq 0$, and 
+by the rank-nullity theorem $\dim\nul(x^\top(\cdot)x) = \dim\S^2-
+\dim\range(x^\top(\cdot)x) = 2$. Furthermore, $\dim(H-X) = 
+\dim\nul W = 2$ ($W\neq0$). Therefore, there are two cases. \\
+1. $\nul W \neq \nul(x^\top(\cdot)x)$. Since both are dimension 2, 
+there is a nonzero matrix in one that is not in the other. This 
+implies $\exists\,Y\in\nul W$ s.t. $x^\top Y x < 0$, so that $\forall
+\,\epsilon >0, X+\epsilon Y\in H$ and 
+$x^\top(X +\epsilon Y)x < 0$, meaning that the affine dimension of 
+$\S_+^2\cap H$ is at most 1. \\
+2. $\nul W = \nul(x^\top(\cdot) x)$. Subspaces of dimension 2 define 
+a unique orthogonal direction, in a dimension 3 vector space. Thus, 
+this implies $W=cxx^\top$ for some $c\neq0\in\R$, as $\ip{xx^\top, Y}
+= x^\top Y x$ for any $Y\in\S^n$. We can assume $c=1$ by replacing 
+$C$ with $C/c$. If $C < 0$, we have a contradiction as 
+$\ip{W, X} = x^\top X x = C < 0$, but $x^\top X x \geq 0$. If 
+$C > 0$, then $2Cxx^\top/\|x\|^4$ and $Cxx^\top/2\|x\|^4$ are on 
+opposite sides of the hyperplane, yet are both in $\S_+^n$, contradicting
+$H$ being a bounding hyperplane. If $C=0$, then $X\in\S_+^2\cap H$ 
+implies $X=\sigma x_{\perp}x_{\perp}^\top$ where $x_{\perp}$ points in 
+the unique direction perpendicular 
+to $x$ (unique because $x\in\R^2$) 
+and $\sigma$ is some nonnegative real number. In other words, 
+$\S_+^2\cap H$ has affine dimension 1 (it consists of nonnegative 
+multiples of $x_{\perp}x_{\perp}^\top)$. \\
+In either case, if $H$ is a valid bounding hyperplane then 
+$\S_+^2\cap H$ has affine dimension 1. If $\S_+^2$ is a polyhedron,
+then it is the intersection of a finite number of hyperplanes, 
+meaning its boundary is the union of a finite number of sets of 
+affine dimension 1 (implying the boundary is contained in the union 
+of a finite number of lines). This seems preposterous.
+\end{proof}
+\noindent\textbf{3 ($\S_+^3$ is not strictly convex).} Find nonzero
+matrices $X$ and $Y$ in $\S_+^3$ such that $\R_+X\neq\R_+Y$ and 
+$(X+Y)/2\notin \S_{++}^3$. 
+\begin{proof}
+Let $\{x,y,z\}$ be an orthogonal basis.
+Take $X=xx^\top$ and $Y=yy^\top$.
+$z^\top W z = 0$ for all $W\in\{X,Y, 1/2(X+Y)\}$, so all of them 
+are not in the interior. But all of them are PSD.
+\end{proof}
+\noindent\textbf{4 (A nonlattice ordering).} Suppose the matrix $Z$ in 
+$\S^2$ satisfies 
+\begin{equation*}
+W\succeq \begin{bmatrix} 1&0\\ 0&0\end{bmatrix} \;\text{ and }\;
+W\succeq \begin{bmatrix} 0&0\\ 0&1\end{bmatrix} \iff 
+W \succeq Z.
+\end{equation*}
+\begin{enumerate}[(a)]
+\item By considering diagonal $W$, prove 
+\begin{equation*}
+Z = \begin{bmatrix} 1 & a \\ a & 1 \end{bmatrix}
+\end{equation*}
+for some real $a$. 
+\begin{proof}
+If a diagonal entry of $Z$ is less than 1, then $W = Z$ satisfies 
+$W\succeq Z$, but $W$ is not $\succeq$ both the matrices with 0s and 
+1s, because after subtracting the one with a one in that diagonal 
+entry the resulting matrix has a negative entry on its diagonal. \\
+If a diagonal entry of $Z$ is strictly greater than one, then the 
+identity $I$ is $\succeq$ the matrices with 0s and 1s but is not 
+$\succeq Z$.
+\end{proof}
+\item By considering $W=I$, prove $Z=I$.
+\begin{proof}
+We must have $I\succeq Z$. If $a>0$, then $x^\top (I- Z) x < 0$ with 
+$x=[1\, -1]$. If $a<0$, then $x^\top (I-Z) x < 0$ with $x=[1\, 1]$.
+Therefore, $a=0$.
+\end{proof}
+\item Derive a contradiction by considering 
+\begin{equation*}
+W = \frac{2}{3}\begin{bmatrix} 2&1\\1&2\end{bmatrix}.
+\end{equation*}
+\begin{proof}
+\begin{equation*}
+W - \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}
+= \frac{2}{3}\begin{bmatrix} \frac{1}{2} & 1 \\
+1 & 2 \end{bmatrix},
+\end{equation*}
+which has positive trace and determinant 0, implying PSD.
+\begin{equation*}
+W-Z = \begin{bmatrix}
+\frac{1}{3} & \frac{2}{3} \\
+\frac{2}{3} & \frac{1}{3}.
+\end{bmatrix}
+\end{equation*}
+This has negative determinant, implying not PSD.
+\end{proof}
+\end{enumerate}
+\noindent\textbf{5 (Order preservation).}
+\begin{enumerate}[(a)]
+\item Prove any matrix $X\in\S^n$ satisfies $(X^2)^{1/2}\succeq X$.
+\begin{proof}
+Since $X$ is symmetric, it has an orthogonal eigendecomposition
+$X=UDU^\top$:
+\begin{equation*}
+(X^2)^{1/2} = (UD^2U^\top) = U|D|U^\top \succeq UDU^\top=X,
+\end{equation*}
+where $|D|$ is the diagonal matrix with the absolute values of 
+the entries of $D$.
+\end{proof}
+\item Find matrices $X\succeq Y$ in $\S_+^2$ such that $X^2\not\succeq
+Y^2$.
+\begin{proof}
+\begin{equation*}
+X = \begin{bmatrix}
+1+\frac{1}{\sqrt{2}} & 0 \\
+0 & \frac{1}{\sqrt{2}}
+\end{bmatrix},
+\qquad 
+Y= \begin{bmatrix}
+\frac{1}{2} & \frac{1}{2}\\
+\frac{1}{2} & \frac{1}{2}
+\end{bmatrix},
+\implies 
+X-Y = \begin{bmatrix} \frac{1}{2}+\frac{1}{\sqrt{2}} & -\frac{1}{2}\\
+-\frac{1}{2} & \frac{1}{\sqrt{2}} - \frac{1}{2}
+\end{bmatrix}.
+\end{equation*}
+$X$ and $Y$ are both PSD, and $\tr(X-Y)=\sqrt{2}$ and $\det(X-Y)
+=0$, which implies that $X-Y$ is PSD. On the other hand, noting 
+$Y^2=Y$, 
+\begin{equation*}
+X^2 = \begin{bmatrix}
+\frac{3}{2}+\sqrt{2} & 0 \\
+0 & \frac{1}{2}
+\end{bmatrix}
+\implies X^2 - Y^2 = \begin{bmatrix} 1 + \sqrt{2} & -\frac{1}{2} \\
+-\frac{1}{2} & 0 \end{bmatrix}.
+\end{equation*}
+Now $X^2 - Y^2$ has a negative determinant. This implies it is not 
+PSD.
+\end{proof}
+\item For matrices $X\succeq Y$ in $\S_+^n$ prove $X^{1/2}\succeq Y^{1/2}$.
+(Hint: consider the relationship 
+\begin{equation*}
+\ip{(X^{1/2}+Y^{1/2})x, (X^{1/2}-Y^{1/2})x} = \ip{(X-Y)x,x}\geq 0,
+\end{equation*}
+for eigenvectors $x$ of $X^{1/2}-Y^{1/2}$.)
+\begin{proof}
+The relationship follows because 
+\begin{align*}
+\ip{(X^{1/2}+Y^{1/2})x, (X^{1/2}-Y^{1/2})x} &= 
+\ip{Xx,x} -\ip{X^{1/2}Y^{1/2}x, x} + \ip{Y^{1/2}X^{1/2}x, x}
+- \ip{Yx,x}\\
+&=\ip{Xx,x} -\ip{Y^{1/2}x, X^{1/2}x} + \ip{X^{1/2}x, Y^{1/2}x} 
+- \ip{Yx,x}\\ &= \ip{(X-Y)x,x}\geq 0.
+\end{align*}
+Now let $x$ be an eigenvector of $X^{1/2}-Y^{1/2}$ with eigenvalue 
+$\lambda$. By the relationship, 
+\begin{equation*}
+\lambda \ip{(X^{1/2}+Y^{1/2})x, x} \geq 0.
+\end{equation*}
+Suppose $\ip{(X^{1/2}+Y^{1/2})x,x} = 0$. This implies that $x$
+is in $\nul(X^{1/2})\cap\nul(Y^{1/2})$, because we showed in an 
+earlier question that the existence of a square root 
+for PSD $A$ implies $x^\top Ax=0$ implies $x\in\nul(A)$, and 
+since $X^{1/2}$ and $Y^{1/2}$ are both PSD if either $x^\top X^{1/2} x$ 
+or $x^\top Y^{1/2} x$ are positive the sum is positive. This further 
+implies that $(X^{1/2}-Y^{1/2})x = 0$, i.e. $\lambda = 0$. \\
+Otherwise, $\ip{(X^{1/2}+Y^{1/2})x, x} > 0$. This implies that 
+$\lambda \geq 0$. \\
+We have shown that any eigenvalue of $X^{1/2}-Y^{1/2}$ is nonnegative.
+Since it is symmetric, this implies that $X^{1/2}-Y^{1/2}$ is PSD.
+\end{proof}
+\end{enumerate}\noindent
+\textbf{6 * (Square-root iteration).} Suppose a matrix $A$ in $\S_+^n$ 
+satisfies $I\succeq A$. Prove that the iteration 
+\begin{equation*}
+Y_0=0,\quad Y_{n+1} = \frac{1}{2}(A+Y^2_n) \quad (n=0,1,2,\ldots)
+\end{equation*}
+is nondecreasing (that is, $Y_{n+1}\succeq Y_n$ for all $n$) and 
+converges to the matrix $I-(I-A)^{1/2}$. (Hint: consider diagonal 
+matrices $A.$)
+\begin{proof}
+First consider diagonal matrices $A$. It is clear that $Y_n$ is 
+diagonal for every $n$. Then we just need to prove that for each 
+$i=1,\ldots,n$, the $i$th diagonal entry of $Y_n$, denoted $Y_{n,ii}$,
+ converges to $1-\sqrt{1-A_{ii}}$, and furthermore that each 
+$(Y_{n,ii})_{n=0}^\infty$ is a nondecreasing sequence. For simplicity,
+denote $a=A_{ii}$ and $y_n = Y_{n,ii}$. We have 
+\begin{equation*}
+y_{n+1} = \frac{1}{2}(a+y_n^2) =: f(y_n).
+\end{equation*}
+Notice that if $\ell = 1-\sqrt{1-a}$, then 
+\begin{equation*}
+f(\ell)=\frac{1}{2}(a+\ell^2) = \frac{1}{2}(a + 1-2\sqrt{1-a} + 1-a)
+= 1-\sqrt{1-a}=\ell.
+\end{equation*}
+Therefore, 
+\begin{equation*}
+\ell - y_{n+1} = f(\ell)-f(y_n) = \frac{1}{2}(\ell^2 - y_n^2)
+= \frac{1}{2}(\ell+y_n)(\ell-y_n).
+\end{equation*}
+Assuming $\ell-y_n \geq 0$ (as is true for $n=0$), we have $\ell-y_{n+1}
+\geq 0$, and since $(\ell+y_n)/2 \leq 1$ since $\ell\leq 1$ and 
+$y_n\leq 1$, we have $\ell - y_{n+1} \leq \ell- y_n$ i.e. 
+$y_{n+1}\geq y_n$. By Bernoulli's inequality
+\begin{equation*}
+\ell = 1-\sqrt{1-a} \leq 1-(1-a/2) = \frac{a}{2} \leq \frac{1}{2}
+\implies \ell-y_{n+1}\leq \frac{3}{4}(\ell - y_n).
+\end{equation*}
+Coupled with nonnegativity of $\ell-y_n$ for all $n\geq 0$, this 
+implies that $y_n \to \ell$. \\
+Backtracking, we have really shown that $Y_n\to I-(I-A)^{1/2}$ for 
+diagonal $A$. But notice that we can consider diagonal $A$ WLOG:
+If $A=UDU^\top$ is an orthogonal eigendecomposition, 
+\begin{equation*}
+U^\top Y_{n+1} U = \frac{1}{2}(U^\top A U + U^\top Y_n^2 U)
+= \frac{1}{2}(D + (U^\top Y_n U)^2).
+\end{equation*}
+Therefore, $U^\top Y_n U \to I-(I-D)^{1/2}$. Therefore, 
+\begin{equation*}
+Y_n \to U(I-(I-D)^{1/2})U^\top = I - U(I-D)^{1/2}U^\top = I - (I-A)^{1/2}.
+\end{equation*}
+Also, $U^\top Y_{n+1}U\succeq U^\top Y_n U \implies Y_{n+1}\succeq 
+Y_n$.
+\end{proof}\noindent
+\textbf{7 (The Fan and Cauchy-Schwarz inequalities).}
+\begin{enumerate}[(a)]
+\item For any matrices $X\in\S^n$ and $U\in\O^n$, prove $\|U^\top X U\|
+= \|X\|$.
+\begin{proof}
+\begin{equation*}
+\tr(U^\top X U U^\top X U) = \tr (U^\top X X U) = \tr(XXUU^\top)=\tr(XX).
+\end{equation*}
+\end{proof}
+\item Prove the function $\lambda$ is norm-preserving. 
+\begin{equation*}
+\|\lambda(X)\| = \|\diag\lambda(X)\| = \|U\diag\lambda(X)U^\top\|
+= \|X\|,
+\end{equation*}
+because there is an eigendecomposition $X = U\diag\lambda(X)U^\top$.
+\item Explain why Fan's inequality is a refinement of the Cauchy-Schwarz
+inequality.
+\begin{proof}
+By Cauchy Schwarz, we know $\ip{X,Y} \leq \|X\|\|Y\| = \|\lambda(X)\|
+\|\lambda(Y)\|$. Fan's inequality is a refinement because 
+$\ip{X,Y}\leq \lambda(X)^\top\lambda(Y)$ is stronger -- 
+$\lambda(X)^\top\lambda(Y)\leq\|\lambda(X)\|\|\lambda(Y)\|$.
+% Fan's inequality applied to $X$ and $Y$ diagonal implies that for 
+% any $x,y\in\R^n$, $\ip{x,y}\leq \ip{[x],[y]}$, i.e. Hardy-Littlewood-Polya.
+% Let $n=2d$ and $a,b\in\R^d$. Let $x$ be $a/\|a\|$ concatenated with $b/
+% \|b\|$, 
+% and $y$ be $b/\|b\|$ concatenated with $a/\|a\|$. 
+% \begin{equation*}
+% \frac{2\ip{a,b}}{\|a\|\|b\|} = \ip{x,y} \leq \ip{[x],[y]}
+% = 2 \implies \ip{a,b} \leq \|a\|\|b\|.
+% \end{equation*}
+% (If either $a=0$ or $b=0$ then Cauchy-Schwarz follows easily).
+\end{proof}
+\end{enumerate}
+\textbf{8.} Prove the inequality $\tr Z + \tr Z^{-1}\geq 2n$ for all 
+matrices $Z\in\S_{++}^n$, with equality if and only if $Z=I$.
+\begin{proof}
+Consider the matrices 
+\begin{equation*}
+A=
+\begin{bmatrix}
+Z & 0 \\
+0 & I
+\end{bmatrix},
+\quad B= -
+\begin{bmatrix}
+I & 0 \\
+0 & Z^{-1}
+\end{bmatrix}.
+\end{equation*}
+If the eigenvalues of $Z$ are $\lambda_1 \geq \ldots \geq \lambda_n > 0$,
+we see that the eigenvalues of $A$ are $\lambda_1,\ldots,\lambda_n, 
+\overbrace{1,\ldots, 1}^{n\text{ times }}$ and those of $B$ are 
+$-\lambda_1^{-1},\ldots,-\lambda_n^{-1}, \overbrace{-1,\ldots,-1}^{n
+\text{ times }}.$ Notice for any $r_1,r_2>0\in\R$, 
+$r_1 \geq r_2 \iff -r_1^{-1}\geq -r_2^{-1}$, and the eigenvalues of 
+$B$ are precisely those of $A$, negated and inverted. Thus, the ranked 
+eigenvalues of $B$ are the ranked eigenvalues of $A$, negated and 
+inverted. Now applying Fan's inequality, 
+\begin{equation*}
+-\tr Z - \tr Z^{-1} = \tr(AB) \leq \lambda(A)^\top\lambda(B) = -2n
+\implies 2n \leq \tr Z + \tr Z^{-1}.
+\end{equation*}
+Equality occurs iff $A$ and $B$ have the same ordered eigendecomposition,
+which happens iff $Z=I$.
+\end{proof}\noindent
+\textbf{9.} Prove the Hardy-Littlewood-Polya inequality (Proposition
+1.2.4) directly.
+\begin{proof}
+Let $a,b\in\R^n$ and WLOG, suppose $a_1\geq a_2\geq\ldots\geq a_n$.
+Let $i$ be the first index such that $b_i\neq [b]_i$. Then, $b_i < 
+[b]_i$ and $\exists j>i,\, b_j = [b]_i$. We have 
+$a^\top b \leq a^\top b'$, where $b'$ has $b_j$ and $b_i$ swapped,
+since 
+\begin{equation*}
+a^\top b' - a^\top b = b_ja_i + b_ia_j - b_ja_j-b_ia_i
+= (b_j-b_i)(a_i - a_j) \geq 0.
+\end{equation*}
+We have increased the number of entries that $b$ agrees with $[b]$ in 
+a row. By doing this repeatedly, we obtain $a^\top b \leq 
+[a]^\top[b]$.
+\end{proof}\noindent
+\textbf{10.} Given a vector $x\in\R_+^n$ satisfying $x_1x_2\ldots x_n=1$,
+define numbers $y_k=1/x_1x_2\ldots x_k$ for each index $k=1,2,\ldots,n$.
+Prove 
+\begin{equation*}
+x_1+x_2+\ldots+x_n= \frac{y_n}{y_1}+\frac{y_1}{y_2}+\ldots+\frac{y_{n-1}}{
+y_n}.
+\end{equation*}
+By applying the Hardy-Littlewood-Polya inequality to suitable vectors,
+prove $x_1+x_2+\ldots + x_n\geq n$. Deduce the inequality 
+\begin{equation*}
+\frac{1}{n}\sum_{i=1}^n z_i \geq \left(\prod_{i=1}^n z_i\right)^{1/n}
+\end{equation*}
+for any vector $z\in\R_+^n$.
+\begin{proof}
+For $i\geq 1$, we have 
+\begin{equation*}
+\frac{y_i}{y_{i+1}} = \frac{1/x_1\ldots x_i}{1/x_1\ldots x_{i+1}} = 
+x_{i+1},
+\end{equation*}
+and $y_n/y_1 = 1/y_1=x_1$. This proves the first equation. We 
+apply HLP to vectors $a=[y_n, y_1,\ldots, y_{n-1}]$ and 
+$b=[-y_1^{-1},\ldots, -y_n^{-1}]$. Since $r_1 \geq r_2\iff r_1^{-1}
+\geq r_2^{-1}$ for $r_1,r_2>0$, we have 
+\begin{equation*}
+a^\top b = -\frac{y_n}{y_1} - \ldots - \frac{y_{n-1}}{y_n} = 
+-x_1-\ldots - x_n \leq -n = [a]^\top[b].
+\end{equation*}
+In other words, $x_1+\ldots + x_n \geq n$. Now let $x\in \R_{+}^n$.
+If some entry is 0, the AM-GM inequality is immediate. Otherwise,
+divide each entry by the GM of the entries. Now we may apply:
+\begin{equation*}
+\sum_{i=1}^n \frac{x_i}{(\prod_{j=1}^n x_j)^{1/n}} \geq n 
+\implies \frac{1}{n}\sum_{i=1}^n x_i \geq \left(\prod_{i=1}^n x_i\right)^{
+1/n}.
+\end{equation*}
+\end{proof}\noindent
+\textbf{11.} For a fixed column vector $s\in\R^n$, define a linear map 
+$A:\S^n\to\R^n$ by setting $AX=Xs$ for any matrix $X\in\S^n$. Calculate 
+the adjoint map $A^*$.
+\begin{proof}
+Notice that for $y\in\R^n$, 
+\begin{equation*}
+\ip{y, AX} = y^\top Xs = \ip{ys^\top X}= \ip{sy^\top, X}
+= \ip{\frac{1}{2}(sy^\top + ys^\top), X}.
+\end{equation*}
+Therefore, $\ip{y, AX} = \ip{A^*y, X}$ with $A^*:\R^n\to\S^n$ defined 
+as $A^*y = \frac{1}{2}(sy^\top + ys^\top)$. 
+\end{proof}\noindent
+\textbf{12 * (Fan's inequality).} For vectors $x$ and $y$ in $\R^n$ and 
+a matrix $U$ in $\O^n$, define 
+\begin{equation*}
+\alpha = \ip{\diag x, U^\top \diag y U}.
+\end{equation*}
+\begin{enumerate}[(a)]
+\item Prove $\alpha=x^\top Zy$ for some doubly stochastic matrix $Z$. 
+\begin{proof}
+\begin{align*}
+\alpha &= \tr(\diag x U^\top\diag y U) = \tr\left(\sum_{i=1}^n x_ie_i
+e_i^\top U^\top \sum_{j=1}^n y_je_je_j^\top U\right)\\
+&= \sum_{i,j=1}^n x_iy_j\tr e_ie_i^\top U^\top e_je_j^\top U 
+= \sum_{i,j=1}^n x_iy_j \tr e_i^\top U^\top e_j e_j^\top U e_i \\
+&= \sum_{i,j=1}^n x_iy_j (e_i^\top U^\top e_j)( e_j^\top U e_i )
+= \sum_{i,j=1}^n x_iy_j U_{ji}^2 = x^\top (U^\top)^2 y. 
+\end{align*}
+$U^\top$ is orthonormal, so $U$ is orthonormal, so after squaring each 
+entry, each column and row sums to 1. In other words, $(U^\top)^2$ 
+is doubly stochastic.
+\end{proof}
+\item Use Birkhoff's theorem and Proposition 1.2.4 to deduce the 
+inequality $\alpha\leq[x]^\top[y]$.
+\begin{proof}
+By Birkhoff's theorem, $(U^\top)^2 = \sum_{\sigma}\lambda_{\sigma} P_{
+\sigma}$ where $P_{\sigma}$ is the permutation matrix corresponding to 
+permutation $\sigma$ and $\sum_\sigma \lambda = 1, \lambda_\sigma\geq 0$.
+Now we can apply HLP:
+\begin{equation*}
+\alpha = \sum_\sigma \lambda_\sigma x^\top P_\sigma y \leq 
+\sum_\sigma \lambda_\sigma [x]^\top [y] = [x]^\top [y].
+\end{equation*}
+\end{proof}
+\item Deduce Fan's inequality (1.2.2).
+\begin{proof}
+Given symmetric matrices $X$ and $Y$, we have 
+\begin{align*}
+\ip{X,Y} &= \ip{U\diag\lambda(X)U^\top, V\diag\lambda(Y)V^\top}
+= \ip{\diag\lambda(X), U^\top V\diag\lambda(Y) V^\top U}\\
+&\leq [\lambda(X)]^\top[\lambda(Y)] = \lambda(X)^\top\lambda(Y)
+\end{align*}
+by orthogonality of $U^\top V$ and the previous parts.
+\end{proof}
+\end{enumerate}
+\noindent \textbf{13 (A lower bound).} Use Fan's inequality for two 
+matrices $X$ and $Y$ in $\S^n$ to prove a \textit{lower} bound for 
+$\tr(XY)$ in terms of $\lambda(X)$ and $\lambda(Y)$.
+\begin{proof}
+\begin{equation*}
+-\tr(XY)=\tr(-XY) \leq \lambda(-X)^\top\lambda(Y) = -]\lambda(X)[^\top
+\lambda(Y) 
+\implies \tr(XY) \geq\; ]\lambda(X)[^\top\lambda(Y),
+\end{equation*}
+where $]x[$ denotes the vector $x$ with entries sorted in nondecreasing 
+order.
+\end{proof}
+\noindent \textbf{14 * (Level sets of perturbed log matrices).} 
+\begin{enumerate}[(a)]
+\item For $\delta\in\R_{++}$, prove the function 
+\begin{equation*}
+t\in\R_{++}\mapsto \delta t-\log t
+\end{equation*}
+has compact level sets.
+\begin{proof}
+because $f(t) = \delta t-\log t$ is continuous, its level sets 
+$\{t\in\R_{++}:f(t)\leq \alpha\}$ are closed. Now we just need to show 
+they are bounded. Notice that $f(t)/t = \delta-\log t/t \to \delta > 0$ 
+as $t\to\infty$, because $\log t/t\to 0$. Therefore, $f$ satisfies 
+the growth condition
+\begin{equation*}
+\lim_{r\to\infty} \inf\left\{\frac{f(t)}{t}\,\bigg|\, t\in \R_{++},
+\|t\| > r\right\} > 0,
+\end{equation*}
+and thus has bounded level sets.
+\end{proof}
+\item For $c\in\R_{++}^n$ prove the function 
+\begin{equation*}
+x\in\R_{++}^n \mapsto c^\top x - \sum_{i=1}^n  \log x_i
+\end{equation*}
+has compact level sets. 
+\begin{proof}
+Observe that, denoting $\ubar c = \min_{i\in[n]}c_i>0$ and 
+$x^*$ as the maximum entry of $x$,
+\begin{equation}
+\label{kap1}
+g(x) : = c^\top x - \sum_{i=1}^n \log(x_i) \geq \ubar cx^* - n\log(x^*).
+\end{equation}
+By the previous part, $\ubar cx^* -  n\log(x^*)$ has bounded level sets 
+as a function of $x^*\in\R_{++}$. This is equivalent to saying,
+ given $\alpha\in\R$, $\exists \tau >0$ such that 
+\begin{equation*}
+x^*>\tau \implies \ubar cx^*-n\log(x^*) > \alpha.
+\end{equation*}
+By \eqref{kap1}, we have 
+\begin{equation*}
+x^* > \tau \implies g(x) > \alpha,
+\end{equation*}
+or $g(x)\leq\alpha\implies x^*\leq \tau$. In other words, $g(x)\leq\alpha$
+implies the maximum entry of $x$ is bounded. In other words, $x$ is 
+bounded. This implies the sublevel sets of $g$ are bounded, thus compact
+by continuity.
+\end{proof}
+\item For $C$ in $\S_{++}^n$, prove the function 
+\begin{equation*}
+X\in\S_{++}^n\mapsto \ip{C,X}-\log\det X
+\end{equation*}
+has compact level sets. (Hint: Use Exercise 13.)
+\begin{proof}
+Note that $\det X = \prod_{i=1}^n \lambda(X)_i$. Using Exercise 13,
+\begin{equation*}
+\ip{C,X} - \log\det X = \ip{C,X}-\sum_{i=1}^n \log \lambda(X)_i
+\geq\; ]\lambda(C)[^\top\lambda(X) - \sum_{i=1}^n\log\lambda(X)_i.
+\end{equation*}
+Note that $\lambda(C),\lambda(X)\in\R_{++}^n$ since $C,X\in\S_{++}^n$.
+By the previous part, if $\ip{C,X}-\log\det X \leq \alpha$, then 
+we must have $\|\lambda(X)\|\leq\tau$ for some $\tau>0$. In 
+fact, $\|X\|=\|\lambda(X)\|$. This implies the compactness of sublevel
+sets of $\ip{C,X}-\log\det X$.
+\end{proof}
+\end{enumerate}
+\noindent \textbf{15 * (Theobald's condition).} Assuming Fan's inequality,
+complete the proof of Fan's theorem as follows. Suppose equality holds in 
+Fan's inequality, and choose a spectral decomposition 
+\begin{equation*}
+X+Y = U^\top (\diag \lambda(X+Y)) U
+\end{equation*}
+for some matrix $U\in\O^n$.
+\begin{enumerate}[(a)]
+\item Prove $\lambda(X)^\top\lambda(X+Y) = \ip{U^\top\diag\lambda(X)U,
+X+Y}$.
+\begin{proof}
+\begin{equation*}
+\tr(U^\top\diag\lambda(X) U (X+Y)) = \tr(U^\top\diag\lambda(X)UU^\top
+\diag\lambda(X+Y)U) = \lambda(X)^\top\lambda(X+Y).
+\end{equation*}
+\end{proof}
+\item Apply Fan's inequality to the two inner products 
+\begin{equation*}
+\ip{X,X+Y} \quad \text{and}\quad \ip{U^\top\diag\lambda(X)U,Y}
+\end{equation*}
+to deduce $X=U^\top\diag\lambda(X)U.$
+\begin{proof}
+By Fan's inequality: 
+\begin{align*}
+\ip{X,X+Y} &\leq \lambda(X)^\top\lambda(X+Y) = \ip{U^\top\diag(\lambda
+(X)) U, X+Y}\\
+&\leq \ip{U^\top\diag\lambda(X)U, X} + \lambda(X)^\top\lambda(Y).
+\end{align*}
+By assumption, $\ip{X,Y} = \lambda(X)^\top\lambda(Y)$. Thus, 
+$\ip{X,X}\leq\ip{U^\top\diag\lambda(X)U, X}$. Notice that 
+$\|U^\top\diag\lambda(X) U\| = \|X\|$. By Cauchy-Schwarz, 
+$\ip{U^\top\diag\lambda(X)U, X} < \ip{X,X}$ unless 
+$U^\top \diag\lambda(X) U = X$. Therefore, $X = U^\top\diag\lambda(X) U$.
+\end{proof}
+\item Deduce Fan's theorem.
+\begin{proof}
+By symmetry of the argument for $Y$, we have $Y=U^\top\diag(Y)U$ as 
+well. We have shown that equality in Fan's inequality implies a 
+simultaneous ordered spectral decomposition for $X$ and $Y$. 
+If the decomposition exists, then 
+\begin{equation*}
+\tr(XY) = \tr(U^\top\diag\lambda(X)UU^\top\diag\lambda(Y)U) =
+ \tr(\diag\lambda(X)\diag\lambda(Y)) = \lambda(X)^\top\lambda(Y).
+\end{equation*}
+This proves the iff part of Fan's theorem.
+\end{proof}
+\end{enumerate}\noindent
+\textbf{16 ** (Generalizing Theobald's condition).} Consider a set 
+of matrices $X^1,X^2,\ldots,X^m$ in $\S^n$ satisfying the conditions 
+\begin{equation*}
+\tr(X^iX^j) = \lambda(X^i)^\top\lambda(X^j) \quad \text{for all }i
+\text{ and } j.
+\end{equation*}
+Generalize the argument of exercise 15 to prove the entire set of 
+matrices $\{X^1,X^2,\ldots, X^m\}$ has a simultaneous ordered spectral 
+decomposition. 
+\begin{proof}
+Let $U \diag\lambda(X^1+\ldots+X^m)U^\top$ be a spectral decomposition of 
+$\sum_{i=1}^m X^i$. Following the same general argument,
+\begin{align*}
+\tr(X^iX^i) + \sum_{j\neq i}\lambda(X^i)^\top\lambda(X^j) &=
+\ip{X^i, \sum_{j=1}^m X^j} \leq \ip{U\diag\lambda(X^i)
+U^\top, \sum_{j=1}^m X^j}\\
+&\leq \ip{U\diag\lambda(X^i)U^\top, X^i} + 
+\sum_{j\neq i} \lambda(X^i)^\top\lambda(X^j).
+\end{align*}
+Thus, like before, $\tr(X^iX^i) \leq \ip{U\diag\lambda(X^i)U^\top, X^i}$, 
+implying $X^i = U\diag\lambda(X^i)U^\top$. Since $i$ was arbitrary, 
+this implies the existence of a simultaneous ordered spectral 
+decomposition for $\{X^1,\ldots, X^m\}$, i.e. for every $i\in[m]$,
+$X^i = U\diag\lambda(X^i)U^\top$.
+\end{proof}
+\noindent \textbf{17 ** (Singular values and von Neumann's lemma).}
+Let $\M^n$ denote the vector space of $n\times n$ real matrices. For 
+a matrix $A\in\M^n$ we define the \textit{singular values} of $A$ by 
+$\sigma_i(A)=\sqrt{\lambda_i(A^\top A)}$ for $i=1,2,\ldots,n$, and 
+hence define a map $\sigma:\M^n\to\R^n$. (Notice zero may be a singular 
+value.) 
+\begin{enumerate}[(a)]
+\item Prove 
+\begin{equation*}
+\lambda\left(\begin{bmatrix} 0 & A^\top \\ A & 0\end{bmatrix}\right) 
+= \begin{bmatrix} \sigma(A) \\ [-\sigma(A)]\end{bmatrix}.
+\end{equation*}
+\begin{proof}
+Suppose $v$ is an eigenvector of $A^\top A$ with eigenvalue $\lambda$.
+Then, it is an eigenvector of $\sqrt{A^\top A}$ with eigenvalue $\sigma 
+= \sqrt{\lambda}$. Let $\sgn\in\{-1,1\}$. Then, 
+\begin{equation*}
+\begin{bmatrix} 0 & A^\top \\ A & 0\end{bmatrix}\begin{bmatrix}
+\sigma v \\ \sgn A v\end{bmatrix} 
+= \begin{bmatrix} \sgn A^\top Av \\ \sigma Av\end{bmatrix} 
+= \sgn\sigma\begin{bmatrix} \sigma v \\ \sgn Av \end{bmatrix}.
+\end{equation*}
+In other words, $[\sigma v\; \sgn Av]$ is an eigenvector of the matrix 
+with eigenvalue $\sgn\sigma$, if $\sigma\neq 0$. If $\sigma = 0$, 
+then $v\in \nul(A)$. Because $\nul(A) = \range(A^\top)^{\perp}$, 
+we have by rank-nullity $\dim\nul(A) = n-\dim\range(A^\top) = \dim\nul
+(A^\top)$. Therefore, we can pick an element $u$ of $\nul(A^\top)$ 
+(orthogonal to previous choices) to obtain the eigenvector 
+$[v\; \sgn u]$ with eigenvalue $\sigma=0$. \\
+Given $n$ orthogonal eigenvectors of 
+$A^\top A$ with eigenvalues $\sigma_i^2$, 
+we have exhibited $2n$ orthogonal eigenvectors of the above matrix with 
+eigenvalues $\pm\sigma_i$. This proves the desired statement.
+\end{proof}
+\item For any other matrix $B\in\M^n$, use part (a) and Fan's inequality 
+to prove 
+\begin{equation*}
+\tr(A^\top B) \leq \sigma(A)^\top\sigma(B).
+\end{equation*}
+\begin{proof}
+We apply Fan's inequality to the matrices below.
+\begin{equation*}
+2\tr(A^\top B) = \tr\left(\begin{bmatrix} 0 & A^\top \\ A & 0 \end{bmatrix}
+\begin{bmatrix} 0 & B^\top \\ B & 0 \end{bmatrix}\right)
+\leq \begin{bmatrix} \sigma(A) \\ [-\sigma(A)]\end{bmatrix}^\top 
+\begin{bmatrix} \sigma(B) \\ [-\sigma(B)]\end{bmatrix} = 2\sigma(A)^\top
+\sigma(B).
+\end{equation*}
+\end{proof}
+\item If $A$ lies in $\S_+^n$, prove $\lambda(A)=\sigma(A)$.
+\begin{proof}
+Since $A^\top A = A^2$, we have $\lambda(A^\top A) = \lambda(A)^2$ 
+where the square is entrywise. Furthermore, $\lambda(A)\geq 0$. 
+Thus, $\lambda(A)=\sqrt{\lambda(A^\top A)} = \sigma(A)$ where the 
+$\sqrt{\cdot}$ is entrywise.
+\end{proof}
+\item By considering matrices of the form $A+\alpha I$ and $B+\beta I$, 
+deduce Fan's inequality from von Neumann's lemma (part (b)).
+\begin{proof}
+By taking $\alpha,\beta > 0$ large enough, $A+\alpha I$ and 
+$B + \beta I$ are PSD. Thus, $\lambda(A+\alpha I) = \sigma(A+\alpha I)$ 
+and the same for $B + \beta I$. Then, part (b) says 
+\begin{align*}
+\tr AB + \beta \tr A + 
+\alpha\tr B + \alpha\beta n&=  \tr\left[(A+\alpha I)(B+\beta I)\right] \\
+&\leq \sigma(A+\alpha I)^\top \sigma(B+\beta I) = \lambda(A + \alpha I)^{
+\top}\lambda(B+\beta I) \\
+&= (\lambda(A) + \alpha\mathbf 1)^\top(\lambda(B) + \beta\mathbf 1)\\
+&= \lambda(A)^\top\lambda(B) + \beta\tr A + \alpha\tr B + \alpha\beta n,
+\end{align*}
+from which Fan's inequality follows by subtracting 
+quantities that are on both sides.
+\end{proof}
+\end{enumerate}
+\end{document}

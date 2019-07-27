@@ -1,0 +1,569 @@
+\documentclass[../borwein-lewis_notes.tex]{subfiles}
+\begin{document}
+\subsection{Theorems of the Alternative}
+\begin{theorem}[2.2.1 (Gordan)]
+Given $a^0,a^1,\ldots, a^m\in \E$, exactly one of the two systems has 
+a solution:
+\begin{align}
+\label{sys1}
+&\sum_{i=0}^m \lambda_i a^i = 0,\quad 0\leq\lambda^0,\ldots,\lambda^m\in\R,
+\; \sum_{i=0}^m \lambda_i=1 \\
+\label{sys2}
+&\ip{a^i, x} < 0 \quad \forall i=0,\ldots, m,\;x\in \E.
+\end{align}
+\end{theorem}
+Define the function 
+\begin{equation*}
+f(x) = \log\left(\sum_{i=0}^m \exp(\ip{a^i, x})\right).
+\end{equation*}
+\begin{theorem}[2.2.6]
+\label{226theorem}
+The following statements are equivalent:
+\begin{enumerate}[(i)]
+\item $f(x)$ is bounded below;
+\item \eqref{sys1} is solvable;
+\item \eqref{sys2} is unsolvable.
+\end{enumerate}
+\end{theorem}
+\begin{lemma}[2.2.7 (Farkas)]
+Let $c, a^1,\ldots, a^m\in\E$. Then exactly one of the following systems 
+has a solution:
+\begin{align}
+\label{sys223}
+&\sum_{i=1}^m \mu_i a^i = c, \quad 0\leq \mu_1,\ldots,\mu_m \in \R,\\
+\label{sys224}
+&\ip{a^i, x}\leq 0 \; \forall i=1,\ldots, m, \; \ip{c,x} > 0, \;
+x\in\E.
+\end{align}
+\end{lemma}
+Farkas's lemma has the interpretation of the finitely generated cone 
+\begin{equation*}
+C = \{\mu_1 a^1 + \ldots + \mu_m a^m : 0\leq \mu_1,\ldots,\mu_m\in \R\}
+\end{equation*}
+being linearly separable from any point $c\notin C$. 
+\subsection{Exercises for 2.2}
+\textbf{1.} Prove the implications (ii)$\implies$(iii)$\implies$(i) in 
+Theorem 2.2.6. 
+\bluea{
+\begin{proof}
+(ii) says there is a set of $0\leq\lambda^0,\ldots,\lambda^m\in\R$ 
+summing to 1
+where $\sum_{i=0}^m \lambda_i a^i =0$. If this is the case, then 
+if any $x\in\E$ satisfies $\ip{a^i,x} < 0$ for all $i=0,\ldots,m$, 
+\begin{equation*}
+0 = \ip{0, x} = \sum_{i=0}^m \lambda_i\ip{a^i, x} < 0,
+\end{equation*}
+a contradiction, since some $\lambda_i$ is nonzero.
+ Therefore, (ii) implies (iii). \\
+If (iii), i.e. there does not exist $x\in\E$ where $\ip{a^i, x}<0$ 
+for all $i=0,\ldots, m$, then for any $x\in \E$, $\ip{a^{i^*}, x} \geq 0$ 
+for some $i^*\in\{0,\ldots,m\}$. By nonnegativity of $\exp$, and 
+increasingness of $\log$,
+\begin{equation*}
+f(x) = \log\left(\sum_{i=0}^m \exp(\ip{a^i, x})\right) 
+\geq \log\exp(\ip{a^{i^*}, x}) = \ip{a^{i^*}, x}\geq 0.
+\end{equation*}
+Therefore, $f$ is bounded below, i.e., (i).
+\end{proof}}
+\noindent
+\textbf{2.} 
+\begin{enumerate}[(a)]
+\item Prove the orthogonal projection $P_{\Y}:\E\to\Y$ is a linear map. \\
+\bluea{
+It may be easier to do this by letting $U$'s columns be an orthogonal 
+basis for $\Y$ and showing that $UU^\top = P_{\Y}$, but in the spirit 
+of convex analysis here's a more ``direct'' proof. \\
+If we prove that $P_{\Y}(\alpha x + y) = \alpha P_{\Y}(x) + P_{\Y}(y)$ 
+for any $\alpha\in\R, x,y\in \E$, we will have proved $P_{\Y}$ is linear.
+Let us directly show $\alpha P_{\Y}(x) + P_{\Y}(y)$ is the nearest point 
+in $\Y$ to $\alpha x + y$. Let $z\in\Y$ be arbitrary.
+\begin{align*}
+&\|\alpha x + y -z \|^2 = \|\alpha x  + y - \alpha P_{\Y}(x) - P_{\Y}(y)
++ \alpha P_{\Y}(x) + P_{\Y}(y) - z\|^2 \\
+&= \|\alpha x + y -\alpha P_{\Y}(x) - P_{\Y}(y)\|^2 + 
+2\ip{\alpha x+y-\alpha P_{\Y}
+(x) - P_{\Y}(y), \alpha P_{\Y}(x) + P_{\Y}(y) - z}\\
+& \qquad \qquad \qquad \qquad \qquad \qquad \qquad 
+ + \|\alpha P_{\Y}(x) + P_{\Y}(y) - z\|^2 \\
+&=\|\alpha x + y -\alpha P_{\Y}(x) - P_{\Y} (y)\|^2
++ \|\alpha P_{\Y}(x) + P_{\Y}(y) - z\|^2 \\
+&\geq \|\alpha x + y-\alpha P_{\Y}(x) - P_{\Y}(y)\|^2.
+\end{align*}
+To see that the inner product is 0, note that $\alpha P_{\Y}(x) + 
+P_{\Y}(y) - z \in \Y$, and for any $v \in \Y$, 
+\begin{equation*}
+\ip{\alpha x - \alpha P_{\Y}(x), v}=
+\alpha\ip{x-P_{\Y}(x), v} = \ip{y-P_{\Y}, v} = 0
+\end{equation*}
+because of the nearest point characterization for subspaces 
+(for any $\bar x\in \Y$, $\Y-\bar x = \Y = -\Y$.) We have shown 
+$P_{\Y}(\alpha x + y) = \alpha P_{\Y}(x) + P_{\Y}(y)$, so this completes 
+the proof.
+}
+\item Give a direct proof of the Farkas lemma for the case $m=1$.\\
+\bluea{
+The $m=1$ case says that for two elements $a,c\in\E$, one of the following 
+holds: 
+\begin{align*}
+1.\; &\exists\, \lambda\geq 0,\; \lambda a = c, \\
+2.\; &\exists\, x\in \E, \; \ip{a,x}\leq 0, \quad \ip{c,x} > 0.
+\end{align*}
+Define $\Y=\spn\{a\}$, $u=c - P_{\Y}(c)$. Our comment at the end of 
+part (b) on the nearest 
+point characterization for subspaces shows that $u\perp \Y$. Thus, 
+if $u\neq 0$, 
+\begin{equation*}
+0 < \|u\|^2 = \ip{c-P_{\Y}(c), c-P_{\Y}(c)} = \ip{c, c-P_{\Y}(c)}
+= \ip{c, u}.
+\end{equation*}
+In other words, $\ip{c,u} > 0$. At the same time, $\ip{a, u} = 0$ 
+because $a\in \Y$. This gives a solution to 2. \\
+The other case where 1. is not solvable is when $\lambda a = c$ for 
+a $\lambda < 0$, $a\neq 0$.
+ In that case, $\ip{a,c} = \lambda \|a\|^2 < 0$, 
+and $\ip{c,c} > 0$. Therefore, 1. being unsolvable implies 2. being 
+solvable. We have shown in Exercise 1 that 1. being solvable 
+implies 2. being unsolvable in the general case, so we are done.
+}
+\end{enumerate}\noindent
+\textbf{3.} Use the Basic separation theorem (2.1.6) to give another proof \
+of Gordan's theorem. 
+\bluea{
+\begin{proof}
+First let us show that the set 
+\begin{equation*}
+C = \left\{\sum_{i=0}^m \lambda_i a^i\,\bigg|\, 0\leq \lambda_0,\ldots,
+\lambda_m\in\R, \; \sum_{i=0}^m \lambda_i=1\right\}
+\end{equation*}
+is convex and closed.
+ By Chapter 1.1 Exercise 2(c), $C=\conv\{a^0,\ldots,a^m\}$ is convex. 
+To see it is closed, for any sequence 
+\begin{equation*}
+\lambda_0^k a^0 + \lambda_1^k a^1 + \ldots + \lambda_m^k a^n 
+\xrightarrow{k\to\infty}{} a,
+\end{equation*}
+We can take a convergent subsequence of each $\lambda_i^k, \; 
+i=0,\ldots, m$ and use the closedness of $[0,1]$ to produce an element 
+of $C$ equal to $a$. Now basic separation implies that for any point 
+$c\notin C$, there exists $x\in\E$ where $\ip{a,x} < \ip{c,x}$ for every 
+$a\in C$. By convexity of $C$, this is equivalent to if $\ip{a^i, x}
+< \ip{c,x}$ for each $i=0,\ldots, m$. \\
+Now the first system in Gordan's lemma being unsolvable is equivalent 
+to $0\notin C$. Thus, there exists $x\in\E$ where $\ip{a^i, x} < 
+\ip{0, x}=0$ for each $i=0,\ldots, m$, i.e. the second system is 
+solvable. And we already know the first 
+system being solvable implies the second system is unsolvable. This 
+proves Gordan's theorem.
+\end{proof}
+}
+\noindent
+\textbf{4. *} Deduce Gordan's theorem from the Farkas lemma. (Hint: 
+Consider the elements $(a^i, 1)$ of the space $\E\times\R$.)
+\bluea{
+\begin{proof}
+Denote $\tilde a^i = (a^i, 1)$. Notice that 
+\begin{align}
+\label{kappa222}
+& \exists\,0\leq \lambda_0,\ldots,\lambda_m\in\R, 
+\; \sum_{i=0}^m \lambda_i=1:
+&&\sum_{i=0}^m \lambda_i a^i = 0 \\
+\label{kappa223}
+\iff &\exists\, 0\leq \lambda_0,\ldots,\lambda_m\in \R: &&
+\sum_{i=0}^m \lambda_i\tilde a^i = \begin{bmatrix}0\\1\end{bmatrix}.
+\end{align}
+Thus, if \eqref{kappa222} does not hold, then \eqref{kappa223} does 
+not hold. If \eqref{kappa223} does not hold, then by Farkas's Lemma, 
+there exists $x\in\E\times\R$
+ where $\ip{\tilde a^i, x}\leq 0$ for all $i=0,\ldots, m$
+and $\ip{(0,1), x} > 0$. If $d\in\R$ is the last coordinate of $x$ and 
+$x'\in \E$ are the rest, 
+we see that $d>0$ and $\ip{a^i, x'} \leq -d < 0$ for all $i=0,\ldots, m$.
+In other words, we have found a solution to the second system of 
+Gordan's theorem. Proving that \eqref{kappa222} being solvable implies 
+the second system was done in Exercise 1, so we are done.
+\end{proof}}
+\noindent\textbf{5 * (Caratheodory's theorem 52).} Suppose $\{a^i\mid i\in I
+\}$ is a finite set of points in $\E$. For any subset $J$ of $I$, define 
+the cone 
+\begin{equation*}
+C_J = \left\{\sum_{i\in J} \mu_ia^i\,\bigg|\, 0\leq \mu_i\in\R,\;(i\in J)
+\right\}.
+\end{equation*}
+\begin{enumerate}[(a)]
+\item
+Prove the cone $C_I$ is the union of those cones $C_J$ for which the set 
+$\{a^i\mid i\in J\}$ is linearly independent. Furthermore, prove directly
+that any such cone $C_J$ is closed.  \\
+\bluea{
+We prove the first part by showing that any element of the cone can be 
+expressed as a conic combination of a linearly independent set of the 
+$a^i$'s. Let $x=\sum_{i\in I}\mu_i a^i \in C$, and let $N$ be the indices
+of nonzero weights, $N= \{i\in I: \mu_i>0\}$. Now if $A=\{a^i:i\in N\}$ 
+is not linearly independent, there exist $c_i\in \R,\,i\in N$ not all 0
+\begin{equation*}
+\sum_{i\in N} c_i a^i = 0.
+\end{equation*}
+Let $r  = \min_{i\in N} \mu_i/|c_i|$, returning $\infty$ if 
+$c_i=0$, and let $i^*$ be any index achieving the minimum.
+ Indeed at least one $c_i\neq 0$. Then 
+\begin{equation*}
+x=x-0=\sum_{i\in I} (\mu_i-r\sgn(c_{i^*})c_i) a^i.
+\end{equation*}
+We have $\mu_{i^*} - r\sgn(c_{i^*})c_{i^*} = \mu_{i^*} - \mu_{i^*} =0$.
+Furthermore, for all $i$, $\mu_i - r\sgn(c_{i^*})c_i \geq 
+\mu_i - |rc_i| \geq \mu_i - (\mu_i/|c_i|)|c_i| = 0$, so we still have 
+a conic combination of elements. Yet, we have reduced the number of 
+nonzero coefficients by 1. By repeating this process as long as the 
+set of elements with nonzero coefficients is linearly dependent, we can 
+represent $x$ as a conic combination of linearly dependent elements 
+$a^i$. \\
+Now we prove each $C_J$ is closed, where $\{a^i : i \in J\}$ is 
+linearly independent. Let $A$ be the matrix with $a^i, i\in J$ for its 
+columns. Then $A^\top A$ is invertible. Then if $Ax^n$ is a sequence 
+in $C_J$ converging to $a$, then by continuity of $(A^\top A)^{-1}A^\top$,
+\begin{equation*}
+(A^\top A)^{-1} A^\top (Ax^n) = x^n \to (A^\top A)^{-1}A^\top a.
+\end{equation*}
+In other words, $x^n$ converges to a limit $x^*$. Then $Ax^* = a$, 
+because $A$ is continuous.
+}
+\item Deduce that any finitely generated cone is closed. \\
+\bluea{
+Any finitely generated cone is a union of a finite number of
+ closed cones, by the above part. A finite union of closed sets is closed.
+}
+\item If the point $x$ lies in $\conv\{a^i\mid i\in I\}$, prove that in 
+fact there is a subset $J\subset I$ of size at most $1+\dim\E$ such that 
+$x$ lies in $\conv\{a^i\mid i\in J\}$. (Hint: Apply part (a) to the vectors 
+$(a^i, 1)$ in $\E\times\R$.) \\
+\bluea{
+Define $\tilde a^i = (a^i, 1)$. Suppose 
+\begin{equation*}
+\conv\{a^i:i\in I\}\ni x=
+\sum_{i\in I} \lambda_i a^i, \quad 0\leq \lambda_i\in \R, \; 
+\sum_{i\in I}\lambda_i=0.
+\end{equation*}
+Then 
+\begin{equation*}
+\tilde x := 
+\sum_{i\in I}\lambda_i\tilde a^i \in \conv\{\tilde a^i : i\in I\}
+\subset \cone\{\tilde a^i : i \in I\},
+\end{equation*}
+where $\cone\{\tilde a^i: i\in I\} := \{\sum_i \mu_i a^i: \mu_i\geq 0\}$.
+Thus, there is a $J\subset I$ such that $\tilde x = \sum_{i\in J} 
+\nu_i \tilde a^i$, $\nu_i\geq 0$ for all $i\in J$. However, 
+the last coordinate of $\tilde x$ also constrains $\sum_{i\in J} 
+\nu_i = 1$. Therefore, $\sum_{i\in J} \nu_i a^i$ is a convex combination 
+equaling $x$, using $|J|\leq \dim(\E\times\R) = \dim\E + 1$ elements
+of $\{a^i:i\in I\}$.
+}
+\item Use part (c) to prove that if a subset of $\E$ is compact then so 
+is its convex hull. \\
+\bluea{
+Let the subset be denoted $S$.
+By part (c), for any sequence $x^n$ in $\conv S$, each 
+$x^n$ can be expressed as a convex combination of $\dim\E + 1$ points 
+in $\E$; just apply (c) to the finite set of points which $x^n$ was 
+previously expressed as a convex combination of. Note that the $\dim\E + 1$ 
+points may change from element to element of the sequence. Thus 
+\begin{equation*}
+\forall\; n=1,2,\ldots,\quad x^n = \sum_{i=1}^{1+\dim\E}\lambda_i^n 
+(a^i)^n, \qquad \forall i,n,\;
+(a^i)^n \in S
+\end{equation*}
+But, for each $i$, since $S$ is compact, we can 
+take a convergent subsequence of $(a^i)^n$. Furthermore, we can take 
+a convergent subsequence for each $\lambda_i^n$. Then if 
+$\lambda_i^*, (a^i)^*$ denote the limits, $\sum_{i=1}^{\dim\E+1}
+\lambda_i^* (a^i)^*=x$ which is in the convex hull, because since $S$ is 
+closed, each $(a^i)^* \in S$. Furthermore, $\{(\lambda_1,\ldots,
+\lambda_n):\,\forall\,i\in[n],\,\lambda_i\geq0,\;\sum_{i=1}^n\lambda_i=1\}$
+is a closed set.
+}
+\end{enumerate}
+\noindent
+\textbf{6. *} Give another proof of the Farkas lemma by applying the Basic 
+separation theorem (2.1.6) to the set $C$ defined by (2.2.11) (shown below) and using the 
+fact that any finitely generated cone is closed. 
+\begin{equation*}
+C = \left\{\sum_{i=1}^m \mu_i a^i \,\bigg|\, 0\leq \mu_1,\ldots,\mu_m
+\in \R\right\}.
+\end{equation*}
+\bluea{
+\begin{proof}
+The previous exercise proves that any finitely generated cone, e.g. $C$,
+is closed. By basic separation, for any $c\notin C$, there exists 
+$a\in\E$ and $b\in\R$ such that $\ip{a,c} > b \geq \ip{a,x}$ for all 
+$x\in C$. Because $0\in C$, we have $b\geq 0$. We will now show that 
+in fact, $\ip{a,x}\leq 0$ for every $x\in C$. This is because if 
+$\ip{a,x} > 0$ for some $x$, then there exists $r > 0$ such that 
+$\ip{a,rx} > b$, say $r=2b/\ip{a,x}$. Thus, $\ip{a,c} > b \geq 0 
+\geq \ip{a,x}$ for all $x\in C$. We can conclude \eqref{sys224}
+is solvable
+by taking $x=a^1,\ldots, a^m$. We have shown that \eqref{sys223}
+being unsolvable implies \eqref{sys224} is solvable. The other direction 
+is easy. This concludes the proof of Farkas's Lemma.
+\end{proof}
+}
+\noindent \textbf{7 ** (Ville's theorem).} With the function $f$ defined 
+by (2.2.5) ($f=\log\sum_i\exp\ip{a^i,\cdot}$)
+ (with $\E=\R^n$), consider the optimization problem 
+\begin{equation}
+\label{eq2212}
+\inf\{f(x)\mid x\geq 0\}
+\end{equation}
+and its relationship with the two systems 
+\begin{equation}
+\label{eq2213}
+\sum_{i=0}^m \lambda_i a^i \geq 0, \quad \sum_{i=0}^m \lambda_i = 1, 
+\quad 0\leq \lambda_0,\ldots,\lambda_m\in\R
+\end{equation}
+and 
+\begin{equation}
+\ip{a^i,x}<0 \;\text{ for } \; i=0,1,\ldots, m,\quad x\in\R_+^n.
+\label{eq2214}
+\end{equation}
+Imitate the proof of Gordan's theorem (using Section 2.1, Exercise 14) 
+to prove the following are equivalent: 
+\begin{enumerate}[(i)]
+\item Problem \eqref{eq2212} is bounded below.
+\item System \eqref{eq2213} is solvable. 
+\item System \eqref{eq2214} is unsolvable.
+\end{enumerate}
+Generalize by considering the problem $\inf\{f(x)\mid x_j\geq 0 (j\in J)\}$.
+\bluea{
+\begin{proof}
+\textbf{
+(i)$\implies$ (ii):}\\
+By section 2.1, Exercise 14, for each $\epsilon$, there exists a $\bar x$ 
+where 
+\begin{equation*}
+\forall\,j=1,\ldots,n,\quad 
+(\nabla f(\bar x))_j = \left(\sum_{i=0}^m\lambda_{i, \bar x} a^i
+\right)_j \geq -\epsilon,
+\end{equation*}
+where $\lambda_{i, \bar x} = \exp(\ip{a^i, \bar x})/\sum_{k=0}^m
+\exp(\ip{a^k, \bar x})> 0$. This is because $N_{[0,\infty)}(x) 
+= \{0\}$ if $x>0$ and $N_{[0,\infty)}(x) = [-\infty, 0]$ if $x=0$.
+Either way, $-x\in N_{[0,\infty)} + [-\epsilon,\epsilon] \implies 
+x \geq -\epsilon$. \\
+Now we can take a sequence $\bar x^k$ such that $\lim_{k\to\infty}
+\nabla f(\bar x^k) \geq 0$. Or to be more precise, for each $j$,
+$(\nabla f(\bar x^k))_j$ eventually is greater than an arbitrarily
+small negative number. Thus, if we take a convergent subsequence of 
+$(\lambda_{i,\bar x^k})_{i=1}^n$, the limit $(\lambda_i^*)_{i=1}^n$ 
+satisfies $\sum_{i=1}^n \lambda_i^* a^i \geq 0$, and $\lambda_i^* \geq 0
+\;\forall\,i\in[n],\; \sum_{i=1}^n \lambda_i=1$. \\
+\textbf{(ii)$\implies$(iii):}\\
+Suppose \eqref{eq2213} and \eqref{eq2214} are both solvable. Let 
+$x\in\R_+^n$ be the solution to \eqref{eq2214} satisfying $\ip{a^i, x} 
+< 0$ for every $i=0,\ldots,m$. Then for the 
+solution to \eqref{eq2213}, $\lambda_0,\ldots,\lambda_m
+\geq 0, \; \sum_i \lambda_i=1$, 
+\begin{equation*}
+0 \leq \left\langle \sum_{i=0}^n \lambda_i a^i, x \right\rangle 
+= \sum_{i=0}^n \lambda_i \ip{a^i, x} < 0,
+\end{equation*}
+a contradiction. The first inequality holds because $\sum_{i=0}^n 
+\lambda_ia^i \geq 0$ and $x\in\R_+^n$. \\
+\textbf{(iii)$\implies$(i)}\\
+If \eqref{eq2214} is unsolvable, then for every $x\in\R_+^n$, there 
+exists an $i\in\{0,\ldots,m\}$ such that $\ip{a^i, x} \geq 0$.
+Thus, $f(x) = \log\left(\sum_{k=0}^m \exp(\ip{a^k, x})\right)
+\geq \ip{a^i, x} \geq 0$, implying the problem \eqref{eq2212} is lower 
+bounded. \\
+To generalize to $\inf\{f(x)\mid x_j\geq0\;\forall\,j\in J\}$, 
+in \eqref{eq2213} we change $\sum_i\lambda_ia^i\geq 0$ to 
+$\left(\sum_i\lambda_i a^i\right)_j \geq 0\;\forall\,j\in J$ and 
+$\left(\sum_i \lambda_i a^i\right)_j = 0\;\forall\,j\notin J$. 
+In \eqref{eq2214} we change $x\in\R_+^n$ to $x\in\R,\; x_j \geq 0
+\; \forall\,j\in J$.
+\end{proof}}
+\noindent \textbf{8 ** (Stiemke's theorem).} Consider the optimization 
+problem (2.2.4) and its relationship with the two systems 
+\begin{equation}
+\label{eq2215}
+\sum_{i=0}^m \lambda_ia^i = 0, \; 0< \lambda_0,\lambda_1,\ldots,\lambda_m
+\in\R
+\end{equation}
+and 
+\begin{equation}
+\label{eq2216}
+\ip{a^i, x}\leq 0\;\text{ for } i=0,1,\ldots,m,\;\text{ not all }0,
+\quad x\in\E.
+\end{equation}
+Prove the following are equivalent:
+\begin{enumerate}[(i)]
+\item Problem (2.2.4) has an optimal solution.
+\item System \eqref{eq2215} is solvable. 
+\item System \eqref{eq2216} is unsolvable.
+\end{enumerate}
+\bluea{
+\begin{proof}
+\textbf{(i)$\implies$(ii):}\\
+If there is an optimal solution $ x^*$ to problem 2.2.4,
+ then by the first order necessary condition (Prop 2.1.1), 
+\begin{equation*}
+\nabla f(x^*) = \sum_{i=0}^m \frac{\exp(\ip{a^i, x^*})}{\sum_{j=0}^m
+\exp(\ip{a^j, x^*})} a^i = 0.
+\end{equation*}
+By setting $\lambda_i = \exp(\ip{a^i, x^*})/\sum_{j=0}^m \exp(\ip{a^j, 
+x^*}) > 0$ we obtain a solution to \eqref{eq2215}. \\
+\textbf{(ii)$\implies$(iii):}\\
+Suppose that \eqref{eq2215} and \eqref{eq2216} are both solvable. Let 
+$(\lambda_i^*)_{i=0}^m,\; x^*$ be the respective solutions. By 
+\eqref{eq2216}, there must be some $i^*\in\{0,\ldots,m\}$ for which 
+$\ip{a^{i^*}, x^*} < 0$. But since every $i\in\{0,\ldots,m\}$ satisfies
+$\ip{a^i, x^*} \leq 0$, this contradicts \eqref{eq2215}, which implies
+$\sum_{i=0}^m \lambda_i\ip{a^i, x^*} = 0$, as $\lambda_{i^*}\ip{a^{i^*},
+x^*} < 0$. \\
+\textbf{(iii)$\implies$(i):}\\
+Define the linear subspace $A=\spn\{a^0, a^1,\ldots, a^m\}\subset\E$. 
+Let $A^\perp$ be the orthogonal subspace. If (iii), i.e. \eqref{eq2216}
+is unsolvable, then every $x\in\E$ either satisfies $\ip{a^i, x}=0$ 
+for every $i\in\{0,\ldots,m\}$ or $\ip{a^i, x} > 0$ for some $i\in\{0,
+\ldots, m\}$. I.e., either $x\in A^\perp$, or $\ip{a^i, x}
+> 0$ for some $i$. \\
+Now define $S = \bd B \cap A$ as the unit circle intersected with $A$.
+For any $x\in S,\; x\notin A^\perp$, because the only element in both 
+$A$ and $A^\perp$ is $0$. Therefore, $\ip{a^k, x} > 0$ for some $k\in\{0,
+\ldots, m\}$. Define the function $g(x) = \max_i \ip{a^i, x}$. The 
+maximum of continuous functions is continuous. Thus, $g$ is continuous,
+and over the compact set $S$ attains a minimum $m > 0$. Now for 
+any $x \in A$, $\|x\|>r>0$, with $k=\argmax_i \ip{a^i, x}$,
+we have $g(x) = \ip{a^k, x} = \|x\|\ip{a^k, x/\|x\|} > rm$, and 
+\begin{equation*}
+f(x) = \log\left(\sum_{i=0}^m \exp(\ip{a^i, x})\right) 
+\geq \log\exp(\ip{a^k, x}) = g(x) > rm.
+\end{equation*}
+Therefore, on $A$, $f$ has bounded sublevel sets. Since $A$ is closed, 
+by Proposition 1.1.3, $f$ has a minimizer $a^*$ over $A$.
+ And since 
+any $x\in \E$ can be expressed as $x=a+a_\perp$, $a\in A, a_\perp\in 
+A^\perp$, and $f(x) = f(a+a_\perp) = f(a)\geq f(a^*)$, $a^*$ is in 
+fact a global minimizer of $f$ on $\E$. In other words, problem 
+(2.2.4) has an optimal solution. \\
+To generalize with the problem $\inf\{f(x)\mid x_j\geq 0\;(j\in J)\}$, 
+replace $\sum_i \lambda_i a^i =0$ in \eqref{eq2216} with 
+$\left(\sum_i \lambda_i a^i\right)_j \geq 0$ for $j\in J$ and 
+$\left(\sum_i\lambda_ia^i\right)_j = 0$ for $j\notin J$. 
+In \eqref{eq2216}, add the constraint $x_j \geq 0$ for all $j\in J$.
+\end{proof}}
+\noindent\textbf{9 ** (Schur-convexity).} The \textit{dual cone} of the 
+cone $\R_{\geq}^n$ is defined by 
+\begin{equation*}
+\left(\R_{\geq}^n\right)^+ = \{y\in\R^n\mid \ip{x,y}\geq0 \text{ for all }
+x \text{ in }\R_{\geq}^n\}.
+\end{equation*}
+\begin{enumerate}[(a)]
+\item Prove a vector $y$ lies in $\left(\R_{\geq}^n\right)^+$ iff 
+\begin{equation*}
+\sum_{i=1}^j y_i \geq 0 \;\text{ for } j = 1,2,\ldots,n-1,\quad
+\sum_{i=1}^n y_i = 0.
+\end{equation*}
+\bluea{
+Suppose $y\in \left(\R_{\geq}^n\right)^+$. We must have $\sum_i y_i =0$,
+or else $\ip{\mathbf 1, y} >0$ or $\ip{-\mathbf 1, y} > 0$ and both 
+$\mathbf 1,-\mathbf 1\in \R_{\geq}^n$. We also must have $\sum_{i=1}^j 
+y_i \geq 0$ for every $j=1,\ldots,n-1$, because otherwise the 
+vector with $j$ ones at the start and the rest zeros is in $\R_{\geq}^n$ 
+and has a negative inner product with $y$. \\
+Now suppose $y\in\R^n$ satisfies $\sum_{i=1}^n y_i =0$ and 
+$\sum_{i=1}^j y_i \geq 0$ for each $j=1,\ldots, n$. Take $x\in\R_{\geq}^n$.
+We have $\ip{x,y} = $
+\begin{equation*}
+\sum_{i=1}^n x_i y_i = \sum_{i=1}^n x_i \left(\sum_{j=1}^i y_j
+ - \sum_{j=1}^{i-1} y_j\right)
+= \sum_{i=1}^{n-1} (x_i-x_{i+1}) \sum_{j=1}^i y_j
++\overbrace{x_n\sum_{j=1}^n y_j}^0 \geq 0.
+\end{equation*}
+}
+\item By writing $\sum_{i=1}^j [x]_i = \max_k\ip{a^i,x}$ for some suitable 
+set of vector $a^k$, prove that the function $x\mapsto\sum_{i=1}^j [x]_i$ 
+is convex. (Hint: Use Section 1.1, Exercise 7.)\\
+\bluea{
+By Section 1.1., Exercise 7, a maximum of inner product functions is 
+convex. We let $\{a^k\}_k$ be the set of zero one vectors with 
+exactly $j$ ones.
+}
+\item Deduce that the function $x\mapsto[x]$ is 
+$(\R_{\geq}^n)^+$-\textit{convex}, that is:
+\begin{equation*}
+z:= \lambda[x]+(1-\lambda)[y] - [\lambda x+(1-\lambda)y] \in \left(\R_{\geq}^n
+\right)^+ \; \text{ for }0\leq\lambda\leq1.
+\end{equation*}
+\bluea{
+\begin{equation*}
+\sum_{i=1}^n z_i = \lambda \ip{\mathbf 1,x} + (1-\lambda)\ip{\mathbf 1,
+y} - \ip{\mathbf 1, \lambda x + (1-\lambda y} = 0,
+\end{equation*}
+and defining $i_x, i_y$ s.t. $[\lambda x + (1-\lambda)y]_i 
+= \lambda x_{i_x} + (1-\lambda)y_{i_x}$, 
+\begin{align*}
+\sum_{i=1}^j \lambda [x]_j + (1-\lambda)[y]_j 
+\geq \sum_{i=1}^j \lambda [x]_{i_x} + (1-\lambda)[y]_{i_y},
+\quad \forall j=1,\ldots,n
+\end{align*}
+which shows that $z\in (\R_{\geq})^+$.
+}
+\item Use Gordan's theorem and Proposition 1.2.4 (rearrangement 
+inequality) to deduce that for 
+any $x$ and $y$ in $\R_{\geq}^n$, if $y-x$ lies in $\left(\R_{\geq}^n
+\right)^+$ then $x$ lies in $\conv(\P^ny)$. \\
+\bluea{
+Notice that for each $z\in \R_{\geq}^n$, 
+\begin{equation}
+\label{randeee}
+0\leq \ip{z, y-x} = z^\top y - z^\top x, \qquad [y]=y,\; [x]=x. 
+\end{equation}
+Therefore, if we define $a^\Pi = \Pi y - x$ for each permutation 
+matrix $\Pi\in\P^n$, then the system 
+\begin{equation*}
+z\in \R^n, \quad \ip{a^\Pi, z} < 0 \qquad \forall \Pi\in\P^n
+\end{equation*}
+is unsolvable, because by \eqref{randeee} for any $z\in\R^n$
+there exists $\Pi$ where 
+$\ip{a^\Pi, z} = [z]^\top [y] - z^\top x \geq [z]^\top y - [z]^\top x
+\geq 0$ also using the rearrangement inequality. Thus, the system 
+\begin{equation*}
+\exists \lambda_{\Pi}\geq 0\; (\Pi\in\P^n),\; 
+\sum_{\Pi\in\P^n} \lambda_{\Pi} = 0: 
+\quad \sum_{\Pi\in\P^n}\lambda_{\Pi}(\Pi y-x) = 0
+\end{equation*}
+is solvable. This is equivalent to stating that $x\in\conv(\P^n y)$.
+}
+\item A functon $f:\R_{\geq}^n\to\R$ is \textit{Schur-convex} if 
+\begin{equation*}
+x,y\in\R_{\geq}^n, \;y-x\in\left(\R_{\geq}^n\right)^+ \implies 
+f(x)\leq f(y).
+\end{equation*}
+Prove that if $f$ is convex, then it is Schur-convex if and only if it is 
+the restriction to $\R_{\geq}^n$ of a \textit{symmetric} convex function 
+$g:\R^n\to\R$ (where by symmetric we mean $g(x)=g(\Pi x)$ for 
+any $x\in\R^n$ and any permutation matrix $\Pi$).\\
+\bluea{
+First we prove the if direction, i.e. assume $f$ is the restriction of 
+some symmetric convex $g$. Using part (d), if $x,y\in\R_{\geq}^n$ and 
+$y-x\in(\R_{\geq}^n)^+$ then $x=\sum_{\Pi\in\P^n} \lambda_{\Pi} \Pi y$ 
+for nonnegative $\lambda_{\Pi}$ summing to 1. Thus, 
+\begin{equation*}
+f(x) = g\left(\sum_{\Pi\in\P^n}\lambda_{\Pi}\Pi y\right)
+\leq \sum_{\Pi\in\P^n} \lambda_{\Pi} g(\Pi y) 
+= \sum_{\Pi\in\P^n} \lambda_{\Pi} g(y)  = g(y) = f(y).
+\end{equation*}
+Therefore, $f$ is Schur-convex. \\
+Now we prove the only if direction. Assume $f$ is convex and Schur-convex.
+Define a function $g:\R^n\to \R$ by $g(x) = f([x])$. By definition, 
+$g$ is symmetric. Now for $\lambda\in[0,1]$ and $x,y\in\R^n$,
+\begin{align*}
+g(\lambda x + (1-\lambda)y) &= f([\lambda x + (1-\lambda)y])
+\leq f(\lambda [x] + (1-\lambda)[y]) \\
+&\leq \lambda f([x]) 
++ (1-\lambda)f([y]) = \lambda g(x) + (1-\lambda)g(y),
+\end{align*}
+using part (c) and the fact that $f$ is Schur-convex, and convex. 
+Thus $g$ is convex.
+}
+\end{enumerate}
+\newpage
+\end{document}

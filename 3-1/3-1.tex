@@ -1,0 +1,1698 @@
+\documentclass[../borwein-lewis_notes.tex]{subfiles}
+\begin{document}
+\subsection{3.1 Subgradients and Convex Functions}
+Time to allow convex functions to be nondifferentiable, and take on the 
+value $+\infty$.
+\begin{itemize}
+\item The \textit{domain} of a function $f:\E\to(-\infty,+\infty]$ is 
+the set $\dom f = \{x\in \E: x < +\infty\}$.
+\item A function is \textit{proper} if its domain is nonempty.
+\item A convex function $f$ is \textit{sublinear} if 
+\begin{equation*}
+f(\lambda x+ \mu y) \leq \lambda f(x) + \mu f(y)\;
+\text{ for all } x,y\in \E,\;\lambda,\mu\in\R_+.
+\end{equation*}
+\item If $f(\lambda x) = \lambda f(x)$ for all $x\in \E$ and 
+$\lambda\in\R_+$, then $f$ is \textit{positively homogeneous}.
+\item If $f(x+y) \leq f(x)+f(y)$ for all $x,y\in\E$ then $f$ is 
+subadditive.
+\item If $f$ is sublinear, then $f( (\lambda-\mu)x) \leq \lambda f(x) 
++ \mu f(-x)$ applied to $\lambda=1,\,\mu=2$ shows $-f(x)\leq f(-x)$ 
+for all $x\in\E$.
+\item The \textit{lineality space} of a sublinear function $f$ is the set 
+\begin{equation*}
+\lin f = \{x\in\E \mid -f(x) = f(-x)\}.
+\end{equation*}
+\item The \textit{core} of a set $C$, $\core C$ is the set of $x\in C$ 
+for each $d\in\E$, $x+td\in C$ for all small $t$.
+\item The set of subgradients is called the \textit{subdifferential},
+denoted by $\partial f(\bar x)$, defining $\partial f(\bar x)=\emptyset$
+for $\bar x$ not in $\dom f$. Its \textit{domain} is defined 
+$\dom\partial f = \{x\in\E\mid \partial f(x)\neq\emptyset\}$.
+\item $f$ is \textit{essentially strictly convex} if it is strictly 
+convex on any convex subset of $\dom\partial f$.
+\end{itemize}
+\begin{proposition}[3.1.1 (Sublinearity)] 
+A function $f:\E\to(-\infty, +\infty]$ is sublinear if and only if it 
+is positively homogeneous and subadditive. For a sublinear function $f$, 
+the lineality space $\lin f$ is the largest subspace of $\E$ on which 
+$f$ is linear.
+\end{proposition}
+\begin{proposition}[3.1.2 (Sublinearity of the directional derivative)]
+If the function $f: \E \to (-\infty, +\infty]$ is convex then, for any 
+point $\bar x\in\core\dom f$, the directional derivative $f'(\bar x;\cdot)$
+is everywhere finite and sublinear.
+\end{proposition}
+\begin{proposition}[3.1.5 (Subgradients at optimality)]
+For any proper function $f:\E\to(-\infty,+\infty]$, the point $\bar x$ 
+is a (global) minimizer of $f$ if and only if the condition $0\in
+\partial f(\bar x)$ holds.
+\label{3.1.5}
+\end{proposition}
+\begin{proposition}[3.1.6 (Subgradients and directional derivatives)]
+If the function $f:\E\to(-\infty,+\infty]$ is convex and the point 
+$\bar x$ lies in $\dom f$, then an element $\phi$ of $\E$ is a subgradient 
+of $f$ at $\bar x$ if and only if it satisfies $\ip{\phi,\cdot}\leq 
+f'(\bar x;\cdot)$.
+\label{3.1.6}
+\end{proposition}
+\begin{lemma}[3.1.7]
+\label{3.1.7}
+Suppose that the function $p:\E\to(-\infty,+\infty]$ is sublinear and 
+that the point $\bar x$ lies in $\core(\dom p)$. Then the function 
+$q(\cdot)=p'(\bar x;\cdot)$ satisfies the conditions
+\begin{enumerate}[(i)]
+\item $q(\lambda\bar x) = \lambda p(\bar x)$ for all real $\lambda$, 
+\item $q\leq p$, and 
+\item $\lin q \supset \lin p + \spn\{\bar x\}$.
+\end{enumerate}
+\end{lemma}
+\begin{equation}
+\label{3.1.3}
++\infty > g(d;s) \geq g(d;t)\downarrow f'(\bar x;d)\geq g(d;-s)>-\infty.
+\end{equation}
+\begin{equation}
+\label{3.1.4}
+\ip{\phi, x-\bar x} \leq f(x)-f(\bar x) \text{ for all }x\in \E.
+\end{equation}
+\begin{theorem}[3.1.8 (Max formula)]
+If the function $f:\E\to (-\infty,+\infty]$ is convex then any point 
+$\bar x$ in $\core\dom f$ and any direction $d\in\E$ satisfy 
+\begin{equation}
+f'(\bar x; d) = \max\{\ip{\phi,d}\mid \phi\in\partial f(\bar x)\}.
+\label{3.1.9}
+\end{equation}
+In particular, the subdifferential $\partial f(\bar x)$ is nonempty.
+\label{3.1.8}
+\end{theorem}
+\begin{corollary}[3.1.10 (Differentiability of convex functions)]
+\label{3.1.10} Suppose the function $f:\E\to(-\infty,+\infty]$ is convex 
+and the point $\bar x$ lies in $\core\dom f$. Then $f$ is Gateaux 
+differentiable at $\bar x$ exactly when $f$ has a unique subgradient 
+at $\bar x$ (in which case this subgradient is the derivative).
+\end{corollary}
+We say the convex function $f$ is \textit{essentially smooth} if it 
+is Gateaux differentiable on $\dom\partial f$.
+\begin{theorem}[3.1.11 (Hessian characterization of convexity)]
+Given an open convex set $S\subset\R^n$ suppose the continuous function 
+$f:\cl S\to\R$ is twice continuously differentiable on $S$. Then $f$ 
+is convex if and only if its Hessian matrix is positive semidefinite 
+everywhere on $S$.
+\label{3.1.11}
+\end{theorem}
+\newpage
+\subsection{Exercises for 3.1}
+\textbf{1.} Prove Proposition 3.1.1 (Sublinearity). 
+\bluea{
+\begin{proof}
+Suppose $f$ is sublinear. Then for any $x\in\E,\,\lambda > 0$, 
+$f(\lambda x + 0x)\leq \lambda f(x) + 0f(x) = \lambda f(x)$, 
+and moreover $f((\lambda x)/\lambda) \leq f(\lambda x)/\lambda$, 
+implying $\lambda f(x) \leq f(\lambda x)$. Thus, $f(\lambda x) 
+= \lambda f(x)$. If $\lambda=0$, then $f(\lambda x) = f(\lambda x + 
+\lambda x) \leq 2\lambda f(x) = 0$, and $f(\lambda x)=f(\lambda x+\lambda x) \leq 
+2f(\lambda x)$ implying $f(\lambda x) \geq 0$. Thus $f(\lambda x)=0$.
+ Subadditivity obviously follows from sublinearity 
+(plug in $\lambda,\mu=1$). \\
+Now suppose $f$ is subadditive and positively homogeneous. Then for any 
+$\lambda,\mu\geq 0$ and $x,y\in\E$, 
+\begin{equation*}
+f(\lambda x + \mu y) \leq f(\lambda x) + f(\mu y) = \lambda f(x) 
++ \mu f(y).
+\end{equation*}
+Let $\Y$ be a subspace on which $f$ is linear. Then, clearly, $\Y
+\subset\lin f$, because $x\in\Y$ implies $-f(x) = f(-x)$. \\
+Now let $\mu,\lambda\in \R$ and $x,y\in\lin f$ be arbitrary.
+Then by sublinearity and the definition of $\lin f$, 
+\begin{equation*}
+f(\mu x + \lambda y)\leq \sgn(\mu)\mu f(\sgn(\mu)x) + \sgn(\lambda)
+\lambda f(\sgn(\lambda)y) = \mu f(x) + \lambda f(y),
+\end{equation*}
+as we can pull out the $\sgn$s and cancel out the resulting $\sgn^2$s.
+Furthermore, since sublinear functions satisfy $-f(z)\leq f(-z)$ for 
+every $z\in\E$,
+\begin{equation*}
+-f(\mu x + \lambda y) \leq f(-\mu x - \lambda y) \leq -\mu f(x) -
+\lambda f(y),
+\end{equation*}
+following the same argument as above. Thus, $f(\mu x + \lambda y) 
+\geq \mu f(x) + \lambda f(y)$. Thus, $f(\mu x + \lambda y)
+= \mu f(x) + \lambda f(y)$. Note this shows that $\lin f$ is a subspace.
+Therefore, $f$ is linear on $\lin f$, which is itself a linear subspace.
+\end{proof}
+}\noindent
+\textbf{2 (Core versus interior).} Consider the set in $\R^2$ 
+\begin{equation*}
+D = \{(x,y) \mid y=0\text{ or } |y|\geq x^2\}.
+\end{equation*}
+Prove $0\in \core(D)\setminus \inter(D)$.
+\bluea{
+\begin{proof}
+First we prove that $0$ is not in $\inter(D)$. For any $\epsilon > 0$, 
+consider the ball of radius $\epsilon$ centered at $0$, $\epsilon B$.
+Let $C=\sqrt{4+\epsilon}$. Consider the element 
+$x=[2\sqrt{\epsilon}, \epsilon]/C$. We have 
+\begin{equation*}
+\|x\|^2 = \frac{4\epsilon + \epsilon^2}{C^2} = 
+\frac{4\epsilon + \epsilon^2}{4 + \epsilon} = \epsilon.
+\end{equation*}
+i.e. $x\in \epsilon B$. However, $x\notin D$, since $x_1^2 = 4\epsilon 
+> \epsilon=|x_2|$. Since $\epsilon$ was arbitrary, we have $0\notin
+\inter(D)$. \\
+Now we show that $0\in\core(D)$. Let $d=[x,y]$. If $y=0$, then 
+$d\in D$, and in fact for every $t\in \R$, $td\in D$.
+If $x=0$, then clearly $|ty|\geq0=x$ for every $t\in\R$, i.e. 
+$td\in D$.
+ If $y\neq 0, x\neq 0$, let $0<t \leq |y/x^2|$.  We have 
+\begin{equation*}
+\frac{(td)_1^2}{|(td)_2|}=\frac{t^2x^2}{|ty|} = \frac{tx^2}{|y|} 
+\leq \frac{|y|}{|y|} = 1,
+\end{equation*}
+i.e. the ratio of the $x$ value of $td$ squared to the magnitude of the 
+$y$ value is $\leq 1$. Thus, $td\in\E$. Having shown that for all 
+$d\in\E$, there is an $s>0$ such that $0<t<s$ implies $td\in D$, 
+we have shown $0\in\core(D)$.
+\end{proof}}
+\noindent
+\textbf{3.} Prove the subdifferential is a closed convex set. 
+\bluea{
+\begin{proof}
+First we show $\partial f(\bar x)$
+ is convex. Let $\phi_1,\phi_2\in\partial f$.
+For any $\lambda\in[0,1]$ and $x\in\E$,
+\begin{align*}
+&\ip{\lambda \phi_1 + (1-\lambda)\phi_2, x-\bar x} 
+= \lambda\ip{\phi_1, x-\bar x}+(1-\lambda)\ip{\phi_2, x-\bar x}\\
+&\;\leq \lambda (f(x)-f(\bar x)) + (1-\lambda)(f(x)-f(\bar x))
+= f(x)-f(\bar x).
+\end{align*}
+Now we show $\partial f(\bar x)$ is closed. One approach is to note 
+$\partial f(\bar x) = \bigcap_{x\in\E} \{\phi\in\E:\ip{\phi, x-\bar x}
+\leq f(x)-f(\bar x)\}$, an intersection of closed sets. Another is 
+more direct; if a sequence $\phi^i$ satisfies $\ip{\phi^i, x-\bar x}
+\leq 0$, then so does the limit $\phi$, i.e. $\ip{\phi,x-\bar x}\leq 0$.
+\end{proof}}
+\noindent 
+\textbf{4 (Subgradients and normal cones).} If a point $\bar x$ lies in 
+a set $C\subset\E$, prove $\partial\delta_C(\bar x) = N_C(\bar x)$. \\
+\bluea{
+\begin{proof}
+Given $x\in \E$, either $\delta_C(x)-\delta_C(\bar x) = 0$ or 
+$\delta_C(x)-\delta_C(\bar x) = 
++\infty$ depending on whether $x\in C$ or $x\notin C$ respectively.
+Either way, $f(x)-f(\bar x) \geq 0$. For $d\in N_C(\bar x)$, we have 
+for any $x\in \E$
+\begin{equation*}
+\ip{d, x-\bar x} \leq 0 \leq f(x)-f(\bar x).
+\end{equation*}
+Thus, $N_C(\bar x)\subset \partial\delta_C(\bar x)$. \\
+Now consider $\phi\in\partial\delta_C(\bar x)$. For every $x\in C$, 
+\begin{equation*}
+\ip{\phi, x-\bar x} \leq \delta_C(x)-\delta_C(\bar x) = 0.
+\end{equation*}
+Therefore, $\partial\delta_C(\bar x)\subset N_C(\bar x)$.
+\end{proof}}\noindent
+\textbf{5.} Prove the following functions $x\in\R\mapsto f(x)$ are convex
+and calculate $\partial f$:
+\begin{enumerate}[(a)]
+\item $|x|$ \\
+\bluea{
+Let $\lambda\in[0,1]$. $|\lambda x + (1-\lambda)y| \leq \lambda |x|
++ (1-\lambda)|y|$ by the triangle inequality. Thus $|x|$ is convex.
+For the subgradient $\partial f(\bar x)$
+ at $\bar x$, we need $\phi\in\R$ such that 
+$\phi(x-\bar x) \leq |x|-|\bar x|$ for every $x\in\R$. If $\bar x < 0$, 
+and $\phi > -1$, $\bar x/2 - \bar x > 0$ and $(-1)(\bar x/2 - \bar x)
+= |\bar x/2| - |\bar x|$, implying $\phi(\bar x/2-\bar x)
+> |\bar x/2| - |\bar x|$. If $\phi < -1$, then $(-1)(\bar x - 2\bar x)
+= |\bar x|-|2\bar x|$ and $\bar x-2\bar x>0$ implies 
+$\phi(2\bar x - \bar x) > |2\bar x|-|\bar x|$. Finally, if $\phi =-1$, 
+$\phi(x-\bar x) = \phi x - |\bar x| \leq |x| - |\bar x|$.
+Therefore, $\partial |\bar x| = \{-1\}$. The case 
+for $x>0$ can be handled similarly to show $\partial |x| = \{1\}$. \\
+Now let us compute $\partial |0|$. If $|\phi|\leq 1$, then 
+$\phi x \leq |\phi||x|\leq |x|$, so $\phi\in\partial |0|$. If 
+$|\phi|>1$, then $\phi^2 = |\phi||\phi| > |\phi|$. Thus, 
+$\partial |0| = \{\phi\in\R:|\phi|\leq 1\}$.
+}
+\item $\delta_{\R_+}$ \\
+\bluea{
+Denote $f=\delta_{\R_+}$.
+Let $x,y\in\R$ and $0<\lambda<1$.
+ If one of $x$ or $y$ is not in $\R_+$, then clearly 
+\begin{equation*}
+f(\lambda x + (1-\lambda)y) \leq +\infty = \lambda f(x) + (1-\lambda)f(y).
+\end{equation*}
+If both $x,y\in\R_+$, then by convexity of $\R_+$, $\lambda x + (1-\lambda)
+y\in\R_+$ and thus $f(\lambda x + (1-\lambda )y) = 0 = \lambda f(x) 
++ (1-\lambda) f(y)$. \\
+For $\bar x\notin \dom f = \R_+$, $\partial f(\bar x) = \emptyset$.
+For $\bar x\in\dom f$, by Exercise 4, $\partial f(\bar x) = N_{\R_+}(\bar x)
+$. That is, if $\bar x > 0$, $\partial f(\bar x) = \{0\}$ and if 
+$\bar x = 0$, $\partial f(\bar x) = (-\infty, 0]$.
+}
+\item $-\sqrt{x}$ if $x\geq 0$, $+\infty$ otherwise.  \\
+\bluea{
+We wish to show that for $\lambda\in[0,1]$ and $x,y\geq0$, 
+$\sqrt{\lambda x + (1-\lambda)y} \geq \lambda\sqrt{x}+(1-\lambda)\sqrt{y}$.
+Notice that 
+\begin{align*}
+&(\lambda\sqrt{x}+(1-\lambda)\sqrt{y})^2 = \lambda^2 x + (1-\lambda)^2 y 
++ 2\lambda(1-\lambda)\sqrt{xy} \\
+&\;= \lambda^2 x + (1-\lambda)^2 y + \lambda(1-\lambda)(x+y-(\sqrt{x}-
+\sqrt{y})^2) \\
+&\;= \lambda x + (1-\lambda)y - (1-\lambda)\lambda(\sqrt{x}-\sqrt{y})^2 
+\leq \lambda x + (1-\lambda)y.
+\end{align*}
+Taking the square root of both sides gives us the desired result. Now 
+if either $x,y <0$, clearly the convexity condition holds as we 
+have $+\infty$ on the RHS. \\
+Let us now compute the subgradient. At 0, if $\phi > -\infty$, then 
+for small enough $x>0$, $\phi x > -\sqrt{x}$, as is clearly the case 
+when $\phi\geq 0$ and shown by $-\sqrt{x}/x=-1/\sqrt{x}\to-\infty$ as 
+$x\to 0$ for $-\infty<\phi < 0$.
+Thus $\partial\sqrt{0}=\emptyset$. For 
+$\bar x \geq 0$, we'll use calculus and Corollary 3.1.10 \eqref{3.1.10}:
+as $\bar x\in \inter(\dom -\sqrt{\cdot})$ and $-\sqrt{\cdot}$ is 
+convex, the derivative $-1/2\sqrt{\bar x}$ is equal to the unique 
+subgradient at $\bar x$. Thus $\partial f(\bar x) = \{-1/2\sqrt{\bar x}
+\}$.
+}
+\item \text{ }\vspace{-0.15in}
+\begin{equation*}
+\begin{cases}
+0 & \text{ if }x<0 \\
+1 &\text{ if }x=0\\
++\infty & \text{ otherwise.}
+\end{cases}
+\end{equation*}
+\bluea{
+If neither $x$ nor $y$ equals 0, the function agrees with $\delta_{
+(-\infty, 0]}$, implying that the convexity condition holds (refer to 
+part (b), having $\R_+$ being the choice of convex set doesn't matter).
+Now let $\lambda \in (0,1)$ and WLOG suppose $x=0$. We do indeed have 
+\begin{equation*}
+f(\lambda x + (1-\lambda)y) = f((1-\lambda)y) \leq (1-\lambda)f(y)
+\leq \lambda f(x) + (1-\lambda)f(y),
+\end{equation*}
+where the first inequality holds because if $(1-\lambda)y > 0$ then 
+$y>0$, so $f((1-\lambda)y) = +\infty = (1-\lambda)f(y)$, and otherwise 
+$f((1-\lambda)y) = 0 \leq (1-\lambda)f(y)$. \\
+For $x<0$, $\partial f(x) = \{0\}$ since if $\phi \neq 0$ we can choose 
+a small shift in either direction from $x$ to obtain a product 
+$\phi (y-x)>0$. \\
+Now for $\partial f(0)$, consider $\phi\in\R$. For small enough $x>0$, 
+$\phi(-x) > -1 = f(x)-f(0)$, implying $\phi\notin\partial f(0)$. Thus, 
+$\partial f(0) = \emptyset$.
+}
+\end{enumerate}
+\textbf{6. } Prove Proposition 3.1.6 \eqref{3.1.6} (Subgradients and 
+directional derivatives). 
+\bluea{
+\begin{proof}
+Let $f$ be a convex function and $\bar x\in\dom f$.
+When $\bar x+td\notin \dom f$ for every $t>0$, $f(\bar x;d) = +\infty$.
+Now suppose that $\phi\in\E$ satisfies $\ip{\phi,\cdot}\leq f'(\bar x;
+\cdot)$. Then, for every $x\in\E$, we have $\ip{\phi, x-\bar x}
+\leq f'(\bar x, x-\bar x)\leq f(x)-f(\bar x)$ (refer to section 
+2.1, exercise 7 for last inequality), implying $\phi$ is a 
+subgradient. \\
+Now suppose $\phi\in\E$. If $\ip{\phi, d} > f'(\bar x;d)$ 
+for some $d\in\E$, then for $t>0$ small enough,
+\begin{equation*}
+\ip{\phi, d} > \frac{f(\bar x+td)-f(\bar x)}{t} 
+\implies \ip{\phi, \bar x+td-\bar x} > f(\bar x+td) - f(\bar x),
+\end{equation*}
+i.e. $\phi$ is not a subgradient.
+\end{proof}}
+\noindent
+\textbf{\green{7.} }Prove Lemma 3.1.7 \eqref{3.1.7}.
+\bluea{
+\begin{proof}
+Let $\bar x\in\core(\dom p)$. Note by Proposition 3.1.2, 
+$p'(\bar x; \cdot) = q(\cdot)$ is finite and sublinear. Now let 
+$\lambda\in\R$. We have 
+\begin{equation*}
+p'(\bar x; \lambda\bar x) = \lim_{t\downarrow 0} \frac{p(\bar x + 
+t\lambda \bar x)-p(\bar x)}{t} = \lim_{t\downarrow 0}
+\frac{ (1+t\lambda)p(\bar x) - p(\bar x)}{t} = \lambda p(\bar x),
+\end{equation*}
+where we used positive homogeneity of $p$, the fact that 
+$1+t\lambda\geq 0$ for small enough $t$, and finiteness of 
+$p(\bar x)$. Thus, $q(\lambda \bar x) 
+= \lambda p(\bar x)$. This proves (i). \\
+For (ii), let $d\in\E$.
+\begin{align*}
+&q(d) = \lim_{t\downarrow0}\frac{p(\bar x+td)-p(\bar x)}{t}
+\leq \lim_{t\downarrow0}\frac{p(\bar x)+tp(d)}{t} = p(d),
+\end{align*}
+using sublinearity of $p$ and \green{finiteness of $p(\bar x)$}.\\
+Using (i), $q(-\lambda\bar x) = -\lambda p(\bar x) = -q(\lambda\bar x)$,
+implying $\spn\{\bar x\}\subset\lin q$. Now take $x\in\lin p$. 
+We have $q(x) \leq p(x)$ by (ii), and by sublinearity of $q$ 
+(now using Prop 3.1.2 and the fact $\bar x\in\core(\dom p)$) 
+$-q(x)\leq q(-x) \leq p(-x)=-p(x)$, implying $q(x)\geq p(x)$ and thus
+$q(x)=p(x)$. Therefore, $q(-x)=p(-x)=-p(x)=-q(x)$, i.e. $x\in\lin q$.
+Since $\lin q$ is a linear subspace by Prop. 3.1.1, $\lin q \supset 
+\lin p + \spn\{\bar x\}$.
+\end{proof}
+}
+\noindent
+\textbf{\green{8 (Subgradients of norm).}} Calculate $\partial \|\cdot\|$. 
+Generalize your result to an arbitrary sublinear function. 
+\bluea{
+\begin{proof}
+Let $\phi\in\E$ and suppose $\bar x\in\E$ is nonzero. Notice that 
+\begin{equation}
+\label{subsub}
+\left\langle \phi, \frac{\|\bar x\|}{\|\phi\|}\phi - \bar x\right\rangle 
+= \|\bar x\|\|\phi\| - \ip{\phi, \bar x} \geq 0 = 
+\left\|\frac{\|\bar x\|\phi}{\|\phi\|}\right\| - \|\bar x\|=0,
+\end{equation}
+with equality if and only if $\phi$ is a positive multiple of $\bar x$. 
+Therefore, $\partial\,\|\bar x\|$ can only contain nonnegative multiples of 
+$\bar x$. Suppose $\phi = c \bar x$ for some $c \geq 0$. Then 
+if $c > 1/\|\bar x\|$,
+\begin{equation*}
+\ip{c\bar x, 2\bar x - \bar x} = c\|\bar x\|^2 > \|\bar x\|
+= \|2\bar x\|-\|\bar x\|.
+\end{equation*}
+If $c < 1/\|\bar x\|$, then 
+\begin{equation*}
+\ip{c\bar x, 0-\bar x} = -c\|\bar x\|^2 > -\|\bar x\| = 0-\|\bar x\|.
+\end{equation*}
+Therefore, $\phi\in\partial\,\|\bar x\|$ implies $c=1/\|\bar x\|$. To see 
+this is sufficient,
+\begin{equation*}
+\left\langle\frac{\bar x}{\|\bar x\|}, x-\bar x\right\rangle 
+= \frac{\ip{\bar x, x}}{\|\bar x\|} - \|\bar x\| \leq \|x\|-\|\bar x\|.
+\end{equation*}
+Thus, $\partial\,\|\bar x\| = \{\bar x/\|\bar x\|\}$. \\
+If $\bar x = 0$, then for any $\phi\in\E$ with $\|\phi\|\leq 1$, we have 
+\begin{equation*}
+\ip{\phi, x} \leq \|x\|,
+\end{equation*}
+implying $\phi\in\partial\,\|0\|$. Now if $\|\phi\|>1$, we see 
+$\ip{\phi, \phi} = \|\phi\|^2 > \|\phi\|$, so that $\partial\,\|0\|
+= B$. \\
+\end{proof}}
+\noindent 
+\textbf{9 (Subgradients of maximum eigenvalue).} Prove 
+\begin{equation*}
+\partial \lambda_1(0) = \{Y\in\S_+^n \mid \tr Y=1\}.
+\end{equation*}
+\bluea{
+\begin{proof}
+We first show the reverse inclusion. Given $Y\in\S_+^n$ such that 
+$\tr Y = 1$, by Fan's inequality, for any $X\in\S^n$,
+\begin{equation*}
+\ip{Y, X} \leq \lambda(Y)^\top\lambda(X) = \sum_{i=1}^n \lambda_i(Y)
+\lambda_i(X) \leq \sum_{i=1}^n \lambda_i(Y)\lambda_1(X) = \lambda_1(X),
+\end{equation*}
+using the fact that $\lambda_i(Y)\geq 0$ for every $i\in[n]$ and that 
+$\sum_{i=1}^n\lambda_i(Y)=\tr Y = 1$. \\
+Now suppose that $\phi\in\partial\lambda_1(0)$. 
+Let $v$ be a unit eigenvector of $\phi$ 
+ with eigenvalue $\lambda$. Then,
+\begin{equation*}
+\ip{\phi, -vv^\top} = -\lambda \leq 0 \implies \lambda \geq 0
+\end{equation*}
+as $\lambda_1(-vv^\top)=0$. Thus, $\phi\in\S_+^n$. Moreover, 
+\begin{equation*}
+\tr\phi = \ip{\phi, I} \leq \lambda_1(I) = 1,
+\end{equation*}
+showing the forward inclusion. This proves the desired statement.
+\end{proof} 
+}
+\noindent
+\textbf{10. **} For any vector $\mu$ in the cone $\R_{\geq}^n$, prove 
+\begin{equation*}
+\partial\ip{\mu, [\cdot]}(0) = \conv(\P^n\mu).
+\end{equation*}
+(See Section 2.2, Exercise 9). 
+\bluea{
+\begin{proof} 
+We'll prove that $\phi\in\partial\ip{\mu,[\cdot]}(0)$ if and only if 
+$\mu - [\phi]\in(\R_{\geq})^{+}$. Suppose that 
+$\mu-[\phi]\in(\R_{\geq})^+$. 
+Then for any $x\in\R^n$, we have 
+\begin{equation*}
+\ip{\phi, x} \leq \ip{[\phi],[x]} =
+\ip{[\phi], [x]} - \ip{[\phi]-\mu,[x]} + \ip{\mu, [x]}
+\leq \ip{\mu, [x]}
+\end{equation*}
+because $\ip{[\phi]-\mu,[x]} \leq 0$. Therefore, $\phi\in\partial\ip{\mu,
+[\cdot]}(0)$. \\
+Now otherwise, there exists $x'\in\R^n_{\geq}$ where 
+$\ip{\mu-[\phi], x'} < 0$. By picking $\tilde x$ whose entries are obtained
+by the appropriate permutation applied to the entries of $x'$, 
+\begin{equation*}
+\ip{\phi, \tilde x} = \ip{[\phi],x'} = \ip{[\phi]-\mu, x'}
++ \ip{\mu, x'} > \ip{\mu, x'} = \ip{\mu, [x']},
+\end{equation*}
+implying that $\phi\notin \partial\ip{\mu, [\cdot]}(0)$. \\
+By section 2.2, Exercise 9 part (d), $\mu-[\phi]\in(\R_{\geq}^n)^+$ 
+implies $[\phi]\in\conv(\P^n \mu)$. Since $\phi = P[\phi]$ for some 
+$P\in\P^n$ and permutations are closed under composition, we have 
+$\phi\in\conv(\P^n\mu)$. \\
+Now suppose $\phi\in\conv(\P^n\mu)$. By part (c) of Exercise 9, 
+$[\cdot]$ is $(\R_{\geq}^n)^+$ convex, meaning that for any 
+$x^1,\ldots, x^m\in\R^n$ and $\lambda_1,\ldots,\lambda_m\geq 0$ 
+summing to 1, 
+\begin{equation*}
+\sum_{i=1}^m \lambda [x^i] - \left[\sum_{i=1}^m \lambda x^i \right] 
+\in (\R_{\geq}^n)^+.
+\end{equation*}
+Since $\phi\in\conv(\P^n\mu)$, there exist $\lambda_{\Pi},\,(\Pi\in\P^n)
+\geq 0$ summing to 1 such that $\phi=\sum_{\Pi\in\P^n} \lambda_{\Pi}\Pi
+\mu$. Thus, 
+\begin{equation*}
+\sum_{\Pi\in\P^n} \lambda_{\Pi} [\mu]  
+- \left[\sum_{\Pi\in\P^n} \lambda_{\Pi} \mu \right] \in 
+(\R_{\geq}^n)^+.
+\end{equation*}
+The left term is $\mu$ and the right term is $[\phi]$, so we have 
+$\mu-[\phi]\in(\R_{\geq}^n)^+$. \\
+We have proven that $\mu-[\phi]\in(\R_{\geq}^n)^+$ if and only if 
+$\phi\in\conv(\P^n\mu)$, which completes the proof.
+\end{proof}
+}
+\noindent
+\textbf{11. *} Define a function $f:\R^n\to\R$ by $f(x_1,x_2,\ldots,x_n)
+= \max_j\{x_j\},$ let $\bar x = 0$ and $d=(1,1,\ldots,1)^\top$ and let 
+$e_k=(1,1,\ldots,1,0,\ldots,0)^\top$ (ending in $k-1$ zeroes). Calculate 
+the functions $p_k$ defined in the proof of Theorem 3.1.8 (Max formula), 
+using Proposition 2.3.2 (Directional derivatives of max functions).
+\bluea{
+\begin{proof}
+\begin{equation*}
+p_0(x) = f'(0; x) = \lim_{t\downarrow0}\frac{t\max_j x_j}{t} 
+= \max_j \{x_j\}.
+\end{equation*}
+Interestingly, $p_0 = f$. Now 
+\begin{equation*}
+p_1(x) = p_0'(d;x) = \lim_{t\downarrow 0}\frac{\max_j\{1+tx_j\} - 1}{t}
+= \max_j \{x_j\}.
+\end{equation*}
+Yet again, $p_1 = f$. For $p_2$, 
+\begin{equation*}
+p_2(x) = p_1'(e_2, x) = \lim_{t\downarrow 0}\frac{\max_j\{\1[j\leq n-1]
++ tx_j\} - 1}{t} = \max_{1\leq j\leq n-1}\{x_j\}.
+\end{equation*}
+For $p_3$, 
+\begin{equation*}
+p_3(x) = p_2'(e_3, x) = \lim_{t\downarrow 0}\frac{\max_{1\leq j\leq n-1}
+\{\1\{j\leq n-2\}+tx_j\} - 1}{t} = \max_{1\leq j\leq n-2}\{x_j\}.
+\end{equation*}
+Continuing in this fashion, we see that $p_k(x) = \max_{1\leq j\leq 
+n-k+1} \{x_j\}$. Finally, $p_1(x) = x_1 = \ip{\vec e_1, x}$, where 
+$\vec e_1$ is the first coordinate vector. This is the vector 
+constructed in Theorem 3.1.8~\eqref{3.1.8} so that $f'(0, d)
+= p_n(d)$. Indeed, $f'(0,d) = 1 = p_n(d)$.
+\end{proof}}
+\noindent 
+\textbf{\green{12 * (Recognizing convex functions).}}
+ Suppose the set $S\subset
+\R^n$ is open and convex, and consider a function $f:S\to\R$. For points
+$x\notin S$, define $f(x) = +\infty$.
+\begin{enumerate}[(a)]
+\item \green{Prove $\partial f(x)$ is nonempty for all $x\in S$ if and only if 
+$f$ is convex.} (Hint: For points $u,v\in S$ and $\lambda\in[0,1]$, use the 
+subgradient inequality \eqref{3.1.4} at the points $\bar x = \lambda u 
++ (1-\lambda)v$ and $x=u,v$ to check the definition of convexity.) \\
+\bluea{
+First suppose that $\partial f(x)$ is not empty for all $x\in S$. Then 
+take $u,v\in S$. Take any $\lambda\in[0,1]$. By convexity of $S$, 
+$z=\lambda u + (1-\lambda)v\in S$. Let $\phi\in\partial f(z)$.
+Then 
+\begin{align*}
+&(1-\lambda)\ip{\phi, u-v} = \ip{\phi, u-z} \leq f(u)-f(z) \\
+&\lambda\ip{\phi, v-u} = \ip{\phi, v-z} \leq f(v)-f(z).
+\end{align*}
+Multiplying the first equation by $\lambda$ and the second by 
+$(1-\lambda)$ and adding them, we obtain $\lambda f(u) + (1-\lambda)f(v)
+\geq f(z)$, as desired. For $w\notin S$, it's clear that 
+$f(\lambda u + (1-\lambda)w) \leq \lambda f(u) + (1-\lambda) f(w)$, 
+because the RHS is $+\infty$ if $\lambda\neq 1$. Thus, $f$ is convex.\\
+Now suppose that $f$ is convex. 
+For any $x\in S$, we have $x\in\core(\dom f)$, so by Theorem 3.1.8~
+\eqref{3.1.8} the directional derivative is equal to $f'(x; \cdot) = 
+\max\{\ip{\phi, \cdot}\mid \phi\in\partial f(x)\}$. In particular,
+$\partial f(x)$ is nonempty, for each $x\in S$.
+}
+\item Prove that if $I\subset\R$ is an open interval and $g: I\to\R$ is 
+differentiable then $g$ is convex if and only if $g'$ is nondecreasing 
+on $I$, and $g$ is strictly convex if and only if $g'$ is strictly 
+increasing on $I$. Deduce that if $g$ is twice differentiable then $g$ 
+is convex if and only if $g''$ is nonnegative on $I$, and $g$ is 
+strictly convex if $g''$ is strictly positive on $I$. \\
+\bluea{
+Suppose $g$ is convex. Let $x, y\in I$ with $x<y$. Let $x<t<y<s$, 
+$t,s\in S$. We will prove that 
+\begin{equation}
+\label{convexref}
+\frac{f(t)-f(x)}{t-x} \leq \frac{f(s)-f(y)}{s-y}
+\end{equation}
+with strict inequality if $f$ is strictly convex. By convexity, 
+we have the following two equations: 
+\begin{align}
+\label{ug1}
+&f(s)\frac{y-x}{s-x} + f(x)\frac{s-y}{s-x} \geq f(y) \\
+\label{ug2}
+&f(s)\frac{t-x}{s-x} + f(x)\frac{s-t}{s-x} \geq f(t).
+\end{align}
+Rearranging \eqref{ug1} gives 
+\begin{equation*}
+-f(x)\frac{s-y}{s-x} \leq f(s)\frac{s-x + y-s}{s-x} - f(y) 
+\implies \frac{f(s)-f(x)}{s-x} \leq \frac{f(s)-f(y)}{s-y}.
+\end{equation*}
+Rearranging \eqref{ug2} gives 
+\begin{equation*}
+f(t) \leq f(s)\frac{t-x}{s-x} + f(x)\frac{s-x+x-t}{s-x}
+\implies \frac{f(t)-f(x)}{t-x} \leq \frac{f(s)-f(x)}{s-x}.
+\end{equation*}
+Putting these inequalities together gives \eqref{convexref}, and 
+strict convexity makes the inequalities strict. Thus, by differentiability
+of $f$, 
+\begin{equation*}
+f'(x) = \lim_{t\downarrow 0}\frac{f(t)-f(x)}{t-x} \leq 
+\lim_{s\downarrow 0}\frac{f(s)-f(y)}{s-y} = f'(y).
+\end{equation*}
+If we have strict convexity, then we can choose some interval 
+$(t',y')$ where $x<t'<y'<y$ and take $x<t<t'$. Applying \eqref{convexref}
+to the pair $(y',t')$ as well, we have 
+\begin{equation*}
+f'(x) = \lim_{t\downarrow 0}\frac{f(t)-f(x)}{t-x}
+< \frac{f(y') - f(t')}{y'-t'} < \lim_{s\downarrow0}\frac{f(s)-f(y)}{s-y}
+= f'(y).
+\end{equation*}
+We have proven that if $f$ is (strictly) convex then $f'$ is 
+(strictly) increasing. \\
+Now suppose that $f'$ is increasing. Let $x,y\in I$ with $x<y$.
+Let $0<\lambda < 1$ and define $z=(1-\lambda)x + \lambda y$. Note that 
+$f(z) = f(x) + f(z)-f(x)$, so to show $f(z)\leq (1-\lambda)f(x) + 
+\lambda f(y)$, we may show $f(z)-f(x) \leq \lambda (f(y)-f(x))$.
+\begin{align*}
+&f(z)-f(x) = \int_x^z f'(x')\,\dx'  = \lambda\frac{1}{\lambda}\int_x^z
+f'(x')\,\dx' = \lambda\left[\int_x^z f'(x')\,\dx'+\left(\frac{1}{\lambda}
+-1\right)\int_x^z f'(x')\,\dx'
+\right] \\
+&\quad
+\leq \lambda\left[\int_x^z f'(x')\,\d x'+\left(\frac{1}{\lambda}-1\right)
+\int_x^z f'(z)\,\d x'\right] = \lambda\left[\int_x^z f'(x')\,\d x'
++ \left(\frac{1}{\lambda}-1\right)\lambda(y-x) f'(z)\right]\\
+&\quad = \lambda\left[\int_x^z f'(x')\,\d x'
++ \int_z^y f'(z)\,\d x'\right] \leq \lambda\left[\int_x^z f'(x')\,\d x'
++ \int_z^y f'(x')\,\d x'\right] = \lambda(f(y)-f(x)).
+\end{align*}
+If $f'$ is strictly increasing, then we have strict inequality since 
+$\int_z^y f'(z)\,\d x' < \int_z^y f'(x')\,\d x'$. (\green{What's a 
+good justification for this? XD}) This completes the proof that 
+$f'$ is (strictly) increasing iff $f$ is (strictly) convex.\\
+Now we show that $f''$ is nonnegative if and only if $f'$ is 
+increasing. Suppose that $f'$ is increasing. Then, for 
+any $x\in I$, $f''(x) = \lim_{t\downarrow x} \frac{f(t)-f(x)}{t-x}
+\geq 0$, since $f(t)\geq f(x)$ for $t\geq x$. Furthermore, if 
+$f'' \geq 0$, then $f'(t) = \int_x^t f''(x')\,\d x' + f'(x) \geq 
+f'(x)$, with strict inequality if $f'' > 0$. Therefore, $f'$ is 
+(strictly) increasing if $f''$ is (strictly) positive. \\
+This suffices to show that $f$ is convex iff $f''$ is nonnegative, 
+and strictly convex if $f''$ is strictly positive.
+}
+\item Deduce that if $f$ is twice continuously differentiable on $S$ 
+then $f$ is convex if and only if its Hessian matrix is positive 
+semidefinite everywhere on $S$, and $f$ is strictly convex if its 
+Hessian matrix is positive definite everywhere on $S$. (Hint: Apply 
+part (b) to the function $g$ defined by $g(t) = f(x+td)$ for small 
+real $t$, points $x\in S$, and directions $d\in\E$.) \\
+\bluea{
+First let's prove that 
+\begin{equation}
+\label{dd}
+f''(x+td):= \frac{\d^2}{\d t^2}f(x+td) = d^\top \nabla^2 f(x+td) d.
+\end{equation}
+Here is an approach that is easy, but opaque due to utilizing 
+the multivariable chain rule (i.e., literally following 
+multivariable calculus rules).
+\begin{align*}
+\frac{\d}{\d t}\left(\frac{\d}{\d t}f(x+td)\right) &= 
+\frac{\d}{\d t}\left(\frac{\d f(x+td)}{\d(x+td)}\frac{\d(x+td)}{\d t}\right)
+= \frac{\d}{\d t}\nabla f(x+td)^\top d \\
+&= d^\top \frac{\d}{\d t}\nabla f(x+td) 
+= d^\top\left(\frac{\d \nabla f(x+td)}{\d(x+td)}\frac{\d(x+td)}{\d t}
+\right)\\
+&= d^\top \nabla^2 f(x+td) d.
+\end{align*}
+If we want to stick more to single variable calculus to ``see under the 
+hood,'' at least for the calculation of the second derivative 
+(assume $f'(x+td)=\ip{\nabla f(x+td), d}$),
+\begin{equation*}
+\frac{\d}{\d t}\ip{\nabla f(x+td), d} = \frac{\d}{\d t}\left(
+\sum_{i=1}^n \nabla f(x+td)_i d_i\right)
+= \sum_{i=1}^n d_i \frac{\d}{\d t}\nabla f(x+td)_i.
+\end{equation*}
+This roughly says that the change in $\ip{\nabla f(x+td), d}$ is 
+ the sum of the changes in each coordinate of $\nabla f(x+td)$, weighted 
+by the corresponding coordinate of $d_i$.
+\begin{align*}
+&\frac{\d}{\d t}\nabla f(x+td)_i 
+= \sum_{j=1}^n \frac{\d \nabla f(x+td)_i}{\d (x+td)_j}\frac{\d (x+td)_j}{
+\d t}
+= \sum_{j=1}^n \nabla^2 f(x+td)_{ij} d_j.\\
+&\implies \frac{\d}{\d t}\ip{\nabla f(x+td), d}
+= \sum_{i=1}^n d_i\sum_{j=1}^n \nabla^2 f(x+td)_{ij} d_j = d^\top 
+\nabla^2 f(x+td)_{ij} d.
+\end{align*}
+Now let us use \eqref{dd} to prove the statement. 
+Given $x\in S$ and $d\in\E$, define $g_{x,d}:I\to\R,\; 
+g_{x,d}(t) = f(x+td)$ 
+where $I$ is the nonempty 
+open interval containing 0 such that $x+td\in S$. If 
+$f$ is convex, then $g_{x,d}$ is convex for every $x\in S, d\in\E$, so 
+by part (b),
+\begin{equation*}
+\forall x\in S,\,d\in\E\,:\;
+ g_{x,d}''(0)  =  d^\top\nabla^2 f(x) d\geq 0.
+\end{equation*}
+This implies that $\nabla^2 f$ is everywhere PSD. Now if $\nabla^2 f$ 
+is everywhere PSD, then given $x,y\in S$, $g_{x,y-x}'' \geq 0$, 
+implying $g_{x,y-x}''$ is convex. Thus, for any $\lambda\in[0,1]$,
+\begin{equation*}
+g(\lambda) = f((1-\lambda)x + \lambda y)
+\leq (1-\lambda)g(0) + \lambda g(1) = (1-\lambda) f(x) + \lambda f(y),
+\end{equation*}
+proving that $f$ is convex. If $\nabla^2 f$ is everywhere PD, then 
+we have $g_{x,y-x}''$ is strictly convex for any $x,y\in S$, implying 
+that $f$ is strictly convex.
+}
+\item Find a strictly convex function $f: (-1,1)\to \R$ with 
+$f''(0) = 0$. \\
+\bluea{
+The function $x^4$ is strictly convex, because its derivative is 
+$4x^3$ which is strictly increasing. On the other hand, its second 
+derivative, $12x^2$, at 0 is $0$.
+}
+\item Prove that a continuous function $h :\cl S\to\R$ is convex if 
+and only if its restriction to $S$ is convex. \green{What about strictly 
+convex functions?} \\
+\bluea{
+First suppose that $h$ is convex on $S$. Then take $x,y\in\cl S$, 
+so there are sequences $(x^i)_i \to x$ and $(y^i)_i\to y$ in $S$.
+Let $\lambda\in[0,1]$.
+Thus, $(\lambda x^i + (1-\lambda) y^i)_i \to \lambda x 
++ (1-\lambda)y$ is a sequence in $S$. Thus, using continuity and 
+convexity of $h$ on $S$,
+\begin{equation*}
+h(\lambda x + (1-\lambda)y) = \lim_{i\to\infty} h(\lambda x^i + 
+(1-\lambda)y^i) \leq \lim_{i\to\infty} \lambda h(x^i) + (1-\lambda)
+h(y^i) = \lambda h(x) + (1-\lambda)h(y).
+\end{equation*}
+In other words, $h$ is convex on $\cl S$. \\
+Now if $h$ is (strictly) convex on $\cl S$, clearly its restriction to 
+$S$ is (strictly) convex. \\
+What if $h$ is strictly convex on $S$? Does this mean $h$ is strictly 
+convex on $\cl S$? Consider two points $x,y\in \cl S$ where $x\neq y$.
+Define the function $g:[0,1]\to\R,\; g(t) = h((1-t)x + ty)$.
+If $\{(1-t)x + ty: t\in(0,1)\}\subset S$, then given $0<t<1$, take any 
+$0<s<t<u<1$. By convexity of $h$ on $\cl S$ (as proven earlier), 
+$g(s)\leq (1-s)g(0) + sg(1)$ and $g(u)\leq (1-u)g(0) + ug(1)$.
+By strict convexity of $h$ on $S$, $g$ is strictly convex on $(0,1)$, so 
+\begin{align*}
+h((1-t)x+ty) &= g(t) < \frac{u-t}{u-s}g(s) + \frac{t-s}{u-s}g(u) \\
+&\leq \frac{u-t}{u-s}\left((1-s)g(0) + sg(1)\right)
++ \frac{t-s}{u-s}\left((1-u)g(0) + ug(1)\right) \\
+&= (1-t)g(0) + tg(1) = (1-t)h(x) + th(y).
+\end{align*}
+Therefore, if the open line segment $\{(1-t)x + ty: t\in (0,1)\}$ is 
+in $S$, then $h$ is strictly convex along this line.
+In fact, by the accessibility lemma (Section 1.1, Exercise 11), 
+if any $z$ in the line segment is in $\inter S$, then the 
+entire open line segment is in $\inter S$, since the lemma says 
+$\lambda \inter S + (1-\lambda)\cl S \subset\inter S$ for any $0<
+\lambda \leq 1$. \\
+Therefore, to produce an example where $h$ is strictly convex on 
+$S$ but not on $\cl S$, we need a set $S$ such that there is a line 
+segment completely contained in the boundary $\bd S$, and show that 
+$h$ is not strictly convex on this line. \\
+Take the function $f(x,y) = y^4/x$. The Hessian is 
+$\begin{bmatrix}
+2y^4/x^3 & -4y^3/x^2 \\
+-4y^3/x^2 & 12y^2/x
+\end{bmatrix}$, with determinant $8y^6/x^4$. This is strictly positive 
+on $(0,1)^2$, indicating strict convexity. However, it is linear 
+(in fact, constant) on the line $y=0$.
+}
+\end{enumerate}
+\textbf{13 (Local convexity).} Suppose the function $f:\R^n\to\R$ is 
+twice continuously differentiable near 0 and $\nabla^2 f(0)$ is positive
+definite. Prove $f_{|\delta B}$ is convex for some real $\delta > 0$.
+\bluea{
+\begin{proof}
+By Exercise 1 from Section 1.2, the set of positive definite matrices 
+$\S_{++}^n$ is the interior of the set of positive semidefinite 
+matrices $\S_+^n$. If $\nabla^2 f(0)\in \inter S_{++}^n$, then there 
+exists $\epsilon > 0$ where $\nabla^2 f(0) + \epsilon B \subset 
+\inter S_{++}^n$. By continuity of the second derivative at 0, there 
+exists $\delta > 0$ such that $x\in\delta B \implies \nabla^2 f(x) 
+\in \nabla^2 f(0) + \epsilon B \subset \S_{++}^n$. In other words, 
+$\nabla^2 f_{|\delta B}$ is PD, implying that $f_{|\delta B}$ is 
+strictly convex.
+\end{proof}}
+\noindent
+\textbf{14 (Examples of convex functions).} As we shall see in Section 4.2,
+most natural convex functions occur in pairs. The table in Section 3.3 
+lists many examples on $\R$. Use Exercise 12 to prove each function 
+$f$ and $f^*$ in the table is convex. 
+\bluea{
+Ordered pairs $(f, \dom f)$ describe a function and its domain, and 
+$(f, \dom f)\leftrightarrow (g,\dom g)$ means that $(f,\dom f)$ and 
+$(g, \dom g)$ are conjugate pairs. Also, let $D$ denote the derivative 
+operator.
+\begin{enumerate}
+\item $(0,\R)\lra (0, \{0\})$. Obviously, 0 is convex on any convex 
+domain. It's a constant linear affine function (any of these three 
+descriptors implies convexity).
+\item $(0,\R_+)\lra (0,-\R_+)$. See above.
+\item $(0,[-1,1])\lra (|y|, \R)$. Being a norm, $|\cdot|$ is convex.
+\item $(|x|^p/p, \R)\lra (|y|^q/q, \R)\; (p>1, \frac{1}{p}+\frac{1}{q}=1).$
+$D(|x|^p/p) = x|x|^{p-2} = \sgn(x)|x|^{p-1}$ 
+(see Section 2.3 Exercise 6 (a)). This function is strictly increasing,
+so $|x|^p/p$ is strictly convex. By the same token, $|y|^q/q$ is 
+strictly convex ($1/p + 1/q = 1$ and $p>1$ implies $q>1$).
+\item $(|x|^p/p, \R_+)\lra (|y^+|^q/q, \R),\;(p>1,\frac{1}{p}+\frac{1}{q}
+=1)$. See above, and note that 
+the derivative of $|y^+|^q/q$ when $y<0$ becomes 0.
+\item $(-x^p/p, \R_+)\lra (-(-y)^q/q, -\R_{++}),\; (p\in(0,1), 
+\frac{1}{p}+\frac{1}{q}=1)$. $D(-x^p/p) = -x^{p-1}=-1/x^{|p-1|}$. 
+$x^{|p-1|}$ is strictly increasing on $\R_{++}$, so $1/x^{|p-1|}$ is 
+strictly decreasing on $\R_{++}$, so $-1/x^{|p-1|}$ is strictly increasing
+on $\R_{++}$. By Exercise 12, $-x^p/p$ is strictly convex on 
+$\R_{++}$. By the comment at the end of 12 (d), $-x^p/p$ is strictly 
+convex on $\R_+$. \\
+$D(-(-y)^q/q) = (-y)^{q-1}$. Since $1/p+1/q=1$ and $p\in(0,1)$, 
+$q<0$. Thus, $q-1<0$. Thus, on $-\R_{++},\; (-y)^{q-1} = 1/|y|^{|q-1|}$ 
+is strictly increasing. Thus, $-(-y)^q/q$ on $\R_{++}$ is strictly convex.
+\item $(\sqrt{1+x^2}, \R)\lra (-\sqrt{1-y^2}, [-1,1])$.
+$D(\sqrt{1+x^2}) = x/\sqrt{1+x^2}$ can be shown to be strictly increasing,
+but let's make our lives easier by taking another derivative. 
+\begin{equation*}
+D^2(\sqrt{1+x^2}) = \frac{\sqrt{1+x^2} - \frac{x^2}{\sqrt{1+x^2}}}{1+x^2}
+= \frac{1}{(1+x^2)^{3/2}} > 0,
+\end{equation*}
+implying by Exercise 12 that $\sqrt{1+x^2}$ is strictly convex. \\
+$D(-\sqrt{1-y^2}) = y/\sqrt{1-y^2}$. 
+\begin{equation*}
+D^2(-\sqrt{1-y^2}) = \frac{\sqrt{1-y^2} + \frac{y^2}{\sqrt{1-y^2}}}{
+1-y^2} = \frac{1}{(1-y^2)^{3/2}}.
+\end{equation*}
+The second derivative is positive on $(-1,1)$, implying strict convexity 
+of $-\sqrt{1-y^2}$ on $(-1,1)$. By the comment at the end of Exercise 
+12 (d), this implies strict convexity on $[-1,1]$.
+\item $(-\log x, \R_{++})\lra (-1-\log(-y), -\R_{++})$.
+$D(-\log x) = -1/x$, which is strictly increasing on $\R_{++}$, so 
+$-\log x$ is strictly convex. \\
+$D(-1-\log(-y)) = -1/y$, which is strictly increasing on $-\R_{++}$.
+Thus $-1-\log(-y)$ is strictly convex.
+\item $(\cosh x, \R)\lra (y\sinh^{-1}(y) - \sqrt{1+y^2}, \R)$. 
+$D^2(\cosh x) = \cosh x = (e^x + e^{-x})/2 > 0$. Therefore, 
+$\cosh x$ is strictly convex. \\
+Let us first compute $\sinh^{-1} y$. We have 
+\begin{gather*}
+y = \frac{e^x - e^{-x}}{2} \implies 2y = e^x-e^{-x} \implies 
+e^{2x} - 2ye^x - 1 = 0 \\
+\implies e^x \in \left\{y \pm \sqrt{y^2+1}\right\}
+\implies e^x = y+\sqrt{y^2+1}\\
+ \implies \sinh^{-1}(y) = x = 
+\log(y+\sqrt{y^2+1}),
+\end{gather*}
+where we used the fact that $e^x>0$ whereas $y-\sqrt{y^2+1}<0$. \\
+Now let us show that $y\sinh^{-1}(y)-\sqrt{1+y^2} = 
+y\log(y+\sqrt{y^2+1}) - \sqrt{1+y^2}$ is convex. 
+\begin{align*}
+&D(y\log(y+\sqrt{y^2+1}) - \sqrt{1+y^2})\\
+&\quad  = \log(y+\sqrt{y^2+1})
++ \frac{y\left(1+\frac{y}{\sqrt{y^2+1}}\right)}{
+y+\sqrt{y^2+1}} - \frac{y}{\sqrt{y^2+1}}\\
+&\quad= \log(y+\sqrt{y^2+1}) + \frac{y}{\sqrt{y^2+1}} 
+- \frac{y}{\sqrt{y^2+1}}\\
+&\quad = \log(y+\sqrt{y^2+1}).
+\end{align*}
+Clearly, $\log(y+\sqrt{y^2+1})$ is increasing on $\R_+$. Since 
+\begin{equation*}
+D\left(\sqrt{y^2+1} - y\right) = \frac{y}{\sqrt{y^2+1}} - 1 < 0,
+\end{equation*}
+on $-\R_+$, $\log(y+\sqrt{y^2+1}) = \log(\sqrt{z^2+1}-z)$ where $z=-y$.
+$\log(\sqrt{z^2+1}-z)$ is decreasing in $z$, therefore it is increasing 
+in $y$. Thus $y\sinh^{-1}(y) - \sqrt{1+y^2}$ is strictly convex.
+\item $(-\log(\cos x), (-\frac{\pi}{2}, \frac{\pi}{2}))\lra 
+(y\tan^{-1}(y) - \frac{1}{2}\log(1+y^2), \R)$. 
+$D(-\log(\cos x)) = \tan x$ is strictly increasing on $(-\pi/2, \pi/2)$.
+Therefore, $-\log\cos x$ is strictly convex on $(-\pi/2,\pi/2)$. \\
+Note $D(\tan^{-1}(y)) = \frac{1}{1+y^2}$. One may use the formulas 
+$D(f^{-1}(y)) = \frac{1}{f'(f^{-1}(y))}$, $D(\tan x)=\sec^2 x$,
+and $\sec^2 x=\tan^2 x+ 1$ to derive this. Thus, 
+\begin{equation*}
+D(y\tan^{-1}(y) - \frac{1}{2}\log(1+y^2)) = \tan^{-1}(y) + \frac{y}{
+1+y^2} - \frac{y}{1+y^2} = \tan^{-1}(y),
+\end{equation*}
+which is a strictly increasing function. Therefore, $y\tan^{-1}(y)
+- \frac{1}{2}\log(1+y^2)$ is strictly convex.
+\item 
+\begin{equation*}
+(e^x, \R)\lra \left(\begin{cases} y\log y - y & y > 0 \\ 0 & y=0
+\end{cases}, \R_+\right).
+\end{equation*}
+$e^x$ is just so very very convex (it's strictly convex). 
+$D(y\log y - y) = \log y$, which is strictly increasing on 
+$\R_{++}$. Furthermore, $\lim_{y\to 0} y\log y = \lim_{y\to 0} 
+\frac{1/y}{-1/y^2} = 0$. Thus, $y\log y -y$ is continuous, which makes 
+it strictly convex on $\R_+$. \\
+\item 
+\begin{equation*}
+(\log(1+e^x), \R) \lra \left(\begin{cases} y\log y +(1-y)\log(1-y) & 
+y\in (0,1)\\
+0 & y=0,1 \end{cases}, [0,1]\right)
+\end{equation*}
+$D(\log(1+e^x)) = e^x/(1+e^x) = 1/(1+e^{-x})$ is strictly increasing
+because $e^{-x}$ is strictly decreasing. Thus, $\log(1+e^x)$ is strictly
+convex.
+\begin{equation*}
+D(y\log y + (1-y)\log(1-y)) = \log y + 1 -\log(1-y) - 1 = \log[y/(1-y)].
+\end{equation*}
+$y/(1-y)$ is strictly increasing on $(0,1)$, so $y\log y+(1-y)\log(1-y)$ 
+is strictly convex on $(0,1)$. Moreover, $\lim_{y\to0}y\log y =0$ and 
+likewise $\lim_{y\to1}(1-y)\log(1-y)\to 0$. Coupled with $\log 1=0$, 
+this implies that the given function is continuous, and thus strictly 
+convex on $[0,1]$.
+\item 
+\begin{equation*}
+(-\log(1-e^x), -\R_{++})
+\lra\left(\begin{cases} y\log y - (1+y)\log(1+y) & y>0 \\
+0 & y=0\end{cases}, \R_+\right).
+\end{equation*}
+$D(-\log(1-e^x)) = e^x/(1-e^x) = 1/(e^{-x}-1)$. This function is strictly
+increasing on $-\R_{++}$, so $-\log(1-e^x)$ is convex on $-\R_{++}$. \\
+\begin{equation*}
+D(y\log y +(1+y)\log(1+y)) = \log y + 1 + \log(1+y) + 1.
+\end{equation*}
+The derivative is strictly increasing on $\R_+$, so $y\log y + (1+y)
+\log(1+y)$ is strictly convex on $\R+$.
+\end{enumerate}
+}
+\noindent
+\green{\textbf{15 (Examples of convex functions).}}
+Prove the following functions 
+of $x\in\R$ are convex:
+\begin{enumerate}[(a)]
+\item\green{$\log\left(\frac{\sinh ax}{\sinh x}\right)$ for $a\geq 1$.}
+\\
+\bluea{
+First, assume that $x>0$.
+\begin{gather*}
+(\log\sinh)'(x) = \frac{\sinh'(x)}{\sinh x} 
+\implies (\log\sinh)''(x) = \frac{\sinh''(x)\sinh(x)-(\sinh'(x))^2}{
+\sinh^2(x)}  \\
+\implies (\log\sinh)''(x) = \frac{\sinh^2(x) - \cosh^2(x)}{\sinh^2(x)}
+= -\frac{1}{\sinh^2(x)} = -\frac{4}{(e^x-e^{-x})^2}.
+\end{gather*}
+Therefore, $D^2(\log\left(\frac{\sinh ax}{\sinh x}\right)) = 
+\frac{4}{(e^x-e^{-x})^2} - \frac{4a^2}{(e^{ax}-e^{-ax})^2}$. 
+To show this is $\geq 0$, we can show that $(e^{ax}-e^{-ax})/a
+\geq e^x-e^{-x}$. To see this we use power series:
+\begin{align*}
+\frac{e^{ax}-e^{-ax}}{a} &= \frac{1}{a}\left(\sum_{i=0}^\infty 
+\frac{(ax)^i}{i!} - \sum_{i=0}^\infty \frac{(-ax)^i}{i!}\right)
+= \frac{2}{a}\sum_{i=0}^\infty \frac{(ax)^{2i+1}}{(2i+1)!} \\
+&= 2\sum_{i=0}^\infty \frac{a^{2i} x^{2i+1}}{(2i+1)!}
+\geq 2\sum_{i=0}^\infty \frac{x^{2i+1}}{(2i+1)!} = e^{x}-e^{-x},
+\end{align*}
+with strict inequality if $x>0$ and $a>1$. Now let's check the derivative 
+at 0. 
+\begin{align*}
+D(\log\left(\frac{\sinh ax}{\sinh x}\right))
+&= \frac{a\cosh ax}{\sinh ax} - \frac{\cosh x}{\sinh x}
+= \frac{a\cosh ax\sinh x - \cosh x \sinh ax}{\sinh ax\sinh x} \\
+&= \frac{\frac{a}{2}(\sinh(a+1)x - \sinh(a-1)x) - \frac{1}{2}(
+\sinh(a+1)x + \sinh(a-1)x)}{\frac{1}{2}(\cosh(a+1)x - \cosh(a-1)x)} \\
+&= \frac{\frac{a-1}{2}\sinh(a+1)x - \frac{a+1}{2}\sinh(a-1)x}{
+\frac{1}{2}(\cosh(a+1)x - \cosh(a-1)x)}.
+\end{align*}
+Applying L'Hopital's rule (differentiate the numerator and denominator 
+twice), we see $\frac{(a-1)(a+1)^2\sinh(a+1)x - (a+1)(a-1)^2\sinh(a-1)x}{
+(a+1)^2\cosh(a+1)x - (a-1)^2\cosh(a-1)x}$ goes to 0 as $x\to0$. Therefore,
+the derivative at 0 is 0.
+Now $\log\left(\frac{\sinh ax}{\sinh x}
+\right)$ is an even function. Therefore, its derivative is an odd 
+function. We have shown that its derivative from $x=0$ to $+\infty$ 
+starts at 0 and increases. Therefore, its derivative from $x=0$ to 
+$-\infty$ starts at 0 and decreases. In other words, the derivative 
+is increasing, i.e. it is convex.
+}
+\item $\log\left(\frac{e^{ax}-1}{e^x-1}\right)$ for $a\geq 1$. 
+\bluea{$\log(\frac{\sinh ax}{\sinh x})$ composed with linear 
+$\frac{1}{2}\cdot$ plus a linear function is convex.
+\begin{equation*}
+\log\left(\frac{e^{ax}-1}{e^x-1}\right) = \log\left(\frac{e^{
+\frac{ax}{2}} - e^{-\frac{ax}{2}}}{e^{\frac{x}{2}}-e^{-\frac{x}{2}}}
+\right) + \frac{ax}{2} - \frac{x}{2}
+= \log\left(\frac{\sinh(\frac{ax}{2})}{\sinh(\frac{x}{2})}\right)
++ \frac{(a-1)x}{2}.
+\end{equation*}
+}
+\end{enumerate}
+\textbf{\green{16 * (Bregman distances).}}
+ For a function $\phi:\E\to(-\infty,
++\infty]$ that is strictly convex and differentiable on $\inter(\dom\phi)$, 
+define the \textit{Bregman distance} $d_{\phi}:\dom\phi\times\inter(\dom
+\phi)\to\R$ by 
+\begin{equation*}
+d_{\phi}(x,y) = \phi(x) - \phi(y) - \phi'(y)(x-y).
+\end{equation*}
+\begin{enumerate}[(a)]
+\item 
+\green{Prove $d_{\phi}(x,y)\geq 0$, with equality if and only if $x=y$.}
+\\
+\bluea{
+$\phi(x)-\phi(y)-\phi'(y)(x-y) = \int_y^x (\phi'(x')-\phi'(y))\,\dx'$.
+If $x>y$, then for some $\epsilon>0$, $\phi'(z)-\phi'(y) > \epsilon$ 
+for every $z>(x+y)/2$ since $\phi'$ is strictly increasing.
+Therefore, $\int_y^x (\phi'(x)-\phi'(y))\,\dx' \geq \epsilon(x-y)/2>0$.
+Likewise, if $y>x$, then for some $\epsilon > 0$, 
+$\phi(y)-\phi(x') > \epsilon$ for all $x' < (x+y)/2$. Thus 
+$\int_y^x (\phi'(x')-\phi'(y))\,\dx' > \epsilon(y-x)/2 > 0$. Clearly 
+if $x=y$ then $d_\phi(x,y)=0$.
+}
+\item Compute $d_{\phi}$ when $\phi(t)=t^2/2$ and when $\phi$ is the 
+function $p$ defined in Exercise 27. \\
+\bluea{
+\begin{equation*}
+d_{t^2/2}(x,y) = \frac{x^2}{2}-\frac{y^2}{2} - y(x-y) 
+= \frac{x^2}{2} - xy + \frac{y^2}{2} = \frac{1}{2}(x-y)^2. 
+ \end{equation*}
+$p(u)=u\log u -u$, and $p(0)=0$ and $p(u)=+\infty$ for $u<0$.
+So $\dom p = \R_+$.
+\begin{align*}
+& d_{p}(x,y) = x\log x - x - y\log y + y -\log y(x-y)
+= x\log\frac{x}{y} - x + y.
+\end{align*}
+}
+\item 
+Suppose $\phi$ is three times differentiable. Prove $d_{\phi}$ is 
+convex if and only if $-1/\phi''$ is convex on $\inter(\dom\phi)$. 
+\bluea{
+\begin{gather*}
+\frac{\d}{\dx}(d_\phi(x,y)) = \phi'(x) -\phi'(y), \quad 
+\frac{\d}{\d y}(d_\phi(x,y)) = -\phi'(y) -\phi''(y)(x-y) + \phi'(y)
+= -\phi''(x-y) \\
+\frac{\d^2}{\dx^2}(d_\phi(x,y)) = \phi''(x), \quad 
+\frac{\d^2}{\d y\dx}(d_\phi(x,y)) = -\phi''(y),
+\quad \frac{\d^2}{\d y^2}(d_\phi) = -\phi'''(y)(x-y) +\phi''(y).
+\end{gather*}
+Therefore, $\det\nabla^2d_\phi(x,y) =  \phi''(x)\phi'''(y)(y-x)
++ \phi''(x)\phi''(y) - (\phi''(y))^2$. \\ 
+\green{This proof assumes that $\phi''(x)$ is nonzero for all 
+$x\in\inter(\dom\phi)$.}\\
+Suppose that $-1/\phi''$ is convex. For $x,y\in\inter(\dom\phi)$
+with $y>x$. Look at 
+\begin{align}
+\label{ewbreg}
+\frac{\det\nabla^2 d_\phi(x,y)}{(y-x)\phi''(x)\phi''(y)}
+= \frac{\phi'''(y)}{\phi''(y)} - \frac{\phi''(y) - \phi''(x)}{(y-x)
+\phi''(x)}.
+\end{align}
+Since $-1/\phi''$ is convex, $(y-x)^{-1}(-1/\phi''(y) +1/\phi''(x))
+= \frac{\phi''(y)-\phi''(x)}{(y-x)\phi''(y)\phi''(x)}$ increases 
+in $x$. This implies $\eqref{ewbreg}$ is $\geq0$, which implies 
+$\det\nabla^2d_\phi(x,y)\geq 0$ since $y-x,\phi''(x),\phi''(y)>0$. \\
+Now suppose that $d_{\phi}$ is convex. This implies that $\det\nabla^2
+d_{\phi}(x,y)\geq 0$. By moving the right term of \eqref{ewbreg}
+ to the other side and dividing by $\phi''(y)$, we get 
+\begin{equation*}
+\frac{\phi'''(y)}{(\phi''(y))^2} \geq \frac{\phi''(y) - \phi''(x)}{
+(y-x)\phi''(x)\phi''(y)}.
+\end{equation*}
+Now if we swapped $x$ and $y$ in \eqref{ewbreg}, the inequality 
+would change from $\geq$ to $\leq$, since $x-y$ is negative. 
+Thus, 
+\begin{equation*}
+\frac{\phi'''(x)}{(\phi''(x))^2} \leq \frac{\phi''(x)-\phi''(y)}{(x-y)
+\phi''(x)\phi''(y)}.
+\end{equation*}
+Together with the previous inequality, we get $\frac{\phi'''(y)}{(
+\phi''(y))^2} \geq \frac{\phi'''(x)}{(\phi''(x))^2}$, i.e. the 
+derivative of $-1/\phi''$ is increasing.
+}
+\item Extend the results above to the function 
+\begin{equation*}
+D_\phi : (\dom\phi)^n \times (\inter(\dom\phi))^n \to \R
+\end{equation*}
+defined by $D_\phi(x,y) = \sum_i d_\phi(x_i,y_i)$. \\
+\bluea{
+Clearly, $D_{\phi}(x,y) = 0$ iff $x=y$ (if any $x_i\neq y_i$, then 
+part (a) implies the sum is positive). Furthermore,
+\begin{align*}
+D_{\frac{t^2}{2}}(x,y) &= \sum_{i=1}^n \frac{(x_i-y_i)^2}{2} 
+= \frac{1}{2}\|x-y\|^2 \\
+D_p(x,y) &= \sum_{i=1}^n x_i\log\left(\frac{x_i}{y_i}\right) - 
+\sum_{i=1}^n x_i + \sum_{i=1}^n y_i. 
+\end{align*}
+Clearly, if $D_\phi(x,y)$ is convex, then $d_\phi(x,y)$ is convex, 
+so $-1/\phi''$ is convex. On the other hand, if $-1/\phi''$ is 
+convex, then $d_\phi(x,y)$ is convex, which implies that 
+$D_\phi(x,y)$, being a sum of convex functions, is convex.
+}
+\end{enumerate}
+\textbf{17 * (Convex functions on $\R^2$).} Prove the following functions 
+of $x\in\R^2$ are convex:
+\begin{enumerate}[(a)]
+\item 
+\begin{equation*}
+f(x)=
+\begin{cases}
+ (x_1-x_2)(\log x_1 - \log x_2) &\text{ if } x\in\R_{++}^2 \\
+0 & \text{ if } x=0 \\
++\infty & \text{otherwise.}
+\end{cases}
+\end{equation*}
+Hint: See Exercise 16. \\
+\bluea{
+For $x\in\R_{++}^2$, $f(x) = d_p(x_1, x_2)+d_p(x_2,x_1)$ (see 
+Exercise 16 for definitions). $-1/p'' = -u$ is convex, so $d_p$ is 
+convex. Therefore, $f(x)$ is convex on $\R_{++}$. Since it is continuous 
+on $\R_+$
+}
+\item 
+\begin{equation*}
+f(x)=
+\begin{cases}
+\frac{x_1^2}{x_2} & \text{ if }x_2>0 \\
+0 & \text{ if }x=0 \\
++\infty & \text{ otherwise.}
+\end{cases}
+\end{equation*}
+\bluea{
+The Hessian is $\begin{bmatrix} \frac{2}{x_2} & -\frac{2x_1}{x_2^2} \\
+-\frac{2x_1}{x_2^2} & \frac{2x_1^2}{x_2^3} \end{bmatrix}$. The 
+determinant is $\frac{4x_1^2}{x_2^4} - \frac{4x_1^2}{x_2^4} = 0$ 
+and the trace is positive, so the Hessian is PSD on the interior of 
+its domain, which implies convexity on the interior of its domain.
+We just need to verify convexity involving the point 0. This is 
+rather convenient to show: $\frac{(\lambda x_1)^2}{\lambda x_2} 
+= \lambda \frac{x_1^2}{x_2}$, i.e. the function is positively 
+homogeneous. \green{I find it so weird that $\frac{x_1^2}{x_2}$ is 
+positively homogeneous yet discontinuous at 0.}
+}
+\end{enumerate}
+\green{\textbf{18. *}} Prove the function 
+\begin{equation*}
+f(x) = \begin{cases}
+- (x_1x_2\ldots x_n)^{1/n} & \text{ if }x\in\R_+^n \\
++\infty &\text{otherwise}
+\end{cases}
+\end{equation*}
+is convex. 
+\bluea{
+\begin{proof}
+Denote $f(x) = (x_1\ldots x_n)^{1/n}$. We will show that for 
+$\lambda\in[0,1]$ and $x,y\in\R_+^n$,
+\begin{equation*}
+(\lambda f(x) + (1-\lambda)f(y))^n \leq f(\lambda x + (1-\lambda)y)^n,
+\end{equation*}
+which implies the convexity of $-f(x) = -(x_1\ldots x_n)^{1/n}$ as 
+desired.
+\begin{align*}
+(\lambda f(x)+(1-\lambda)f(y))^n &=
+ \left(\lambda (x_1\ldots x_n)^{1/n} + (1-\lambda)(y_1\ldots y_n)^{1/n}
+\right)^{1/n}\\ 
+& = \sum_{k=0}^n \binom{n}{k}\lambda^k(1-\lambda)^{n-k} 
+(x_1\ldots x_n)^{\frac{k}{n}} (y_1\ldots y_n)^{\frac{k-n}{n}}\\
+f(\lambda x+(1-\lambda)y)^n &=
+(\lambda x_1 + (1-\lambda)y_1)\ldots (\lambda x_n+(1-\lambda)y_n)\\
+&= \sum_{k=0}^n \lambda^k(1-\lambda)^{n-k}\sum_{\substack{S\subset [n]\\
+|S|=k}} \left(\prod_{i\in S} x_i\right)\left(\prod_{i\notin S} y_i\right).
+\end{align*}
+By the AM-GM inequality (See Section 1.1, Exercise 2(b)) and the fact that 
+$|\{S\subset[n]:|S|=k\}| = \binom{n}{k}$,
+\begin{align*}
+&\frac{1}{\binom{n}{k}}\sum_{\substack{S\subset[n]\\|S|=k}} 
+\left(\prod_{i\in S} x_i\right)\left(\prod_{i\notin S} y_i\right)
+\geq \left[\prod_{\substack{S\subset[n]\\|S|=k}} 
+\left(\prod_{i\in S} x_i\right)\left(\prod_{i\notin S} y_i\right)
+\right]^{\frac{1}{\binom{n}{k}}} \\
+&= \left[\left(\prod_{i=1}^n x_i^{\binom{n-1}{k-1}}\right)\left(
+\prod_{i=1}^n y_i^{\binom{n-1}{k}}\right)\right]^{\frac{1}{\binom{n}{k}}}
+ = \left(\prod_{i=1}^n x^{\frac{k}{n}}\right)\left(\prod_{i=1}^n 
+y^{\frac{n-k}{n}}\right).
+\end{align*}
+To obtain the above, note that for any index $i$, there are 
+$\binom{n-1}{k-1}$ sets of size $S$ containing $i$, and 
+$\binom{n-1}{k}$ sets not containing $i$. Thus, 
+\begin{align*}
+f(\lambda x + (1-\lambda)y)^n &= \sum_{k=0}^n \lambda^k(1-\lambda)^{n-k}
+\sum_{\substack{S\subset[n]\\|S|=k}}
+\left(\prod_{i\in S} x_i\right)\left(\prod_{i\notin S} y_i\right)\\
+&\geq \sum_{k=0}^n \binom{n}{k}\lambda^k(1-\lambda)^{n-k}
+\left(\prod_{i=1}^n x^{\frac{k}{n}}\right)\left(\prod_{i=1}^n 
+y^{\frac{n-k}{n}}\right)
+= (\lambda f(x)+(1-\lambda)f(y))^n
+\end{align*}
+as desired. \green{I wanted to solve this using the Hessian which AFAIK
+is 
+\begin{equation*}
+\frac{\d^2(-f)}{\d x_i^2} = \left(1-\frac{1}{n}\right)\frac{(x_1\ldots
+x_n)^{1/n}}{n x_i^2},\qquad
+\frac{\d^2(-f)}{\d x_j\d x_i} = -\frac{(x_1\ldots x_n)^{1/n}}{n^2 x_i x_j}.
+\end{equation*}
+but I don't know how to show it's positive semidefinite.}
+\end{proof}}
+\noindent 
+\textbf{19 (Domain of subdifferential).} If the function $f:\R^2 \to 
+(-\infty, +\infty]$ is defined by 
+\begin{equation*}
+f(x_1,x_2) = \begin{cases} \max\{1-\sqrt{x_1}, |x_2|\} & \text{if }x_1
+\geq 0 \\
++\infty & \text{otherwise,}\end{cases}
+\end{equation*}
+prove that $f$ is convex but that $\dom\partial f$ is not convex.
+\bluea{
+\begin{proof}
+Note $1-\sqrt{x_1}$ is convex since its second derivative is 
+$\frac{1}{4x_1^{3/2}}$, which is positive if $x_1>0$, and $\sqrt{x_1}$ 
+is continuous on $\R_+$. Furthermore, $|x_2|$ being a norm (composed 
+with the second coordinate function) is convex. Finally, the max 
+of convex functions is convex. Therefore, $f$ is convex. \\
+$\int\dom f =\{x: x_1>0\}\subset \dom\partial f$ by Theorem 3.1.8 
+\eqref{3.1.8}. Now suppose $x_1=0$ and $|x_2|>1$. Since $\sgn(x_2)
+\in \partial |x_2|$, we have 
+\begin{equation*}
+\ip{\sgn(x_2)e_2, y-x} \leq |y_2|-|x_2| = |y_2|-f(x)
+\leq f(y) - f(x),
+\end{equation*}
+i.e. $\sgn(x_2)e_2\in\partial f(x)$. \\
+For $|x_2|\leq 1$, $\phi = -\infty e_1$ appears to work. 
+\begin{equation*}
+\ip{-\infty e_1, y-x} = \1\{y_1>0\}(-\infty) \leq 
+f(y)-1 = f(y) - f(x),
+\end{equation*}
+since if $y_1>0$ the inequality holds automatically because the LHS 
+is $-\infty$, and if $y_1=0$ then $f(y) \geq 1\implies f(y)-1\geq 0$.
+So, it seems that $\phi\in\partial f(x)$. But I suppose that infinite 
+values are not allowed for the subgradient (at least with vectors).
+There is no finite subgradient, because i.e. at 0, 
+$\ip{\phi, \frac{e_1}{2|\phi_1|^2}} \geq -\frac{1}{2|\phi_1|}
+> -\frac{1}{\sqrt{2}|\phi_1|} = f\left(\frac{e_1}{2|\phi_1|^2}\right)
+- f(0)$. If $\phi_1=0$, then clearly, $\ip{\phi, x} = 0 > -\sqrt{x_1}$.
+\end{proof}}
+\noindent
+\textbf{20 * (Monotonicity of gradients).} Suppose that the set 
+$S\subset\R^n$ is open and convex and that the function $f:S\to\R$ is 
+differentiable. Prove $f$ is convex if and only if 
+\begin{equation*}
+\ip{\nabla f(x) - \nabla f(y), x-y}\geq 0 \; \text{for all }x,y\in S,
+\end{equation*}
+and $f$ is strictly convex if and only if the above inequality holds 
+strictly whenever $x\neq y$. (You may use Exercise 12.) 
+\bluea{
+\begin{proof}
+Assume $f$ is convex.
+We show the function $g:\R\to\R,\; 
+g(t) = f(y+t(x-y))$ is convex, and 
+strictly convex if $f$ is strictly convex and $x\neq y$. Take 
+$s,t\in\R$. Given $\lambda\in(0,1)$, 
+\begin{align*}
+g(\lambda s + (1-\lambda)t) &= f(y + (\lambda s + (1-\lambda)t)(x-y))
+= f(\lambda(y+s(x-y)) + (1-\lambda)(y+t(x-y))) \\
+&\leq \lambda f(y+s(x-y)) + (1-\lambda)f(y+t(x-y)) = \lambda g(s) + 
+(1-\lambda)g(t).
+\end{align*}
+We have strict inequality if the things mentioned hold and $t\neq s$, 
+since then $y+s(x-y)\neq y+t(x-y)$. Thus, 
+\begin{align*}
+\ip{\nabla f(y), x-y} =
+\int_0^1 g'(0)\, \d t\leq
+\int_0^1 g'(t)\,\d t = \int_0^1 \ip{\nabla f(y+t(x-y)), x-y}\,\d t
+= f(x)-f(y),
+\end{align*}
+with strict inequality if strict convexity holds. Therefore, 
+$f(x)-f(y)\geq \ip{\nabla f(y), x-y}$, and $f(y)-f(x)\geq \ip{\nabla 
+f(x), y-x}$ (switching $x$ and $y$). Adding these, we obtain 
+$0\geq \ip{\nabla f(y), x-y} + \ip{\nabla f(x), y-x}$, 
+or $\ip{\nabla f(x) - \nabla f(y), x-y} \geq 0$ with strict inequality 
+if $f$ is strictly convex and $x\neq y$. \\
+If we assume $\ip{\nabla f(x)-\nabla f(y), x-y}\geq 0$ for any 
+$x,y\in S$, then for any $t>s$,
+\begin{gather*}
+\ip{\nabla f(y+t(x-y)) - \nabla f(y+s(x-y)), (t-s)(x-y)} \geq 0 \\
+\implies \ip{\nabla f(y+t(x-y)), x-y}\geq \ip{\nabla f(y+s(x-y)),
+x-y}.
+\end{gather*}
+In other words, the derivative of $g(t) = f(y+t(x-y))$ is increasing
+(strictly if the above inequalities are strict). Thus, $g$ is 
+(strictly) convex. $g(\lambda)\leq(<) \lambda g(0) + (1-\lambda)g(1)$ 
+then gives (strict) convexity of $f$.
+\end{proof}}\noindent
+\textbf{21 ** (The log barrier).} Use Exercise 20 (Monotonicity of 
+gradients), Exercise 10 in Section 2.1 and Exercise 8 in Section 1.2 to 
+prove that the function $f:\S_{++}^n\to\R$ defined by $f(X)=-\log\det X$ 
+is strictly convex. Deduce the uniqueness of the minimum volume 
+ellipsoid in Section 2.3, Exercise 8 and the matrix completion in 
+Section 2.1, Exercise 12.
+\bluea{
+\begin{proof}
+Using the fact that $\nabla -\log\det X = -X^{-1}$, 
+\begin{equation*}
+\ip{\nabla f(X)-\nabla f(Y), X-Y} = \ip{Y^{-1}-X^{-1}, X-Y} 
+= \ip{Y^{-1}X} + \ip{X^{-1}Y} - 2n \geq 0,
+\end{equation*}
+since $(Y^{-1}X)^{-1} = X^{-1}Y$ and using Exercise 8 from Section 1.2.
+Furthermore, we have equality iff $Y^{-1}X=I$, i.e. $X=Y$, so if 
+$X\neq Y$ we have strict inequality. By Exercise 20,
+$f$ is strictly convex. \\
+Exercise 12 of section 2.1 minimizes $\ip{C,X}-\log\det X$ over a 
+convex set (containing a minimizer, deduced from nonemptiness). 
+Since $\ip{C,X}$ is linear, $\ip{C,X} - \log\det X$ is strictly 
+convex and has a unique minimum. \\
+Similarly, Exercise 13 minimizes $-\log\det X$ over a convex 
+set over which it has a minimizer (the set $\{X\in\S_{++}^n :
+\|Xy^i\|\leq 1,\;\forall i\in[m]\}$, where $\{y^i\}_{i\in[m]}$ 
+spans $\R^n$), which by strict convexity is unique.
+\end{proof}}
+\noindent
+\red{\textbf{22.}} Prove the function (2.2.5) is convex on $\R^n$ by 
+calculating its Hessian. 
+\bluea{
+\begin{proof}
+The function (2.2.5) is 
+\begin{equation*}
+f(x)=\log\left(\sum_{i=0}^m \exp\ip{a^i,x}\right), \qquad 
+\{a^0,a^1,\ldots, a^m\}\subset \R^n.
+\end{equation*}
+The derivative w.r.t the $j$th coordinate is 
+\begin{equation*}
+\pd{f(x)}{x_j} = \sum_{i=0}^m \frac{a^i_j\exp\ip{a^i, x}}{
+\sum_{i'=0}^m \exp\ip{a^{i'}, x}}.
+\end{equation*}
+The second order derivatives are (denote $E(x) = 
+\sum_{i=0}^m \exp\ip{a^{i},x}$):
+\begin{align*}
+\frac{\partial^2 f(x)}{\partial x_j^2} &= 
+\sum_{i=0}^m \frac{(a_j^i)^2\exp\ip{a^i, x}\sum_{i'=0}^m 
+\exp\ip{a^{i'}, x} - a_j^i\exp\ip{a^i,x}\sum_{i'=0}^m a^{i'}_j
+\exp\ip{a^{i'}, x}}{\left(\sum_{i'=0}^m \exp\ip{a^{i'}, x}\right)^2} \\
+&= E(x)^{-2}\sum_{i,i'=0}^m (a^i_ja^i_j-a^i_ja^{i'}_j)
+\exp\ip{a^i+a^{i'}, x}.
+\\
+\frac{\partial^2 f(x)}{\partial x_k x_j} &= 
+\sum_{i=0}^m \frac{a_k^i a_j^i\exp\ip{a^i, x}\sum_{i'=0}^m 
+\exp\ip{a^{i'}, x} - a_j^i\exp\ip{a^i,x}\sum_{i'=0}^m a^{i'}_k
+\exp\ip{a^{i'}, x}}{\left(\sum_{i'=0}^m \exp\ip{a^{i'}, x}\right)^2} \\
+&= E(x)^{-2}\sum_{i,i'=0}^m (a^i_ja^i_k-a^i_ja^{i'}_k)
+\exp\ip{a^i+a^{i'}, x}.
+\end{align*}
+In fact, the diagonal and nondiagonal elements of the Hessian end 
+up being basically the same (in form). 
+Now let us show $\nabla^2 f(x)$ is PSD.
+Let $y\in\R^n$.
+\begin{align*}
+E(x)^2y^\top\nabla^2 f(x) y &= \sum_{j,k=1}^n y_jy_k\sum_{i,i'=0}^m
+(a^i_ja^i_k-a^i_ja^{i'}_k)\exp\ip{a^i+a^{i'}, x} \\
+&= \sum_{j,k=1}^n y_jy_k\sum_{i<i'}^m(a_j^ia_k^i + a_j^{i'}a_k^{i'}
+- a_j^ia_k^{i'}-a_j^{i'}a_k^i)\exp\ip{a^i+a^{i'},x} \\
+&= \sum_{j,k=1}^n y_jy_k\sum_{i<i'}^m (a_j^i-a_j^{i'})(a_k^i-a_k^{i'})
+\exp\ip{a^i+a^{i'}, x} \\
+&= \sum_{i<i'}\exp\ip{a^i+a^{i'}, x}\sum_{j,k=1}^n y_jy_k(a_j^i
+-a_j^{i'})(a_k^i-a_k^{i'}) \\
+&= \sum_{i<i'} \exp\ip{a^i+a^{i'}, x}\left(\sum_{j=1}^n y_j(a_j^i-
+a_j^{i'})\right)^2 \geq 0.
+\end{align*}
+\end{proof}}
+\noindent 
+\textbf{23. *} If the function $f:\E\to(-\infty,+\infty]$ is essentially 
+strictly convex, prove all distinct points $x$ and $y$ in $\E$ satisfy
+$\partial f(x)\cap\partial f(y)=\emptyset$. Deduce that $f$ has at most
+one minimizer.
+\bluea{
+\begin{proof}
+Let $\bar x_1$ and $\bar x_2$ be distinct points in
+ $\dom\partial f$. Suppose that $\phi\in\partial f(\bar x_1)
+\cap\partial f(\bar x_2)$. Then, for any $x\in\E$ and $\lambda\in(0,1)$,
+\begin{align*}
+& \ip{\phi, \lambda(x-\bar x_1)} \leq \lambda(f(x) - f(\bar x_1)) \\
+& \ip{\phi, (1-\lambda)(x-\bar x_2)} \leq (1-\lambda)(f(x) - f(\bar x_2))\\
+\implies & \ip{\phi, x-(\lambda \bar x_1 + (1-\lambda) \bar x_2}
+\leq f(x) - (\lambda f(\bar x_1) + (1-\lambda)f(\bar x_2))
+\leq f(x) - f(\lambda \bar x_1 + (1-\lambda)\bar x_2).
+\end{align*}
+The last line follows by convexity of $f$. 
+\green{(This problem seems to require that $f$ is convex; the definition
+of essentially convex given doesn't seem to imply convexity.)}
+Since $x$ was arbitrary, in fact $\phi\in\partial f(\lambda \bar x_1
++(1-\lambda)\bar x_2)$. Therefore, $\lambda\bar x_1 + (1-\lambda)\bar x_2
+\in \dom f$ for every $\lambda\in[0,1]$. In other words, $f$ is 
+strictly convex along the line segment from $\bar x_1$ to $\bar x_2$.
+Now we may revisit the above inequality for any $\lambda\in(0,1)$:
+\begin{equation*}
+\ip{\phi, x-(\lambda \bar x_1 + (1-\lambda) \bar x_2}
+\leq f(x) - (\lambda f(\bar x_1) + (1-\lambda)f(\bar x_2))
+< f(x) - f(\lambda \bar x_1 + (1-\lambda)\bar x_2).
+\end{equation*}
+by strict convexity. \green{(It's interesting how we redo this inequality
+after using it to get strict convexity.)} 
+However, this presents a contradiction if we plug in 
+$x=\lambda\bar x_1+(1-\lambda)\bar x_2$: this results in $0<0$.
+Therefore, the initial assumption $\phi\in\partial f(\bar x_1)
+\cap\partial f(\bar x_2)$ was faulty, i.e. any distinct points 
+$x,y\in \E$ do not share elements of their subgradients. \\
+This implies a unique minimizer because by Proposition 3.1.5 
+\eqref{3.1.5}, $\bar x$ is a minimizer of a proper $f$ iff 
+$0\in\partial f(\bar x)$. Having two minimizers means two elements 
+share $0$ in their subgradients; which we proved cannot happen 
+for essentially strictly convex $f$.
+\end{proof}}
+\noindent
+\textbf{\green{24}
+ (Minimizers of essentially smooth functions).} Prove that 
+any minimizer of an essentially smooth function $f$ must lie in 
+$\core(\dom f)$.
+\bluea{
+\begin{proof}
+We will show that $\partial\dom f \subset \core(\dom f)$, which implies 
+that any minimizer lies in $\core(\dom f)$ since 0 is in the 
+subgradient at a minimizer.\\
+Suppose $x\in \partial\dom f$ such that there exists $d$ where 
+$f(x+td)=+\infty$ for any $t>0$. Then, $f'(x,d) = +\infty$.
+Since $f$ is differentiable at $x$, $\ip{\nabla f(x), d} = +\infty$,
+which is a contradiction. Thus, $x\in\partial
+\dom f$ implies for any $d\in\E$,
+there exists $t>0$ such that $x+td\in\dom f$, i.e. $x\in\core(\dom f)$.
+\end{proof}}\noindent
+\textbf{25 ** (Convex matrix functions).} Consider a matrix $C$ in 
+$\S_+^n$. 
+\begin{enumerate}[(a)]
+\item For matrices $X\in\S_{++}^n$ and $D\in\S^n$, use a power series 
+expansion to prove 
+\begin{equation*}
+\frac{\d^2}{\d t^2}\tr(C(X+tD)^{-1})\bigg|_{t=0}\geq 0.
+\end{equation*}
+\bluea{
+If the function $f(t)$ has the power series expansion
+\begin{equation*}
+f(t) = c_0 + c_1 t + c_2 t^2 + \ldots = f(0) + f'(0) t + 
+\frac{f''(0)t^2}{2} + \ldots = \sum_{i=0}^\infty \frac{f^{(i)}(0)t^i}{i!},
+\end{equation*}
+then we can identify $f''(0)$ with $2c_2$. Noting that for small enough 
+$x$, $(1+x)^{-1} = \sum_{i=0}^\infty (-x)^{i}$, we have 
+\begin{align*}
+&\tr(C(X+tD)^{-1}) = 
+\tr(CX^{-1/2}(I+tX^{-1/2}DX^{-1/2})^{-1}X^{-1/2})\\
+&\quad= \tr\left[CX^{-1/2}\left(
+I - tX^{-1/2}DX^{-1/2} + t^2 X^{-1/2}DX^{-1}DX^{-1/2} + \ldots
+\right)X^{-1/2}\right]
+\end{align*}
+Thus, $\frac{\d^2}{\d t^2}\tr\left[C(X+tD)^{-1}\right]\bigg|_{t=0} 
+= 2\ip{C, X^{-1}DX^{-1}DX^{-1}} \geq 0$.
+}
+\item Deduce $X\in\S_{++}^n \mapsto \tr(CX^{-1})$ is convex. \\
+\bluea{
+In Exercise 12 (c), we proved that $\frac{\d^2}{\d t^2} f(X+tD)\bigg|_{t
+=0}
+= \ip{D, \nabla^2 f(X) D}$. Therefore, we have shown that the 
+Hessian of $\tr CX^{-1}$ is PSD, i.e. the function is convex.
+}
+\item Prove similarly the function $X\in\S^n\mapsto\tr(CX^2)$ and 
+the function \red{$X\in\S_+^n\mapsto-\tr(CX^{1/2})$ are convex.} \\
+\bluea{
+\begin{equation*}
+\tr(C(X+tD)^2) = \tr(CX^2 + tXD + tDX + t^2 D^2).
+\end{equation*}
+Therefore, $\frac{\d^2}{\d t^2}\tr(C(X+tD)^2)\bigg|_{t=0} = 2\ip{C, D^2}
+\geq 0$. \\
+Using the power series $\sqrt{1+x} = 1 + \frac{x}{2} - \frac{x^2}{8} 
++ \ldots,$
+\begin{align*}
+&\tr(C(X+tD)^{1/2}) = \tr(CX^{1/4}(I + tX^{-1/2}DX^{-1/2})^{1/2}X^{1/4})\\
+&\quad = \tr\left[CX^{1/4}\left(I + \frac{tX^{-1/2}DX^{-1/2}}{2} 
+- \frac{t^2 X^{-1/2}DX^{-1}DX^{-1/2}}{8}+\ldots\right)X^{1/4}\right].
+\end{align*}
+Thus, $\frac{\d^2}{\d t^2}-\tr(C(X+tD)^{1/2})\bigg|_{t=0} = 
+\ip{C, X^{-1/4}DX^{-1}DX^{-1/4}}/4 \geq 0$.
+}
+\end{enumerate}
+\noindent
+\textbf{26 ** (Log-convexity).} Given a convex set $C\subset\E$, we 
+say that a function $f: C\to\R_{++}$ is \textit{log-convex} if 
+$\log f(\cdot)$ is convex.
+\begin{enumerate}[(a)]
+\item Prove any log-convex function is convex, using Section 1.1, 
+Exercise 9 (Composing convex functions). \\
+\bluea{
+$\exp$ is a convex, isotonic (in this case, monotonically
+increasing since its domain
+is 1d) function. Therefore, $\log f$ convex implies $\exp \log f = f$ 
+convex.
+}
+\item If a polynomial $p:\R\to\R$ has all real roots, prove $1/p$ 
+is log-convex on any interval on which $p$ is strictly positive.  \\
+\bluea{
+If $p$ has all real roots, it can be factored into a product of 
+degree one polynomials $p=C\prod_{i=1}^k (x-r_i)$. Assume that 
+$r_1\geq r_2\geq \ldots \geq r_k$ WLOG. If $p$ is strictly positive 
+on the interval $I$, then for some $1\leq j\leq k-1$, 
+$r_j > I > r_{j+1}$ (if $r_i\in I$ for some $i$, then $p$ is zero 
+at some point in $I$). Therefore, for every $x\in I$,
+\begin{equation*}
+\log 1/p = -\log C - \sum_{i=1}^j \log (r_i-x)-
+\sum_{i=j+1}^k \log (x-r_i).
+\end{equation*}
+We have seen that $-\log x$ is convex, and convex functions composed 
+with linear ones are convex. Plus, the sum of convex functions is 
+convex. Therefore, the $\log 1/p$ is convex on $I$.
+}
+\item One version of \textit{H\"{o}lder's inequality} states, for 
+real $p,q>1$ satisfying $p^{-1}+q^{-1}=1$ and functions $u,v:\R_+\to\R$,
+\begin{equation*}
+\int uv \leq \left(\int |u|^p\right)^{1/p}\left(\int |v|^q\right)^{1/q}
+\end{equation*}
+when the right hand side is well-defined. Use this to prove the 
+\textit{gamma function} $\Gamma:\R\to\R$ given by
+\begin{equation*}
+\Gamma(x) = \int_0^\infty t^{x-1}e^{-t}\,\d t
+\end{equation*}
+is log-convex.\\
+\bluea{
+Let $\lambda\in(0,1)$ and $x,y\in\R$.
+\begin{align*}
+\Gamma(\lambda x + (1-\lambda)y) &= 
+\int_0^\infty t^{\lambda x + (1-\lambda)y-1}e^{-t}\,\d t
+= \int_0^\infty (t^{x-1}e^{-t})^{\lambda}(t^{y-1}e^{-t})^{1-\lambda}\,\d t
+\\ 
+&\leq \left(\int t^{x-1}e^{-t}\,\d t\right)^{\lambda}\left(\int t^{y-1}
+e^{-t}\,\d t\right)^{1-\lambda} \quad p=\frac{1}{\lambda},
+q=\frac{1}{1-\lambda}.
+\end{align*}
+Taking logs on both sides gives $\log \Gamma(\lambda x + (1-\lambda)y)
+\leq \lambda\log\Gamma(x) + (1-\lambda)\log\Gamma(y)$.
+}
+\end{enumerate}
+\noindent
+\textbf{27 ** (Maximum entropy [36]).} Define a convex function $p:
+\R\to(-\infty,+\infty]$ by 
+\begin{equation*}
+p(u) = \begin{cases}
+u\log u- u & \text{if }u>0 \\
+0 &\text{if }u=0\\
++\infty &\text{if }u< 0
+\end{cases}
+\end{equation*}
+and a convex function $f:\R^n\to(-\infty, +\infty]$ by 
+\begin{equation*}
+f(x)=\sum_{i=1}^n p(x_i).
+\end{equation*}
+Suppose $\hat x$ lies in the interior of $\R_+^n$. 
+\begin{enumerate}[(a)]
+\item Prove $f$ is strictly convex on $\R_+^n$ with compact level 
+sets. \\
+\bluea{
+The derivative of $p$ is $\log u$, which is strictly increasing. 
+Therefore, $p$ is strictly convex on $\R_{++}$. However, since 
+$p$ is continuous ($\lim_{u\to 0} u\log u = \log u/(1/u) = (1/u)/(-1/u^2)
+= u \to 0$), $p$ is also strictly convex on $\R_+$. If $x\neq y\in\R^n_+$
+and $\lambda\in(0,1)$, 
+\begin{equation*}
+f(\lambda x + (1-\lambda)y) = \sum_{i=1}^n p(\lambda x_i + 
+(1-\lambda)y_i) < \sum_{i=1}^n \lambda p(x_i) + (1-\lambda)p(y_i),
+\end{equation*}
+because each $i$ satisfies $p(\lambda x_i + (1-\lambda)y_i)
+\leq \lambda p(x_i) + (1-\lambda)p(y_i)$, and the inequality is strict
+for $x_i\neq y_i$ (which must occur). Note for any $u\in\R_+^n$, 
+there is an 
+$i$ with $u_i \geq \|u\|/\sqrt{n}$. Furthermore, by CS
+$\sum_{i=1}^n u_i \leq \sqrt{n}\|u\|.$ Thus,
+\begin{equation*}
+\frac{f(x)}{\|x\|} \geq \frac{1}{\sqrt{n}}\log\frac{\|u\|}{\sqrt{n}}
+- \sqrt{n} \xrightarrow{\|u\|\to\infty}\infty.
+\end{equation*}
+This means $f$ satisfies the growth condition 1.1.4 in Section 1.1, 
+which implies its level sets are bounded and thus compact since 
+$\R_+^n$ is closed.
+}
+\item Prove $f'(x;\hat x-x)=-\infty$ for any point $x$ on the boundary
+of $\R_+^n$. \\
+\bluea{
+\begin{align*}
+f'(x;\hat x- x) &= \lim_{t\downarrow 0}\frac{f(x+t(\hat x - x)) - f(x)}{t}
+\lim_{t\downarrow 0} \frac{\sum_{i=1}^n p(x_i+t(\hat x_i-x_i)) 
+- p(x_i)}{t} \\
+&= \sum_{i=1}^n \lim_{t\downarrow 0} \frac{p(x_i+t(\hat x_i-x_i))-p(x_i)}{
+t} = -\infty.
+\end{align*}
+Exchanging limits and sums is uncontroversial for finite sums, at 
+least one $i\in[n]$ satisfies $x_i=0, \hat x_i > 0$ (recall $x$ is on 
+the boundary while $\hat x$ is in the interior). The directional 
+derivative is then $\lim_{t\downarrow 0}\frac{tx\log tx - tx}{t} = 
+x\log x + x\log t - x = -\infty$.
+}
+\item Suppose the map $G:\R^n\to\R^m$ is linear with $G\hat x = b$. 
+Prove for any vector $c\in\R^n$ that the problem 
+\begin{equation*}
+\inf\{f(x)+\ip{c,x}\mid Gx=b, x\in\R^n\}
+\end{equation*}
+has a unique optimal solution $\bar x$, lying in $\R_{++}^n$. \\
+\bluea{
+$f(x)+\ip{c,x}$ is strictly convex because $f$ is and $\ip{c,x}$ is 
+convex. Furthermore, $f(x)+\ip{c,x}$ satisfies the growth condition 
+since $f$ does, and $|\ip{c,x}|/\|x\|\leq \|c\|$. Finally, the set 
+$\{x\in\R^n:Gx=b\}$ is nonempty and closed. Therefore the level sets 
+of $f(x)+\ip{c,x}$ intersected with this set are compact (and convex).
+ Thus 
+$f(x)+\ip{c,x}$ has a minimizer, which is unique by strict convexity. \\
+The minimizer cannot lie on the boundary, because by Proposition 
+2.1.1 (first order necessary condition) the minimizer $\bar x$ of 
+any function $g$ must 
+satisfy $g(\bar x; x-\bar x)\geq 0$ for all $x\in\dom g$. However
+we proved above that $f(\bar x; \hat x-\bar x)=-\infty$ if 
+$\bar x$ is on the boundary. Thus, $\bar x$ must lie in the interior.
+}
+\item Use Corollary 2.1.3 (First order conditions for linear constraints)
+to prove that some vector $\lambda\in\R^m$ satisfies $\nabla f(\bar x)
+= G^*\lambda - c,$ and deduce $\bar x_i = \exp(G^*\lambda -c)_i$. \\
+\bluea{
+By Corollary 2.1.3, the gradient of $f(x)+\ip{c,x}$ at the minimum must 
+lie in the range of $G^*$. Writing this out, 
+$\nabla f(\bar x)+ c = G^*\lambda$ for some $\lambda\in\R^m$, which 
+gives $\nabla f(\bar x) = G^*\lambda - c$. Since $\nabla f(\bar x) 
+= \log(\bar x)$, this gives $\bar x = \exp(G^*\lambda -c)$.
+}
+\end{enumerate}
+\textbf{28 ** (DAD problems [36]).} Consider the following example of 
+Exercise 27 (Maximum entropy). Suppose the $k\times k$ matrix $A$ has 
+each entry $a_{ij}$ nonnegative. We say $A$ \textit{has doubly stochastic
+pattern} if there is a doubly stochastic matrix with exactly the same 
+zero entries as $A$. Define a set $Z=\{(i,j):a_{ij}>0\}$ and let 
+$\R^Z$ denote the set of vectors with components indexed by $Z$ and 
+$\R_+^Z$ denote those vectors in $\R^Z$ with all nonnegative 
+components. Consider the problem 
+\begin{equation*}
+\begin{aligned}
+&\inf && \sum_{(i,j)\in Z} (p(x_{ij})-x_{ij}\log a_{ij}) \\
+&\text{subject to} && \sum_{i:(i,j)\in Z}x_{ij}=1 \text{ for }j=1,2,\ldots,
+k \\
+&&&\sum_{j:(i,j)\in Z} x_{ij}=1 \text{ for }i=1,2,\ldots, k \\
+&&& x\in \R^Z.
+\end{aligned}
+\end{equation*}
+\begin{enumerate}[(a)]
+\item Suppose $A$ has doubly stochastic pattern. Prove there is a point 
+$\hat x$ in the interior of $\R_+^Z$ which is feasible for the problem 
+above. Deduce that the problem has a unique optimal solution $\bar x$, and,
+for some vectors $\lambda$ and $\mu$ in $\R^k$, $\bar x$ satisfies
+\begin{equation*}
+\bar x_{ij} = a_{ij}\exp(\lambda_i + \mu_j) \text{ for }(i,j)\in Z.
+\end{equation*}
+\bluea{
+If $A$ has doubly stochastic pattern, then by definition there exists 
+a doubly stochastic matrix $X\in\R^{k\times k}$ such that 
+$X_{ij} > 0$ for every $(i,j)\in Z$ and $X_{ij} = 0$ otherwise. 
+Thus, for every $i\in[k],\; \sum_{j=1}^k X_{ij} = 1$ and for every
+$j\in[k],\; \sum_{i=1}^k X_{ij}=1$. The nonzero entries of $X$
+thus constitute a feasible point in the interior of $\R_+^Z$. \\
+By Exercise 26, since the problem is of the form $\inf p(x) 
++ \ip{c,x}$ subject to $Gx=b$ for some $G,b$ for which there is 
+a solution $\hat x\in\R_{++}^Z$, a unique optimal solution $\bar x$ 
+exists. \\
+Also by Exercise 26, $\bar x$ satisfies $\bar x_{ij} = \exp((G^*
+\lambda)_{ij} + c_{ij})$ for each $(i,j)\in Z$. Note that $G$ has 
+$2k$ rows because there are $2k$ constraints. Moreover, the 
+$ij$th column of $G$ has a 1 in the $j$th and $k+i$th entries, since 
+the variable $x_{ij}$ is involved in the $k+i$th constraint 
+$\sum_{j':(i,j')\in Z} x_{ij'}=1$ and the $j$ constraint 
+$\sum_{i': (i',j)\in Z} x_{i'j}$, both with a coefficient of 1.
+Denoting the first $k$ entries of $\lambda\in\R^{2k}$ as 
+$\mu\in\R^k$ and the second $k$ entries as $\lambda'\in\R^k$, 
+we have
+\begin{equation*}
+\bar x_{ij}= \exp(\mu_j + \lambda'_i+\log a_{ij}) 
+= a_{ij} \exp(\lambda'_i+\mu_j).
+\end{equation*}
+}
+\item Deduce that $A$ has doubly stochastic pattern if and only if there
+are diagonal matrices $D_1$ and $D_2$ with strictly positive diagonal 
+entries and $D_1AD_2$ doubly stochastic. \\
+\bluea{
+If $D_1AD_2$ is doubly stochastic, then since the zero set of 
+$D_1AD_2$ is exactly the same as that of $A$ (the $ij$th entry of 
+$A$ gets multiplied by $(D_1)_i(D_2)_j>0$, which preserves zero and 
+nonzero entries), $A$ has doubly stochastic pattern. \\
+Now suppose $A$ has doubly stochastic pattern. By part (a), there 
+exists a doubly stochastic
+matrix $\bar X\in\R^{k\times k}$ such that for every 
+$(i,j)\in[k]\times[k]$,
+$\,\bar X_{ij} = A_{ij}\exp(\lambda_i + \mu_j)$ for some 
+$\lambda\in\R^k$ and $\mu\in\R^k$. In other words, 
+$D_1 A D_2$ is doubly stochastic, where $D_1=\diag\exp(\lambda)$ 
+and $D_2=\diag\exp(\mu)$ are diagonal with strictly positive diagonal
+entries.
+}
+\end{enumerate}
+\noindent
+\textbf{29 ** (Relativizing the Max formula).} If $f:\E\to(-\infty, +\infty
+]$ is a convex function then for points $\bar x\in \ri(\dom f)$ and 
+directions $d\in\E$, prove the subdifferential $\partial f(\bar x)$ 
+is nonempty and 
+\begin{equation*}
+f'(\bar x;d ) = \sup\{\ip{\phi, d}\mid \phi\in\partial f(\bar x)\},
+\end{equation*}
+with attainment when finite. \\
+\bluea{
+Define $S:= \aff(\dom f) - \bar x$,
+ the linear subspace defined by the translate of 
+the affine span of $\dom f$ by $\bar x$ (it doesn't matter which 
+element of $\dom f$ we translate by).\\
+First assume that $d\in S$. Then by ``restricting $f$ to $S$'' by a 
+function $g:S\to (-\infty, +\infty],\, x\mapsto f(\bar x+x)$,
+ we have $0\in\core(\dom g)$
+because $\bar x\in \ri(\dom f)$,
+which means we can apply Theorem 3.1.8 \eqref{3.1.8} to conclude that 
+$f'(\bar x; d) = g'(0; d)=\ip{\phi, d}$
+ for some $\phi\in\partial g(0) \subset \partial f(\bar x)$ 
+($\ip{\phi, d} \leq g(d)-g(0) = f(\bar x + d)-f(\bar x)$ for every 
+$d\in S$ implies $\ip{\phi, x-\bar x} \leq f(x)-f(\bar x)$ for any 
+$x\in \aff \dom f$, and if $x\notin\aff\dom f$, the inequality is 
+true because the RHS is infinity). \\
+If $d\notin S$, then for any $t>0$, $td\notin S \implies 
+\bar x + td\notin \aff\dom f \implies \bar x+ td\notin \dom f$.
+Therefore, $f'(\bar x;d) = +\infty$. We can now conclude that we have 
+shown $\sup\{\ip{\phi, d} : \phi\in\partial f(\bar x)\}$ is attained
+and equal to $f'(\bar x; d)$ whenever $f'(\bar x; d)$ is finite. \\
+Now we show that if $v\in S^\perp$ and $\phi\in\partial f(\bar x)$, 
+then $\phi+v\in\partial f(\bar x)$. For any $d\in S$, 
+$\ip{\phi + v, d} = \ip{\phi, d} \leq f(\bar x+d)-f(\bar x)$.
+If $d\notin S$, then the RHS is infinite. \\
+Thus, if $d\notin S$ and has orthogonal projection $v\neq 0$
+ onto $S^\perp$, 
+\begin{equation*}
+\sup\{\ip{\phi, d} : \phi\in \partial f(\bar x)\}
+= \sup\{\ip{cv, d} : c\in\R\} = +\infty = f'(\bar x; d).
+\end{equation*}
+}
+\end{document}
