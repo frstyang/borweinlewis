@@ -1,4 +1,5 @@
 \documentclass[../borwein-lewis_notes.tex]{subfiles}
+\graphicspath{{E:/Academic/Journal/borwein-lewis/3-3/}}
 \begin{document}
 \maketitle
 \subsection{3.3 The Fenchel Conjugate}
@@ -163,18 +164,18 @@ any $y\neq 0$ results in $-\infty$. Thus $f^{**}=f$. \\
 \item $(0,\R_+)\lra (0, -\R_+)$. We may as well do $\R_+^n$ and 
 $-\R_+^n$.
 $f^*(y) = \sup_{x\in\E} 
-\ip{y,x}-\delta_{\R_+^n}(x) = \sup_{x\in\delta_{\R_+^n}} \ip{y,x}$,
+\ip{y,x}-\delta_{\R_+^n}(x) = \sup_{x\in\R_+^n} \ip{y,x}$,
  since any $x$ not in the set defined 
 by the indicator returns $-\infty$. If $y$ has a positive coordinate, 
 then the $\sup$ returns $+\infty$ by taking $x$ to $+\infty$ in that 
-coordinate. Otherwise, $y\in-\R_+^n$, and $\ip{y,x}=0$ with equality at 
+coordinate. Otherwise, $y\in-\R_+^n$, and $\ip{y,x}\leq0$ with equality at 
 $x=0$. Thus $f^*=g$. \\
 Now $f^{**}(x) = \inf_{y\in\E}\ip{x,y} - \delta_{-\R_+^n}(y) 
 = \inf_{y\in-\R_+^n}\ip{x,y} = \delta_{\R_+^n}(x) = f(x)$ by the 
 same reasoning.
 \item $(0, [-1,1])\lra (|y|, \R)$. Let us remember from now on that 
 $\delta^*_C(y) = \sup_{x\in C}\ip{y,x}$. Thus, 
-$f^*(y) = \sup_{x\in[-1,1]} yx = |y| = g(y)$ (duh).  \\
+$f^*(y) = \sup_{x\in[-1,1]} yx = |y| = g(y)$.  \\
 $f^{**}(x) = \sup_{y\in\R} xy - |y|$. If $|x|>1$, then taking 
 $y\to\sgn(x)\infty$ returns $+\infty$. For $x\in[-1,1]$, we have 
 $xy - |y| \leq |x||y|-|y| \leq |y|-|y| = 0$, with equality when 
@@ -252,7 +253,7 @@ $y\to-\infty\implies f^{**}(x) = +\infty$. Otherwise, the derivative
 is $x + \frac{1}{y} = 0 \implies y = -\frac{1}{x}$. This yields 
 $f^{**}(x) = -1 + 1 + \log(1/x) = - \log x$.
 \item $(\cosh x,\R)\lra (y\sinh^{-1}(y) - \sqrt{1+y^2}, \R)$.
-In Section 3.1 Exercise 14, we found that $\sinh^{-1} = \log(y + 
+In Section 3.1 Exercise 14, we found that $\sinh^{-1}(y) = \log(y + 
 \sqrt{y^2+1})$. $f^*(y) = \sup_{x\in \R} yx - \cosh x$. Taking 
 the derivative, $y - \sinh x = 0 \implies x = \sinh^{-1} y$.
 Plugging back in, $f^*(y) = y\sinh^{-1} y - \cosh(\sinh^{-1} y)$.
@@ -545,17 +546,18 @@ The function $g$ was
 g(z) = \inf_{x\in\R^{m+1}}\left\{\sum_{i=0}^m \exp^*(x_i)\,\bigg|\,
 \sum_{i=0}^m x_i=1,\; \sum_{i=0}^m x_ia^i = z\right\}.
 \end{equation*}
-$g(z) = v(z,-z,1)$ with the value function $v(b)=\inf_x \{f(x)\mid 
+$g(z) = v(z,-z,1,-1)$ with the value function $v(b)=\inf_x \{f(x)\mid 
 g(x) \leq b\}$ with $f(x) = \sum_i \exp^*(x)$ and $g_j(x) = 
 \sum_{i=0}^m a^i_j x_i,\; g_{-j}(x) = -\sum_{i=0}^m a^i_j x_i$ for 
-$j\in[n]$. $g_{n+1}(x) = \sum_{i=0}^m x_i$. Since $f, g$ are convex, 
+$j\in[n]$. $g_{n+1}(x) = \sum_{i=0}^m x_i$, $g_{-n-1}(x) = \sum_{i}
+-x_i$. Since $f, g$ are convex, 
 the value function $v$ is convex; we proved this in Section 3.2, 
 Exercise 6. Thus for all $z_1, z_2\in\dom g$ and $\lambda\in(0,1)$, 
 we have 
 \begin{align*}
-g(\lambda z_1+(1-\lambda)z_2) &= v(\lambda(z_1,-z_1,1)
-+ (1-\lambda)(z_2,-z_2,1)) \\
-&\leq \lambda v(z_1, -z_1, 1) + (1-\lambda)v(z_2, -z_2, 1)
+g(\lambda z_1+(1-\lambda)z_2) &= v(\lambda(z_1,-z_1,1,-1)
++ (1-\lambda)(z_2,-z_2,1,-1)) \\
+&\leq \lambda v(z_1, -z_1, 1,-1) + (1-\lambda)v(z_2, -z_2, 1,-1)
 = \lambda g(z_1) + (1-\lambda)g(z_2).
 \end{align*}
 Therefore, $g$ is convex (see Section 3.2, Exercise 6).
@@ -616,15 +618,10 @@ Negating, we obtain the conjugacy formula \eqref{3.3.2}.
 \end{cases}
 \end{equation*}
 \bluea{
-The conjugate is 
+This function can be expressed as $g(x)$ where $[a^0,\, a^1,\,\ldots\,
+a^m]=I\in\R^{(m+1)\times(m+1)}$. Therefore, the conjugate is 
 \begin{equation*}
-h(y) = \sup_{x\in\R^{m+1}_+,\;\sum_i x_i=1} \sum_i y_ix_i-\exp^*(x_i),
-\end{equation*}
-where we may restrict to $\R^{m+1}$ because the domain of $\exp^*$ is 
-$\R_+$. Taking the derivative returns $y=\log x$, i.e. $x=\exp^y$.
-Plugging this back in, 
-\begin{equation*}
-h(y) = \sum_i x_i\log x_i - x_i\log x_i + x_i = \sum_i \exp(y_i).
+1 + \log\left(\sum_{i=0}^m \exp y_i \right).
 \end{equation*}
 }
 \end{enumerate}
@@ -1573,25 +1570,85 @@ $(a)\Ra(b)$: By Exercise 16 part (b), since $K$ and $-K$ are closed
 convex cones, $(K\cap -K)^- = \cl(K^- - K^-)$ (note $(-K)^- = -K^-$).
 But $(K\cap -K)^- = (\{0\})^- = \E$, which proves $(a)\Ra(b)$.
 }
-\item $\cl (K^- - K^-) = \E$. \\
+\item \green{$\cl (K^- - K^-) = \E$.} \\
 \bluea{
+$(b)\Ra (c)$:
 If $C$ is convex and $\cl C=\E$, then $C=\E$. Applying this to the 
 convex set $K^- - K^-$ gives $(b)\Ra (c)$. The reason why 
-$\cl C=\E$ is, if $\{e_1,\ldots, e_n\}$ is a basis of $\E$, for any 
-$M>0$ and $\epsilon >0$,
+$\cl C=\E$ is, if $\{e_1,\ldots, e_n\}$ is an orthonormal
+ basis of $\E$, for any $M>0$ and $\epsilon >0$,
  $C$ contains vectors of the form $\{\pm Me_i + \eta_{i,\pm}\}_{i
-=1}^n$, where each $\|\eta_{i,\pm}|\leq \epsilon$. Therefore we 
-can assume that $M>n$ and
+=1}^n$, where each $\|\eta_{i,\pm}\|\leq \epsilon$. We can assume that 
+$\epsilon < M/2\sqrt{n}$. For arbitrary
+ $j\in \{1,\ldots, n\}$, consider the 
+set of vectors $\{a_{i,\pm}\}_{i=1}^n = 
+\{\pm Me_i + \eta_{i,\pm} - Me_j/2\}_{i=1}^n$. Take any 
+vector $v\in\E$. Since $\|v\|^2 = \sum_{i=1}^n (\ip{v, e_i})^2$, there 
+exists $i\in[n]$ such that $|\ip{v,e_i}| \geq \|v\|/\sqrt{n}$. Now, 
+\begin{align*}
+&v^\top(M\sgn(\ip{v,e_i})e_i + \eta_{i,\sgn(\ip{v,e_i})}- M/2 e_j )\\
+&\qquad\geq \frac{M|\ip{v, e_i}|}{2} - \|v\|\|\eta_{i,\sgn(\ip{v,e_i})}\|
+\geq \frac{M\|v\|}{2\sqrt{n}} - \frac{M\|v\|}{2\sqrt{n}} = 0.
+\end{align*}
+Therefore, there does not exist a solution to the system $\ip{v,
+a_{i,\sgn}} < 0$ for every $i\in[n],\sgn\in\{\pm\}$. Thus, by 
+Gordan's Theorem (Theorem 2.2.1), there exists a solution to the system 
 \begin{equation*}
-e_1 = Me_1 + \sum_{i=2}^n c_i e_i, \quad \|c_i\|\leq 
+\sum_{i=1,\sgn\in\{\pm\}}^n \lambda_{i,\sgn} a_{i,\sgn} = 0,\quad
+\sum_{i,\sgn}\lambda_{i,\sgn}=1,\quad \lambda_{i,\sgn}\geq 0.
 \end{equation*}
+In other words, $Me_j/2$ is in the convex hull of $\{\sgn Me_{i}
++ \eta_{i,\sgn}\}_{i\in[n],\sgn\in\{\pm\}}\subset C$.
+ $j$ and $M$ were arbitrary. Thus, any multiple of 
+any orthogonal basis vector is contained in $C$. This easily 
+implies that $C=\E$.\\
+\green{Is there a less black magicky way? XD}
 }
-\item $K^- - K^- =  \E$.
+\item $K^- - K^- =  \E$. \\
+\bluea{
+$(c)\Ra(d)$. We'll show $\aff K^- = \E$, which because $\relint K^-$ is 
+nonempty proves that $\inter K^- = \relint K^-$ is nonempty. \\
+$k^-_1 - k^-_2 = k^-_1 - k^-_2 + 0$, and $0\in K^-$. This proves 
+$\E = K^- - K^- \subset \aff K^-$, implying $\aff K^- = \E$.
+}
 \item $K^-$ has nonempty interior. (Here you may use the fact that 
-$K^-$ has nonempty relative interior--see Section 1.1, Exercise 13.)
+$K^-$ has nonempty relative interior--see Section 1.1, Exercise 13.) \\
+\bluea{
+$(d)\Ra (e)$: Let $k^-\in \inter K^-$. Then if $y=-k^-$, there exists 
+$\epsilon > 0$ such that for any $d\in\E$ and $x\in K$, 
+\begin{equation*}
+\ip{y - \epsilon d, x} \geq 0 \implies \ip{y, x}\geq \epsilon\ip{d,x}.
+\end{equation*}
+We can choose $d=x/\|x\|$ for nonzero $x$ to obtain the result. If 
+$x=0$ then the result automatically follows.
+}
 \item There exists a vector $y$ in $\E$ and real $\epsilon>0$ with 
-$\ip{y,x}\geq \epsilon\|x\|$ for all points $x\in K$.
-\item $K$ has a bounded base.
+$\ip{y,x}\geq \epsilon\|x\|$ for all points $x\in K$.\\
+\bluea{
+$(e)\Ra(f)$: Let $y$ be such that for some $\epsilon > 0$, 
+$\ip{y, x}\geq \epsilon\|x\|$ for all $x\in K$. Consider the set 
+$C=\{x\in K \mid \ip{y,x}\}=1$. This set is convex, because it is 
+the intersection of the convex sets $K$ and $\{x\mid \ip{y,x}=1\}$.
+It is a base, since $x\in K, x\neq 0$ implies $\ip{y,x} > 0$, 
+which implies $\ip{y,cx}=1$ for some $c\in\R_+$. Then $cx/c=x$.
+It is bounded, since $\ip{y,x} =1\geq \epsilon\|x\|$ implies 
+$\|x\|\leq 1/\epsilon$.
+}
+\item $K$ has a bounded base. \\
+\bluea{
+$(f)\Ra(a)$: Let $C$ be a base for $K$. Then, $-C$ is a base for 
+$-K$. Thus, $K\cap -K = \R_+ C \cap -\R_+ C$. Suppose $0\neq x \in 
+\R_+C \cap -\R_+C$. Then, for some $\mu,\lambda\in\R_+$, we have 
+$x=\mu c_1,c_1\in C$ and $x=\lambda c_2,\,c_2\in C$. $\mu,\lambda$ cannot
+equal 0 because $x\neq 0$. Thus, $x/\mu \in C$ and $-x/\lambda \in C$.
+Then 
+\begin{equation*}
+\frac{\mu}{\mu+\lambda}\frac{x}{\mu} + \frac{\lambda}{\mu+\lambda}
+\left(-\frac{x}{\lambda}\right) = 0 \in C,
+\end{equation*}
+contradicting the fact that $C$ is a base. Therefore, $K\cap K^- = 
+\{0\}$.
+}
 \end{enumerate}
 \textbf{21 ** (Order-subgradients).} This exercise uses the terminology 
 of Exercise 18, and we assume the cone $S\subset\Y$ is pointed: 
@@ -1604,15 +1661,82 @@ $D\subset\Y$ (written $y=\inf_S D$) if the conditions
 both hold. 
 \begin{enumerate}[(a)]
 \item Verify that this notion corresponds to the usual infimum when 
-$\Y=\R$ and $S=\R_+$.
-\item Prove every subset of $\Y$ has at most one $S$-infimum. 
+$\Y=\R$ and $S=\R_+$. \\
+\bluea{
+In this case, $D\subset y+S$ means $D\subset y+\R_+$, i.e. 
+$d\geq y$ for all $d\in D$. The condition $D\subset z+\R_+ \implies 
+y\subset z+\R_+$ means $z\leq d$ for all $d\in D$ implies 
+$z\leq y$. Put together, this means $y=\inf D$.
+}
+\item Prove every subset of $\Y$ has at most one $S$-infimum. \\
+\bluea{
+Suppose $y_1$ and $y_2$ are both $S$-infima of $D$. Then, by (i), 
+$D\subset y_1 + S$ and $D\subset y_2 + S$, so that by (ii), 
+$y_1-y_2\subset S$ and $y_2-y_1\subset S$. Since $S$ is pointed, 
+i.e. $S\cap -S=\{0\}$, this implies $y_1-y_2=0$, i.e. $y_1=y_2$.
+}
 \item Prove \textit{decreasing} sequences in $S$ converge:
 \begin{equation*}
 x_0\geq_S x_1\geq_S x_2\geq_S\ldots\geq_S 0
 \end{equation*}
 implies $\lim_n x_n$ exists and equals $\inf_S(x_n)$. (Hint: Prove 
 first that $S\cap (x_0-S)$ is compact using Section 1.1, Exercise 6 
-(Recession cones).)
+(Recession cones).) \\
+\bluea{
+We prove that $S=0^+(S)$. As a reminder, $0^+(S) = \{d\in\E: S+
+\R_+d\subset S\}$. If $d\in S$, then $S+\R_+d\subset S$ because convex 
+cones are closed under addition of nonnegative multiples. Thus, 
+$S\subset 0^+(S)$. If $d\in 0^+(S)$, then $\R_+d\subset S$ (add $\R_+d$
+to $0\in S$). In particular, $d\in S$. Thus, $0^+(S) \subset S$. \\
+Shifting by a constant does not change the recession cone; therefore,
+$0^+(x_0-S) = 0^+(-S) = -S$. Now we have $0^+(S)\cap 0^+(x_0-S) 
+= S\cap -S = \{0\}$. Therefore, by Section 1.1, Exercise 6 (c), 
+$0^+(S\cap (x_0-S)) = 0^+(S)\cap 0^+(x_0-S) = \{0\}$. By Section 1.1, 
+Exercise 6 (d), $S\cap (x_0-S)$ is bounded (for closed convex $C$, 
+$0^+(C)$ is nontrivial iff $C$ is unbounded) and closed since it is 
+the intersection of closed sets. Thus, it is compact. \\
+Observe that the sequence lies in $S\cap(x_0-S)$. By definition, 
+each $x_i \geq_S 0$, so $x_i \in S$. The transitive property 
+holds: $x_0 \geq_S x_i$, $x_i\geq_S x_j$ implies $x_0\geq_S x_j$, 
+since $x_0 - x_j = x_0-x_i + x_i-x_j\in S$. Thus, each $x_i$ satisfies
+$x_0 - x_i \in S \implies x_i \in x_0-S$. \\
+Thus, the sequence contains a convergent subsequence $(x_{j_k})_k$
+ with limit $x$. For any $x_i$ in the sequence, for all $k$ large enough, 
+$x_i - x_{j_k} \in S$. By closedness of $S$, $\lim_{k\to\infty} 
+x_i-x_{j_k} = x_i - x \in S$. We have proven that $x_i \geq_S x$ for 
+all $i\in\N$. Thus, $\{x_n\} \subset x+S$. If $\{x_n\}\subset z+S$, 
+then $x_{j_k} - z \in S$ for all $k\in\N$, implying $x-z\in S$, i.e. 
+$x\in S+z$. Therefore, $x=\inf_S(x_n)$. \\
+Now we show $\lim_n x_n = x$. \green{I am open to alternate solutions 
+for this part XD}. By Exercise 20 (e), there exists $a\in\E$,
+$\ve>0$ such 
+that for all $x\in S$, $\ip{a,x}\geq \ve\|x\|$. Now suppose $x,y\in S$
+and $x\neq 0$.
+\begin{equation*}
+\ip{a,x+y} = \ip{a,x} + \ip{a,y} \geq \ve(\|x\|+\|y\|).
+\end{equation*}
+Now since for any $v\in\E$, $\argmax_{x:\|x\|=\|v\|}\ip{x,v} = v$,
+\begin{equation*}
+\|x+y\|^2 \geq \frac{\|x+y\|}{\|a\|}\ip{a,x+y} \geq \frac{\|x+y\|}{\|a\|}
+\left(\ve\|x\|+\ve\|y\|\right).
+\end{equation*}
+Now $x+y\neq 0$, since otherwise $x\neq 0\in S\cap -S$. Thus, 
+\begin{equation}
+\label{trollS}
+\|x+y\| \geq \frac{\ve}{\|a\|}\|x\| \quad \forall x,y\in S,\; x\neq 0.
+\end{equation}
+Returning to showing $\lim_n x_n=x$, given $\epsilon > 0$, 
+$\|x_{j_k} - x\|\leq \frac{\ve \epsilon}{\|a\|}$ for all $k$ large enough.
+Consider $i$ greater than some $j_k$ with $k$ large enough. We 
+have $x_{j_k} \geq_S  x_i \geq_S x$. If $x_i = x$, then clearly 
+$\|x_i-x\|\leq \epsilon$. Otherwise, we can apply \eqref{trollS} 
+to $x_{j_k}-x_i\in S$ and $x_i-x\in S$:
+\begin{gather*}
+\|x_{j_k} -x_i +x_i-x\| \geq \frac{\ve}{\|a\|}\|x_i-x\|\\
+\implies \|x_i-x\|\leq \frac{\|a\|}{\ve}\|x_{j_k}-x\|
+\leq \epsilon.
+\end{gather*}
+}
 \end{enumerate}
 An $S$-subgradient of $F$ at a point $x$ in $C$ is a linear map 
 $T:\E\to\Y$ satisfying 
@@ -1627,28 +1751,554 @@ steps.
 \begin{equation*}
 \nabla_S F(x;h) = \inf_S\{t^{-1}(F(x+th)-F(x))\mid t>0, x+th\in C\}
 \end{equation*}
-exists and, as a function of $h$, is $S$-sublinear.
+exists and, as a function of $h$, is $S$-sublinear. \\
+\bluea{
+First we show the function $G:\R\to\Y,\; G(t) = F(x+th)-F(x)$ is
+$S$-convex. For $\lambda\in[0,1]$,
+\begin{align*}
+G(\lambda t+(1-\lambda)s) &= F(x+(\lambda t+(1-\lambda)s)h)-F(x) \\
+&\in \lambda F(x+th)+(1-\lambda)F(x+sh)-S-F(x) \\
+&= \lambda G(t) + (1-\lambda)G(s) - S.
+\end{align*}
+Therefore, $\lambda G(t) + (1-\lambda)G(s) - G(\lambda t+(1-\lambda)s)
+\in S$. Therefore, $G$ is $S$-convex.
+Consider $0<t<s$. Note $G(0) = 0$. By $S$-convexity,
+\begin{equation*}
+\frac{t}{s}G(s)=\frac{t}{s}G(s) +\frac{s-t}{s}G(0) \geq_S G(t).
+\end{equation*}
+Thus, $tG(s)/s - G(t) = s$ for some $s\in S$. Then $G(s)/s - G(t)/t 
+= s/t\in S$, using the fact that $S$ is a cone. Thus, $G(s)/s\geq_S
+G(t)/t$.\\
+ We can also show $G(\cdot)/\cdot$ is increasing for 
+$s<t<0$. $\frac{t}{s}G(s) \geq_S G(t)$ similarly,
+so $tG(s)/s - G(t) = s\in S$, so $G(t)/t - G(s)/s = -s/t\in S$ ($-1/t
+>0$ because $t<0$). \\
+Now we show if $s<0<t$, then $G(s)\leq_S G(t).$ For $0<\lambda < 1$ 
+equal to $\lambda = \frac{-s/2}{t-s}$, we have $\lambda s + (1-\lambda)t
+= \frac{s}{2}$. Thus, using the observable
+ facts $a\leq_S b+c\iff a-c\leq_S b$
+and $r>0\implies a\leq_S rb \iff a/r\leq_S b$,
+\begin{gather*}
+G(s/2) \leq_S \lambda G(t) + (1-\lambda)G(s) \\
+\lambda G(s/2) + (1-\lambda)(G(s/2)-G(s)) \leq_S \lambda G(t) \\
+G(s/2) \leq_S G(s/2) + \frac{1-\lambda}{\lambda}(G(s/2)-G(s)) \leq_S G(t),
+\end{gather*}
+using the fact that $G(s/2)\geq_S G(s)$. By the transitive property of 
+$\leq_S$, $G(s)\leq_S G(t)$. \\
+Since $x\in \core C$, $G(s)$ is defined for some $s<0$. Then, for any 
+$t>0,\; G(t) = t^{-1}(F(x+th)-F(x)) \geq_S G(s)$. \\
+Now any decreasing
+ sequence $t_n>0,\,t_n\to 0$ satisfies $G(t_0) \geq_S G(t_1) \geq_S
+\ldots \geq_S G(s)$. i.e., $G(t_0) - G(s) \geq_S \ldots \geq_S 0$.
+By part (c), $\inf_S G(t_n)$ exists and is the limit of the sequence,
+which we denote as $y$. Thus, $\lim_n G(t_n) = \lim(G(t_n)-G(s)) +G(s)
+= y+G(s) =: z$. Finally, we have $z=\inf_S\{G(t):x+th\in C,\,t>0\}$, 
+because (i) for any $t>0$, $G(t) \geq_S G(t_n) \geq_S z$ for 
+$n$ large enough, and $\{G(t)\} \subset z' + S$ implies 
+$\{G(t_n)\}\subset z'+S \implies z\subset z' +S$. Thus, 
+$z=\nabla_S F(x;h)$. \\
+Since for any sequence $t_n\downarrow 0$, $\lim G(t_n) = \nabla_S 
+F(x;h)$, by analysis, $\lim_{t\downarrow 0} G(t) = \nabla_S F(x; h)$.
+}
 \item For any $S$-subgradient $T\in\partial_SF(x)$ and direction $h\in
-\E$, prove $Th\leq_S \nabla_SF(x;h)$.
+\E$, prove $Th\leq_S \nabla_SF(x;h)$.\\
+\bluea{
+\begin{gather*}
+\forall t>0,\;Th = T(x+th-x)/t \leq_S \frac{F(x+th)-F(x)}{t}.
+\end{gather*}
+By definition of the $S$-infimum $\inf_S\{t^{-1}(F(x+th)-F(x))\mid t>0\}
+= \nabla_S F(x;h)$, we have $Th\leq_S \nabla_S F(x;h)$.
+}
 \item Given $h\in\E$, prove there exists $T\in\partial_SF(x)$ satisfying
 $Th=\nabla_SF(x;h)$. Deduce the max formula 
 \begin{equation*}
 \nabla_SF(x;h) = \max\{Th\mid T\in\partial_SF(x)\}
 \end{equation*}
 and, in particular, that $\partial_SF(x)$ is nonempty. (You should 
-interpret the "max" in the formula.)
+interpret the "max" in the formula.) \\
+\bluea{
+Notice that since $S=S^{--}$, i.e. if a point in $\Y$ has nonnegative 
+inner product with all of $-S^{-}$, then it is in $S$, 
+\begin{equation*}
+T(z-y)\leq_S F(z)-F(y) \iff \forall\phi\in-S^-,\; 
+\ip{\phi, T(z-y)}\leq \ip{\phi, F(z)-F(y)}.
+\end{equation*}
+\green{Okay I attempted to solve the problem by
+using this fact along with the fact that for 
+any $\phi\in-S^-$, $\ip{\phi, F(\cdot)}$ is convex, but I failed :(. 
+Instead here is translating each step of the original proof to 
+$S$-convexity.}\\
+Define a function $F:\E\to\Y$ as $S$-sublinear if for all $x,y\in\E$ 
+and $c,\mu\in\R_+,\; F(cx+\mu y)\leq_S cF(x) + \mu F(y)$. It can be 
+shown that $F$ is $S$-sublinear iff it is positively homogeneous:
+$F(cx) = cF(x)$, and $S$-subadditive: $F(x+y)\leq_S F(x)+F(y)$. \\
+We show that $\nabla_S F(x;\cdot)$ is sublinear. Given $h,k\in\E$,
+\begin{equation*}
+\frac{F(x+t(h+k)/2)-F(x)}{t/2}\leq_S \frac{F(x+th)-F(x)}{t} + 
+\frac{F(x+tk)-F(x)}{t}.
+\end{equation*}
+Taking $t\to0$ shows that $\nabla_S F(x;h+k)\leq_S \nabla_S F(x; h)
++ F(x; k)$. Furthermore, 
+\begin{equation*}
+\nabla_S F(x; ch) = \lim_{t\downarrow 0}\frac{F(x+tch)-F(x)}{t}
+= c\lim_{t\downarrow0}\frac{F(x+tch)-F(x)}{tc} = c\nabla_S F(x;h).
+\end{equation*}
+Thus, $\nabla_S F(x;\cdot)$ is $S$-sublinear. \\
+Now we show that given an $S$-sublinear $G$, the function $P(\cdot) = 
+G(h;\cdot)$ satisfies $P(h) = G(h)$ and $\lin P \supset \lin G + 
+\spn\{h\}$. Furthermore, $P\leq G$. \\
+$P(h) = \lim_{t\downarrow0} \frac{G(h+th)-G(h)}{t} = \lim_t
+\frac{(1+t)G(h) - G(h)}{t} = G(h)$. $P(-h) = \lim_{t\downarrow0}
+\frac{G(h-th)-G(h)}{t} = \lim_t \frac{(1-t)G(h)-G(h)}{t} = -G(h)$. 
+Coupled with the fact that $P$ is positively homogenous, this proves 
+$\spn\{h\}\subset \lin P$. 
+$P(x)\leq_S \lim_{t\downarrow0} \frac{G(h+tx)-G(h)}{t} \leq_S G(x)$,
+so $P\leq_S G$.
+Now if $y\in\lin G$, then 
+$P(-y) \leq_S G(-y) = -G(y)$. Further, $P(-y) \geq_S -P(y)\geq_S -G(y)$,
+so that $P(-y) = -G(y) = G(-y) = -P(y)$. Thus, 
+$\lin G\subset\lin P$. Since $\lin P$ is linear ($P(x+y)\leq_S P(x)+P(y)$,
+$-P(x+y)\leq_S P(-x-y) \leq_S -P(x)-P(y)$ implies $P(x+y)=P(x)+P(y)$), 
+$\lin G+\spn\{h\}\subset \lin P$. \\
+The proof of the max formula closely follows the case for normal 
+convexity. Define $p_0(\cdot) = \nabla_S F(x;\cdot)$ and the basis 
+$\{v_1=h, v_2,\ldots, v_n\}$ of $\E$. If $h=0$, then any subgradient $T$ 
+satisfies $Th = \nabla_s F(x;h) = 0$. We'll show a subgradient exists 
+by consider $h\neq 0$. Define $p_{i}(\cdot) = p_{i-1}(v_{i-1}; \cdot)$ for 
+every $i=1,\ldots, n$. Note $p_0,\ldots, p_n$ are all sublinear. 
+We have $\lin p_n = \E$, so that $p_n(\cdot) = T\cdot$ for some 
+$T:\E\to\Y$. For any $z\in C$,
+\begin{equation*}
+T(z-x)\leq_S p_{n-1}(z-x) \leq_S \ldots \leq_S p_0(z-x) =
+\nabla_S F(x;z-x) \leq_S F(z)-F(x).
+\end{equation*}
+Thus, $T$ is an $S$-subgradient. Finally, we have 
+\begin{gather*}
+-Th = T(-h) \leq_S p_{n-1}(-h) \leq_S \ldots \leq_S p_1(-h)
+= -p_1(h) = -p_0(h) = -\nabla_S F(x;h).
+\end{gather*}
+Thus, $Th = \nabla_S F(x;h)$. This proves 
+\begin{equation*}
+\nabla_S F(x;h) =\max_{T\in\partial_S F(x)} Th,
+\end{equation*}
+where the $\max$ means that $Th\geq_S T'h$ for all $T'\in\partial_S
+F(x)$.
+}
 \item The function $F$ is \textit{Gateaux differentiable} at $x$ 
 (with derivative the linear map $\nabla F(x):\E\to\Y)$ if 
 \begin{equation*}
 \lim_{t\to0}t^{-1}(F(x+th)-F(x)) = (\nabla F(x))h
 \end{equation*}
 holds for all $h\in\E$. Prove this is the case if and only if 
-$\partial_SF(x)$ is a singleton.
+$\partial_SF(x)$ is a singleton. \\
+\bluea{
+If $\partial_SF(x) = \{T\}$, then the max formula shows that 
+$\nabla_S F(x;h)=Th$ for all $h\in \E$. Thus, $Th = \nabla_S F(x;h)$.\\
+Conversely, if $T$ is the gradient, then if $A$ is an $S$-subgradient, 
+\begin{equation*}
+\forall h\in\E,\,Ah \leq_S \nabla_S F(x;h) = Th \implies
+\forall h\in\E,\, (T-A)h\in S.
+\end{equation*}
+$(T-A)\E$ is a linear subspace that is a subset of $S$. Therefore, it 
+equals 0. Thus, $T=A$, i.e. the only subgradient is $T$.
+}
 \end{enumerate}
 Now fix an element $\phi$ of $-\inter(S^-)$.
 \begin{enumerate}[(a),resume]
-\item Prove $\ip{\phi, F(\cdot)}'(x;h) = \ip{\phi,\nabla_SF(x;h)}.$
-\item PRove $F$ is Gateaux differentiable at $x$ if and only if
-$\ip{\phi, F(\cdot)}$ is likewise.
+\item Prove $\ip{\phi, F(\cdot)}'(x;h) = \ip{\phi,\nabla_SF(x;h)}.$\\
+\bluea{
+\begin{equation*}
+\lim_{t\downarrow0}\frac{\ip{\phi, F(x+th)-F(x)}}{t} = 
+\ip{\phi,\lim_{t\downarrow0}\frac{F(x+th)-F(x)}{t}}
+= \ip{\phi, \nabla_SF(x;h)}.
+\end{equation*}
+}
+\item Prove $F$ is Gateaux differentiable at $x$ if and only if
+$\ip{\phi, F(\cdot)}$ is likewise. \\
+\bluea{
+If $F$ is Gateaux differentiable at $x$, then 
+\begin{equation*}
+\forall h\in\E,\; \ip{\phi, F(\cdot)}'(x;h) = \ip{\phi, \nabla_SF(x;h)}
+= \ip{\phi, \nabla F(x) h} = \ip{\nabla F(x)^*\phi, h}.
+\end{equation*}
+Therefore, $(\nabla F(x))^*\phi = \nabla \ip{\phi, F(\cdot)}(x)$.
+On the other hand, if $\ip{\phi, F(\cdot)}$ is differentiable at $x$,
+then there exists a $\psi\in\E$ such that $\ip{\phi, F(\cdot)}'(x;h)
+= \ip{\psi, h}$. Moreover, $\partial\ip{\phi, F(\cdot)}(x) = \{\psi\}$
+(See Exercise 18 (c) for the fact that $\ip{\phi, F(\cdot)}$ is convex
+whenever $\phi\in-S^-$). Now $\phi\in-\inter(S^-)$ implies there exists 
+$\epsilon>0$ such that for all $d\in\E,\; \|d\|\leq 1$,
+ $\phi+\epsilon d\in-S^-$.
+Consider $\phi+\epsilon d$ and $\phi-\epsilon d$. By convexity of 
+$\ip{\phi\pm\epsilon d, F(\cdot)}$, there exist subgradients 
+$\psi_1,\psi_2$ such that 
+\begin{align*}
+\ip{\psi_1, z-x} & \leq \ip{\phi+\epsilon d, F(z)-F(x)}\\
+\ip{\psi_2, z-x} & \leq \ip{\phi-\epsilon d, F(z)-f(x)}.
+\end{align*}
+Notice that by adding these, $\frac{\psi_1+\psi_2}{2}$ is a subgradient
+for $\ip{\phi, F(\cdot)}$. But the subgradient of $\ip{\phi, F(\cdot)}$
+is a singleton. Therefore, the subgradients of $\ip{\phi\pm\epsilon d,
+F(\cdot)}$ are also singletons, i.e. these functions are differentiable. 
+WLOG, an element of $\phi+\epsilon B$ can be expressed as $\phi+\epsilon
+d$ for some $\|d\|\leq 1$. Thus, all the functions defined by the ball
+are differentiable. \\
+Choose a basis of $\Y$ from the ball, $\{\phi_1,\ldots,\phi_m\}$. 
+We have $\{\psi_1,\ldots, \psi_m\}$ as the gradients 
+$\{\nabla \ip{\phi_1, F(\cdot)}(x), \ldots, \nabla 
+\ip{\phi_m, F(\cdot)}(x)\}$. For any $\phi = \sum_{i=1}^n c_i\phi_i\in
+\Y$, 
+\begin{equation*}
+\nabla\ip{\phi, F(\cdot)}(x) = \nabla\sum_{i=1}^m c_i\ip{\phi_i, 
+F(\cdot)}(x) = \sum_{i=1}^m c_i\nabla \ip{\phi_i, F(\cdot)}(x)
+=\sum_{i=1}^m c_i\psi_i.
+\end{equation*}
+So, if we define the 
+linear map
+$A:\Y\to\E$ by mapping the basis $\{\phi_1,\ldots,\phi_m\}$ to 
+$\{\psi_1,\ldots,\psi_m\}$, 
+\begin{gather*}
+\ip{\phi, A^*(z-x}) = \ip{A\phi, z-x} = \ip{\sum_i c_i\psi_i, z-x}
+= \ip{\phi, F(\cdot)}'(x;z-x) = \ip{\phi, \nabla_S F(x;z-x)}.
+\end{gather*}
+Since $\phi$ was arbitrary, $A^*(z-x) = \nabla_S F(x;z-x)$ for all 
+$z\in  C$. Thus, $A^*=\nabla F(x)$.
+}
+\end{enumerate}
+\textbf{22 ** (Linearly constrained examples).} Prove Corollary 3.3.11 
+(Fenchel duality for linear constraints). Deduce duality theorems for the 
+following problems. 
+\bluea{
+\begin{proof}
+\begin{align*}
+&\inf_{x\in\E}\{f(x) \mid Ax=b\} = 
+\inf_{x\in\E}\{f(x) + \delta_{\{b\}}(Ax)\} \\
+&\quad \geq \sup_{\phi\in\Y} \{-f^*(A^*\phi)-\delta_{\{b\}}^*(-\phi)\}
+= \sup_{\phi\in\Y}\{ \ip{\phi, b} - f^*(A^*\phi)\}.
+\end{align*}
+By Fenchel duality (Theorem 3.3.5 \eqref{3.3.5}), we have the above,
+and equality if $0\in\core(\{b\}-A\dom f)$, i.e. $b\in\core(A\dom f)$,
+where the $\sup$ is attained if finite.
+\end{proof}}
+\begin{enumerate}[(a)]
+\item \textbf{Separable problems} 
+\begin{equation*}
+\inf\left\{\sum_{i=1}^n p(x_i)\,\bigg|\,Ax=b\right\},
+\end{equation*}
+where the map $A:\R^n\to\R^m$ is linear, $b\in\R^m$, and the function 
+$p:\R\to(-\infty,+\infty]$ is convex, defined as follows:
+\begin{enumerate}[(i)]
+\item \textbf{(Nearest points in polyhedrons).} $p(t)=t^2/2$ with domain
+$\R_+$. 
+\bluea{
+\begin{equation*}
+\inf_{x\in\R_+^n}\left\{\frac{\|x\|^2}{2}\,\bigg|\, Ax=b\right\}
+\geq \sup_{y\in\R^m}\left\{\ip{b, y} - \frac{\|(A^\top y)^+\|^2}{2}
+\right\}
+\end{equation*}
+We used Exercise 1, 6.: $(\frac{|x|^2}{2}, \R_+)\lra (\frac{|y^+|^2}{2},
+\R)$. Equality occurs if $b\in\core(A\R_+^n)$. Also, 
+\begin{equation*}
+\left(\sum_i p(x_i)\right)^*(\phi) = \sup_{x\in\R^n}
+\sum_i (\phi_i x_i - p(x_i)) = \sum_i p^*(\phi_i).
+\end{equation*}
+}
+\item \textbf{(Analytic center).} $p(t) =-\log t$ with domain $\R_{++}$.
+\bluea{
+\begin{equation*}
+\inf_{x\in\R_{++}^n}\left\{\sum_{i=1}^n -\log x_i\,\bigg|\, Ax=b\right\}
+\geq\sup_{y\in-(A^\top)^{-1}\R_{++}^n}
+\left\{\ip{b,y}+1+\sum_{i=1}^n \log(-(A^\top y)_i)\right\}.
+\end{equation*}
+Equality occurs if $b\in\core(A\R_{++})$. We used $(-\log)^*(s)
+= \sup_{t>0} st + \log t,\; t=-1/s \implies (-\log)^*(s) = 
+-1 -\log(-s)$ with domain $-\R_{++}$.
+}
+\item \textbf{(Maximum entropy).} $p=\exp^*$. 
+\bluea{
+\begin{equation*}
+\inf_{x\in\R^n}\left\{\sum_{i=1}^n \exp^*(x_i)\,\bigg|\,Ax=b\right\}
+\geq \sup_{y\in\R^m}\left\{\ip{b,y} - \sum_{i=1}^n \exp( (A^\top y)_i)
+\right\}.
+\end{equation*}
+Equality is obtained if $b\in\core(A\R_{+}^n)$.
+}
+\end{enumerate}
+What happens if the objective function is replaced by $\sum_i p_i(x_i)$?
+\item The \textbf{BFGS update} problem in Section 2.1, Exercise 13. 
+\bluea{
+\begin{equation*}
+\inf_{X\in\S_{++}^n}\left\{\ip{C,X} - \log\det X\,\bigg|\, Xs=y\right\}
+\geq \sup_{z\in(s^*)^{-1}(C-\S_{++}^n)}\left\{\ip{y,z} + n + \log\det(
+C - \frac{1}{2}(zs^\top + sz^\top))\right\}.
+\end{equation*}
+Equality occurs if $y\in\core(\S_{++}^n s)$.
+To compute $\sup_{X\in\S_{++}} \ip{D-C,X} + \log\det X$, 
+set $D-C + X^{-1} = 0$, i.e. $X=(C-D)^{-1}$. We get the function 
+$-n - \log\det(C-D)$, with domain $C-\S_{++}^n$. Further, recall
+that $\ip{z, Xs} = \ip{\frac{1}{2}(zs^\top+sz^\top), X}$, so that 
+$(\cdot s)^*(z) = \frac{1}{2}(zs^\top+sz^\top)$.
+}
+\item The \textbf{DAD problem} in Section 3.1, Exercise 28. \\
+\bluea{
+Define $G\in\R^{2k\times Z}$ ($Z$ is the set of $(i,j)$ where $A$ is 
+nonzero) by setting $G_{i, (i,j)} = G_{j, (i,j)} = 1$ for all 
+$(i,j)\in Z$ and the rest of the entries to 0. Then, the DAD problem 
+can be expressed as 
+\begin{equation*}
+\inf_{x\in\R^Z} \left\{
+\sum_{(i,j)\in Z} (\exp^*(x_{ij}) - x_{ij}\log A_{ij}) \,\bigg|\,
+Gx = \vec 1\right\} \geq 
+\sup_{y\in\R^{2k}}\left\{\ip{y,\vec 1} - \sum_{(i,j)\in Z}
+A_{ij}\exp(y_i+y_j)\right\}.
+\end{equation*}
+Equality occurs if $\vec 1\in G\R_+^Z$.
+$\sup_{x} yx - \exp^*(x) + x_{ij}\log A_{ij}$ is obtained from
+$y-\log x + \log A_{ij} = 0 \implies x = \exp(y+\log A_{ij})$.
+}
+\item Example (3.3.1). \\
+\bluea{
+Denote $A=[a^0\,a^1\,\ldots\,a^m]$.
+\begin{equation*}
+\inf_{x\in\R^{m+1}}\left\{\sum_{i=0}^m \exp^*(x_i)\,\bigg|\,\sum_i x_i=1,
+\; Ax = z\right\} \geq \sup_{y\in\R^{n+1}}\left\{[1\,z^\top] y
+- \sum_{i=0}^m \exp([\vec 1\; A^\top]y)_i\right\}.
+\end{equation*}
+Equality occurs if $\begin{bmatrix} 1 \\ z\end{bmatrix}\in\core(
+\begin{bmatrix} \vec 1^\top \\ A \end{bmatrix} \R_+^{m+1})$.
+}
+\end{enumerate}
+\noindent
+\textbf{23 * (Linear inequalities).} What does Corollary 3.3.11 (Fenchel
+duality for linear constraints) \eqref{3.3.11} become if we replace the 
+constraint $Ax=b$ by $Ax\in b+K$ where $K\subset\Y$ is a convex cone? 
+Write down the dual problem for Section 3.2, Exercise 2, part (a), solve 
+it, and verify the duality theorem.
+\bluea{
+\begin{proof}
+First we compute $\delta^*_{b+K}$. 
+\begin{equation*}
+\delta^*_{b+K}(y) = \sup_{x\in b+K} \ip{x,y} = \ip{b,y} + \delta_{K^-}(y).
+\end{equation*}
+If $y\notin K^-$, then exists $k\in K$ where $\ip{k,y}>0$, and so 
+$\ip{b+ck,y} \to+\infty$ as $c\to+\infty$, giving $\delta^*_{b+K}(y) =
++\infty$. Otherwise, $\ip{b+k,y} \leq \ip{b,y}$ with equality at 
+$k=0\in K$. Therefore, the duality theorem becomes 
+\begin{equation*}
+\inf_{x\in\E}\{f(x)\mid Ax\in b+K\} \geq
+\sup_{\phi\in\Y} \{-\delta_{b+K}^*(-\phi) - f^*(A^*\phi)\}
+= \sup_{\phi\in\Y}\{\ip{b,\phi} - f^*(A^*\phi) \mid \phi\in -K^-\}
+\end{equation*}
+with equality if $0\in\core(b+K - A\dom f)$, i.e. $b\in\core(A\dom f-K)$.
+\\
+Section 3.2 Exercise 2 part (a) features the problem 
+\begin{equation*}
+\begin{aligned}
+&\inf && x_1^2 + x_2^2 - 6x_1 - 2x_2 + 10 \\
+&\text{subject to} && 2x_1 + x_2-2\leq 0 \\
+&&& x_2-1\leq 0 \\
+&&& x\in\R^2.
+\end{aligned}
+\end{equation*}
+The optimal solution found in that exercise was $\bar x = (1,0)$ with 
+value 5. Let us compute the dual, first by computing the conjugate 
+of the objective. As a shortcut, we subtract the gradient of the 
+objective from an arbitrary $y\in\R^2$:
+\begin{gather*}
+\begin{bmatrix}y_1\\y_2\end{bmatrix} 
+- \begin{bmatrix} 2x_1 -6 \\ 2x_2-2\end{bmatrix} = 0
+\implies \begin{bmatrix} x_1 \\ x_2\end{bmatrix} 
+= \begin{bmatrix} \frac{y_1}{2}+3 \\ \frac{y_2}{2}+1\end{bmatrix}.
+\end{gather*}
+Thus the conjugate of the objective is 
+\begin{align*}
+g(y)&=\ip{y,x} - x_1^2 - x_2^2 + 6x_1 + 2x_2 - 10 \\
+&= \frac{y_1^2+y_2^2}{2} + 3y_1 + y_2 - (\frac{y_1}{2}+3)^2
+-(\frac{y_2}{2}+1)^2 + 3y_1+18 +y_2 + 2 - 10  \\
+&= \frac{y_1^2 + y_2^2}{4} + 3y_1 + y_2 + 10 - 10 
+= \frac{y_1^2 + y_2^2}{4} + 3y_1 + y_2.
+\end{align*}
+The problem constraints may be formulated as 
+\begin{equation*}
+\begin{bmatrix} 2 & 1 \\ 0 & 1 \end{bmatrix} x = Ax \leq 
+\begin{bmatrix}2 \\ 1\end{bmatrix}=b, \quad \text{ i.e. }\quad
+Ax \in b - \R_+^2.
+\end{equation*}
+We can now write the dual: 
+\begin{align*}
+&\sup_{\phi\in\R^2}\{\ip{b,\phi} - g(A^\top \phi) : \phi\in-(-\R_+^2)^-
+= - \R_+^2 \}\\
+&\quad = \sup_{\phi\in-\R_+^2}\left\{2\phi_1+\phi_2 - \phi_1^2 
+- \frac{(\phi_1+\phi_2)^2}{4} - 6\phi_1 - \phi_1 - \phi_2 \right\} \\
+&\quad = \sup_{\phi\in- \R_+^2}\left\{-\phi_1^2 - \frac{(\phi_1+\phi_2)^2
+}{4} - 5\phi_1 \right\} = -\inf_{\phi\in-\R_+^2}\left\{\phi_1^2 
++ \frac{(\phi_1+\phi_2)^2}{4} + 5\phi_1\right\}.
+\end{align*}
+We can look for a Lagrange multiplier vector (the constraints are 
+$\phi_1\leq 0,\;\phi_2\leq 0$). The gradient of the Lagrangian is 
+\begin{equation}
+\label{laggy}
+\begin{bmatrix} \frac{5\phi_1}{2} + \frac{\phi_2}{2} + 5 +\lambda_1 \\
+\frac{\phi_1+\phi_2}{2} +\lambda_2 \end{bmatrix} = 0.
+\end{equation}
+If $\lambda_2=0$, then $\phi_1+\phi_2=0$, which by feasibility 
+implies $\phi_1=\phi_2=0$, implying $\lambda_1 =-5$, a contradiction.
+Therefore, $\phi_2=0$. Set $\lambda_1=0$. \eqref{laggy} becomes 
+\begin{equation*}
+\begin{bmatrix} \frac{5\phi_1}{2} + 5 \\ \frac{\phi_1}{2} + \lambda_2
+\end{bmatrix} = 0 \implies \phi_1=-2,\; \lambda_2 = 1.
+\end{equation*}
+The feasible solution $\phi=(-2,0)$ has the Lagrange multiplier
+vector $\lambda = (0, 1)$. The optimal value is 
+\begin{equation*}
+-\left((-2)^2 + \frac{(-2)^2}{4} - 10\right) = 5,
+\end{equation*}
+which matches the optimal value of the original problem.
+\end{proof}}
+\noindent
+\textbf{24 (Symmetric Fenchel duality).} For functions $f,g:\E\to[-\infty,
++\infty]$, define the \textit{concave conjugate} $g_*:\E\to[-\infty,
++\infty]$ by 
+\begin{equation*}
+g_*(\phi)=\inf_{x\in\E}\{\ip{\phi,x}-g(x)\}.
+\end{equation*}
+Prove 
+\begin{equation*}
+\inf(f-g)\geq \sup(g_*-f^*),
+\end{equation*}
+with equality if $f$ is convex, $g$ is concave, and 
+\begin{equation*}
+0\in\core(\dom f-\dom(-g)).
+\end{equation*}
+\bluea{
+\begin{proof}
+By Theorem 3.3.5 (Fenchel Duality, \eqref{3.3.5}), 
+\begin{align*}
+\inf_{x\in\E}\{ f(x) - g(x)\} \geq \sup_{\phi\in \E} \{-f^*(\phi)
+- (-g)^*(-\phi)\}
+\end{align*}
+with equality if $f$ is convex, $g$ is concave, 
+and $0\in\core(\dom(-g)-\dom f)$. We have 
+\begin{align*}
+-(-g)^*(-\phi) &= -\sup_{x\in\E}\{ -\ip{\phi, x} + g(x)  \}
+= \inf_{x\in\E}\{ \ip{\phi, x} - g(x)\} = g_*(\phi).
+\end{align*}
+Therefore, we have 
+\begin{equation*}
+\inf_{x\in\E}\{f(x)-g(x)\} \geq \sup_{\phi\in\E}\{g_*(\phi)-f^*(\phi)\}
+\end{equation*}
+with equality if $f$ is convex, $g$ is concave, and $0\in\core(\dom(-g)
+- \dom f)$.
+\end{proof}
+}
+\noindent
+\textbf{25 ** (Divergence bounds [135]).} 
+\begin{enumerate}[(a)]
+\item Prove the function 
+\begin{equation*}
+t\in\R\mapsto 2(2+t)(\exp^*t+1)-3(t-1)^2
+\end{equation*}
+is convex and minimized when $t=1$.  \\
+\bluea{
+For $t>0$, the derivative is 
+\begin{equation*}
+2(\exp^* t + 1)+ 2(2+t)\log t - 6(t-1).
+\end{equation*}
+The second derivative is 
+\begin{equation*}
+2\log t + 2\log t + \frac{2(2+t)}{t} - 6 = 4\log t + \frac{4}{t} -4.
+\end{equation*}
+The only critical point of $4\log t + \frac{4}{t} - 4$ is, 
+taking the derivative again which equals $\frac{4}{t}-\frac{4}{t^2}
+= (4/t)(1-1/t)$, $t=1$. At this point, the function equals 0. 
+Clearly, the function goes to $+\infty$ as $t\to+\infty$, and 
+in fact also as $t\to 0$ since the derivative goes to $-\infty$.
+If it dropped below 0, it would equal 0 again, leading to another 
+critical point. Therefore, $4\log t + \frac{4}{t} -4 \geq 0$ for all 
+$t>0$, proving that $2(2+t)(\exp^*t+1)-3(t-1)^2$ is convex (use 
+continuity to conclude for $t=0$). Also, the derivative equals 0 at $t=1$.
+}
+\item For $v\in\R_{++}$ and $u\in\R_+$, deduce the inequality 
+\begin{equation*}
+3(u-v)^2 \leq 2(u+2v)\left(u\log\left(\frac{u}{v}\right)-u+v\right).
+\end{equation*}
+\\
+\bluea{
+The minimum of the function at $t=1$ equals 0; thus the function 
+is nonnegative. Plugging in $t=u/v$, we obtain: 
+\begin{equation*}
+2(2+\frac{u}{v})\left(\frac{u}{v}\log\left(\frac{u}{v}\right) -\frac{u}{v}
++ 1\right) - 3\left(\frac{u}{v}-1\right)^2 \geq 0.
+\end{equation*}
+Moving the squared term to the other side and multiplying both sides 
+by $v^2$ gives the desired inequality.
+}\\
+Now suppose the vector $p\in\R_{++}^n$ satisfies $\sum_{i=1}^n p_i=1$. 
+\item If the vector $q\in\R_{++}^n$ satisfies $\sum_{i=1}^n q_i = 1$, 
+use the Cauchy-Schwarz inequality to prove the inequality 
+\begin{equation*}
+\left(\sum_{i=1}^n |p_i-q_i|\right)^2 \leq 3\sum_{i=1}^n \frac{(p_i-q_i)^2
+}{p_i+2q_i},
+\end{equation*}
+and deduce the inequality 
+\begin{equation*}
+\sum_{i=1}^n p_i\log\left(\frac{p_i}{q_i}\right)\geq \frac{1}{2}
+\left(\sum_{i=1}^n |p_i-q_i|\right)^2.
+\end{equation*}
+\bluea{
+Define $u\in\R_+^n$ and $v\in\R_{++}^n$ by 
+$u_i = \frac{|p_i-q_i|}{\sqrt{p_i+2q_i}}$ and $v_i = \sqrt{p_i+2q_i}$.
+We obtain 
+\begin{equation*}
+\left(\sum_{i=1}^n |p_i-q_i|\right)^2 = (u^\top v)^2 
+\leq \|v\|^2 \|u\|^2 = \left(\sum_{i=1}^n p_i+2q_i\right)
+\left(\sum_{i=1}^n \frac{(p_i-q_i)^2}{p_i+2q_i}\right).
+\end{equation*}
+Then we note that $\sum_{i=1}^n p_i + 2\sum_{i=1}^n q_i = 3$ since 
+$p$ and $q$ both sum to 1. Now using part (b) with $u=p_i, v=q_i$,
+\begin{align*}
+\left(\sum_{i=1}^n |p_i-q_i|^2\right) &\leq 3\sum_{i=1}^n\frac{(p_i-q_i)^2
+}{p_i+2q_i} \leq 2\sum_{i=1}^n \frac{p_i+2q_i}{p_i+2q_i}\left(p_i
+\log\left(\frac{p_i}{q_i}\right) - p_i+q_i\right) \\
+&= 2\sum_{i=1}^n\log\left(\frac{p_i}{q_i}\right) - \sum_{i=1}^n p_i-q_i
+= 2\sum_{i=1}^n \log\left(\frac{p_i}{q_i}\right),
+\end{align*}
+using the fact that $\sum_i p_i=\sum_i q_i=1$. Divide by 2 on both 
+sides to get the desired result. \green{I believe this is Pinsker's 
+inequality, wow, what a completely obtuse way of deriving it!}
+}
+\item Hence show the inequality 
+\begin{equation*}
+\log n + \sum_{i=1}^n p_i\log p_i\geq \frac{1}{2}\left(\sum_{i=1}^n 
+\left|p_i-\frac{1}{n}\right|\right)^2.
+\end{equation*}
+\bluea{
+\begin{equation*}
+\frac{1}{2}\left(\sum_{i=1}^n\left|p_i-\frac{1}{n}\right|\right)^2 
+\leq \sum_{i=1}^n p_i\log\left(\frac{p_i}{1/n}\right)
+= \sum_{i=1}^n p_i(\log p_i + \log n) = \sum_{i=1}^n p_i\log p_i 
++ \log n.
+\end{equation*}
+}
+\item Use convexity to prove the inequality 
+\begin{equation*}
+\sum_{i=1}^n p_i\log p_i \leq \log \sum_{i=1}^n p_i^2.
+\end{equation*}
+\bluea{
+This is immediate from the concavity of $\log$.}
+\item Deduce the bound 
+\begin{equation*}
+\log n + \sum_{i=1}^n p_i\log p_i \leq \frac{\max p_i}{\min p_i}-1.
+\end{equation*} 
+\bluea{
+\begin{align*}
+\log n + \sum_{i=1}^n p_i\log p_i &\leq \log n + \log \sum_{i=1}^n p_i^2
+= \log \sum_{i=1}^n p_i \frac{p_i}{1/n} \\
+&\leq \log\sum_{i=1}^n p_i \frac{\max_i p_i}{\min_i p_i}
+= \log\frac{\max_i p_i}{\min_i p_i}\leq \frac{\max_i p_i}{\min_i p_i}
+-1.
+\end{align*}
+\green{I found deducing this pretty tricky actually.}
+}
 \end{enumerate}
 \end{document}
