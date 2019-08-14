@@ -118,10 +118,10 @@ f(\delta x + (1-\delta)u) \leq \delta f(x) + (1-\delta)f(u)\\
 Since $f$ is finite and continuous at $y$, by part (a), $g$, 
 being minorized by $f$, is finite and continuous at $y$. Because 
 the product and addition of functions continuous at a point is continuous
-at that point, $h(x) := \delta g(x) + \frac{1-\delta}{\delta}f(u) 
+at that point, $h(x) := \delta g(x) + (1-\delta)f(u) 
 = f(\delta x + (1-\delta)u)$ is continuous at $y$. Notice that 
-$h(\frac{x - (1-\delta)}{\delta}) = f(x)$. Since $h$ is continuous 
-at $y$ and $\frac{\cdot - (1-\delta)}{\delta}$ is continuous everywhere,
+$h(\frac{x - (1-\delta)u}{\delta}) = f(x)$. Since $h$ is continuous 
+at $y$ and $\frac{\cdot - (1-\delta)u}{\delta}$ is continuous everywhere,
 in particular at $z$ where it evaluates to $y$, $f$ is continuous 
 at $z$. \\
 \green{This is a really interesting technique; I think one can 
@@ -168,7 +168,7 @@ f^*(\phi) = \sup_{x\in\E} \ip{\phi, x}-f(x) \geq
 Since the RHS goes to infinity as $\|\phi\|$ does, $f^*$ has bounded 
 level sets. \\
 Now recall that $\ld(X) = -\log\det(X)$ if $X\in\S_{++}^n$ and 
-$+\infty$ otherwise. Furthermore, $\ld^{**}(X) = -n+\ld(-X)$. 
+$+\infty$ otherwise. Furthermore, $\ld^{*}(X) = -n+\ld(-X)$. 
 Furthermore, for any $f$, $(\ip{c,x} + f(x))^*(\phi) = f^*(\phi - c)$.
 Thus, $(\ip{C,X} + \ld(X))^*(D) = -n+\ld(C-D)$. Since for a constant 
 $c\in\R,\; (f+c)^* = f^* - c$, and $(f(ax))^*(\phi) = f^*(\frac{\phi}{a})$ 
