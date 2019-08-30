@@ -1,0 +1,1796 @@
+\documentclass[../borwein-lewis_notes.tex]{subfiles}
+\begin{document}
+\maketitle
+\subsection{4.2 Fenchel Biconjugation}
+\begin{itemize}
+\item We say the function $h:\E\to[-\infty,+\infty]$ is \textit{closed}
+if its epigraph is a closed set. 
+\item We say $h$ is \textit{lower semicontinuous} at a point $x\in\E$ 
+if 
+\begin{equation*}
+\lim\inf h(x^r) \left(=\lim_{s\to\infty}\inf_{r\geq s}h(x^r)\right)
+\geq h(x)
+\end{equation*}
+for any sequence $x^r \to x$. A function $h:\E\to[-\infty,+\infty]$ 
+is \textit{lower semicontinuous} if it is lsc at every point in 
+$\E$. This is equivalent to $h$ being closed, which is equivalent to 
+$h$ having closed level sets.
+\item Any functions $h$ and $g$ satisfying $h\leq g$ (we call $h$ 
+a \textit{minorant} of $g$) must satisfy $h^*\geq g^*$, and 
+hence $h^{**}\leq g^{**}$.
+\end{itemize}
+\begin{theorem}[4.2.1 (Fenchel biconjugation)]
+The three properties below are equivalent for any function $h:E\to
+(-\infty, +\infty]$: 
+\label{4.2.1}
+\begin{enumerate}[(i)]
+\item $h$ is closed and convex.
+\item $h=h^{**}$.
+\item For all points $x\in\E$, 
+\begin{equation*}
+h(x) = \sup\{\alpha(x)\mid \alpha \text{ an affine minorant of } h\}.
+\end{equation*}
+\end{enumerate}
+Hence the conjugacy operation induces a bijection between proper
+closed convex functions.
+\end{theorem}
+\begin{corollary}[4.2.3 (Support functions)]
+Fenchel conjugacy induces a bijection between everywhere-finite 
+sublinear functions and nonempty compact convex sets in $\E$: 
+\label{4.2.3}
+\begin{enumerate}[(a)]
+\item If the set $C\subset\E$ is compact, convex, and nonempty then 
+the \textbf{support function} $\delta_C^*$ is everywhere finite and 
+sublinear. 
+\item If the function $h:\E\to\R$ is sublinear then $h^*=\delta_C$,
+where the set 
+\begin{equation*}
+C = \{\phi\in\E\mid \ip{\phi, d}\leq h(d) \text{ for all }d\in \E\}
+\end{equation*}
+is nonempty, compact, and convex.
+\green{This should have the hypothesis that $h$ is everywhere finite.}
+\end{enumerate}
+\end{corollary}
+\begin{theorem}[4.2.4 (Moreau-Rockafellar)]
+A closed convex proper function on $\E$ has bounded level sets if 
+and only if its conjugate is continuous at 0.
+\label{4.2.4}
+\end{theorem}
+\begin{theorem}[4.2.5 (Strict-smooth duality)]
+A proper closed convex function on $\E$ is essentially strictly 
+convex if and only if its conjugate is essentially smooth.
+\label{4.2.5}
+\end{theorem}
+\begin{itemize}
+\item The \textit{closure} of $h$, denoted $\cl h$, is defined by 
+\begin{equation}
+\epi(\cl h) = \cl(\epi h).
+\label{4.1.6}
+\end{equation}
+\end{itemize}
+\begin{proposition}[4.2.7 (Lower semicontinuity and closure)]
+If a function $f:\E\to[-\infty, +\infty]$ is convex then it is lower
+semicontinuous at a point $x$ where it is finite if and only if $f(x)
+= (\cl f)(x)$. In this case $f$ is proper.
+\label{4.2.7}
+\end{proposition}
+\begin{theorem}[4.2.8]
+Suppose the function $h:\E\to[-\infty,+\infty]$ is convex.
+\label{4.2.8}
+\begin{enumerate}[(a)]
+\item If $h^{**}$ is somewhere finite then $h^{**}=\cl h$.
+\item For any point $x$ where $h$ is finite, $h(x)=h^{**}(x)$ if 
+and only if $h$ is lower semicontinuous at $x$.
+\end{enumerate}
+\end{theorem}
+\subsection{Exercises for 4.2}
+\noindent
+\textbf{1. }Prove that any function $h:\E\to[-\infty, +\infty]$ 
+satisfies $h^{**}\leq h$. 
+\bluea{
+\begin{align*}
+h^{**}(x) &= \sup_{\phi\in\E}\{\ip{x,\phi} - h^*(\phi)\} 
+= \sup_{\phi\in\E}\{\ip{x,\phi}-\sup_{x'\in\E}\{\ip{\phi, x'}
+- h(x')\}\} \\
+&= \sup_{\phi\in\E}\{\ip{x,\phi}+\inf_{x'\in\E}\{h(x')-\ip{\phi,
+x'}\}
+\leq \sup_{\phi\in\E}\{\ip{x,\phi} + h(x)-\ip{\phi, x}\}
+= h(x).
+\end{align*}}
+\noindent
+\textbf{2 (Lower semicontinuity and closedness).} For any given function
+$h:\E\to[-\infty,+\infty]$, prove the following properties are 
+equivalent:
+\begin{enumerate}[(a)]
+\item $h$ is lower semicontinuous.
+\item $h$ has closed level sets. 
+\item $h$ is closed.
+\end{enumerate}
+Prove that such a function has a global minimizer on any nonempty,
+compact set. 
+\bluea{
+\begin{proof}
+(a)$\implies$(b): Suppose $h$ is lower semicontinuous. Consider 
+a sequence $x^i$ in the level set $\{x:h(x)\leq a\}$. By lower 
+semicontinuity, $h(x)\leq \lim\inf h(x^i)\leq a$. Thus, 
+$h(x)\leq a$, i.e. the level set is closed. \\
+(b)$\implies$(c): Suppose $h$ has closed level sets. Take a 
+sequence $(x^i, r^i)$ in $\epi h$ converging to $(x,r)$.
+ For any $\epsilon > 0$, for $i$ large enough all $x^i$ are 
+contained in the level set $\{x':h(x')\leq r+\epsilon\}$. By closedness
+of level sets, $x$ is contained in the level set, i.e. $h(x)\leq 
+r+\epsilon$. Since $\epsilon > 0$ was arbitrary, $h(x)\leq r$, i.e. 
+$(x,r)\in\epi h$. Thus, $\epi h$ is closed, i.e. $h$ is closed.\\
+(c)$\implies$(a): Suppose $h$ is closed. Consider a sequence 
+$x^i$ converging to $x$. Let $q=\liminf h(x^i)$ For any $\epsilon > 0$,
+for any $N\in\N$ large enough, $\inf_{i\geq N}h(x^i) < q+\epsilon$, 
+which means we can select a subsequence $x^{i_k}$ where 
+$h(x^{i_k}) < q + \epsilon$. Thus $(x^{i_k}, q+\epsilon)$ is a 
+sequence in $\epi h$ converging to $(x,q+\epsilon) \in \epi h$ 
+by closedness, so $h(x)\leq q+\epsilon$. Since $\epsilon > 0$ 
+was arbitrary, $h(x)\leq q = \liminf h(x^i)$, i.e. $h$ is lower
+semicontinuous.
+\end{proof}
+}
+\noindent
+\textbf{3 (Pointwise maxima).} If the functions $f_{\gamma}:\E\to
+[-\infty, +\infty]$ are all convex (respectively closed) then 
+prove the function defined by $f(x)=\sup_{\gamma}f_\gamma(x)$ is 
+convex (respectively closed). Deduce that for any function 
+$h:\E\to[-\infty,+\infty]$, the conjugate function $h^*$ is closed 
+and convex.
+\bluea{
+\begin{proof}
+\begin{gather*}
+(r,x)\in\epi\sup_\gamma f_\gamma \iff \sup_\gamma f_\gamma(x)\leq r
+\iff \forall\gamma\; f_\gamma(x)\leq r \\
+\iff \forall\gamma\; (x,r)\in\epi f_\gamma \iff (x,r)\in \bigcap_\gamma
+\epi f_\gamma.
+\end{gather*}
+Thus, $\epi\sup_\gamma f_\gamma = \bigcap_\gamma \epi f_\gamma$, which 
+is an intersection of convex sets, which is then convex, so 
+$\sup_\gamma f_\gamma$ is convex. We can make the same argument
+with closedness. Since $h^*(\cdot):= \sup_{x\in\E}\{\ip{\cdot, x}
+- h(x)\}$ is a supremum over the affine (thus closed, by continuity, and
+convex) functions $\{\ip{\cdot, x}
+- h(x): x\in \E\}$, it is closed and convex.
+\end{proof}
+}
+\noindent
+\textbf{4. }Verify directly that any affine function equals its 
+biconjugate.
+\bluea{
+\begin{proof}
+Any affine function can be expressed as $\alpha=
+\ip{a,\cdot}+b$ for some $a\in\E$ and $b\in\R$.
+\begin{align*}
+\alpha^*(y) &= \sup_{x\in\E}\ip{y,x} - \ip{a,x}-b
+= \sup_{x\in\E} \ip{y-a,x}-b = \delta_{\{a\}}(y) - b.\\
+\alpha^{**}(x) &= \sup_{y\in\E}\ip{y,x} - \delta_{\{a\}}(y) + b 
+= \ip{a,x} + b.
+\end{align*}
+\vspace{-0.2in}
+\end{proof}
+}
+\noindent
+\textbf{5 * (Midpoint convexity).} 
+\begin{enumerate}[(a)]
+\item A function $f:\E\to(-\infty,+\infty]$ is \textit{midpoint 
+convex} if it satisfies 
+\begin{equation*}
+f\left(\frac{x+y}{2}\right)\leq \frac{f(x)+f(y)}{2}
+\text{ for all }x\text{ and }y\text{ in }\E.
+\end{equation*}
+Prove a closed function is convex if and only if it is midpoint 
+convex. \\
+\bluea{
+Clearly, convexity implies midpoint convexity (assuming $f$ doesn't 
+take on $-\infty$). Now suppose $f:\E
+\to (-\infty,+\infty]$ is midpoint convex and closed. We will 
+show that the convexity inequality holds for all $\lambda$ of the 
+form $\frac{m}{2^n}$ for $n,m\in\N,\, m\leq 2^n$. The case of 
+$n=1$ holds automatically by definition of midpoint convexity.
+Suppose the inequality holds for all $\lambda=m/2^n$ and consider 
+$\lambda = m/2^{n+1}$. If $m$ is even, then this reduces to the 
+case for $n$. Otherwise, $(m-1)/2$ and $(m+1)/2$ are natural numbers
+and given $x,y\in\E$,
+\begin{align*}
+&\lambda = \frac{m}{2^{n+1}} = \frac{1}{2}\left(\frac{(m-1)/2}{2^n}
++ \frac{(m+1)/2}{2^n}\right)=: \frac{1}{2}(\lambda_-+\lambda_+) \\
+\implies &f(\lambda x + (1-\lambda)y) = f\bigg[\frac{1}{2}\left(
+\lambda_- x + (1-\lambda_-)y\right) + \frac{1}{2}\left(
+\lambda_+ x + (1-\lambda_+)y\right)\bigg] \\
+&\qquad \leq \frac{1}{2}f\left(\lambda_- x+(1-\lambda_-)y\right)
++\frac{1}{2}f\left(\lambda_+ x + (1-\lambda_+)y\right)\\
+&\qquad\leq \frac{1}{2}\left(\lambda_- f(x) + (1-\lambda_-)f(y)\right)
++ \frac{1}{2}\left(\lambda_+f(x) + (1-\lambda_+)f(y)\right) \\
+&\qquad = \lambda f(x) + (1-\lambda)f(y).
+\end{align*}
+Now given $\lambda\in(0,1)$, $\left(\lambda^n\right) = 
+\left(\frac{\lfloor \lambda 2^n\rfloor}{2^n}\right)$ is a sequence 
+converging to $\lambda$ for which the convexity inequality holds. 
+$|\lambda-\lambda^n|=
+\frac{|\lambda 2^n - \lfloor\lambda 2^n\rfloor|}{2^n} \leq 
+\frac{1}{2^n}\to 0$. So, 
+\begin{equation*}
+\forall n\in\N,\; f(\lambda^n x + (1-\lambda^n)y)\leq \lambda^n
+f(x)+ (1-\lambda^n)f(y), \quad \lambda^n\to \lambda.
+\end{equation*}
+So, by lower semicontinuity which is equivalent to 
+$h$ being closed (Exercise 2),
+\begin{align*}
+f(\lambda x + (1-\lambda)y) &\leq \lim_n f(\lambda^n x + (1-\lambda)^n
+y) \leq \lim_n\lambda^n f(x) + (1-\lambda)^n f(y) \\
+&=\lambda f(x) + (1-\lambda) f(y).
+\end{align*}
+}
+\vspace{-0.15in}
+\item Use the inequality
+\begin{equation*}
+2(X^2 + Y^2)\succeq (X+Y)^2 \text{ for all } X\text{ and } Y
+\text{ in } \S^n
+\end{equation*}
+to prove the function $Z\in\S_+^n\mapsto -Z^{1/2}$ is $\S_+^n$-convex
+(see Section 3.3, Exercise 18 (Order convexity)). \\
+\bluea{
+The identity $2(X^2+Y^2)\succeq (X+Y)^2 + (X-Y)^2$ proves that 
+$2(X^2 + Y^2)\succeq (X+Y)^2$. Replacing $X$ and $Y$ with their 
+square roots, square rooting both sides, and dividing by $-2$, we 
+get 
+\begin{equation*}
+-\left(\frac{1}{2}X^{1/2}+\frac{1}{2}Y^{1/2}\right)^{1/2}
+\preceq -\frac{1}{2}X^{1/2} - \frac{1}{2}Y^{1/2}.
+\end{equation*}
+This shows that for any $C\in\S_+^n = -(\S_+^n)^-$, the 
+function $Z\mapsto \ip{C, -Z^{1/2}}$ is midpoint convex. Since it 
+is also continuous, it is convex. Since $C\in-(\S_+^n)^-$ was 
+arbitrary, $Z\mapsto -Z^{1/2}$ is $\S_+^n$-convex.
+}
+\end{enumerate}
+\noindent
+\textbf{6. }Is the Fenchel biconjugation theorem (4.2.1) valid for 
+arbitrary functions $h:\E\to[-\infty,+\infty]$? 
+\bluea{
+\begin{proof}
+No, because a closed convex function here may not equal its 
+biconjugate. Take the function $h:\R\to[-\infty,+\infty]$ defined 
+by $h(\R_-) = \{-\infty\},\, h(\R_{++})=\{+\infty\}$. This 
+function is closed and convex. However, we can compute: 
+\begin{align*}
+&h^*(y) = \sup_{x\in\R}yx - h(x) = +\infty,\\
+&h^{**}(x) = \sup_{y\in\R} yx - +\infty = -\infty,
+\qquad \implies  h^{**}\neq h.
+\end{align*}
+\end{proof}}
+\vspace{-0.2in}
+\noindent
+\textbf{7 (Inverse of subdifferential).} For a function $h:\E\to
+(-\infty,+\infty]$, if points $x$ and $\phi$ in $\E$ satisfy 
+$\phi\in\partial h(x)$, prove $x\in\partial h^*(\phi)$. Prove 
+the converse if $h$ is closed and convex.
+\bluea{
+\begin{proof}
+The subgradient inequality $\forall x'\in \E,\; \ip{\phi, x'-x}
+\leq h(x')-h(x)$ can be rewritten as 
+\begin{gather}
+\forall x'\in \E,\; \ip{\phi, x}-h(x) \geq \ip{\phi, x'}-h(x')
+\label{gradklap1}\\
+\iff  h^*(\phi)=\sup_{x'\in\E}\ip{\phi, x'}-h(x') = 
+\ip{\phi, x}-h(x).\nonumber
+\end{gather}
+Let us check \eqref{gradklap1} to show $x\in\partial h^*(\phi)$.
+\begin{align*}
+\ip{\phi, x} - h^*(\phi) = h(x) \geq \ip{\phi',x} + \inf_{x'\in\E}\{
+h'(x')-\ip{\phi', x'}\} = \ip{\phi', x} - h^*(\phi').
+\end{align*}
+Therefore, $x\in\partial h^*(\phi)$. If $h$ is closed and convex,
+then by the previous, $x\in\partial h^*(\phi)$ implies 
+$\phi\in\partial h^{**}(x)=\partial h(x)$. Cf. my proof to 
+Section 3.3, Exercise 12 (d) (v), where I proved if $\partial h(x)$
+nonempty then $\phi\in\partial h(x)\iff x\in\partial h^*(\phi)$.
+\end{proof}
+}
+\noindent
+\textbf{8 * (Closed subdifferential).} If a function $h:\E\to(-\infty,
++\infty]$ is closed, prove the multifunction $\partial h$ is \textit{
+closed}: that is, 
+\begin{equation*}
+\phi_r\in\partial h(x_r), x_r\to x, \phi_r\to\phi\implies 
+\phi\in\partial h(x).
+\end{equation*}
+Deduce that if $h$ is essentially smooth and a sequence of points 
+$x_r$ in $\inter(\dom h)$ approaches a point in $\bd(\dom h)$ then 
+$\|\nabla h(x_r)\|\to\infty$.
+\bluea{
+\begin{proof}
+For any $x'\in\E$, we have the inequalities 
+\begin{equation*}
+\ip{\phi_r, x'-x_r} \leq h(x')-h(x_r) \iff 
+h(x_r) - \ip{\phi_r, x_r} + \ip{\phi_r, x'} \leq h(x').
+\end{equation*}
+By Exercise 2, closedness of $h$ is equivalent to lower semicontinuity, so 
+taking liminfs on both sides and using continuity of $\ip{x,y}$ as a 
+function of both $x$ and $y$, 
+\begin{equation*}
+h(x) + \ip{\phi, x'-x} \leq \liminf_{r\to\infty} h(x_r) + \ip{\phi_r,
+x'-x_r} \leq h(x').
+\end{equation*}
+Since $x'$ was arbitrary, this shows that $\phi\in \partial h(x)$. \\
+If $h$ is essentially smooth, then $\dom\partial h=\inter(\dom h)$,
+(see Section 3.1 Exercise 24). If $\phi_r$ converged to some $\phi$, 
+then $x\in\dom\partial h$ for some $x\in\bd(\dom h)$, contradiction.
+\end{proof}}
+\noindent
+\textbf{9 * (Support functions)}
+\begin{enumerate}[(a)]
+\item Prove that is the set $C\subset\E$ is nonempty, then 
+$\delta_C^*$ is a closed sublinear function and $\delta_C^{**}=
+\delta_{\cl\conv C}$. Prove that if $C$ is also bounded then 
+$\delta_C^*$ is everywhere finite. \\
+\bluea{
+First we show that $\delta_C^*$ is sublinear: for any $\lambda > 0$:
+\begin{equation*}
+\delta_C^*(\lambda y ) = \sup_{x\in C}\ip{\lambda y, x} 
+= \lambda \sup_{x\in C}\ip{y, x} = \lambda \delta_C^*(y).
+\end{equation*}
+Clearly, $\delta_C^*(0) = 0$ as the term inside the sup is always 0 
+($C\neq\emptyset$).
+This shows positive homogeneity; sublinearity follows by noting that 
+the conjugate is always convex as proven in Exercise 3. For the same 
+reason, the conjugate is closed. \\
+Note for any convex $h$ that minorizes $\delta_C,\; h\leq \delta_{\conv C}$.
+Thus, any closed convex $h$ that minorizes $\delta_C$ satsifies 
+$h\leq \cl\delta_{\conv C}=\delta_{\cl\conv C}$. Since $\delta_C^{**}$ 
+is a closed convex function that minorizes $\delta_C$, we have 
+$\delta_C^{**}\leq \delta_{\cl \conv C}$. On the other hand, by 
+Theorem 4.2.1 (Fenchel biconjugation), $\delta_{\cl \conv C}\leq 
+\delta_C$ implies $\delta_{\cl\conv C}^{**}=\delta_{\cl\conv C}
+\leq \delta_C^{**}$. Thus, $\delta_C^{**} = \delta_{\cl\conv C}$.\\
+If $C$ is bounded, then $\delta_C^*(y) = \sup_{x\in C}\ip{y,x} 
+\leq \|y\|\sup_{x\in C}\|x\| < +\infty$.
+}
+\item Prove that any sets $C,D\subset\E$ satisfy 
+\begin{align*}
+\delta_{C+D}^* &= \delta_C^*+\delta_D^* \text{ and}\\
+\delta^*_{\conv(C\cup D)} &= \max(\delta_C^*, \delta_D^*).
+\end{align*}
+\bluea{
+\begin{equation*}
+\delta_{C+D}^*(y) = \sup_{c\in C, d\in D}\ip{y, c+d} = 
+\sup_{c\in C} \ip{y,c} + \sup_{d\in D}\ip{y, d} = \delta_C^*(y) + 
+\delta_D^*(y).
+\end{equation*}
+\begin{align*}
+&\delta_{\conv(C\cup D)}^*(y)= \sup_{x\in \conv(C\cup D)} \ip{x,y}=\\
+&\sup\bigg\{\sum_{i=1}^{n_C}\lambda_i^C\ip{c_i, y}
++ \sum_{j=1}^{n_d}\lambda_j^D\ip{d_j, y}\,\bigg|\, n_C,n_D\in\N,\,
+\lambda_i^C,\lambda_j^D\geq 0,\; 
+\sum_{i=1}^{n_C}\lambda_i^C + 
+\sum_{j=1}^{n_C}\lambda_j^D = 1,\; c_i\in D,\, d_j\in D\bigg\}.
+\end{align*}
+However because the $\lambda_i^C$'s and $\lambda_j^D$'s sum to 1, 
+\begin{equation*}
+\sum_{i=1}^{n_C} \lambda_i^C\ip{c^i,y} + 
+\sum_{j=1}^{n_D} \lambda_j^D\ip{d_j, y} \leq 
+\max_{c_i, d_j,\, i\in[n_C],\,j\in [n_D]} \ip{x,y}.
+\end{equation*}
+Therefore, 
+\begin{equation*}
+\delta^*_{\conv(C\cup D)}(y) = \sup_{x\in C\cup D}\ip{x,y}
+= \max\{\sup_{c\in C}\ip{c,y}, \sup_{d\in D}\ip{d,y}\}
+= \max\{\delta_C^*(y), \delta_D^*(y)\}.
+\end{equation*}
+}
+\item Suppose the function $h:\E\to(-\infty,+\infty]$ is positively
+homogeneous, and define a closed convex set 
+\begin{equation*}
+C=\{\phi\in\E\mid \ip{\phi,d}\leq h(d)\,\forall d\}.
+\end{equation*}
+Prove $h^*=\delta_C$. Prove that if $h$ is in fact sublinear and 
+everywhere finite then $C$ is nonempty and compact.\\
+\bluea{
+$C$ is convex and closed because it is an intersection of closed 
+halfspaces
+\begin{equation*}
+C=\bigcap_{d\in\E} \{\phi\in\E: \ip{\phi, d} \leq h(d)\}.
+\end{equation*}
+Next we show that $h^* = \delta_C$.
+\begin{align*}
+h^*(\phi) &= \sup_{d\in\E}\{\ip{\phi,d}-h(d)\} = \sup_{d\in\E}\sup_{\lambda
+\geq 0}\lambda(\ip{\phi,d} - h(d)) \\
+&= \sup_{d\in\E}\{0\text{ if } \ip{\phi,d}\leq h(d),\, +\infty \text{ o.w.}
+\} = \delta_C(\phi).
+\end{align*}
+If $h$ is sublinear and everywhere finite, then it is closed and 
+convex, so by Theorem 4.2.1 (Fenchel biconjugation), for all $x\in\E,
+\; h(x)=\sup\{\alpha(x)\mid \alpha\text{ an affine minorant of }h\}$.
+Now if affine $\alpha$ minorizes $h$, then $\alpha$ shifted to 
+become linear must also minorize $h$, i.e. $\alpha-\alpha(0) \leq h$.
+Otherwise, $\alpha(x)-\alpha(0) > h(x)$ for some $x\in \E$. Then,
+since $\alpha$ is affine,
+\begin{equation*}
+\alpha(\mu x) = \alpha(\mu x - (\mu-1)0) = \mu\alpha(x)
++ (\mu-1)\alpha(0) = \alpha(0) + \mu(\alpha(x)-\alpha(0))
+\end{equation*}
+Thus, 
+\begin{equation*}
+\alpha(\mu x) - h(\mu x) = \alpha(0) + \mu(\alpha(x) - \alpha(0)
+- h(x)) \xrightarrow{\mu\to\infty}{} +\infty,
+\end{equation*}
+contradicting $\alpha \leq h$. Thus, there is a linear minorant of $h$:
+$\exists \phi\in\E,\; \ip{\phi, \cdot}\leq h(\cdot)$. That is, 
+$C$ is nonempty. To show that $C$ is bounded, take $\phi\in C$:
+\begin{equation*}
+\|\phi\| = \sup_{x\in B} \ip{\phi, x} \leq \sup_{x\in B} h(x)
+< +\infty,
+\end{equation*}
+because $h$ is continuous (Theorem 4.1.3).
+}
+\item Deduce Corollary 4.2.3 (Support functions). \\
+\bluea{
+Part (a) shows that if $C$ is nonempty and bounded, then $\delta_C^*$ 
+is everywhere finite and sublinear. This shows (a) of Corollary 4.2.3,
+as compact, convex nonempty sets are nonempty and bounded. \\
+Part (c) shows (b) of Corollary 4.2.3 (an everywhere finite sublinear 
+function has as its conjugate the indicator function of its minorizing 
+linear functions, which is nonempty, convex, and compact).\\
+To prove the bijection, use Theorem 4.2.1: if $C$ is convex and 
+compact, then $\delta_C = \delta_C^{**}$, which proves that the map 
+from nonempty convex compact sets to everywhere finite sublinear 
+functions defined by conjugation is injective. Given an everywhere 
+finite sublinear $h$, since $h^{**}=h$ and $h^*=\delta_C$ for a 
+nonempty compact convex $C$, we have $\delta_C^* = h$, i.e. 
+the map is also surjective. Thus it is a bijection.
+}
+\end{enumerate}
+\textbf{10 * (Almost homogeneous functions [19]).} Prove that a function
+$f:\E\to\R$ has a representation 
+\begin{equation}
+\label{klap10}
+f(x) = \max_{i\in I}\{\ip{a^i, x}-b_i\}\quad (x\in \E)
+\end{equation}
+for a compact set $\{(a^i, b_i)\mid i\in I\}\subset\E\times \R$ if 
+and only if $f$ is convex and satisfies $\sup_{\E} |f-g|<\infty$ 
+for some sublinear function $g$.
+\bluea{
+\begin{proof}
+First we show that \eqref{klap10} implies there is a sublinear $g$ 
+such that $\sup_\E |f-g| < +\infty$. Define $g(x) = \max_i \ip{a^i, x}$.
+Since 
+\begin{align*}
+&\max_i\{\ip{a^i, x} + b_i\}\leq \max_i\ip{a^i, x} + \max_i b_i \\
+&\max_i\ip{a^i,x}\leq \max_i\{\ip{a^i, x} + b_i\} - \min_i b_i,
+\end{align*}
+we have $\sup_{\E}|f-g|\leq \max_i |b_i| < +\infty$. By Exercise 3, 
+$f$ is convex.\\
+Now for the converse, \green{I believe this needs the assumption 
+$g$ is finite everywhere} observe the inequalities for any $x\in\E$, 
+\begin{align*}
+&\ip{y, x} - f(x) \geq \ip{y, x} - g(x)-\sup_{\E}|f-g| \\
+&\ip{y,x}- g(x) \geq \ip{y,x}-f(x)-\sup_{\E}|f-g| \\
+\implies & \left|\sup_{x\in\E}\{\ip{y,x}-f(x)\} - \sup_{x\in\E}
+\{\ip{y,x}-g(x)\}\right|\leq \sup_{\E}|f-g|.
+\end{align*}
+Therefore, $\sup_{\E}|f^*-g^*|\leq \sup_{\E}|f-g|$. By Corollary 
+4.2.3, $g^*=\delta_C$ for some compact convex $C$. Thus, $f^*(x) 
+= +\infty$ for $x\notin C$ and $\sup_C|f^*| < +\infty$. Therefore, 
+$C_{f^*}:=\{(x, f^*(x)) \mid x\in C\}$ is compact. The biconjugate 
+is none other than $f^{**}(x) = \max_{(a,b)\in C_{f^*}}\{\ip{a,x}
+- b\}$. But since $g$ is finite everywhere, $f$ is finite everywhere,
+and thus continuous (and therefore closed). By Theorem 4.2.1, 
+$f^{**} = f$, which writes $f$ as \eqref{klap10} with $C_{f^*}$.
+ This completes the proof.
+\end{proof}
+}
+\noindent
+\textbf{11. *} Complete the details of the proof of the Moreau-Rockafellar
+theorem (4.2.4).
+\bluea{
+\begin{proof}
+As proven in Section 1.1 Exercise 10, if $f$ is convex then its level
+sets are bounded iff 
+\begin{equation*}
+\liminf_{\|x\|\to+\infty} \frac{f(x)}{\|x\|} > 0.
+\end{equation*}
+Now we show this is equivalent to the existence of a minorant of $f$ 
+of the form $\epsilon\|\cdot\| + k \leq f(\cdot)$ for constants $\epsilon
+> 0$ and $k\in\R$. If this minorant exists, then $f(x)\geq 
+\epsilon + \frac{k}{\|x\|}$ which easily implies the growth condition.
+Now suppose the growth condition holds. Then, there exist an 
+$\epsilon > 0$ and finite $M>0$ such that for all $\|x\|\geq M$, we have 
+$f(x)/\|x\|\geq \epsilon$, i.e. $f(x) \geq \epsilon \|x\|$. Now 
+let $k=\inf_{x\in MB} f(x)-\epsilon\|x\|$. If $k=-\infty$, then 
+there exists a sequence $x^i\to x$ (since $MB$ is compact) where 
+$f(x^i)-\epsilon\|x^i\|\to-\infty$. But, since $f$ is closed and 
+$\epsilon\|x^i\|$ is continuous, $f(x)-\epsilon\|x\| \leq -\infty$. 
+This is a contradiction, because $f$ is assumed proper. 
+\green{(I feel like you only need to assume $f$ is proper and convex
+here, but I don't know how to do this part in that case. Basically,
+prove that proper convex functions must be lower bounded on compact 
+sets.)} Thus, we have our minorant: $\epsilon\|x\| + \min\{k,0\}
+ \leq f(x)$. \\
+By conjugacy rules, $f^*(y) \leq (\epsilon\|\cdot\|+k)^* = 
+\epsilon(\|\cdot\|)^*(\cdot/\epsilon) - k$.  Let's compute $\|\cdot\|^*$.
+\begin{equation*}
+\|\cdot\|^*(y) = \sup_{x\in\E}\ip{y,x}-\|x\|=\sup_x\sup_{\lambda\geq0}
+\lambda(\ip{y,x}-\|x\|) = \sup_x \delta_{\R_-}(\ip{y,x}-\|x\|)
+= \delta_B(y).
+\end{equation*}
+Thus, $f^*(y) \leq \delta_B(\frac{y}{\epsilon}) - k = -k$ in a neighborhood
+around $0$. Thus, $f^*$ is continuous at 0 (Theorem 4.1.1). Conversely, if 
+$f^*$ is continuous, i.e. bounded above around 0, then $f^*(y)\leq C$ 
+for some $C$ and all $y$ in some $\epsilon B$. Equivalently,  
+$f^* \leq \delta_B(\frac{\cdot}{\epsilon}) + C$. Taking conjugates 
+and using Corollary 4.2.3 (Support functions), we have 
+$f\geq \epsilon\|\cdot\| - C$, i.e. $f$ is minorized by a function 
+of the desired form. This completes the proof.
+\end{proof}}
+\vspace{-0.05in}
+\noindent
+\textbf{12 (Compact bases for cones).} Consider a closed convex cone 
+$K$. Using the Moreau-Rockafellar theorem (4.2.4), show that a point $x$ 
+lies in $\inter K$ if and only if the set $\{\phi\in K^-\mid \ip{\phi, x}
+\geq -1\}$ is bounded. If the set $\{\phi\in K^-\mid \ip{\phi, x}=-1\}$ 
+is nonempty and bounded, prove $x\in\inter K$.
+\bluea{
+\begin{proof}
+If $x\in\inter K$ then the function $\delta_K(\cdot + x)$ is continuous 
+at 0. Then by Theorem 4.2.4 (Moreau-Rockafellar), the conjugate 
+$(\delta_K(\cdot+x)^*(y) = \delta_K^*(y) - \ip{y,x} = \delta_{K^-}(y)
+- \ip{y,x}$ has bounded level sets. In particular, 
+\begin{equation*}
+\{\phi\mid \delta_{K^-}(\phi)-\ip{\phi,x}\leq 1\} 
+=\{\phi\in K^-\mid \ip{\phi,x}\geq -1\}\text{ is bounded}.
+\end{equation*}
+Now if the above holds, then since $-\ip{\phi,x} \leq c$ for $c > 0$
+holds iff $-\ip{\phi/c, x} \leq 1$, 
+\begin{equation*}
+\{\phi\in K^- \mid -\ip{\phi, x} \leq c\} = c\{\phi\in K^-\mid -\ip{
+\phi, x}\leq 1\}.
+\end{equation*}
+If $c<0$, $\{\phi\in K^-\mid -\ip{\phi, x} \leq c\}$ is empty. If 
+$c=0$, then $-\ip{\phi, x} = 0$ for some nonzero $\phi\in K^-$ 
+contradicts the boundedness of $\{\phi\in K^-\mid -\ip{\phi, x}\leq 1\}$,
+so the set is also bounded when $c=0$. This proves $\delta_{K^-}
+- \ip{\cdot, x}$ has bounded level sets; the conjugate is 
+$\delta_K(\cdot -x )$ (Using Theorem 4.2.1, as $K$ is closed and convex),
+which then must by continuous at 0 by Theorem 4.2.4 \eqref{4.2.4}. 
+Thus, $x\in \inter K$. \\
+If $\phi\in K^-$ is nonzero and $\ip{\phi, x}=0$, then the set 
+$\{\phi\in K^-\mid \ip{\phi, x}=-1\}$ is unbounded (using the fact 
+it's nonempty). Now if 
+$\phi\in K^-$ satisfies $0>\ip{\phi, x} \geq -1$, then 
+$\ip{\frac{-1}{\ip{\phi, x}}\phi, x} = -1$. In other words, the 
+norm of $\phi$ is less than the norm of some element whose inner 
+product with $x$ is $-1$. Thus, $\{\phi\in K^-\mid \ip{\phi, x} \geq 
+-1\}$ is bounded. Thus, $x\in\inter K$.
+\end{proof}
+}
+\noindent
+\textbf{13. }For any function $h:\E\to[-\infty,+\infty]$, prove the 
+set $\cl(\epi h)$ is the epigraph of some function. 
+\bluea{
+\begin{proof}
+We just have to check that for every $x\in \E$, if $\bar r = 
+\inf\{r\in\R: (x,r)\in\cl(\epi h)\}$, then $(x,r)\in\cl(\epi h)$ 
+for every $r\geq \bar r$. Then the function $f(x)=\bar r$ 
+defines the epigraph $\cl(\epi h)$. By definition,
+$\bar r = \inf\{r\in \R: \exists \text{ a sequence }(x^i,r^i)
+\text{ in }\epi h,\ (x^i, r^i)\to (x,r)\}$. Thus, there 
+exists a sequence $r_j \to \bar r$ such that for each $j\in \N$ 
+there is a sequence in $\epi h,\; (x^i, r_j^i)\to (x, r_j)$. 
+Given $\epsilon > 0$, we can select $j$ such that $r_j$ is 
+$\epsilon/2$ close to $\bar r$ and $i$ such that $r_j^i$ is $\epsilon/2$
+close to $r_j$ and $x^i$ is $\epsilon$ close to $x$,
+ so that $r_j^i$ is $\epsilon$ close to $\bar r$. 
+This implies the existence of a sequence $(x^i, r^i)\to(x, \bar r)$ in 
+$\epi h$. For any $r\geq \bar r$, the sequence 
+$(x^i, r^i + r-\bar r)$ is in $\epi h$ since $r^i+r-\bar r\geq r^i$ 
+and $(x^i,r^i)\in\epi h$, and converges to $(x, r)$. Thus, 
+$(x,r)\in\cl(\epi h)$. We have 
+just checked what we wanted to show; that $(x,r)\in \cl(\epi h)$ 
+for every $r\geq \bar r$.
+\end{proof}
+}
+\noindent
+\textbf{14 * (Lower semicontinuity and closure).} For any convex function 
+$h:\E\to[-\infty,+\infty]$ and any point $x^0$ in $\E$, prove
+\begin{equation*}
+(\cl h)(x^0) = \lim_{\delta\downarrow0} \inf_{\|x-x^0\|\leq\delta}
+h(x).
+\end{equation*}
+Deduce Proposition 4.2.7. 
+\bluea{
+\begin{proof}
+For any sequence $\delta^i\to 0$ and $\epsilon > 0$, there exists 
+$x^i\in \{x\mid \|x-x^0\|\leq \delta^i\}$ such that $h(x^i) \leq 
+\inf\{h(x)\mid \|x-x^0\|\}+\epsilon=: r^i+\epsilon$. Thus, $(x^i, 
+r^i+\epsilon)\in \epi h$, and so 
+\begin{equation*}
+\forall\epsilon>0,\;
+\lim_{i\to\infty} (x^i, r^i+\epsilon)\to (x^0,r+\epsilon) \in \cl(\epi h) 
+\implies (\cl h)(x^0)\leq r = \lim_{\delta\downarrow 0}
+\inf_{\|x-x^0\|\leq \delta} h(x^0).
+\end{equation*}
+On the other hand, the proof of Exercise 13 shows that there is a 
+sequence $(x^i, r^i)$ in $\epi h$ converging to $(x^0, (\cl h)(x^0))$. So,
+\begin{equation*}
+(\cl h)(x^0) = \lim_{i\to\infty} r^i \geq lim_i\inf_{\|x-x^0\|
+\leq \|x^i-x^0\|} h(x) = \lim_{\delta\downarrow0}\inf_{\|x-x^0\|
+\leq \delta} h(x).
+\end{equation*}
+Note that every sequence $\delta^i\to 0$ satisfies $\lim_i\inf_{\|x-
+x^0\|\leq \delta^i}h(x) = \lim_{\delta\downarrow0}\inf_{\|x-x^0\|
+\leq \delta} h(x)$.
+Thus, $(\cl h)(x^0) = \lim_\delta\inf_{\|x-x^0\|\leq\delta}h(x)$. 
+If $h$ is lower semicontinuous at $x^0$, then $h(x^0)\leq \liminf h(x^r)$ 
+for every sequence $x^r\to x^0$. This means $h(x^0) \geq\lim_{\delta
+\downarrow0}\inf_{\|x-x^0\|\leq \delta}h(x)$, because we can take 
+$x^r$ such that $\|x^r-x_0\|\leq\delta_r$ for some $\delta_r\to 0$ 
+and  $h(x^r)\leq \inf_{\|x-x^0\|\leq \delta_r}h(x)+
+\epsilon$ for arbitrary $\epsilon > 0$. Clearly, $h(x^0) 
+\geq \lim_{\delta\downarrow0}\inf_{\|x-x^0\|\leq\delta}h(x)$ 
+because $h(x^0)\in\{h(x):\|x-x^0\|\leq\delta\}$ for every 
+$\delta > 0$. Thus, we have proved $(\cl h)(x^0) = h(x^0)$ if 
+$h(x^0)$ is (I don't think finiteness was needed here). 
+Now if $h(x)=-\infty$ and $(\cl h)(x^0) = h(x^0)$ is finite, 
+we get a contradiction, because by convexity for any $\lambda\in(0,1)$ 
+\begin{equation*}
+h(\lambda x^0 + (1-\lambda)x) \leq \lambda h(x^0) + (1-\lambda)h(x)
+= -\infty,
+\end{equation*}
+implying that $\lim_{\delta\downarrow0}\inf_{\|x-x^0\|\leq\delta}h(x)
+= -\infty$ since the above implies we can find an $x$ arbitrarily 
+close to $x^0$ for which $h(x)=-\infty$.
+\end{proof}
+}
+\noindent
+\textbf{15. }For any point $x\in\E$ and any function $h:\E\to(-\infty,
++\infty]$ with a subgradient at $x$, prove $h$ is lower semicontinuous 
+at $x$.
+\bluea{
+\begin{proof}
+Let $x^r$ be a sequence converging to $x$. By the subgradient inequality,
+if $\phi\in\partial f(x)$,
+\begin{equation*}
+f(x) \leq \ip{\phi, x-x^r} + f(x^r).
+\end{equation*}
+Taking $\liminf$ on the RHS gives $f(x)\leq \liminf f(x^r)$, i.e. 
+$f$ is lower semicontinuous at $x$.
+\end{proof}
+}
+\noindent
+\textbf{16 * (Von Neumann's minimax theorem [15]).} Suppose $\Y$ is a 
+Euclidean space. Suppose that the sets $C\subset\E$ and $D\subset\Y$ 
+are nonempty and convex with $D$ closed and that the map $A:\E\to\Y$ 
+is linear.
+\begin{enumerate}[(a)]
+\item By considering the Fenchel problem 
+\begin{equation*}
+\inf_{x\in\E}\{\delta_C(x) + \delta_D^*(Ax)\}
+\end{equation*}
+prove 
+\begin{equation*}
+\inf_{x\in C}\sup_{y\in D}\ip{y, Ax} = \max_{y\in D}\inf_{x\in C}
+\ip{y, Ax}
+\end{equation*}
+(where the max is attained if finite), under the assumption 
+\begin{equation}
+\label{4.2.9}
+0\in\core(\dom \delta_D^*-AC).
+\end{equation}
+\bluea{
+Given assumption \eqref{4.2.9}, Fenchel duality (Theorem 3.3.5) holds.
+Since $D$ is closed, $\delta_D$ is closed, convex, and proper, so that 
+$\delta_D^{**}=\delta_D$ by Theorem 4.2.1. Thus, 
+\begin{align*}
+\inf_{x\in C}\sup_{y\in D}\ip{y, Ax} &= \inf_{x\in\E}\{\delta_C(x)
++ \delta_D^*(Ax)\} = \sup_{y\in\E}\{-\delta_C^*(A^*y) - \delta_D(-y)\}\\
+&= \sup_{-y\in D}-\sup_{x\in C}\ip{A^* y, x} 
+=\sup_{-y\in D}\inf_{x\in C}\ip{-A^*y, x} = \sup_{y\in D}\inf_{x\in C}
+\ip{y, Ax}.
+\end{align*}
+}
+\item Prove property (4.2.9) \eqref{4.2.9} holds in either of the two cases:
+\begin{enumerate}[(i)]
+\item $D$ is bounded, or 
+\item $A$ is surjective and 0 lies in $\inter C$. (Hint: Use the Open 
+mapping theorem, Section 4.1, Exercise 9.)
+\end{enumerate}
+\bluea{
+If (i), then $D$ is convex and compact. By Theorem 4.2.3, $\delta_D^*$ 
+is an everywhere finite sublinear function. That is, $AC\cap\inter(\dom
+\delta_D^*) = AC\cap\Y = AC\neq\emptyset$, verifying \eqref{4.2.9}. \\
+If (ii), by the open mapping theorem ($A$ surjective implies it maps open 
+sets to open sets), $0\in\inter AC$. Further, we have $\delta_D^*(0) 
+= \sup_{y\in D}\ip{0,y} = 0$, so $0\in\dom(\delta_D^*)\cap\inter(AC)
+\neq \emptyset$. Thus, \eqref{4.2.9} holds.
+}
+\item Suppose both $C$ and $D$ are compact. Prove 
+\begin{equation*}
+\min_{x\in C}\max_{y\in D}\ip{y, Ax} = \max_{y\in D}\min_{x\in C}
+\ip{y, Ax}.
+\end{equation*}
+\bluea{
+By part (b), \eqref{4.2.9} holds, so part (a) holds.
+$\delta_D^*$ is everywhere finite and sublinear, so it is continuous
+(Theorem 4.1.3). Thus, it attains a minimum over a compact set: we 
+can rewrite $\inf_{x\in C}\delta_D^*(Ax)$ as $\min_{x\in C}\delta_D^*(Ax)$.
+Similarly, $\delta_D^*(Ax) = \sup_{y\in D}\ip{y, Ax}$ is the supremum
+of the continuous function $\ip{\cdot, Ax}$ over a compact set, which 
+is obtained. Thus, referring back to part (a),
+ the LHS can be rewritten as $\min_{x\in C}\max_{y\in 
+D}\ip{y, Ax}$. By the same logic, the RHS, which is $\sup_{y\in D}
+-\delta_C^*(-A^*y)$, can be rewritten as \\$\max_{y\in D}\min_{x\in C}
+\ip{y, Ax}.$ Thus, by part (a), 
+\begin{equation*}
+\min_{x\in C}\max_{y\in D}\ip{y, Ax} = \max_{y\in D}\min_{x\in C}
+\ip{y, Ax}.
+\end{equation*}
+\green{Wow!}
+}
+\end{enumerate}
+\noindent
+\textbf{17 (Recovering primal solutions).} Assume all the conditions for 
+the Fenchel theorem (3.3.5) hold, and that in addition the functions $f$ 
+and $g$ are closed.
+\begin{enumerate}[(a)]
+\item Prove that if the point $\bar\phi\in\Y$ is an optimal dual solution
+then the point $\bar x\in\E$ is optimal for the primal problem if and only 
+if it satisfies the two conditions $\bar x \in\partial f^*(A^*\bar\phi)$ 
+and $A\bar x\in\partial g^*(-\bar\phi)$. \\
+\bluea{
+If $f(\bar x) + g(A\bar x) = -f^*(A^*\bar\phi) - g^*(-\bar\phi)$, then
+by definition of $f^*$ and $g^*$ we must have $\ip{A^*\phi, \bar x}
+- f(\bar x) = \sup_{x\in\E}\{\ip{A^*\bar\phi, \bar x}- f(\bar x)\}
+= f^*(A^*\bar\phi)$ and $\ip{-\bar\phi, A\bar x} - g(A\bar x) = 
+\sup_{\phi\in\Y}\{\ip{-\bar\phi, \phi}-g(\phi)\}=g^*(-\bar\phi)$. This is 
+equivalent to $A^*\bar\phi\in \partial f(\bar x)$ and $-\bar\phi\in
+\partial g(A\bar x)$. By Exercise 7, this is equivalent to $\bar x\in 
+\partial f^*(A^*\bar\phi)$ and $A\bar x\in\partial g^*(-\bar\phi)$.
+}
+\item Deduce that if $f^*$ is differentiable at the point $A^*\bar\phi$ 
+then the only possible primal optimal solution is $\bar x=\nabla 
+f^*(A^*\bar\phi)$. \\
+\bluea{
+If $f^*$ is differentiable at $A^*\bar\phi$ then $\partial f^*(A^*\bar\phi)
+= \{\nabla f^*(A^*\bar\phi)\}$, so $\bar x\in\partial f^*(A^*\bar\phi)$
+implies $\bar x = \nabla f^*(A^*\bar\phi)$.
+}
+\item ** Apply this result to the problems in Section 3.3, Exercise 22.\\
+\bluea{
+Note that for this problem, we have problems of the form 
+$\inf_{x\in\E}\{f(x) + \delta_{\{b\}}(Ax)\}$. A pair $(\bar x,\bar\phi)$
+is primal-dual optimal iff $\bar x\in\partial f^*(A^*\bar\phi)$ 
+and $A\bar x\in \partial \delta^*_{\{b\}}(-\bar\phi)$, assuming 
+closedness and convexity of $f$. However, since $\delta_{\{b\}}$ is 
+closed, the second is equivalent to $-\bar\phi\in \partial\delta_{\{b\}}
+(A\bar x)$. This is in fact equivalent to $A\bar x=b$, since 
+$\partial\delta_{\{b\}}(b) = N_{\{b\}}(b)= \Y$ and $\emptyset$ elsewhere.
+\begin{enumerate}[(a)]
+\item 
+\begin{enumerate}[(i)]
+\item $\bar x\in\R_+^n,\,A\bar x=b,\,\bar\phi\in\R^m,\,
+\frac{\|\bar x\|^2}{2} = \ip{b,\bar\phi} - \frac{\|(A^\top \bar
+\phi)^+\|^2}{2}$ iff $\bar x = (A^\top \bar\phi)^+$, because 
+$\nabla \frac{\|\phi^+\|^2}{2} = \phi^+$.
+\item $\bar x\in\R_{++}^n,\,A\bar x = b,\,\bar\phi\in -(A^\top)^{-1}\R_{
+++}^n,\,\sum_{i=1}^n -\log \bar x_i = \ip{b,\bar\phi} +1 + \sum_{i=1}^n\log(-
+A^\top \bar\phi)_i$ iff $\bar x = -\vec 1/(A^\top\bar\phi)$, where division
+is elementwise, since $\nabla(-\log(-x)) = -\vec 1/x$.
+\item $\bar x\in\R^n, A\bar x=b,\,\bar\phi\in\R^m,\;
+\sum_{i=1}^n \exp^*(\bar x_i) = \ip{b,\bar\phi} -\sum_{i=1}^n \exp(A^\top
+\bar\phi)_i$ iff $\bar x = \exp(A^\top\bar\phi)$, since $\nabla \exp(x)
+= \exp(x)$.
+\end{enumerate}
+\item $\bar X\in\S^n,\, \bar Xs=y\, \bar z\in\R^n,\, \ip{C,\bar X} + \ld(\bar X)
+ = \ip{y, \bar z} - (\ld(C-\frac{1}{2}(\bar zs^\top + s\bar z^\top))-n)$ 
+iff $\bar X = \left(C-\frac{1}{2}(\bar zs^\top + s\bar z^\top)\right)^{-1}$,
+because $\nabla_X\ld(C-X) = (C-X)^{-1}$ (cf Section 2.1 Exercise 13).
+\item Define $G\in\{0,1\}^{2k\times Z}$, with $Z=\{(i,j)\mid A_{ij}\neq 0\}
+$ by $G_{i,(ij)}=G_{j+k,(ij)} = 1$ for all $(i,j)\in Z$ and 0 elsewhere.\\
+$\bar x\in\R^Z,\,G\bar x=\vec 1,\,\bar\phi\in\R^{2k},\; 
+\sum_{(i,j)\in Z}\exp^*(\bar x_{ij})- \bar x_{ij}\log A_{ij} = 
+\ip{\bar\phi,\vec 1} - \sum_{(i,j)\in Z} A_{ij}\exp(\bar\phi_i+\bar\phi_j)$
+if and only if $\bar x_{ij} = A_{ij}\exp(\bar\phi_i + \bar\phi_j)$, 
+because $(\nabla_x \sum_{(i,j)} A_{ij} \exp x_{ij})_{ij} = A_{ij}\exp 
+x_{ij}$.
+\item Define $A=[a^0\; a^1\;\ldots\;a^m]$. \\
+$\bar x\in\R^{m+1}, \sum_{i=1}^n \bar x_i = 1,\, A\bar x=z,
+\, \bar\phi\in\R^{n+1},\; \sum_{i=0}^m \exp^*(\bar x_i)
+ = [1\;z^\top]\bar\phi
+ - \sum_{i=0}^m \exp([\vec 1\;A^\top]\bar \phi)_i$ iff 
+$\bar x = \exp([\vec 1\;A^\top]\bar\phi)$, see part (a) (iii).
+\end{enumerate}
+}
+\end{enumerate}
+\noindent
+\textbf{18. }Calculate the support function $\delta_C^*$ of the set 
+$C=\{x\in\R^2\mid x_2\geq x_1^2\}$. Prove the "contour" $\{y\mid 
+\delta_C^*(y)=1\}$ is not closed.
+\bluea{
+\begin{proof}
+\begin{align*}
+\delta_C^*(y) &= \max_{x\in C} x_1y_1 + x_2y_2 
+= \max_{x\in \R^2} x_1y_1+x_2y_2\,:\, x_1^2-x_2\leq 0 
+= -\min_{x\in \R^2} -x_1y_1-x_2y_2\,:\, x_1^2-x_2\leq 0.
+\end{align*}
+If $y_2\geq 0$ and $y_1 \neq 0$, then we can take $x=(ry_1, r^2y_1^2)
+\in C$ and take $r\to+\infty$ to show $\delta_C^*(y) = +\infty$. 
+If $y=0$, then $\delta_C^*(y) = 0$ (also follows from sublinearity, 
+Exercise 9). Thus, let us assume $y_2<0$. Here, we can use constrained
+optimization tools from Section 2.3/3.2. We solve for a Lagrange 
+multiplier $\lambda\geq 0$ (which must exist by Theorem 3.2.8 and 
+Slater's condition, which holds here):
+\begin{equation*}
+\begin{bmatrix} -y_1 \\ -y_2 \end{bmatrix} + \lambda\begin{bmatrix} 2x_1
+\\ -1 \end{bmatrix} = 0 \implies \lambda = -y_2,\; x_1=-\frac{y_1}{2y_2},
+\; x_2=\frac{y_1^2}{4y_2^2}.
+\end{equation*}
+Plugging this into the objective, we obtain $\delta_C^*(y) = y_1x_1
++ y_2x_2 = -\frac{y_1^2}{4y_2}$. Thus, 
+\begin{equation*}
+\delta_C^*(y) = \begin{cases} \left|\frac{y_1^2}{4y_2}\right| & y_2<0\\
+0 & y=0 \\
++\infty & \text{otherwise.}
+\end{cases}
+\end{equation*}
+Observe the sequence $y^n=(\frac{2}{n}, \frac{1}{n^2})$ satsifies 
+$\delta_C^*(y^n)=1$, but $\lim y^n=0$ while $\delta_C^*(0)=0$.
+\end{proof}
+}
+\noindent
+\textbf{19 * (Strict-smooth duality)} 
+Consider a proper closed convex function $f:\E\to(-\infty, +\infty]$. 
+\begin{enumerate}[(a)]
+\item If $f$ has Gateaux derivative $y$ at a point $x$ in $\E$, prove 
+the inequality 
+\begin{equation*}
+f^*(z) > f^*(y) + \ip{x, z-y}
+\end{equation*}
+for elements $z$ of $\E$ distinct from $y$.  \\
+\bluea{
+By Exercise 7, $x\in\partial f^*(y)$, so $f^*(z) \geq f^*(y) + \ip{x,
+z-y}$ for every $z\in\E$. If this holds with equality for some 
+$y\neq w\in\E$, i.e. $f^*(w) = f^*(y) + \ip{x,w-y}$, then by 
+subtracting this inequality from the previous, we obtain 
+$f^*(z) \geq \ip{x, z-w} + f^*(w)$. In other words, $x\in\partial
+f^*(w)$. By Exercise 7, since $f$ is closed, convex, and proper,
+ $w\in\partial f(x)$. 
+But this contradicts $f$ being differentiable at $x$, i.e. 
+$\partial f(x)$ being a singleton.
+}
+\item If $f$ is essentially smooth, prove that $f^*$ is essentially 
+strictly convex. \\
+\bluea{
+By Exercise 7, we see $\bigcup_{x\in\E}\partial f(x) = \dom \partial f^*$.
+and $\bigcup_{y\in\E}\partial f^*(x) = \dom\partial f$. In fact, 
+$\{(x,y)\in\E^2: y\in \partial f(x)\} = \{(x,y)\in\E^2: x\in\partial f^*
+(y)\}$. For any $y\in\dom\partial f^*$, there is an $x\in\dom\partial f$
+such that $y\in\partial f(x)$, and thus $f^*(z) > f^*(y) + \ip{x,z-y}$ 
+for all $z\in\E$. Given $y,y'$ in a convex subset of $\dom\partial f^*$
+and $\lambda\in(0,1)$, $\lambda y + (1-\lambda)y'\in\dom\partial f^*$,
+and so there exists $x$ such that
+\begin{align*}
+f^*(y) &> f^*(\lambda y + (1-\lambda)y') + (1-\lambda)\ip{x, y-y'},\\
+f^*(y') &> f^*(\lambda y + (1-\lambda)y') + \lambda\ip{x, y'-y}.
+\end{align*}
+Multiplying the top equation by $\lambda$ and the bottom one by 
+$1-\lambda$ and adding them together, we obtain 
+$f^*(\lambda y + (1-\lambda)y') < \lambda f^*(y) + (1-\lambda)f^*(y')$.
+This proves essential strict convexity.
+}
+\item Deduce the Strict-smooth duality theorem (4.2.5) using 
+Exercise 23 in Section 3.1. \\
+\bluea{
+Assuming $f$ is essentially strictly convex, we prove $f^*$ is essentially
+smooth. Using the initial part of the argument for part (b),
+if $\{x_1,x_2\}\in\partial f^*(y)$ for some $x_1\neq x_2\in \E$ and 
+$y\in\E$, then $\partial f(x_1) \cap \partial f(x_2) \supset \{y\}
+\neq \emptyset$, contradicting Section 3.1 Exercise 23, which says 
+subgradients at distinct points of an essentially strictly convex function
+are nonoverlapping. This proves that $\partial f^*$ is always either empty
+or a singleton, which by Section 4.1 Exercise 21 implies $f^*$ is 
+essentially smooth. Since $f^{**}=f$ by Theorem 4.2.1 using convex,
+closed, properness of $f$, we have proven $f$ is essentially strictly
+convex iff $f^*$ is essentially strictly smooth.
+}
+\end{enumerate}
+\noindent
+\textbf{20 * (Logarithmic homogeneity).} If the function $f:\E\to(-\infty,
++\infty]$ is closed, convex, and proper, then for any real $\nu>0$ 
+prove the inequality 
+\begin{equation*}
+f(x) + f^*(\phi) + \nu\log\ip{x,-\phi}\geq \nu\log\nu - \nu 
+\text{ for all }x,\phi\in\E
+\end{equation*}
+holds (where we interpret $\log\alpha=-\infty$ when $\alpha\leq 0$) if 
+and only if $f$ satisfies the condition 
+\begin{equation*}
+f(tx) = f(x)-\nu\log t \text{ for all }x\in\E,\,t\in\R_{++}.
+\end{equation*}
+Hint: Consider first the case $\nu=1$, and use the inequality 
+\begin{equation*}
+\alpha\leq -1-\log(-\alpha).
+\end{equation*}
+\bluea{
+\begin{proof}
+We first show the backwards direction: assume $f(tx)=f(x)-\nu\log t$ 
+for all $x\in\E,\,t\in\R_{++}$. As suggested, first we handle the case 
+of $\nu=1$. If $\ip{x,-\phi}\leq 0$, then 
+\begin{equation*}
+f^*(\phi) = \sup_{x\in\E} \ip{\phi, x}-f(x) = \sup_{x\in\E}
+\sup_{t\in\R_{++}} t\ip{\phi, x} - f(x) + \log t \xrightarrow{t\to
++\infty}{}+\infty,
+\end{equation*}
+as $\ip{\phi, x}\geq 0$. Thus $f^*(\phi)=+\infty$, so the inequality 
+$f(x) + f^*(\phi) + \log\ip{-x,\phi} \geq -1$ holds as we take 
+the convention $+\infty - \infty=+\infty$ (page 4 of text). Now 
+we can assume $\ip{x,-\phi} > 0$:
+\begin{equation*}
+f(x)+f^*(\phi) + \log\ip{x,-\phi} 
+= f\left(\frac{x}{\ip{x,-\phi}}\right) + f^*(\phi)
+\geq \frac{\ip{x,\phi}}{\ip{x,-\phi}} = -1
+\end{equation*}
+by the Fenchel-Young inequality (Prop 3.3.4). This proves the implication
+for $\nu=1$. For $\nu \neq 1$, notice that $\frac{f(tx)}{\nu} = 
+\frac{f(x)}{\nu} - \log t$, i.e. the $\nu=1$ case is satisfied 
+by the function $\frac{f(x)}{\nu}$. The conjugate is $\frac{f^*(\nu\cdot)
+}{\nu}$. Thus, 
+\begin{gather*}
+\frac{f(x)}{\nu} + \frac{f^*(\nu\phi)}{\nu} + \log\ip{-x,\phi} \geq 
+-1 
+\iff f(x) + f^*(\phi) + \nu\log\ip{-x, \frac{\phi}{\nu}} \geq -\nu\\
+\iff f(x) + f^*(\phi) + \nu\log\ip{-x, \phi} \geq \nu\log \nu -\nu.
+\end{gather*}
+For the reverse direction, again suppose $\nu=1$. Then 
+\begin{gather*}
+f(tx) + f^*(\phi) + \log\ip{tx,-\phi} \geq -1 \\
+\implies f(tx) \geq -\log\ip{x,-\phi} - \log t - 1
+- f^*(\phi) \geq \ip{x,\phi} - f^*(\phi)-\log t.
+\end{gather*}
+Taking a $\sup$ over $\phi$, we obtain $f(tx) \geq f^{**}(x)-\log t
+= f(x) - \log t$ by Theorem 4.2.1. Since this inequality holds 
+for $x$ and $t$ arbitrary, we also have $f(x)=f(tx/t) 
+\geq f(tx) -\log(1/t)=f(tx)+\log t$. Thus, $f(tx) = f(x)-\log t$.
+When $\nu \neq 1$, by the argument for the previous direction,
+the inequality $f(x)+f^*(\phi)+\log\ip{x,-\phi}\geq \nu\log\nu-\nu$ 
+is invariant to scaling both $f$ and $\nu$ the same amount. 
+Clearly, so is the inequality $f(tx)=f(x)-\nu\log t$. So the case 
+of $\nu=1$ suffices for general $\nu$ for the reverse direction as 
+well.
+\end{proof}
+}
+\noindent
+\textbf{21 * (Cofiniteness).} Consider a function $h:\E\to(-\infty,+\infty]$
+and the following properties: 
+\begin{enumerate}[(i)]
+\item $h(\cdot)-\ip{\phi,\cdot}$ has bounded level sets for all $\phi$ 
+in $\E$. 
+\item $\lim_{\|x\|\to\infty}\|x\|^{-1}h(x) = + \infty$. 
+\item $h^*$ is everywhere finite.
+\end{enumerate}
+Complete the following steps.
+\begin{enumerate}[(a)]
+\item Prove properties (i) and (ii) are equivalent.\\
+ \bluea{
+(ii)$\implies$(i): Take $\phi\in\E$. By (ii), for any $\epsilon > 0$,
+there exists $R$ such 
+that $\|x\|\geq R$ implies $\frac{h(x)}{\|x\|}
+\geq \|\phi\|+\epsilon$. Thus, 
+\begin{equation*}
+\|x\|\geq R\implies
+\frac{h(x) - \ip{\phi, x}}{\|x\|} \geq \frac{h(x)}{\|x\|} - \|\phi\|
+\geq \epsilon > 0.
+\end{equation*}
+Thus $\lim_{\|x\|\to+\infty}\|x\|^{-1}(h(x) - \ip{\phi, x}) > 0$. 
+Thus, by (1.1.4), $h(\cdot)-\ip{\phi,\cdot}$ has bounded level sets.\\
+(i)$\implies$(ii): Let $\{v_1,\ldots, v_{2n}\}=\{Ce_1, \ldots, Ce_n, 
+-Ce_1,\ldots, -Ce_n\}$ for some $C>0$ where $\{e_1,\ldots,e_n\}$ 
+is an orthonormal basis of $\E$. By (i), the level sets 
+$\{x\mid h(x)-\ip{v_i, x}\leq 0\}$ are bounded, so
+\begin{align*}
+&\forall i\in[2n], \,\exists R_i,\; \|x\|>R_i\implies h(x)-\ip{v_i, x}>0\\
+\text{so } & \|x\|>R:=\max_i R_i
+\implies \forall i\in[2n],\, h(x)>\ip{v_i, x}
+\\
+\text{so }& \|x\|>R\implies h(x) > C\|x\|_\infty.
+\end{align*}
+Thus, for any $C>0$, there exists $R$ such that $\|x\| > R$ implies 
+$\frac{h(x)}{\|x\|_\infty} > C$.
+ Thus, $\lim_{\|x\|\to+\infty} \|x\|_\infty^{-1}h(x)= +\infty$. By
+equivalence of norms (Section 4.1.1 Exercise 2), we have (ii).
+}
+\item If $h$ is closed, convex and proper, use the Moreau-Rockafellar 
+theorem 4.2.4 \eqref{4.2.4} to prove properties (i) and (iii) are 
+equivalent. \\
+\bluea{
+Note $h(\cdot)-\ip{\phi, \cdot}$ is closed, convex, and proper, so 
+that by Theorem 4.2.4, it has bounded level sets if and only if 
+$(h(\cdot)-\ip{\phi, \cdot})^*=h^*(\cdot+\phi)$ is finite and 
+continuous at 0. Thus, (i) holds if and only if $h^*(\cdot+\phi)$ 
+is finite and continuous at 0 for every $\phi\in\E$, i.e. 
+$h^*(\cdot)$ is everywhere finite (See Thm. 4.1.3).
+ This proves (i) and (iii) are 
+equivalent.
+}
+\end{enumerate}
+\noindent
+\red{\textbf{22 ** (Computing closures). :(}}
+\begin{enumerate}[(a)]
+\item Prove any closed convex function $g:\R\to(-\infty,+\infty]$ is 
+continuous on its domain.\\
+%\red{Jesus Christ I found this question very difficult.}\\
+\bluea{
+By closedness, for any sequence $x^i\to x$ in $\dom f$, we have 
+$f(x)\leq \lim f(x^i)$. Now let $x\in\dom f$ and suppose $x^i$ is a 
+sequence in $\dom f$ converging to $x$. WLOG, we can assume that 
+the sequence is contained in $[x,y]$ for some $y>x$. Thus, for each 
+$i$, for some $\lambda^i$ we have $x^i = \lambda^i x+ (1-\lambda)y_i$.
+Now $|x^i-x| = (1-\lambda^i)|x-y| \to 0$, which implies $\lambda^i
+\to 1$. Now,
+\begin{equation*}
+\lim_{i\to\infty} f(x^i) \leq \lim_{i\to\infty}\{\lambda^i f(x)
++(1-\lambda^i)f(y)\} = f(x).
+\end{equation*}
+With closedness, $\lim_{i\to\infty} f(x^i)= f(x)$. This proves the 
+desired statement.
+}
+\item Consider a convex function $f:\E\to(-\infty,+\infty]$. For any 
+points $x\in\E$ and $y\in\inter(\dom f)$, prove
+\begin{equation*}
+f^{**}(x) = \lim_{t\uparrow1} f(y+t(x-y)).
+\end{equation*}
+Hint: Use part (a) and the Accessibility lemma (Section 1.1, Exercise 11).
+\\
+\bluea{
+By Exercise 25, $f^{**}$ is somewhere finite if and only if $f$ is 
+proper. Thus, if $f^{**}$ takes on $-\infty$, it is not somewhere 
+finite (Prop 4.2.7), so $f$ is not proper. Since $f$ does not 
+take on $-\infty$, this can only mean $f=+\infty$. But then 
+$f^{**} = +\infty$. Therefore, $f^{**}$ does not take on $-\infty$. \\
+So there are two cases: $f^{**}$ is somewhere finite, or 
+$f^{**} = +\infty$. If the latter, $f$ is not proper, so $f=+\infty$.
+Then $\dom f^{**} = \dom f = \emptyset$. In the former case, 
+$\cl f = f^{**}$ by Theorem 4.2.8. Since $x\in\dom(\cl f)\iff$ 
+there exists a sequence $(x^i, r^i)\in\epi f$ converging to 
+$(x,r)$ for some $r\in\R$, it is only true if $x\in\cl(\dom f)$.
+Thus $\dom f^{**} = \dom(\cl f)\subset \cl(\dom f)$.\\
+Now assume $x\in\dom f^{**}$.
+By part (a), $f^**(x) = \lim_{t\uparrow 1} f^{**}(y+t(x-y))$.
+By Theorem 4.2.8 and Accessibility ($x\in\cl(\dom f)$),
+ for all $0<t<1$, the point 
+$y+t(x-y)\in\inter(\dom f)$, so $f$ is continuous, e.g. lower 
+semicontinuous here, so equivalent to $f^**$. Therefore, 
+$f^{**}(y+t(x-y)) = f^{**}(y+t(x-y))$, so $f^{**}(x) = \lim_{t\uparrow1}
+f(y+t(x-y))$. If $x\notin\dom f^{**}$, then $x\notin$
+}
+\end{enumerate}
+\noindent
+\textbf{23 ** (Recession functions).} This exercise uses Section 1.1, 
+Exercise 6 (Recession cones). The \textit{recession functions} of a 
+closed convex function $f:\E\to(-\infty,+\infty]$ is defined by 
+\begin{equation*}
+0^+f(d) = \sup_{t\in\R_{++}}\frac{f(x+td)-f(x)}{t}\text{ for }d\in\E,
+\end{equation*}
+where $x$ is any point in $\dom f$. 
+\begin{enumerate}[(a)]
+\item Prove $0^+f$ is closed and sublinear. \\
+\bluea{
+For any $x\in\E$ and $t>0,\; \frac{f(x+td)-f(x)}{t}$ is a closed convex
+function of $d$. The supremum of closed convex functions is closed and 
+convex, so $0^+f$ is closed. Sublinearity follows from convexity and 
+positive homogeneity: for $c>0$, $0^+f(cd) = c\sup_{t>0}\frac{f(x+ctd)
+-f(x)}{ct}=c0^+f(d)$. Clearly $0^+f(0)=0$, but in general once we know 
+$g$ is convex and verify $g(cd)=cg(d)$ for $c>0$ we know $g(0)=0$, 
+because 
+\begin{equation*}
+g(0) \leq \frac{1}{2}g(td)+\frac{1}{2}g(-td), \qquad
+g(0) \geq 2g(\frac{td}{2}) - g(td),
+\end{equation*}
+and both inequalities' RHS's become 0 after taking $t\to 0$.
+}
+\item Prove $\epi(0^+f)=0^+(\epi f)$, and deduce that $0^+f$ is 
+independent of the choice of the point $x$. \\
+\bluea{
+$\epi(0^+ f) \subset 0^+(\epi f)$: Suppose $(d,r)\in\epi(0^+ f)$, i.e. 
+$\sup_{t>0}\frac{f(x+td)-f(x)}{t} \leq r$, i.e. $f(x+td)\leq tr+f(x)$ 
+for every $t>0$. Let us assume $d\neq 0$, if $d=0$ clearly $(0,r)
+\in 0^+(\epi f)$. We have for every $t,\; (x+td, tr+f(x))\in\epi f$.
+\begin{equation*}
+\frac{(x+td, tr+f(x))}{\|(x+td, tr+f(x))\|} \xrightarrow{t\to\infty}{}
+\frac{(d,r)}{\|\left(\frac{x}{t} + d, \frac{f(x)}{t} + r\right)\|}
+\xrightarrow{t\to\infty}{} \frac{(d,r)}{\|(d,r)\|}.
+\end{equation*}
+By Section 1.1 Exercise 6 (d), this proves $(d,r)\in0^+(\epi f)$. \\
+$0^+(\epi f)\subset \epi(0^+f)$: Suppose $(d,r)\in 0^+(\epi f)$. Then,
+for all $t>0,\; (x, f(x)) + t(d,r)\in \epi f$. In other words, 
+for every $t>0,\; f(x+td) \leq f(x) + rt$. Rearranging, this implies 
+$0^+ f(d) \leq r$, i.e. $(d,r)\in \epi(0^+ f)$.
+}
+\item For any real $\alpha > \inf f$, prove 
+\begin{equation*}
+0^+\{y\in\E\mid f(y)\leq \alpha\}=\{d\in\E\mid 0^+f(d)\leq 0\}.
+\end{equation*}
+\bluea{
+The sets $\epi f$ and $H=\{(x,r): r\leq\alpha\}$ are closed convex 
+sets with nonempty intersection (since for some $x$, $f(x) \leq \alpha$).
+Furthermore, $0^+H = \{(x,r):r\leq 0\}$. Thus, 
+\begin{align*}
+0^+\{(y,r): f(y)\leq r,\, r\leq \alpha\} &= 
+0^+(\epi f \cap H) = 0^+(\epi f)\cap 0^+(H) = \epi(0^+ f)\cap 0^+(H) \\
+&= \{(y,r) \in \epi(0^+ f): r \leq 0\}.
+\end{align*}
+By taking the projection onto $\E$, we see that $0^+\{y: f(y) \leq \alpha\}
+= \{y: 0^+ f(y) \leq 0\}$.
+}
+\end{enumerate}
+\noindent
+\textbf{24 ** (Fisher information function).} Let $f:\R\to(-\infty,+\infty]$
+be a given function, and define a function $g:\R^2\to(-\infty,+\infty]$ 
+by 
+\begin{equation*}
+g(x,y) = \begin{cases} yf\left(\frac{x}{y}\right) \text{ if }y>0\\
++\infty \text{ otherwise.} \end{cases}
+\end{equation*}
+\begin{enumerate}[(a)]
+\item Prove $g$ is convex if and only if $f$ is convex.\\
+\bluea{
+If $g$ is convex, clearly $f$ is convex since we can apply convexity 
+to points of the form $(x,1)$. Now given $(x_1,y_1), (x_2,y_2)\in\R^2$
+with $y_1,y_2>0$, denote $z=\lambda y_1 + (1-\lambda)y_2$:
+\begin{align*}
+z\left(\frac{\lambda x_1 + (1-\lambda)x_2}{z}\right) &=
+zf\left(\frac{\lambda y_1}{z}\frac{x_1}{y_1} + \frac{(1-\lambda)y_2}{z}
+\frac{x_2}{y_2}\right)\\
+&\leq \lambda y_1 f\left(\frac{x_1}{y_1}\right)+(1-\lambda)y_2f\left(
+\frac{x_2}{y_2}\right).
+\end{align*}
+This shows that $g$ is convex if $f$ is convex.
+}
+\item Suppose $f$ is essentially strictly convex. For $y$ and $v$ in 
+$\R_{++}$ and $x$ and $u$ in $\R$, prove 
+\begin{equation*}
+g(x,y) + g(u,v) = g(x+u,y+v)\iff \frac{x}{y}=\frac{u}{v}.
+\end{equation*}
+\green{The book says $g(x+y, u+v)$, but I don't think this is right, 
+because if $f(x)=x^2$, and $x=y=5$ and $u=v=1$, then $g(x,y)+g(u,v)
+= 5+1 = 6$, but $g(x+y, u+v)=g(10, 2) = 50$.}\\
+\bluea{
+Assume the latter and denote $r=\frac{x}{y}=\frac{u}{v}$. Note 
+in addition $\frac{x+u}{y+v} = r\frac{y+v}{y+v} = r$. Then, 
+\begin{equation*}
+g(x,y) + g(u,v) = yf(r) + vf(r) = (y+v)f(r) = g(x+u, y+v).
+\end{equation*}
+Now suppose $g(x,y)+g(u,v) = g(x+u, y+v)$. We have 
+\begin{align*}
+g(x+u, y+v) &= 
+(y+v)f\left(\frac{x+u}{y+v}\right)
+= (y+v)f\left(\frac{y}{y+v}
+\frac{x}{y} + \frac{v}{y+v}\frac{u}{v}\right) \\
+&\leq (y+v)\left(\frac{y}{y+v}f\left(\frac{x}{y}\right)
+ + \frac{v}{y+v}f\left(\frac{u}{
+v}\right)\right) = g(x,y) + g(u,v).
+\end{align*}
+Since the domain of $f$ is $\R$, essential strict convexity 
+is the same as strict convexity. See Section 3.1 Exercise 12: 
+ $\dom\partial f$ contains at least the interior of $\dom f$, 
+this is equivalent to strict convexity (see part (e)). Therefore, 
+we only have equality in the above if $\frac{x}{y} = \frac{u}{v}$.
+}
+\item Calculate $g^*$.\\
+\bluea{
+\begin{align*}
+g^*(a,b) &= \sup_{x\in\R,y>0} ax + by - yf\left(\frac{x}{y}\right) 
+= \sup_{x\in\R,y>0}
+ y\left[a\left(\frac{x}{y}\right) + b - f\left(\frac{x}{y}
+\right)\right] \\
+&= \sup_{y>0} y\left(f^*(a)+b\right) = \begin{cases} 
+0 & f^*(a)\leq -b \\
++\infty & f^*(a) > -b.
+\end{cases}
+\end{align*}
+}
+\item Suppose $f$ is closed, convex, and finite at $0$. Using Exercises
+22 and 23, prove 
+\begin{equation*}
+g^{**}(x,y) = \begin{cases} yf\left(\frac{x}{y}\right) \text{if }y>0\\
+0^+f(x) &\text{if }y=0\\
++\infty &\text{otherwise.}
+\end{cases}
+\end{equation*}
+\bluea{
+If $\dom f = \{0\}$, then we can directly compute $g^{**}$. $f^*(a)
+= \sup_{x\in\R} ax - f(x) = -f(0)$, which means by part (c) that 
+$g^*(a,b) = 0$ if $-f(0) \leq -b$ and $+\infty$ otherwise, i.e. 
+$g^* = \delta_{\{(a,b)\mid b\leq f(0)\}}$. Then, 
+\begin{equation*}
+g^{**}(x,y) = \sup_{a\in\R,\,b\leq f(0)} ax+by = \delta_{\{0\}}(x) 
++ \delta_{\R_+}(y) + yf(0).
+\end{equation*}
+By inspection, this matches the formula given in the question. Note 
+$0^+f(x) = \delta_{\{0\}}(x)$. Now if $\dom f\neq \{0\}$, it has 
+nonempty interior. Take $\hat x\in\inter(\dom f)$. Now if $y>0$, 
+the point $(y\hat x, y)\in\inter(\dom g)$ ($x/y$ is continuous and 
+$f$ is continuous at $y\hat x/y=\hat x$; continuity of $g$ at 
+$(y\hat x, y)$ follows by continuity of product and composition).
+ Then by Exercise 22 part (b), for $y>0$, 
+\begin{equation*}
+g^{**}(x,y)=\lim_{t\uparrow 1} g(tx + (1-t)y\hat x, y) 
+= \lim_{t\uparrow 1} yf\left(\frac{tx + (1-t)y\hat x}{y}\right)
+= y f^{**}\left(\frac{x}{y}\right) = yf\left(\frac{x}{y}\right),
+\end{equation*}
+where the last equality is because $f$ is closed, convex, and proper.\\
+Now suppose $y=0$. Since $(\hat x, 1)\in\inter(\dom g)$, 
+\begin{equation*}
+g^{**}(x,0) = \lim_{t\to\infty} g\left(x+\frac{\hat x-x}{t}, \frac{1}{t}
+\right) = \lim_{t\to\infty}\frac{f(tx + \hat x- x)}{t}
+= \lim_{t\to\infty}\frac{f(tx)-f(0)}{t} = 0^+f(x).
+\end{equation*}
+The reason for the second to last inequality is, $tx+\hat x-x
+= t'x$ iff $t' = t-1+\frac{\hat x}{x}$. For any constant $C$, 
+$\lim_{t\to\infty} \frac{f(tx)}{t} = \lim_{t\to\infty}
+ \frac{f((t-C)x)}{t}$, because $\lim_{t\to\infty}\frac{f((t-C)x)}{t}
+= \lim_{t\to\infty}\frac{f((t-C)x)}{t-C}\frac{t-C}{t}$, and we can 
+apply product rule of limits. Applying Exercise 22 (b) again when $y<0$, 
+we get $g^{**}(x,y) = +\infty$ if $y<0$.
+}
+\item If $f(x)=x^2/2$ for all $x\in\R$, calculate $g$.  \\
+\bluea{
+$g(x,y) = yf(x/y) = \frac{x^2}{2y}$.
+}
+\item Define a set $C=\{(x,y)\in\R^2\mid x^2\leq y\leq x\}$ and a function
+\begin{equation*}
+h(x,y) = \begin{cases} \frac{x^3}{y^2} & \text{if }(x,y)\in C\setminus
+\{0\} \\ 0 & \text{if }(x,y)=0 \\ +\infty &\text{otherwise.}
+\end{cases}
+\end{equation*}
+Prove $h$ is closed and convex but is not continuous relative to its 
+(compact) domain $C$. Construct another such example with $\sup_C h$ 
+finite.\\
+\bluea{
+$h(x,y) = g^{**}(x,y)+\delta_C(x,y)$
+ where $f(x)=|x|^3$. For the case $y=0$, note 
+$0^+f(x) = \delta_{\{0\}}(x)$, because $\lim_{t\to\infty} \frac{|tx|^3}{t}
+= +\infty$ for all nonzero $x$. Thus, $h$ is closed and convex. However,
+it is not continuous, because the sequence $(1/n, 1/n^2)$ converges to 
+0, yet evaluated at $h$ it converges to $+\infty\neq h(0)=0$.\\
+For another such example, replace $f$ with $f(x)=x^2$. Then 
+$g(x,y) = \frac{x^2}{y} \leq 1$ on $C$.
+}
+\end{enumerate}
+\noindent
+\textbf{25 ** (Finiteness of biconjugate).} Consider a convex function 
+$h:\E\to[-\infty,+\infty]$. 
+\begin{enumerate}[(a)]
+\item If $h$ is proper and has an affine minorant, prove $h^{**}$ is 
+somewhere finite. \\
+\bluea{
+Let $\alpha$ be the affine minorant.
+$\alpha \leq \cl h \leq h$ because $\cl h$ is the largest closed minorant
+of $h$. Therefore, $\cl h$ is somewhere finite (by properness, 
+for some $x$, $h(x)$ is finite, then 
+$\alpha(x)\leq \cl h(x)\leq h(x)\implies \cl h(x)$ finite). Since 
+$\alpha\leq h$, we have $\alpha=\alpha^{**}\leq h^{**} \leq \cl h$, again 
+applying the fact that $\cl h$ is the largest closed minorant of $h$.
+By the same reasoning, since $\cl h$ is somewhere finite, $h^{**}$ is 
+somewhere finite.
+}
+\item If $h^{**}$ is somewhere finite, prove $h$ is proper. \\
+\bluea{
+Suppose $h$ is not proper. In the first case, $h$ takes on the 
+value $-\infty$. Then, $h^*(y) = \sup_{x\in\E}\ip{y,x}-h(x)=+\infty$.
+Then, $h^{**} = -\infty$.  \\
+Otherwise, $h=+\infty$. Then, $h^* = -\infty$ and $h^{**}=+\infty$.
+}
+\item Use the fact that any proper convex function has a subgradient 
+(Section 3.1, Exercise 29) to deduce that $h^{**}$ is somewhere 
+finite if and only if $h$ is proper. \\
+\bluea{
+By part (b), if $h^{**}$ is somewhere finite, then $h$ is proper.
+If $h$ is proper, then it has a subgradient, i.e. $\phi\in\E$ at 
+such that for some $\bar x,\, \ip{\phi, x-\bar x}\leq f(x)-f(\bar x)$ 
+for every $x\in\E$, i.e. $\ip{\phi, \cdot-\bar x} + f(\bar x)\leq f$.
+This is an affine minorant. Thus, by part (a), $h^{**}$ is somewhere
+finite.
+}
+\item Deduce $h^{**}=\cl h$ for any convex function $h:\E\to(-\infty,
++\infty]$. \\
+\bluea{
+If $h$ is somewhere finite, then it is proper, so $h^{**}$ is 
+somewhere finite. Thus, by Theorem 4.2.8, $h^{**}=\cl h$. \\
+Otherwise, $h=+\infty$, so $\cl h = h^{**}=+\infty$.
+}
+\end{enumerate}
+\noindent
+\textbf{26 ** (Self-dual cones [8]).} Consider a function $h:\E\to
+[-\infty,+\infty)$ for which $-h$ is closed and sublinear, and suppose
+there is a point $\hat x\in\E$ satisfying $h(\hat x) > 0$. Define the 
+\textit{concave polar} of $h$ as the function $h_\circ:\E\to[-\infty,
++\infty)$ given by 
+\begin{equation*}
+h_\circ(y) = \inf\{\ip{x,y}\mid h(x)\geq 1\}.
+\end{equation*}
+\begin{enumerate}[(a)]
+\item Prove $-h_\circ$ is closed and sublinear, and, for real $\lambda>0$,
+we have $\lambda(\lambda h)_\circ=h_\circ$.\\
+\bluea{
+$-h_{\circ}(y) = \sup\{-\ip{x,y}\mid h(x)\geq 1\}$ is a supremum of 
+linear functions, and is thus closed and convex. It is positive 
+homogeneous, because for $\mu\geq 0,\, \sup\{-\ip{x,\mu y}\mid h(x)
+\geq 1\} = \mu\sup\{-\ip{x,y}\mid h(x)\geq 1\}$. Since it convex and 
+positive homogeneous, it is sublinear ($h\left(x+y\right) = 
+h\left(2(x/2 + y/2)\right) = 2h(x/2+y/2)\leq h(x) + h(y)$). 
+\begin{equation*}
+\lambda(\lambda h)_{\circ}(y) = \lambda\inf\{\ip{x,y}\mid \lambda h(x)
+\geq 1\} = \inf\{\ip{\lambda x,y}\mid h(\lambda x)\geq 1\}
+= h(y).
+\end{equation*}
+}
+\vspace{-0.3in}
+\item Prove the closed convex cone 
+\begin{equation*}
+K_h=\{(x,t)\in\E\times\R\mid |t|\leq h(x)\}
+\end{equation*}
+has polar $(K_h)^-= -K_{h_\circ}$. \\
+\bluea{
+To show $K_h$ is convex, suppose $(x_1, t_1), (x_2,t_2)\in K_h$, 
+and $\lambda[0,1]$. Since $|t_1|\leq h(x_1)$ and $|t_2|\leq h(x_2)$,
+\begin{equation*}
+|\lambda t_1 + (1-\lambda)t_2| \leq \lambda |t_1| + (1-\lambda)|t_2|
+\leq \lambda h(x_1) + (1-\lambda)h(x_2) \leq h(\lambda x_1 + (1-\lambda)
+x_2)
+\end{equation*}
+by concavity of $h$. Therefore, $\lambda (x_1,t_1)+(1-\lambda)(x_2, t_2)
+\in K_h$. Now 
+\begin{align*}
+(K_h)^- &= \{(y,s)\mid \ip{x,y}+ts\leq 0 \; \forall x,t\;
+\text{ s.t. } |t|\leq h(x)\}\\
+-K_{h_\circ} &= -\{(y,s)\mid |s|\leq \inf\{\ip{z,y}\mid h(z)\geq 1\}\}\\
+&= -\{(y,s)\mid |s|\leq \ip{z,y} \;\forall z\text{ s.t. } h(z)\geq 1\} \\
+&= \{(y,s)\mid |s|\leq -\ip{z,y}\; \forall z\text{ s.t. } h(z)\geq 1\}.
+\end{align*}
+By taking $t=\sgn(s)$, we see that $(K_{h})^-\subset -K_{h_\circ}$.
+Now suppose $(y,s)\in -K_{h_\circ}$, so 
+$|s|\leq -\ip{z,y}$ for all $z$ where $h(z)\geq 1$.
+Then if $h(x) \geq |t|>0$, by positive homogeneity $h(x/|t|) \geq 1$,
+so $|s|\leq -\ip{\frac{x}{|t|}, y}$, so $ts \leq |ts| \leq -\ip{x,y}$.
+If $h(x)\geq t=0$, by considering a sequence $t\downarrow 0$ we get 
+$0\leq -\ip{x,y}$.
+Thus, $(y,s)\in (K_h)^-$, i.e. $-K_{h_\circ}\subset (K_h)^-$. \\
+The cone $P_{\alpha} = K_{(h^{\alpha}(\alpha))^{-1/2}h^{\alpha}}$ is 
+self-dual because by part (b), $P_{\alpha}^- = -K_{((h^{\alpha}(\alpha))^{
+-1/2}h^{\alpha})_{\circ}} = -K_{(h^{\alpha})^{-1/2}h^{\alpha}}
+= -P_\alpha$, 
+applying the above and part (a) ($(\lambda h)_\circ = h_\circ/\lambda$).
+}
+\item Suppose the vector $\alpha\in\R_{++}^n$ satisfies $\sum_i\alpha_i
+=1$, and define a function $h^{\alpha}:\R^n\to[-\infty,+\infty)$ by 
+\begin{equation*}
+h^\alpha(x)=\begin{cases} \prod_i x_i^{\alpha_i}&\text{if }x\geq 0\\
+-\infty &\text{otherwise.}\end{cases}
+\end{equation*}
+Prove $h_\circ^\alpha=h^\alpha/h^\alpha(\alpha)$, and deduce the cone 
+\begin{equation*}
+P_\alpha = K_{(h^\alpha(\alpha))^{-1/2}h^\alpha}
+\end{equation*}
+is \textit{self-dual}: $P_\alpha^- = -P_\alpha$. \\
+\bluea{
+\begin{equation*}
+h_\circ^{\alpha}(x) = \inf\{\ip{x,y} \mid \prod_i y_i^{\alpha_i} 
+\geq 1\}.
+\end{equation*}
+Let us compute this directly and show it equals $\frac{h^\alpha}{
+h^\alpha(\alpha)} = h^\alpha\left(\frac{x}{\alpha}\right)$. 
+The above optimization problem is convex, since $-\prod_i y_i^{\alpha_i}$
+is convex and so $-\prod_i y_i^{\alpha_i} \leq -1$ is a convex 
+constraint. Furthermore, it satisfies Slater's condition as we 
+can clearly find a strictly feasible $y$. Thus, a Lagrange multiplier 
+exists for some optimal $y$. If $x_i=0$ for some $i$, we can 
+set $y_i=1$ and $y_j=0$ for $j\neq i$ to obtain an optimal objective 
+value of $0$. Otherwise, 
+\begin{equation*}
+\nabla\left(\ip{x,y} + \lambda\left(1-\prod_i y_i^{\alpha_i}\right)
+\right) = x  - \lambda\left(\prod_i y_i^{\alpha_i}\right)\frac{\alpha}{y}.
+\end{equation*}
+Setting the gradient of the Lagrangian equal to 0, and using the 
+fact that $\prod_i y_i = 1$, we have $y_i = \lambda\frac{\alpha_i}{x_i}$.
+Thus, $1=\prod_i y_i^{\alpha_i} = \lambda\prod_i\left(\frac{\alpha_i}{
+x_i}\right)^{\alpha_i}$, so that $\lambda = \prod_i\left(\frac{x_i}{
+\alpha_i}\right)^{\alpha_i}=h^{\alpha}\left(\frac{x}{\alpha}\right)$.
+The optimal value is thus $h_{\circ}^{\alpha}(x) = \ip{x,y}
+= \ip{x, \lambda\frac{\alpha}{x}} = \lambda = h^{\alpha}\left(
+\frac{x}{\alpha}\right)$.
+}
+\item Prove the cones 
+\begin{align*}
+Q_2&= \{(x,t,z)\in\R^3\mid t^2\leq 2xz, x,z\geq 0\} \text{ and}\\
+Q_3&=\{(x,t,z)\in\R^3\mid 2|t|^3\leq\sqrt{27}xz^2,\,x,z,\geq0\}
+\end{align*}
+are self-dual.\\
+\bluea{
+$Q_2 = P_\alpha$ where $\alpha = (1/2,1/2)$, as $|t|\leq(h^{\alpha}(\alpha)
+)^{-1/2}h^{\alpha}(x)=(\sqrt{1/2\cdot1/2})^{-1/2}\sqrt{xz}$ for 
+$x,z\geq 0$ iff $t^2\leq 2xz$. Thus, $Q_2$ is self-dual.\\
+ Similarly, $Q_3 = P_\alpha$ where $\alpha = (1/3, 2/3)$: 
+$|t| \leq \left(\sqrt[3]{\frac{1}{3}\frac{4}{9}}\right)^{-1/2}
+\sqrt[3]{xz^2}$ for $x,z\geq 0$ iff $2|t|^3 \leq \sqrt{27}xz^2$. Thus, 
+$Q_3$ is self-dual.
+}
+\item Prove $Q_2$ is \textit{isometric} to $\S_+^2$; in other words,
+there is a linear map $A:\R^3\to\S_+^2$ preserving the norm and 
+satisfying $AQ_2=\S_+^2$. \\
+\bluea{
+Define $A$ by $A(x,t,z) = \begin{bmatrix} x & \frac{t}{\sqrt{2}} \\ 
+\frac{t}{\sqrt{2}} & z\end{bmatrix}$. By inspection, $A$ is 
+norm-preserving. Furthermore, if $(x,t,z)\in Q_2$, i.e. 
+$t^2\leq 2xz$ and $x,z\geq 0$,
+ then $xz-t^2/2\geq 0$, i.e. the determinant of the matrix is 
+nonnegative and the trace is nonnegative, meaning it is in $\S_+^2$. 
+Now, given a matrix $X=\begin{bmatrix} a & b \\ b & c \end{bmatrix}$ 
+in $\S_+^2$, we know $a,c\geq 0$, and that $ac\geq b^2$, i.e. 
+if $t=\sqrt{2}b,\, 2ac \geq t^2$. Thus, $A(a, \sqrt{2}b, c) = X$.
+This proves that $AQ_2 = \S_+^2$.
+}
+\end{enumerate}
+\noindent
+\textbf{27 ** (Conical open mapping [8]).} Define two closed convex cones
+in $\R^3$:
+\begin{align*}
+Q&=\{(x,y,z)\in\R^3\mid x^2\leq 2yz,\,x,z\geq0\}\text{ and}\\
+S&=\{(w,x,y)\in\R^3\mid 2|x|^3\leq\sqrt{27}wy^2,\,w,y,\geq0\}.
+\end{align*}
+These cones are self-dual by Exercise 26. Now define convex cones in 
+$\R^4$ by 
+\begin{equation*}
+C=(0\times Q)+(S\times 0)\text{ and }D=0\times\R^3.
+\end{equation*}
+\begin{enumerate}[(a)]
+\item Prove $C\cap D=\{0\}\times Q$. \\
+\green{I think the question as stated is wrong: we have $(1,1,1)\in Q$
+and $(0,0,5)\in S$. Furthermore, $(0,1,1,1) + (0,0,5,0) = (0,1,6,1)
+\in C$ and clearly in $\{0\}\times \R^3=D$. Thus, $(0,1,6,1)\in C\cap D$.
+Yet, $(0,1,6,1)\notin \{0\}\times Q$, because $(1,6,1)\notin Q$.\\
+Edit: Fixed definition of $Q$ from $y^2\leq 2xz$ to $x^2\leq 2yz$, thanks
+Sinho!!
+}\\
+\bluea{
+Clearly $\{0\}\times Q\subset C\cap D$, since $\{0\}\times Q\subset C$ 
+and $(\{0\}\times Q )\cap (\{0\}\times \R^3) = \{0\}\times Q$. \\
+Now if $x \in C\cap D$, then $x= (0, q) + (s,0)$ for some $s=(w,x,y)
+\in S$ such that $w=0$. We have $2|x|^3 \leq \sqrt{27}wy^2 = 0$, i.e. 
+$x=0$. By default, $y\geq 0$. Thus $s=(0,0,y)$. We need to show 
+$q+(0,y,0)\in Q$. If $q=(\bar x,y',z)$ satisfies $\bar x^2 \leq 2yz$, then 
+by nonnegativity we have $\bar 
+x^2 \leq 2(y+y')z$. Thus, $x\in \{0\}\times Q$.
+This proves the reverse inclusion.
+}
+\item Prove $-C^- = (\R\times Q)\cap (S\times\R)$. \\
+\bluea{
+By Section 3.3 Exercise 16 (a), $C^- = (0\times Q)^- \cap (S\times 0)^-$.
+By Section 4.1 Exercise 8, we can take polars componentwise, so 
+$C^- = (\R\times(-Q))\cap ((-S)\times \R)$, using self duality of 
+$Q$ and $S$. Thus $-C^- = (\R\times Q)\cap (S\times \R)$.
+}
+\item Define the projection $P:\R^4\to\R^3$ by $P(w,x,y,z)=(x,y,z).$
+Prove $P(C^-)=-Q$, or equivalently, 
+\begin{equation*}
+C^-+D^- = (C\cap D)^-.
+\end{equation*}
+\green{I wasn't able to show that $C-D=\E$ and thus apply Corollary 
+3.3.13, because I got that $C-D = \R_+\times\R^3$ (because $w\geq 0$ 
+for $(w,x,y)\in S$). So, minimal theory used, mostly computation.}\\
+\bluea{
+First, observe $C^-+D^- = C^- + \R\times(0,0,0) = \R\times P(C^-)$.
+On the other hand, $(C\cap D)^- = (\{0\}\times Q)^- = \R\times
+(-Q)$ (see part (a)). Thus, proving $C^-+D^-=(C\cap D)^-$ is equivalent
+to proving $P(C^-)=-Q$. To actually do this, note that 
+$C^- + D^- \subset \R\times (-Q)$ by Corollary 3.3.13. Now suppose 
+$(w,x,y,z)\in \R\times (-Q)$. To show this is in $(w,x,y,z)\in C^-
++ D^-$, we just have to show $(x,y,z)\in P(C^-)$ since $D^- = \R\times
+(0,0,0)$. For simplicity, we can remove a minus sign: we need to 
+show that if $(x,y,z)\in Q$, then $(x,y,z) \in P((\R\times Q)\cap (S
+\times \R))$. This amounts to showing there exists a $w\geq 0$ 
+such that $2|x|^3 \leq \sqrt{27}wy^2$. If $y > 0$, we can take 
+$w= 2|x|^3/(\sqrt{27}y^2)$. 
+ If $y=0$, then $x=0$ since $x^2 \leq 2yz=0$, so $w$ can be anything. 
+This proves that $(C\cap D)^- =\R\times (-Q)\subset C^- + D^-$, i.e. 
+$P(C^-) = -Q$.
+}
+\item Deduce the normal cone formula 
+\begin{equation*}
+N_{C\cap D}(x) = N_C(x)+N_D(x) \text{ for all }x\in C\cap D
+\end{equation*}
+and, by taking polars, the tangent cone formula 
+\begin{equation*}
+T_{C\cap D}(x) = T_C(x)\cap T_D(x)\text{ for all }x\in C\cap D.
+\end{equation*}
+\bluea{
+It suffices to show for any $x\in C\cap D$
+\begin{equation*}
+%N_C(x) + N_D(x) = (C-x)^- + (D-x)^- =
+ C^-\cap \{-x\}^- + D^-\cap \{-x\}^- =
+ (C^-+D^-)\cap\{-x\}^- 
+%= (C\cap D)^- \cap \{-x\} = N_{C\cap D}(x).
+\end{equation*}
+because $N_C(x) = (C-x)^- = C^-\cap \{-x\}$ and $(C^-+D^-)=(C\cap D)^-$.
+Now if $c\in C^-\cap \{-x\}^-$ and $d\in D^-\cap \{-x\}^-$, then 
+$c+d\in C^-+D^-$ by definition and $c+d\in\{-x\}^-$ because $c,d\in 
+\{-x\}^-$ and $\{-x\}^-$ is a convex cone. \\
+If $c\in C^-,\,d\in D^-$ are such that $c+d\in(C^-+D^-)\cap\{-x\}^-$, 
+observe $\ip{c,x}\leq 0$ and $\ip{d,x}\leq 0$ because $x\in C\cap D$, 
+but $\ip{c+d, x} \geq 0$ since $c+d\in\{-x\}^-$. This implies
+$\ip{c,x}=\ip{d,x}=0$, which shows $c\in C^-\cap\{-x\}^-$ and 
+$d\in D^-\cap \{-x\}^-$. This completes the proof. The tangent cone 
+formula follows by taking polars, $N^- = T$ and again using the 
+fact that $(A+B)^- = A^-\cap B^-$.
+}
+\item Prove $C^-$ is a closed convex pointed cone with nonempty 
+interior and $D^-$ is a line, and yet there is no constant $\epsilon > 0$
+satisfying 
+\begin{equation*}
+(C^-+D^-)\cap\epsilon B\subset (C^-\cap B)+(D^-\cap B).
+\end{equation*}
+(Hint: Prove equivalently there is no $\epsilon > 0$ satisfying 
+\begin{equation*}
+P(C^-)\cap \epsilon B\subset P(C^-\cap B)
+\end{equation*}
+by considering the path $\{(t^2,t^3,t)\mid t\geq0\}$ in $Q$.) Compare 
+this with the situation when $C$ and $D$ are subspaces, using the 
+Open mapping theorem (Section 4.1, Exercise 9).\\
+\bluea{
+Because polars are closed and convex, $C^-$ is closed and convex. 
+To show it is pointed, suppose $(w,x,y,z)\in (\R\times Q)\cap (S\times 
+\R)$ and $-(w,x,y,z)\in (\R\times Q)\cap (S\times \R)$. By definition 
+of $Q$, $y=z=0$, which implies $x=0$. By definition of $S$, 
+$w=y=0$, which implies $x=0$. The point $-(1,1,1,1)\in\inter(C^-)$, 
+since $1^2 < 2\cdot1\cdot1$ and $2|1|^3 < \sqrt{27}\cdot1\cdot1^2$.
+$D^-=\R\times(0,0,0)$, which is clearly a line. \\
+We prove that no $\epsilon > 0$ satisfies $P(C^-)\cap \epsilon B 
+\subset P(C^-\cap B)$. Consider the path $\{(t^2, t^{3.5}, t^{0.5})\mid 
+t\geq 0\}$ in $Q$. We examine $w$ for which $(w,t^2, t^{3.5}, t^{0,5})
+\in C^-$. We need $2t^6 \leq \sqrt{27}wt^7$, i.e. $w \geq \frac{2}{
+\sqrt{27}t}\to+\infty$ as $t\to 0$. Thus, for very small values of 
+$t,\; P(C^-)\cap \epsilon B = Q\cap \epsilon B$ contains part of the 
+path, but this part of the path is not contained in $P(C^-\cap B)$ (since 
+the size of $w$ blows up, taking the path outside $B$). \\
+Now we show the equivalence.
+\begin{equation*}
+P(C^-)\cap \epsilon B = P((C^- + D^-)\cap\epsilon B) \subset 
+P((C^-\cap B)+(D^-\cap B)) = P(C^-\cap B).
+\end{equation*}
+The first equality follows because, there is no reason for the first 
+entry of $C^-+D^-$ to be nonzero. The second equality follows because
+$D^-$ does not affect the last three coordinates. \\
+If $C$ and $D$ are subspaces, then consider the map $A: C^-\times D^-
+= (c,d)\mapsto c+d$. This is surjective if the range is set to 
+$C^- + D^-$. Thus, by the open mapping theorem, $A$ maps open sets 
+to open sets. $(C^-\cap B)\times (D^-\cap B)$ is an open set of $A$'s 
+domain containing 0, so  $0$ is in the interior of $A((C^-\cap B)
+\times( D^-\cap B))= (C^-\cap B)+(D^-\cap B)$.
+Therefore, for some $\epsilon>0$, $(C^-+D^-)\cap \epsilon B \subset 
+(C^-\cap B)+(D^-\cap B)$.
+}
+\item Consider the path 
+\begin{equation*}
+u(t) = \left(\frac{2}{\sqrt{27}}, t^2, t^3,0\right) \text{ if }t\geq 0.
+\end{equation*}
+Prove $d_C(u(t))=0$ and $d_D(u(t))=2/\sqrt{27}$ for all $t\geq 0$, and 
+yet 
+\begin{equation*}
+d_{C\cap D}(u(t))\to+\infty \text{ as }t\to+\infty.
+\end{equation*}
+(Hint: Use the isometry in Exercise 26.) \\
+\bluea{
+The point $\left(\frac{2}{\sqrt{27}}, t^2, t^3\right)$ is in 
+$S$ for every $t\geq 0$, so $u(t) \in C\supset S\times\{0\}$. 
+On the other hand, $D$'s points all have first coordinate 0, and 
+can set their next three coordinates to $t^2,t^3,0$, so $d_D(u(t))
+= 2/\sqrt{27}$. \\
+By the isometry of Exercise 26, $d_{C\cap D}(u(t))$, which is 
+$\min_{x\in\{0\}\times Q}\|u(t)-x\|$\\
+$ =  \sqrt{\min_{x\in Q}\|(t^2, t^3,0)
+- x\|^2 + 4/27}$ 
+can be reexpressed as (for now let's ignore the $\sqrt{\ldots+4/27}$)
+\begin{equation*}
+\min_{X\in\S_+^2} \left\|\begin{bmatrix} t^3 & \frac{t^2}{\sqrt{2}}
+\\ \frac{t^2}{\sqrt{2}} & 0 \end{bmatrix}-X\right\|=
+\min_{X\in\S_+} \|X\| \; : \; \begin{bmatrix}t^3 & \frac{t^2}{\sqrt{2}}
+\\ \frac{t^2}{\sqrt{2}} & 0 \end{bmatrix} + X \in \S_+^2.
+\end{equation*}
+We leverage the conversion to symmetric matrices by considering 
+eigenvalues. The trace and determinant of the matrix with $t$ in it
+are $t^3$ and $-t^4/2$. Thus, if $\lambda_1$ and $\lambda_2$ are the 
+eigenvalues,
+\begin{gather*}
+\lambda_1 + \lambda_2 = t^3, \; \lambda_1\lambda_2=\frac{t^4}{2}
+\implies \lambda_2 = \frac{t^4}{2\lambda_1}
+\implies \lambda^2 - \lambda t^3 + \frac{t^4}{2} = 0 \\
+\implies \lambda = \frac{t^3 \pm \sqrt{t^6 - 2t^4}}{2}.
+\end{gather*}
+As $t\to +\infty$, the $t$ matrix has an eigenvalue that goes to 
+$-\infty$. The min eigenvalue of $X$ plus the $t$ matrix is at least 
+the min eigenvalue of the $t$ matrix plus the max eigenvalue of 
+$X$. Thus, the max eigenvalue of $X$ must go to $+\infty$ to meet 
+the PSD constraint, which makes the norm of $X$ to go $+\infty$. This 
+shows that $d_{C\cap D}(u(t))\to +\infty$.
+}
+\end{enumerate}
+\noindent
+\textbf{28 ** (Expected surprise [18]).} An event occurs once every $n$ 
+days, with probability $p_i$ on day $i$ for $i=1,2,\ldots,n$. We seek 
+a distribution maximizing the average surprise caused by the event. 
+Define the ``surprise'' as minus the logarithm of the probability that 
+the event occurs on day $i$ given that it has not occurred so far. Using 
+Bayes conditional probability rule, our problem is 
+\begin{equation*}
+\inf\left\{S(p)\,\bigg|\,\sum_{i=1}^n p_i=1\right\},
+\end{equation*}
+where we define the function $S:\R^n\to (-\infty,+\infty]$ by 
+\begin{equation*}
+S(p) = \sum_{i=1}^n h\left(p_i, \sum_{j=i}^n p_j\right),
+\end{equation*}
+and the function $h:\R^2\to(-\infty,+\infty]$ by 
+\begin{equation*}
+h(x,y) = \begin{cases} x\log\left(\frac{x}{y}\right) &\text{if }x,y>0\\
+0 &\text{if }x\geq 0,\,y=0\\
++\infty&\text{otherwise.}\end{cases}
+\end{equation*}
+\begin{enumerate}[(a)]
+\item Prove $h$ is closed and convex using Exercise 24 (Fisher information
+function). \\
+\green{I think the second if statement should be if $x=0,\, y\geq 0$.}
+\bluea{
+We can verify that $h(x,y) = \left(xf\left(\frac{x}{y}\right)
+\right)^{**}(x,y)$ where $f(x) = -\log x$ using Exercise 24; (note 
+$-\log x$ is self dual and thus closed and convex, by Section 3.3 
+Exercise 1)
+$0^+f = \delta_{\R_+}$.
+}
+\item Hence prove $S$ is closed and convex.  \\
+\bluea{
+Sums of closed and convex functions are closed and convex; further, 
+a convex function composed with an affine function is convex. This 
+shows convexity of $S$. Finally, a closed function composed with 
+a continuous function is closed: we use the equivalence of closedness
+with lower semicontinuity. If $h$ closed, $f$ continuous, and 
+$x^i\to x$, then $f(x^i)\to f(x)$, so $h(f(x))\leq h(f(x^i))$. This 
+shows $h\circ f$ is lower semicontinuous. This proves $S$ is closed and 
+convex.
+}
+\item Prove the problem has an optimal solution.\\
+\bluea{
+The problem can be rephrased as optimizing the function $S(p)$ over 
+the probability simplex $\{p\mid \forall i\in[n],\,p_i\geq 0,\; 
+\sum_{i=1}^n p_i=1\}$. Since $x\log x$ is continuous on $\R_+$ where 
+it is defined as 0 at 0, we are in fact minimizing a continuous 
+function over a compact set, so an optimal solution exists.
+\green{(This seems kinda sketchy XD)}
+}
+\item By imitating Section 3.1, Exercise 27 (Maximum entropy), show 
+the solution $\bar p$ is unique and is expressed recursively by
+\begin{equation*}
+\bar p_1 = \mu_1,\; \bar p_k=\mu_k\left(1-\sum_{j=1}^{k-1}\bar p_j
+\right)\;\text{ for }k=2,3,\ldots,n,
+\end{equation*}
+where the numbers $\mu_k$ are defined by the recursion 
+\begin{equation*}
+\mu_n =1,\; \mu_{k-1}=\mu_ke^{-\mu_k}\;\text{ for }k=2,3,\ldots, n.
+\end{equation*}
+\bluea{
+First we show that the solution is unique. We have 
+\begin{equation*}
+\nabla^2 h(x,y) = \begin{bmatrix} \frac{1}{x} & -\frac{1}{y}\\
+-\frac{1}{y} & \frac{x}{y^2}\end{bmatrix},\quad
+\nul\nabla^2h(x,y) = \spn\left\{\begin{bmatrix} x \\ y \end{bmatrix}
+\right\}.
+\end{equation*}
+The function obtained by traveling along some line and evaluating 
+$h$, $g(t) = h(x_1+t(x_2-x_1), y_1+t(y_2-y_1))$ has second 
+derivative $g''(t) = [x_2-x_1\;y_2-y_1]\nabla^2h(\vec x_1+t(\vec x_2
+-\vec x_1))[x_2-x_1\;y_2-y_1]^\top$. This is only 0 if  
+$[x_2-x_1\;y_2-y_1]\in\spn\left\{[x_1+t(x_2-x_1)\;\;
+y_1+t(y_2-y_1)]\right\}$. Assuming $\vec x_1 \neq \vec x_2$, this 
+is equivalent to $\frac{x_1}{y_1}=\frac{x_2}{y_2}$ (also assuming 
+$\vec x_1,\vec x_2 \in\R_{++}^2$). Therefore, $g$ is strictly 
+convex as long as $\frac{x_1}{y_1}\neq \frac{x_2}{y_2}$. Now 
+consider two distinct $p,p'\in\Delta_n$. For some $i\in[n]$, we must 
+have $\frac{p_i}{\sum_{j=i}^n p_j} \neq \frac{p_i'}{\sum_{j=i}^n
+p_j'}$. Otherwise, starting with $i=1$ we would have $p_1=p_1'$, 
+and then $\frac{p_2}{\sum_{j=2}^n p_j}=\frac{p_2}{1-p_1} =
+\frac{p_2'}{1-p_1'}$ which gives $p_2=p_2'$, and etc., so that 
+$p=p'$, a contradiction. Therefore, there is an $i\in[n]$ for which 
+the $i$th term in the sum $S(p)$ is strictly convex on the line 
+between $p$ and $p'$, which is enough to show that $S$ is strictly 
+convex on $\Delta_n$ and thus has a unique minimizer. \\
+Further, if $p_i=0$ for some $i$, then for some $\hat p$ with all 
+positive entries, 
+\begin{align*}
+h'(p_i, \sum_{j=i}^n p_j; \hat p-p) &= \lim_{t\downarrow 0}
+\frac{t\hat p_i\log\left(\frac{t\hat p_i}{\sum_{j=i}^n p_j(1-t)
++ t\sum_{j=i}^n \hat p_i}\right)}{t}\\
+& =\hat p_i\log\left(\frac{
+\hat p_i}{(1-t)\sum_{j=i}^n p_i + t\sum_{j=i}^n \hat p_i}\right)
++ \hat p_i\log t\to -\infty
+\end{align*}
+Therefore, the optimum lies in the interior of $\Delta_n$ (which means 
+we can search for it by taking the gradient). Since the 
+constraint is $\vec 1^\top p = 1$, the optimum is obtained by $p^*$ 
+satisfying $\nabla S(p^*) \in \spn\vec 1$. Let's compute $\nabla S(p)$.
+\begin{align*}
+\pd{S(p)}{p_i} &= \pd{}{p_i}\left[\sum_{j\leq i} p_j\log\left(\frac{p_j}{ 
+\sum_{k=j}^n p_k}\right)\right] = 
+\pd{}{p_i}\left[p_i\log p_i - \sum_{j\leq i}p_j\log\left(\sum_{k=j}^n
+p_k\right)\right]  \\
+&= \log \left(\frac{p_i}{\sum_{j=i}^n p_j}\right) - \sum_{j\leq i}
+\frac{p_j}{\sum_{k=j}^n p_k} + 1 = c.
+\end{align*}
+Setting equal to $c$ at the end is because we are setting $\nabla S(p)
+\in \spn\vec 1$. We can let $c$ absorb the 1 on the LHS. Writing out 
+what this looks like more concretely,
+\begin{align*}
+& \log p_1 - p_1 = c \\
+& \log\left(\frac{p_2}{1-p_1}\right) - \left(p_1 + \frac{p_2}{1-p_1}\right)
+= c \\
+&\log\left(\frac{p_3}{1-p_1-p_2}\right) - \left(p_1+\frac{p_2}{1-p_1}
++ \frac{p_3}{1-p_1-p_2}\right) = c \\
+& \vdots \\
+&\log\left(\frac{p_{n-1}}{p_{n-1}+p_n}\right)-\left(p_1 + \frac{p_2}{1-p_1}
++ \ldots + \frac{p_{n-1}}{p_{n-1}+p_n}\right) = c \\
+&-\left(p_1 + \frac{p_2}{1-p_1} +\ldots + \frac{p_{n-1}}{p_{n-1}+p_n}
++ 1\right) = c.
+\end{align*}
+Denoting $\mu_i=\frac{p_i}{\sum_{j=i}^n p_j}$, we obtain the formula
+$\log \mu_i = -\sum_{j=i+1}^n \mu_j$. This 
+leads to $\log \mu_n = 0$, and for $1\leq i<n,\; \log \mu_i = \log\mu_{
+i+1} - \mu_{i+1}$. I.e., $\mu_n=1$ and $\mu_i = \mu_{i+1}e^{-\mu_{i+1}}$.
+Furthermore, since $p\in\Delta_n,\; p_1 = \mu_1$, and rearranging 
+$\mu_i = \frac{p_i}{1-\sum_{j=1}^{i-1}p_j}$ we have 
+$p_i = \mu_i\left(1-\sum_{j=1}^{i-1}p_j\right)$.
+}
+\item Deduce that the components of $\bar p$ form an increasing 
+sequence and that $\bar p_{n-j}$ is independent of $j$. \\
+\bluea{
+Clearly, the $\mu_i$'s form an increasing sequence, with 
+$\mu_i/\mu_{i-1}= e^{\mu_i}$. To check the $p_i$'s form an 
+increasing sequence, we need to verify that 
+\begin{equation*}
+p_i \geq p_{i-1}, \text{ i.e. }
+e^{\mu_i}=\frac{\mu_i}{\mu_{i-1}} \geq \frac{1-\sum_{j=1}^{i-2}p_j}{
+1-\sum_{j=1}^{i-1}p_j} = \frac{1}{1-\mu_{i-1}}.
+\end{equation*}
+But, 
+\begin{equation*}
+\frac{e^{-\mu_i}}{1-\mu_{i-1}} = \frac{e^{-\mu_i}}{1-\mu_i e^{-\mu_i}}
+= \frac{1}{e^{\mu_i} - \mu_i} \leq 1,
+\end{equation*}
+because $e^{\mu_i}-\mu_i \geq 1$. \\
+While $\bar p_{n-j}$ is not independent of $j$, clearly $\mu_{n-j}$ 
+is independent of $n$. Furthermore, since $\frac{p_i}{p_{i-1}} = 
+\frac{\mu_i}{\mu_{i-1}}(1-\mu_{i-1})$, the ratios $\frac{p_{n-j}}{
+p_{n-j-1}}$ are independent of $n$.
+}
+\item Prove $\bar p_1 \sim 1/n$ for large $n$. \\
+\bluea{
+We update the notation to $\mu^n_i$ (the current value of $n$ is 
+included as a superscript). The problem is tantamount to showing that 
+$\mu^n_1 \sim \frac{1}{n}$. We have $\mu^{n+1}_1 = \mu^n_1 \exp(-
+\mu^n_1)$, and since $x\exp(-x)$ is continuous and this sequence is 
+decreasing and bounded below by 0, the limit is a fixed point of 
+$x\mapsto \exp(-x)$, i.e. 0. Notice that \green{consulted 
+ref XD}
+\begin{equation*}
+\frac{1}{\mu^{n+1}_1}-\frac{1}{\mu^n_1} = \frac{\exp(\mu^n_1)-1}{\mu^n_1}
+\xrightarrow{n\to\infty}{}\exp'(0) = 1.
+\end{equation*}
+Thus, given $\epsilon>0$, for some $m,\;n\geq m$ implies $1-\epsilon
+\leq \mu_1^{n+1}-\mu_1^n \leq 1+\epsilon$. Therefore,
+\begin{equation*}
+\frac{1}{\frac{1}{\mu_1^m}+ (n-m)(1+\epsilon)}
+\mu_1^n = \frac{1}{\frac{1}{\mu_1^n}} \leq \frac{1}{\frac{1}{\mu_1^m}
++ (n-m)(1-\epsilon)}.
+\end{equation*}
+Taking $n\to\infty$, we obtain $\mu_1^n\to \frac{1}{n}$.
+}
+\end{enumerate}
+\end{document}
