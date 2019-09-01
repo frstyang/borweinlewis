@@ -65,7 +65,7 @@ convex if and only if its conjugate is essentially smooth.
 \item The \textit{closure} of $h$, denoted $\cl h$, is defined by 
 \begin{equation}
 \epi(\cl h) = \cl(\epi h).
-\label{4.1.6}
+\label{4.2.6}
 \end{equation}
 \end{itemize}
 \begin{proposition}[4.2.7 (Lower semicontinuity and closure)]
@@ -1057,13 +1057,18 @@ there exists a sequence $(x^i, r^i)\in\epi f$ converging to
 $(x,r)$ for some $r\in\R$, it is only true if $x\in\cl(\dom f)$.
 Thus $\dom f^{**} = \dom(\cl f)\subset \cl(\dom f)$.\\
 Now assume $x\in\dom f^{**}$.
-By part (a), $f^**(x) = \lim_{t\uparrow 1} f^{**}(y+t(x-y))$.
+By part (a), $f^{**}(x) = \lim_{t\uparrow 1} f^{**}(y+t(x-y))$.
 By Theorem 4.2.8 and Accessibility ($x\in\cl(\dom f)$),
  for all $0<t<1$, the point 
 $y+t(x-y)\in\inter(\dom f)$, so $f$ is continuous, e.g. lower 
-semicontinuous here, so equivalent to $f^**$. Therefore, 
-$f^{**}(y+t(x-y)) = f^{**}(y+t(x-y))$, so $f^{**}(x) = \lim_{t\uparrow1}
-f(y+t(x-y))$. If $x\notin\dom f^{**}$, then $x\notin$
+semicontinuous here, so equivalent to $f^{**}$. Therefore, 
+$f^{**}(y+t(x-y)) = f(y+t(x-y))$, so $f^{**}(x) = \lim_{t\uparrow1}
+f(y+t(x-y))$. Now if $x\notin \dom f^{**}$, then using 
+$f\geq f^{**}$ and lower semicontinuity of $f^{**}$,
+\begin{equation*}
+\lim_{t\uparrow1} f(y+t(x-y)) \geq \lim_{t\uparrow1} f^{**}(x+t(x-y))
+\geq f^{**}(x) = +\infty.
+\end{equation*}
 }
 \end{enumerate}
 \noindent
