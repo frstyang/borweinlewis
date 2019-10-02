@@ -1,0 +1,967 @@
+\documentclass[../borwein-lewis_notes.tex]{subfiles}
+\begin{document}
+\maketitle
+\subsection{4.3 Lagrangian Duality}
+We return to the convex program in Section 3.2: 
+\begin{equation}
+\inf\{f(x)\mid g(x)\leq 0,\; x\in \E\}.
+\label{4.3.1}
+\end{equation}
+$f$ and the components $g_1,g_2,\ldots. g_m:\E\to(-\infty,+\infty]$ 
+are convex, and satisfy $\emptyset\neq\dom f\subset \cap_1^m\,\dom g_i$.
+The Lagrangian $L:\E\times\R_+^m\to(-\infty, +\infty]$ is defined by 
+$L(x;\lambda)= f(x) + \lambda^\top g(x)$. The Lagrangian encapsulates 
+the \textit{primal} \eqref{4.3.1}: 
+\begin{equation*}
+\sup_{\lambda\in\R_+^m} L(x;\lambda)=\begin{cases} f(x) &\text{ if }x 
+\text{ is feasible}\\
++\infty & \text{ otherwise},
+\end{cases}
+\end{equation*}
+so if the optimal value of \eqref{4.3.1} is $p\in[-\infty,+\infty]$, 
+\begin{equation}
+\label{4.3.2}
+p=\inf_{x\in\E}\sup_{\lambda\in\R_+^m} L(x;\lambda).
+\end{equation}
+This makes it natural to consider the associated problem 
+\begin{equation}
+d = \sup_{\lambda\in\R_+^m}\inf_{x\in\E} L(x;\lambda)
+\label{4.3.3}
+\end{equation}
+where $d\in[-\infty,+\infty]$ is called the \textit{dual value}. The 
+\textit{dual problem} consists of maximizing over vectors $\lambda\in
+\R_+^m$ the \textit{dual function} $\Phi(\lambda)=\inf_{x\in\E}L(x;
+\lambda)$. The ``weak duality inequality'' $p\geq d$ holds and 
+$\Phi$ is concave. \\
+If $p>d$ (Exercise 5) then we say there is a \textit{duality gap}. We 
+investigate when there is no duality gap by considering the primal 
+value function $v:\R^m\to[-\infty,+\infty]$:
+\begin{equation}
+v(b) = \inf\{f(x)\mid g(x)\leq b\}.
+\label{4.3.4}
+\end{equation}
+\begin{proposition}[4.3.5 (Dual optimal value)]
+\begin{enumerate}
+\item The primal optimal value $p$ is $v(0)$.
+\item The conjugate of the value function satisfies 
+\begin{equation*}
+v^*(-\lambda) = \begin{cases} -\Phi(\lambda) & \text{ if }\lambda\geq 0\\
++\infty & \text{ otherwise.}
+\end{cases}
+\end{equation*}
+\item The dual optimal value $d$ is $v^{**}(0)$.
+\end{enumerate}
+\label{4.3.5}
+\end{proposition}
+\begin{corollary}[4.3.6 (Zero duality gap)]
+Suppose the value of the primal problem \eqref{4.3.1} is finite. Then
+the primal and dual values are equal if and only if the value function
+is lower semicontinuous at 0. In this case the set of optimal 
+dual solutions is $-\partial v(0)$.
+\label{4.3.6}
+\end{corollary}
+\begin{theorem}[4.3.7 (Dual attainment)]
+If the Slater condition holds for the primal problem \eqref{4.3.1} 
+then the primal and dual values are equal, and the dual value is 
+attained if finite. 
+\label{4.3.7}
+\end{theorem}
+An indirect way of stating the Slater condition is that there is a point 
+$\bar x\in\E$ for which the set $\{\lambda\in\R_+^m\mid L(\hat x;
+\lambda)\geq\alpha\}$ is compact for all real $\alpha$.
+\begin{theorem}[4.3.8 (Primal attainment)]
+Suppose that the functions 
+\begin{equation*}
+f, g_1, g_2,\ldots, g_m : \E\to(-\infty,+\infty]
+\end{equation*}
+are closed and that for some real $\hat\lambda_0\geq 0$ and some 
+$\hat\lambda\in\R_+^m$, the function $\hat\lambda_0 f+\hat\lambda^\top
+g$ has compact level sets. Then the value function $v$ defined by 
+equation \eqref{4.3.4} is closed, and the infimum in this equation is 
+attained when finite. Consequently, if the functions $f,g_1,g_2,
+\ldots, g_m$ are, in addition, convex and the dual value for the 
+problem \eqref{4.3.1} is not $-\infty$, then the primal and dual values 
+$p$ and $d$ are equal, and the primal value is attained when finite.
+\label{4.3.8}
+\end{theorem}
+\subsection{Exercises for 4.3}
+\textbf{1 (Weak duality).} Prove that the primal and dual values $p$ 
+and $d$ defined by equations \eqref{4.3.2} and \eqref{4.3.3} satisfy
+$p\geq d$. 
+\bluea{
+\begin{proof}
+$v^{**}\leq v$, so $d=v^{**}(0)= v$ (Proposition 4.3.5).
+\end{proof}
+}
+\noindent
+\textbf{2. }Calculate the Lagrangian dual of the problem in Section 
+3.2, Exercise 3. 
+\bluea{
+\begin{proof}
+The Lagrangian is 
+\begin{equation*}
+L(x;\lambda) = \sum_{i=1}^n \frac{c_i}{x_i} + \lambda(\ip{a,x}-b).
+\end{equation*}
+Minimizing over $x$ to obtain the dual, 
+\begin{equation*}
+-\diag(c)\frac{1}{x^2} + \lambda a = 0 \implies x = \sqrt{\diag(c)
+\frac{1}{\lambda a}}
+\end{equation*}
+Thus, the dual is 
+\begin{equation*}
+\Phi(\lambda) = 2\sqrt{\lambda} \ip{\sqrt{a},\sqrt{c}} - \lambda b.
+\end{equation*}
+\end{proof}
+}
+\noindent
+\textbf{3 (Slater and compactness).} Prove the Slater condition holds for 
+problem \eqref{4.3.1} if and only if there is a point $\hat x$ in 
+$\E$ for which the level sets 
+\begin{equation*}
+\{\lambda\in\R_+^m\mid -L(\hat x;\lambda)\leq\alpha\}
+\end{equation*}
+are compact for all real $\alpha$. 
+\bluea{
+\begin{proof}
+If the Slater condition holds, i.e. there exists a strictly feasible 
+point $\hat x$, then $g(\hat x) < 0$. Thus, $-L(\hat x;\lambda)
+= -f(\hat x) + \lambda^\top(- g(\hat x))\geq -f(\hat x)
++(\max_i \lambda_i)(\min_i g(\hat x))$, so $\max_i\lambda_i 
+\leq \frac{\alpha+f(\hat x)}{\min_i g(\hat x)}$. This implies the 
+level set is bounded:
+\begin{equation*}
+\{\lambda\in\R_+^m \mid -L(\hat x;\lambda)\leq \alpha\}
+\subset \{\lambda\in\R_+^m \mid \forall i\in[m],\, 0\leq\lambda_i
+\leq \frac{\alpha+f(\hat x)}{\min_i g(\hat x)}\}.
+\end{equation*}
+The level set is closed because $-L(\hat x;\lambda)$ is continuous in 
+$\lambda$, and the intersection with the closed set $\R_+^m$ is closed.
+Thus, the level set is compact.
+\end{proof}
+}
+\noindent
+\textbf{4 (Examples of duals).} Calculate the Lagrangian dual problem for 
+the following problems (for given vectors $a^1, a^2,\ldots, a^m$, and 
+$c\in\R^n$).
+\begin{enumerate}[(a)]
+\item The \textit{linear program}
+\begin{equation*}
+\inf_{x\in\R^n}\{\ip{c,x}\mid\ip{a^i,x}\leq b_i\text{ for }i=1,2,\ldots,m
+\}.
+\end{equation*}
+\bluea{
+\begin{equation*}
+L(x;\lambda) = \ip{c,x} + \sum_{i=1}^m \lambda_i(\ip{a^i, x}- b)
+= \ip{c+\sum_{i=1}^m \lambda_i a^i, x} - \lambda^\top b.
+\end{equation*}
+Therefore, the dual is 
+\begin{equation*}
+\Phi(\lambda)=
+\inf_{x\in\R^n} L(x;\lambda) = -\lambda^\top b + \inf_{x\in\R^n}
+\ip{c+\sum_{i=1}^m \lambda_ia^i, x} = \begin{cases}
+-\lambda^\top b & \text{ if } c= -\sum_{i=1}^m \lambda_i a^i \\
+-\infty & \text{ otherwise.}
+\end{cases}
+\end{equation*}
+}
+\item Another linear program 
+\begin{equation*}
+\inf_{x\in\R^n}\{\ip{c,x}+\delta_{\R_+^n}(x)\mid\ip{a^i,x}\leq b_i
+\text{ for }i=1,2,\ldots, m\}.
+\end{equation*}
+\bluea{
+The Lagrangian is the same as above, except with $\delta_{\R_+^n}(x)$
+added. As a result, the dual is 
+\begin{equation*}
+\Phi(\lambda) = -\lambda^\top b + \inf_{x\in\R_+^n} \ip{c+\sum_{i=1}^m
+\lambda_i a^i, x} = \begin{cases} - \lambda^\top b & \text{ if } 
+c \geq -\sum_{i=1}^m \lambda_i a^i \\
+- \infty & \text{ otherwise.}
+\end{cases}
+\end{equation*}
+}
+\item The \textit{quadratic program} (for $C\in\S_{++}^n$)
+\begin{equation*}
+\inf_{x\in\R^n}\left\{\frac{x^\top Cx}{2}\,\bigg|\,
+\ip{a^i,x}\leq b_i\text{ for }i=1,2,\ldots, m\right\}.
+\end{equation*}
+\bluea{
+Denote $A = [a^1,\,a^2,\ldots,a^m]^\top$, so that the problem is 
+$\inf_{x\in\R^n}\left\{\frac{x^\top C x}{2}\,\bigg|\, Ax\leq b\right\}$.
+\begin{equation*}
+\Phi(\lambda) = \inf_{x\in\R^n}\frac{x^\top C x}{2} + \lambda^\top(Ax- b)
+= -\lambda^\top b - \frac{\lambda^\top AC^{-1}A^\top \lambda}{2}.
+\end{equation*}
+}
+\item The separable problem 
+\begin{equation*}
+\inf_{x\in\R^n}\left\{\sum_{j=1}^n p(x_j)\,\bigg|\,\ip{a^i,x}\leq b_i
+\text{ for }i=1,2,\ldots, m\right\}
+\end{equation*}
+for a given function $p:\R\to(-\infty,+\infty]$. \\
+\bluea{
+Let $A\in\R^{m\times n}$ be the matrix where $A_{ij}=a^i_j$. The 
+Lagrangian is 
+\begin{equation*}
+L(x;\lambda) = \sum_{j=1}^n p(x_j) + \sum_{i=1}^m \lambda_i(
+\ip{a^i, x}-b_i) = \sum_{j=1}^n\left\{p(x_j) + x_j\sum_{i=1}^m \lambda_i 
+a^i_j\right\} - \lambda^\top b.
+\end{equation*}
+Thus, the Lagrangian dual is 
+\begin{equation*}
+\Phi(\lambda) = \sum_{j=1}^n \inf_{x\in\R}\left\{ p(x_j) + x_j\sum_{
+i=1}^m \lambda_i a^i_j\right\} - \lambda^\top b = 
+-\lambda^\top b - \sum_{j=1}^n p^*\left(-\sum_{i=1}^m \lambda_i a^i_j
+\right).
+\end{equation*}
+}
+\item The \textit{penalized linear program}
+\begin{equation*}
+\inf_{x\in\R^n}\{\ip{c,x}+\epsilon\lb(x)\mid\ip{a^i,x}\leq b_i
+\text{ for }i=1,2,\ldots,m\}
+\end{equation*}
+for real $\epsilon > 0$. \\
+\bluea{
+The Lagrangian is 
+\begin{equation*}
+L(x;\lambda) = \ip{c,x} + \epsilon \lb(x) + \lambda^\top(Ax-b).
+\end{equation*}
+Using the previous part and the fact that $(\epsilon \lb)^*(y) 
+= \epsilon(-n + \lb(-y/\epsilon))$, we get 
+\begin{equation*}
+\Phi(\lambda) = -\lambda^\top b +\epsilon n -\epsilon\lb\left(\frac{A^\top
+\lambda+c}{\epsilon}\right).
+\end{equation*}
+}
+\end{enumerate}
+For given matrices $A_1,A_2,\ldots, A_m$, and $C\in\S^n$, calculate the 
+dual of the \textit{semidefinite program}
+\begin{equation*}
+\inf_{X\in\S_+^n} \{\tr(CX)+\delta_{\S_+^n}(X)\mid \tr(A_iX)\leq b_i
+\text{ for }i=1,2,\ldots, m\},
+\end{equation*}
+\bluea{
+The Lagrangian of the above is 
+\begin{equation*}
+L(X;\lambda) = \ip{C,X} + \delta_{\S_+^n}(X) + \sum_{i=1}^m \lambda_i(\ip{
+A_i, X}- b_i).
+\end{equation*}
+The Lagrangian dual is 
+\begin{equation*}
+\Phi(\lambda) = \begin{cases}
+-\lambda^\top b & \text{ if } C+\sum_{i=1}^m \lambda_i A_i \text{ is PSD}\\
+-\infty & \text{ otherwise.}
+\end{cases}
+\end{equation*}
+}
+and the \textit{penalized semidefinite program}
+\begin{equation*}
+\inf_{X\in\S_+^n}\{\tr(CX)+\epsilon\ld X\mid \tr(A_iX)\leq b_i
+\text{ for }i=1,2,\ldots, m\}
+\end{equation*}
+for real $\epsilon > 0$.\\
+\bluea{
+The Lagrangian is 
+\begin{equation*}
+L(X;\lambda) = \tr(CX) + \epsilon\ld X + \sum_{i=1}^m \lambda_i(\tr A_i X
+- b_i).
+\end{equation*}
+For $X\in\S_{++}^n$ we can take the gradient of 
+$\ld X = -\log\det X$ and set it equal to 0 to compute the dual:
+\begin{equation*}
+C -\epsilon X^{-1} + \sum_{i=1}^m \lambda_i A_i = 0 
+\implies X = \epsilon \left(C + \sum_{i=1}^m \lambda_i A_i\right)^{-1}.
+\end{equation*}
+If $C+\sum_{i=1}^m \lambda_i A_i$ is not PD, anyways, then 
+we can find a sequence of PD $X_k$'s which make the objective go to 
+$-\infty$. Thus, the dual is (cf part (e))
+\begin{equation*}
+\Phi(\lambda) = -\lambda^\top b + \epsilon n + \epsilon\log\det\left(
+\frac{C+\sum_{i=1}^m\lambda_i A_i}{\epsilon}\right).
+\end{equation*}
+}
+\noindent
+\textbf{5 (Duffin's duality gap, continued).} 
+\begin{enumerate}[(a)]
+\item For the problem considered in Section 3.2, Exercise 8, namely 
+\begin{equation*}
+\inf_{x\in\R^2}\{e^{x_2}\mid \|x\|-x_1\leq 0\},
+\end{equation*}
+calculate the dual function, and hence find the dual value. \\
+\bluea{
+The dual function is 
+\begin{equation*}
+\Phi(\lambda) = \inf_{x\in\R^2} e^{x_2} + \lambda(\|x\|-x_1) = 0. 
+\end{equation*}
+To see that $\Phi(\lambda) = 0$ for all $\lambda\in\R_+$, clearly if 
+$\lambda=0$ we can take $x_2\to-\infty$, which would take 
+$e^{x_2}+\lambda(\|x\|-x_1)\to 0$. Since this objective is nonnegative, 
+0 is the infimum. Even if $\lambda > 0$, consider the sequence
+ $(x^n)_{n=1}^{
+\infty}$ defined by $x^n = (n, -\sqrt{2\sqrt{n}+1/n})$. We have 
+\begin{align*}
+e^{x^n_2} + \lambda(\|x^n\|-x_1^n) &= e^{-\sqrt{2\sqrt{n}+1/n}}
++ \lambda\left(\sqrt{n^2 + 2\sqrt{n}+\frac{1}{n}} - n\right) \\
+&= e^{-\sqrt{2\sqrt{n}+1/n}} + \lambda\left(n + \frac{1}{\sqrt{n}}-n
+\right) = e^{-\sqrt{2\sqrt{n}+1/n}} + \frac{\lambda}{\sqrt{n}}\to 0.
+\end{align*}
+Thus the dual value is 0. (On the other hand, the primal value is 1).
+}
+\item Repeat part (a) with the objective function $e^{x_2}$ replaced
+by $x_2$.\\
+\bluea{
+Considering the same sequence as above shows $\Phi(\lambda)=-\infty$.
+}
+\end{enumerate}
+\noindent
+\textbf{6. }Consider the problem
+\begin{equation*}
+\inf\{\exp^*(x_1)+\exp^*(x_2)\mid x_1+2x_2-1\leq 0,\;x\in\R^2\}.
+\end{equation*}
+Write down the Lagrangian dual problem, solve the primal and dual 
+problems, and verify that the optimal values are equal.
+\bluea{
+\begin{proof}
+Using 4(d), which says that 
+\begin{equation*}
+\inf_{x\in\R^n}\left\{\sum_{j=1}^n p(x_j)\,\bigg|\,\ip{a^i, x}\leq b_i
+\text{ for }i=1,2,\ldots,m\right\}
+\lra -\lambda^\top b - \sum_{j=1}^n p^*\left(-\sum_{i=1}^m \lambda_i a^i_j
+\right),
+\end{equation*}
+the dual problem is 
+\begin{equation*}
+\sup_{\lambda\geq 0} \Phi(\lambda) = \sup_{\lambda\geq 0}\{-\lambda 
+- \exp(-\lambda) - \exp(-2\lambda)\}.
+\end{equation*}
+We calculate the optimal dual value by setting the derivative of the 
+dual objective to 0:
+\begin{equation*}
+-1 + \exp(-\lambda) + 2\exp(-2\lambda) = 0.
+\end{equation*}
+This can be solved by solving $2x^2 + x - 1 = 0$ and setting 
+$\lambda=-\log x$. We get 
+\begin{equation*}
+x = \frac{-1 \pm \sqrt{9}}{4} = -1 \text{ or }\frac{1}{2}
+\implies \lambda = -\log\frac{1}{2}.
+\end{equation*}
+The resulting dual value is $\sup_{\lambda\geq 0} = \log\frac{1}{2}
+- \frac{3}{4}$. Now let us calculate the primal value.
+\begin{equation*}
+L(x;\lambda) = \exp^*(x_1) + \exp^*(x_2) + \lambda(x_1+2x_2-1).
+\end{equation*}
+Setting the gradient with respect to $x$ to 0:
+\begin{equation*}
+\nabla L(x;\lambda) = \begin{bmatrix}
+\log x_1 + \lambda \\
+\log x_2 + 2\lambda
+\end{bmatrix} = 0. \implies \begin{bmatrix} x_1 \\ x_2 \end{bmatrix}
+= \begin{bmatrix} \exp(-\lambda) \\ \exp(-2\lambda) \end{bmatrix}.
+\end{equation*}
+By complementary slackness, we need $x_1 + 2x_2 -1 = 0$, i.e. 
+$\exp(-\lambda)+2\exp(-2\lambda)-1=0$. We found earlier that this 
+is solved by $\lambda = - \frac{1}{2}$, giving $x_1 = 1/2,\, 
+x_2 = 1/4$. The primal value is
+\begin{equation*}
+\frac{1}{2}\log\frac{1}{2} + \frac{1}{4}\log\frac{1}{4} 
+- \frac{3}{4} = \log\frac{1}{2}-\frac{3}{4},
+\end{equation*}
+matching the dual value.
+\end{proof}
+}
+\noindent
+\textbf{7. }Given a matrix $C\in\S_{++}^n$, calculate 
+\begin{equation*}
+\inf_{X\in\S_{++}^n}\{\tr(CX)\mid -\log(\det X)\leq 0\}
+\end{equation*}
+by Lagrangian duality.
+\bluea{
+\begin{proof}
+The Lagrangian is $\tr(CX)-\lambda\log(\det X)$. The dual can be 
+calculated by setting the gradient to 0:
+\begin{equation*}
+C - \lambda X^{-1} = 0 \implies X = \lambda C^{-1}.
+\end{equation*}
+This implies that the dual is 
+\begin{equation*}
+\Phi(\lambda) = \tr(\lambda I) - \lambda\log(\det \lambda C^{-1})
+= \lambda n + \frac{\log\det C}{\lambda^{n-1}}.
+\end{equation*}
+Setting the derivative equal to 0 gives 
+\begin{equation*}
+n - (n-1)\frac{\log\det C}{\lambda^n} = 0 
+\implies \lambda = \left(\frac{(n-1)}{n}\log\det C\right)^{1/n}.
+\end{equation*}
+Therefore the dual value is 
+\begin{align*}
+&\left((n-1)n^{n-1}\log\det C\right)^{1/n} + (\log\det C)^{1/n}
+\left(\frac{n}{n-1}\right)^{(n-1)/n} \\
+&\quad = (\log\det C)^{1/n}n^{n-1}(n-1)^{1/n}\left(
+1 + \frac{1}{n-1}\right) \\
+&\quad = (\log\det C)^{1/n}n^{n}(n-1)^{-(n-1)/n}
+\end{align*}
+\end{proof}
+}
+\noindent
+\textbf{8 * (Mixed constraints).} Explain why an appropriate dual for 
+the problem 
+\begin{equation*}
+\inf\{f(x)\mid g(x)\leq 0,\; h(x)=0\}
+\end{equation*}
+for a function $h:\dom f\to\R^k$ is 
+\begin{equation*}
+\sup_{\lambda\in\R_+^m,\, \mu\in\R^k} \inf_{x\in\dom f}\{f(x) + 
+\lambda^\top g(x) + \mu^\top h(x)\}.
+\end{equation*}
+\bluea{
+\begin{proof}
+Because after we convert $h(x) = 0$ to $h(x)\leq 0$ and $-h(x)\leq 0$
+in the Lagrangian we get $(\lambda_+ - \lambda_-)^\top h(x)$ where 
+$\lambda_+-\lambda_-$ can be an arbitrary vector in $\R^k$, so we 
+might as well call it $\mu$.
+\end{proof}
+}
+\noindent
+\textbf{9 (Fenchel and Lagrangian duality).} Let $\Y$ be a Euclidean 
+space. By suitably rewriting the primal Fenchel problem 
+\begin{equation*}
+\inf_{x\in\E}\{f(x) + g(Ax)\}
+\end{equation*}
+for given functions $f:\E\to (-\infty, +\infty],\, g:\Y\to(-\infty, 
++\infty]$, and linear $A:\E\to\Y$, interpret the dual Fenchel problem
+\begin{equation*}
+\sup_{\phi\in\Y}\{-f^*(A^*\phi)-g^*(-\phi)\}
+\end{equation*}
+as a Lagrangian dual problem.
+\bluea{
+\begin{proof}
+\begin{align*}
+\inf_{x\in\E} f(x)+g(Ax) = \inf_{x\in\E,b\in\Y} f(x)+g(y): Ax=b.
+\end{align*}
+The dual can be expressed as 
+\begin{equation*}
+\inf_{x\in\E,b\in\Y} f(x)+g(y)+\mu^\top(Ax-b)
+= -\sup_{x\in\E, b\in\Y} -\mu^\top Ax - f(x) +\mu^\top b - g(y)
+= -f^*(-A^\top\mu) - g^*(b).
+\end{equation*}
+\end{proof}
+}
+\noindent
+\textbf{10 (Trust region subproblem duality [175]).} Given a matrix $A$ in 
+$\S^n$ and a vector $b\in\R^n$, consider the \textit{nonconvex} problem 
+\begin{equation*}
+\inf\{x^\top Ax + b^\top x\mid x^\top x-1\leq 0,\;x\leq\R^n\}.
+\end{equation*}
+Complete the following steps to prove there is an optimal dual solution,
+with no duality gap.
+\begin{enumerate}[(i)]
+\item Prove the result when $A$ is positive semidefinite. \\
+\bluea{
+Since the problem is convex and Slater's condition holds, there is 
+zero duality gap. Also, since the objective is continuous and the 
+constraint set is compact, the optimal value is finite, which implies
+dual attainment. 
+}
+\item If $A$ is not positive definite, prove the primal optimal value 
+does not change if we replace the inequality in the constraint by an 
+equality. \\
+\bluea{
+If $A$ is not positive definite, then it has an eigenvector $v$ with 
+eigenvalue $\lambda\leq 0$. For $c\in\R$, consider that 
+\begin{equation*}
+(x+cv)^\top A(x+cv) + b^\top(x+cv) = 
+x^\top Ax + b^\top x + c^2\lambda\|v\|^2 + c(2\lambda x+b)^\top v.
+\end{equation*}
+We can choose the sign of $c$ such that this is $\leq x^\top A x 
++ b^\top x$, and choose its magnitude so that $\|x+cv\|=1$. This 
+proves that we can restrict to vectors with unit norm without worsening
+the optimal value.
+}
+\item By observing for any real $\alpha$ the equality 
+\begin{equation*}
+\min\{x^\top Ax+b^\top x\mid x^\top x =1\} = -\alpha + 
+\min\{x^\top(A +\alpha I)x + b^\top x\mid x^\top x=1\},
+\end{equation*}
+prove the general result. \\
+\bluea{
+By setting $\alpha=\lambda_n(A)$, we get $A+\alpha I$ being a PSD 
+matrix with at least one zero eigenvalue, i.e. not positive definite.
+Therefore, if $A$ is not PSD,
+\begin{align*}
+\min\{x^\top Ax+b^\top x \mid x^\top x \leq 1\} &= 
+\min\{x^\top Ax+b^\top x \mid x^\top x = 1\} \\
+&=-\alpha+\min\{x^\top(A+
+\alpha I)x + b^\top x\mid x^\top x = 1 \} \\
+&= -\alpha + \min\{x^\top (A+\alpha I)x+b^\top x \mid x^\top x \leq 1\}
+\end{align*}
+The dual of the problem on the LHS is 
+\begin{equation*}
+\Phi_1(\lambda)=\inf_{x} x^\top Ax + b^\top x + \lambda(x^\top x - 1).
+\end{equation*}
+The dual of the problem on the RHS is 
+\begin{equation*}
+\Phi_2(\lambda) = \inf_{x} -\alpha + x^\top(A+\alpha I)x + b^\top x 
++ \lambda(x^\top x - 1) = \inf_x x^\top Ax + b^\top x + (\lambda+\alpha)(
+x^\top x - 1).
+\end{equation*}
+In other words, $\Phi_2(\lambda) = \Phi_1(\lambda+\alpha)$. Therefore,
+their suprema are equal. Furthermore, $\sup_{\lambda}\Phi_2(\lambda)$ 
+is obtained. Therefore, the supremum is also obtained for $\Phi_1$.
+}
+\end{enumerate}
+\noindent
+\textbf{11. **} If there is no duality gap, prove that dual optimal
+solutions are the same as Karush-Kuhn-Tucker vectors (Section 3.2, 
+Exercise 9). 
+\bluea{
+\begin{proof}
+We assume $v(0)$ is finite; otherwise, $-\partial v(0)$ is empty, and 
+the optimal dual value is not obtained (at least I think so xD, this 
+is kinda sketchy). 
+By Section 3.2 Exercise 9, the set of KKT vectors is $-\partial v(0)$.
+By Corollary 4.3.6, the set of optimal dual solutions is $-\delta v(0)$.
+Thus, dual optimal solutions are the same as KKT vectors.
+\end{proof}
+}
+\noindent
+\textbf{12 * (Conjugates of compositions).} Consider the composition 
+$g\circ f$ of a nondecreasing convex function $g:\R\to(-\infty,+\infty]$
+with a convex function $f:\E\to(-\infty,+\infty]$. We interpret 
+$g(+\infty)=+\infty$, and we assume there is a point $\hat x\in\E$ 
+satisfying $f(\hat x)\in\inter(\dom g)$. Use Lagrangian duality to 
+prove the formula, for $\phi\in\E$, 
+\begin{equation*}
+(g\circ f)^*(\phi) = \inf_{t\in\R_+}\left\{g^*(t) + tf^*\left(
+\frac{\phi}{t}\right)\right\},
+\end{equation*}
+where we interpret 
+\begin{equation*}
+0f^*\left(\frac{\phi}{0}\right)=\delta^*_{\dom f}(\phi).
+\end{equation*}
+\bluea{
+\begin{proof}
+We can write the negative conjugate as 
+\begin{align}
+\label{gcf}
+-(g\circ f)^*(\phi) &= \inf_{x\in\E}\{g(f(x)) - \ip{\phi, x}\} 
+= \inf_{x\in\E,\,b\in\R}\{g(b)-\ip{\phi, x}\mid f(x)\leq b\}.
+\end{align}
+We used the fact that $g$ is increasing. The dual of the 
+minimization problem on the RHS is 
+\begin{align*}
+\Phi(\lambda)&=\inf_{x\in\dom f,
+\,b\in\R}\{g(b)+\lambda(f(x)-b)-\ip{\phi, x}\}.
+\end{align*}
+Note that in the beginning of the chapter, it is assumed that the 
+domain of the objective function is contained in all the domains of the 
+constraint functions. Note that we can force this by making the objective
+function take $+\infty$ outside the constraints' domains, which redefines
+its domain appropriately; furthermore, this doesn't change the value of 
+the primal, since $x$ satsifying the constraints would be in their 
+domains anyways. But, this is necessary for Lagrangian duality to work.
+In the proof of 4.3.5, the derivation beginning with $v^*(-\lambda)=$,
+in the third line it is assumed that $x\in\dom f\implies x\in\dom g_i
+\,\forall i$. \\
+For this reason, we implicitly redefine $\dom g$ in the manner referred 
+to above and take $x\in\dom f$ rather than $x\in\E$.
+If $\lambda>0$, then we can write 
+\begin{equation*}
+\Phi(\lambda) = \inf_{x\in\dom f,\,b\in\R}\left\{g(b)-\lambda b + \lambda\left(
+f(x)-\ip{\frac{\phi}{\lambda},x}\right)\right\} 
+= -g^*(\lambda) - \lambda f^*\left(\frac{\phi}{\lambda}\right).
+\end{equation*}
+If $\lambda=0$, then 
+\begin{equation*}
+\Phi(\lambda) = \inf_{x\in\dom f,\,b\in\R}\{g(b) - \ip{\phi, x}\}
+= -g^*(0) - \delta_{\dom f}^*(\phi) = -g^*(0) - 0f^*\left(\frac{\phi}{0}
+\right).
+\end{equation*}
+The existence of $\hat x$ means Slater's condition holds for the 
+minimization problem in \eqref{gcf}. Thus, by Theorem 4.3.7, 
+\begin{equation*}
+-(g\circ f)^*(\phi) = \sup_{\lambda\geq 0}\Phi(\lambda)
+\implies (g\circ f)^*(\phi) = \inf_{\lambda\geq0}\left\{g^*(\lambda)
++ \lambda f^*\left(\frac{\phi}{\lambda}\right)\right\}.
+\end{equation*}
+\end{proof}
+}
+\noindent
+\textbf{13 ** (A symmetric pair [28]).}
+\begin{enumerate}[(a)]
+\item Given real $\gamma_1,\gamma_2,\ldots, \gamma_n>0$, define 
+$h:\R^n\to(-\infty,+\infty]$ by 
+\begin{equation*}
+h(x)=\begin{cases} \prod_{i=1}^n x_i^{-\gamma_i}&\text{ if }x\in\R_{++}^n
+\\ +\infty&\text{ otherwise.}\end{cases}
+\end{equation*}
+By writing $g(x)=\exp(\log g(x))$ and using the composition formula
+in Exercise 12, prove 
+\begin{equation*}
+h^*(y) = \begin{cases} -(\gamma+1)\prod_{i=1}^n\left(\frac{-y_i}{
+\gamma_i}\right)^{\gamma_i/(\gamma+1)} & \text{ if }-y\in\R_+^n \\
++\infty & \text{ otherwise,}
+\end{cases}
+\end{equation*}
+where $\gamma=\sum_i \gamma_i$.
+\\
+\bluea{
+Note that by writing $h(x) = \exp(\sum_i -\gamma_i\log x_i)$, we see 
+that $h(x)$ is convex (increasing convex function $=\exp$ composed 
+with convex function $\sum_i-\gamma_i\log x_i$). Now by Exercise 12,
+and the facts that $\exp^*(x) = x\log x - x,\; (-\log)^*(x) = -1-\log(-x),
+\; (af)^*(x) = af^*(x/a)$ for $a>0$, 
+and $(f(x_i)+f(x_j))^*(y_i,y_j)
+= f^*(y_i) + f^*(y_j)$ for $i\neq j$, we obtain 
+\begin{align*}
+h^*(y) &= \inf_{t\geq 0}\left\{\exp^*(t) + t\sum_{i=1}^n \gamma_i\left(
+-1 - \log\left(-\frac{y_i}{t\gamma_i}\right)\right)\right\}.
+\end{align*}
+The derivative of the expression in the infimum is 
+\begin{equation*}
+\log(t) - \gamma +\gamma(\log t + 1) - \sum_{i=1}^n \gamma_i\log\left(
+\frac{-y_i}{\gamma_i}\right) = (\gamma+1)\log t - \sum_{i=1}^n \gamma_i
+\log\left(-\frac{y_i}{\gamma_i}\right).
+\end{equation*}
+This implies that the expression in the inf is minimized by 
+$t = \exp\left(\sum_{i=1}^n \frac{\gamma_i}{\gamma+1}\log\left(
+-\frac{y_i}{\gamma_i}\right)\right)$. Plugging this in,
+\begin{align*}
+h^*(y) &= (\gamma+1)\exp^*(t) - t\sum_{i=1}^n \gamma_i\log\left(-\frac{
+y_i}{\gamma_i}\right)= -(\gamma+1)t\\
+&=-(\gamma+1)\exp\left(\sum_{i=1}^n\frac{\gamma_i}{\gamma+1}\log\left(
+-\frac{y_i}{\gamma_i}\right)\right) = -(\gamma+1)\prod_{i=1}^n 
+\left(-\frac{y_i}{\gamma_i}\right)^{\frac{\gamma_i}{\gamma+1}}.
+\end{align*}
+}
+\item Given real $\alpha_1,\alpha_2,\ldots,\alpha_n > 0$, define $\alpha
+= \sum_i\alpha_i$ and suppose a real $\mu$ satisfies $\mu>\alpha+1$. Now 
+define a function $f:\R^n\times\R\to(-\infty,+\infty]$ by 
+\begin{equation*}
+f(x,s)=\begin{cases} \mu^{-1}s^{\mu}\prod_i x_i^{-\alpha_i}
+&\text{if }x\in\R_{++}^n,\, s\in\R_+ \\
++\infty &\text{otherwise.}\end{cases}
+\end{equation*}
+Use part (a) to prove 
+\begin{equation*}
+f^*(y,t) = \begin{cases} \rho\nu^{-1} t^{\nu}\prod_i(-y_i)^{-\beta_i}
+&\text{if }-y\in\R_{++}^n,\,t\in\R_+ \\
++\infty &\text{otherwise}\end{cases}
+\end{equation*}
+for constants 
+\begin{equation*}
+\nu = \frac{\mu}{\mu-(\alpha+1)},\;\beta_i=\frac{\alpha_i}{\mu-(\alpha+1)},
+\; \rho=\prod_i\left(\frac{\alpha_i}{\mu}\right)^{\beta_i}.
+\end{equation*}
+\bluea{
+Let us calculate the convex conjugate of $f$:
+\begin{align*}
+f^*(y,t) &= \sup_{x,s}\ip{\phi,x} + ts - \frac{s^{\mu}}{\mu}\prod_{i=1}^n
+x_i^{-\alpha_i} \\
+&= \sup_x\frac{s^{\mu}}{\mu}\sup_x\left\{\frac{\mu}{s^{\mu}}\ip{\phi,x}
++ \frac{\mu t}{s^{\alpha-1}} - \prod_{i=1}^n x_i^{-\alpha_i}\right\} \\
+&= \sup_x \frac{s^{\mu}}{\mu}\left\{\frac{\mu t}{s^{\mu-1}} + h^*\left(
+\frac{\mu}{s^{\mu}}\phi\right)\right\} \\
+&= \sup_s\frac{s^{\mu}}{\mu}\left\{\frac{\mu t}{s^{\mu - 1}} - 
+(\alpha+1)\prod_{i=1}^n \left(-\frac{\phi_i\mu}{\alpha_i s^{\mu}}\right)^{
+\frac{\alpha_i}{\alpha+1}}\right\} \\
+&= \sup_s\left\{st - (\alpha+1)\prod_{i=1}^n\left(-\frac{\phi_i}{\alpha_i}
+\right)^{\frac{\alpha_i}{\alpha+1}}\left(\frac{s^{\mu}}{\mu}\right)^{\frac{
+1}{\alpha+1}}\right\}
+\end{align*}
+Taking the derivative with respect to $s$ and setting it equal to 0,
+\begin{gather*}
+t - (\alpha+1)\left(\prod_{i=1}^n\left(-\frac{\phi_i}{\alpha_i}\right)^{
+\frac{\alpha_i}{\alpha+1}}\right)\left(\frac{\mu}{\alpha+1}\right)
+\left(\frac{s^{\frac{\mu-(\alpha+1)}{\alpha+1}}}{\mu^{1/(\alpha+1)}}\right)
+\\
+\implies s = t^{\frac{\alpha+1}{\mu-(\alpha+1)}}\mu^{\frac{-\alpha}{\mu
+- (\alpha+1)}}\prod_{i=1}^n\left(-\frac{\phi_i}{\alpha_i}\right)^{-
+\frac{\alpha_i}{\mu-(\alpha+1)}}.
+\end{gather*}
+Therefore, 
+\begin{align*}
+f^*(y,t) &= t^{\frac{\mu}{\mu-(\alpha+1)}}\mu^{\frac{-\alpha}{\mu
+- (\alpha+1)}}\prod_{i=1}^n\left(-\frac{y_i}{\alpha_i}\right)^{-
+\frac{\alpha_i}{\mu-(\alpha+1)}} \\
+&- (\alpha+1)\prod_{i=1}^n\left(
+-\frac{y_i}{\alpha_i}\right)^{\frac{\alpha_i}{\alpha+1}}\mu^{-1/(
+\alpha+1)}t^{\frac{\mu}{\mu-(\alpha+1)}}\mu^{-\frac{\alpha\mu}{(
+\alpha+1)(\mu-(\alpha+1))}}\prod_{i=1}^n\left(-\frac{y_i}{\alpha_i}
+\right)^{-\frac{\alpha_i\mu}{(\alpha+1)(\mu-(\alpha+1))}} \\
+&=t^{\frac{\mu}{\mu-(\alpha+1)}}\mu^{\frac{-\alpha}{\mu
+- (\alpha+1)}}\prod_{i=1}^n\left(-\frac{y_i}{\alpha_i}\right)^{-
+\frac{\alpha_i}{\mu-(\alpha+1)}} - (\alpha+1)\prod_{i=1}^n 
+\left(-\frac{y_i}{\alpha_i}\right)^{-\frac{\alpha_i}{\mu-(\alpha+1)}}
+t^{\frac{\mu}{\mu-(\alpha+1)}}\mu^{-\frac{1}{\alpha+1}\frac{\alpha\mu
++ \mu-(\alpha+1)}{\mu-(\alpha+1)}} \\
+&= t^{\frac{\mu}{\mu-(\alpha+1)}}\prod_{i=1}^n\left(-\frac{y_i}{\alpha_i
+}\right)^{-\frac{\alpha_i}{\mu-(\alpha+1)}}\mu^{-\frac{\alpha}{\mu-(
+\alpha+1)}}\left(1-(\alpha+1)\mu^{-1}\right) \\
+&= t^{\nu}\prod_{i=1}^n\left(\frac{\alpha_i}{\mu}\right)^{\beta_i}
+\prod_{i=1}^n(-y_i)^{-\beta_i} \nu^{-1}.
+\end{align*}
+This proves the desired statement.
+}
+\item Deduce $f=f^{**}$, where $f$ is convex.\\
+\bluea{
+Note that for a function $f(x,s)$, we have $(f(-\cdot, \cdot))^*(y,t)
+=\sup\{\ip{-y,-x} + ts - f(-x,s)\} = f^*(-y,t)$. Therefore, if 
+$g(y,t) = \nu^{-1}t^{\nu}\prod_{i=1}^n y_i^{-\beta_i}$, then applying 
+(b)
+\begin{equation*}
+g^*(x,t) = \prod_{i=1}^n\left(\frac{\beta_i}{\nu}\right)^{
+\alpha_i^*}\mu^{*-1}t^{\mu^*}\prod_{i=1}^n (-x_i)^{-\alpha_i^*}
+\end{equation*}
+where 
+\begin{align*}
+\mu^* &= \frac{\nu}{\nu - (\beta+1)} = \frac{\frac{\mu}{\mu-(\alpha+1)}}{
+\frac{\mu}{\mu-(\alpha+1)} - \frac{\alpha}{\mu-(\alpha+1)} - 1 }
+= \frac{\mu}{\mu-(\mu-1)} = \mu, \\
+\alpha_i^* &= \frac{\beta_i}{\nu - (\beta+1)} = \frac{\frac{\alpha_i}{
+\mu-(\alpha+1)}}{\frac{\mu}{\mu-(\alpha+1)} - \frac{\alpha}{\mu-(\alpha+1)}
+- 1} = \frac{\alpha_i}{\mu-(\mu-1)}=\alpha_i.
+\end{align*}
+Therefore, in fact 
+\begin{equation*}
+g^*(x,t) = \prod_{i=1}^n \left(\frac{\alpha_i}{\mu}\right)^{\alpha_i}
+\mu^{-1}t^{\mu}\prod_{i=1}^n(-x_i)^{-\alpha_i} 
+= \rho^{\mu-(\alpha+1)}\mu^{-1}t^{\mu}\prod_{i=1}^n(-x_i)^{-\alpha_i}
+\end{equation*}
+By part (b) again, $f^*(y,t) = \rho g(-y, t)$. Therefore, 
+\begin{align*}
+f^{**}(x,s) &= (\rho g(-y,t))^*(x,s) = \rho g^*\left(-\frac{x}{\rho},
+\frac{s}{\rho}\right) \\
+&= \rho^{\mu-\alpha}\mu^{-1}\left(\frac{s}{\rho}\right)^{\mu}
+\prod_{i=1}^n\left(\frac{x_i}{\rho}\right)^{-\alpha_i} \\
+&= \mu^{-1}s^{\mu}\prod_{i=1}^n x_i^{-\alpha_i} = f(x,s).
+\end{align*}
+}
+\item Give an alternative proof of the convexity of $f$ by using Section
+4.2, Exercise 24(a) (Fisher information function) and induction.\\
+\bluea{
+Suppose $\mu > \alpha+1$. Define $\alpha_{n+1} = \mu-(\alpha+1)>0$. 
+Denote $\tilde x = (x,x_{n+1})\in\R^{n+1}$. Define $h(\tilde x)
+= \prod_{i=1}^{n+1} x_i^{-\alpha_i}$. $g(\tilde x, s) = sh\left(\frac{
+\tilde x}{s}\right)$. By 4.2 Exercise 24, $g$ is convex (note in 
+part $a$, we showed $h$ is convex. In fact, it is strictly convex,
+being the composition of a convex, strictly increasing function, 
+$\exp$, with a strictly convex function.). Thus,
+\begin{align*}
+g(\tilde x, s) &= s\prod_{i=1}^{n+1}\left(\frac{x_i}{s}\right)^{-\alpha_i}
+= s^{1+\sum_{i=1}^{n+1}\alpha_i}\prod_{i=1}^{n+1} x_i^{-\alpha_i}
+= s^{\mu}\prod_{i=1}^{n+1}x_i^{-\alpha_i}.
+\end{align*}
+The function $f(x,s)=g(x,1,s)$. Therefore, $f$ is convex.
+}
+\item Prove $f$ is strictly convex.\\
+\bluea{
+We argued above $h$ is strictly convex. Now we show that $f$ is 
+strictly convex using the fact that
+\begin{equation*}
+g(x,s) + g(y,t) = g(x+y, s+t) \iff \frac{x}{s} = \frac{y}{t}.
+\end{equation*}
+Suppose $(x_1,s_1)\neq (x_2,s_2)$, and $\lambda\in(0,1)$.
+\begin{align*}
+\lambda f(x_1, s_1) + (1-\lambda)f(x_2, s_2) &= \lambda g(x_1, 1, s_1)
++ (1-\lambda)g(x_2,1,s_2) \\
+&= g(\lambda x_1, \lambda, \lambda s_1) + g((1-\lambda)x_2, (1-\lambda),
+(1-\lambda)s_2) \\
+&> g(\lambda x_1 + (1-\lambda)x_2, 1, \lambda s_1 + (1-\lambda)s_2)\\
+&= f(\lambda x_1 + (1-\lambda)x_2, \lambda s_1 + (1-\lambda)s_2).
+\end{align*}
+Now we argue the inequality, by showing 
+\begin{equation*}
+\frac{(\lambda x_1, \lambda)}{\lambda s_1} \neq \frac{((1-\lambda)x_2,
+,1-\lambda)}{(1-\lambda)s_2}
+\iff \frac{(x_1,1)}{s_1} \neq \frac{(x_2,1)}{s_2}.
+\end{equation*}
+If $s_1\neq s_2$, we are done, because the last coordinates 
+$1/s_1,1/s_2$ don't equal. If $s_1=s_2$, by assumption 
+$x_1\neq x_2$, therefore $x_1/s_1 \neq x_2/s_2=x_2/s_1$. Thus $f$ is 
+strictly convex.
+}
+\end{enumerate}
+\textbf{14 ** (Convex minimax theory).} Suppose that $\Y$ is a Euclidean 
+space, that the sets $C\subset\Y$ and $D\subset\E$ are nonempty, and 
+consider a function $\psi:C\times D\to\R$.
+\begin{enumerate}[(a)]
+\item Prove the inequality 
+\begin{equation*}
+\sup_{y\in D}\inf_{x\in C}\psi(x,y)\leq \inf_{x\in C}\sup_{y\in D}\psi(x,y).
+\end{equation*}
+\bluea{
+Take $\sup$ over $y\in D$ on the left and $\inf$ over $x\in C$ on the 
+right of the following inequality which holds for all $(x,y)\in C\times D$:
+\begin{equation}
+\label{lagsiblah}
+\inf_{x'\in C}\psi(x',y) \leq \psi(x,y) \leq \sup_{y'\in D}\psi(x,y').
+\end{equation}
+}
+\item We call a point $(\bar x,\bar y)$ in $C\times D$ a 
+\textit{saddlepoint} if it satisfies 
+\begin{equation*}
+\psi(\bar x, y)\leq \psi(\bar x,\bar y)\leq \psi(x,\bar y)\;\text{ for all }
+x\in C,\;y\in D.
+\end{equation*}
+In this case prove 
+\begin{equation*}
+\sup_{y\in D}\inf_{x\in C}\psi(x,y)=\psi(\bar x,\bar y)=\inf_{x\in C}\sup_{
+y\in D}\psi(x,y).
+\end{equation*}
+\bluea{
+The assumed inequality directly implies that 
+\begin{equation*}
+\sup_{y\in D}\psi(\bar x,y) = \psi(\bar x,\bar y) = \inf_{x\in C}\psi(x,
+\bar y).
+\end{equation*}
+Therefore, $\inf_{x\in C}\sup_{y\in D} \psi(x, y) \leq \sup_{y\in D}
+\inf_{x\in C}\psi(x,y)$. Part (a) provides the reverse inequality, 
+proving the equality.
+}
+\item Suppose the function $p_y:\E\to(-\infty,+\infty]$ defined by 
+\begin{equation*}
+p_y(x)=\begin{cases} \psi(x,y) &\text{ if }x\in C\\ +\infty &\text{otherwise
+}\end{cases}
+\end{equation*}
+is convex, for all $y$ in $D$. Prove the function $h:\Y\to[-\infty,+\infty]$
+defined by 
+\begin{equation*}
+h(z)=\inf_{x\in C}\sup_{y\in D}\{\psi(x,y)+\ip{z,y}\}
+\end{equation*}
+is convex. \\
+\bluea{
+$\phi(x,z) = \sup_{y\in D}\{\psi(x,y) + \ip{z,y}\}$, being a supremum
+over convex functions of $x$ and $z$, is convex in $x$ and $z$. We'll show
+that if $\phi$ satisfies this property, then $h(z)=\inf_{x\in C}\phi(x,z)$
+is convex. Let $z_1,z_2\in\Y$ and $\lambda\in(0,1)$.
+\begin{align*}
+\inf_{x\in C}\phi(x,\lambda z_1 + (1-\lambda)z_2) 
+&= \inf_{\substack{x\in C,\; u,v\in C:\\
+ \lambda u + (1-\lambda)v = x}} \phi(\lambda u + (1-\lambda)v, 
+\lambda z_1 + (1-\lambda)z_2) \\
+&= \inf_{u,v\in C}\phi(\lambda u + (1-\lambda) v, \lambda z_1 + (1-\lambda)
+z_2) \\
+&\leq \inf_{u,v\in C}\{\lambda\phi(u, z_1) + (1-\lambda)\phi(v,z_2)\} \\
+&= \lambda \inf_x \phi(x, z_1) + (1-\lambda)\inf_x \phi(x, z_2).
+\end{align*}
+For the second inequality, we used the fact that $C$ is convex (follows 
+from convexity of $p_y$) to equate the constraint $u,v\in C,\; 
+\lambda u + (1-\lambda)v = x\in C$ to $u,v\in C$.
+}
+\item Suppose the function $q_x:\Y\to(-\infty,+\infty]$ defined by 
+\begin{equation*}
+q_x(y)=\begin{cases} -\psi(x,y) &\text{if }y\in D\\ +\infty&\text{otherwise}
+\end{cases}
+\end{equation*}
+is closed and convex for all points $x$ in $C$. Deduce 
+\begin{equation*}
+h^{**}(0)=\sup_{y\in D}\inf_{x\in C}\psi(x,y).
+\end{equation*}
+\bluea{
+\begin{align*}
+h^{**}(0) &= \sup_{\phi}\{-h^*(\phi) \}
+= \sup_{\phi}\{
+-\sup_{z}\{\ip{\phi, z} - \inf_{x\in C}\sup_{y\in D}[\psi(x,y)
++\ip{z,y}]\}\} \\
+&= \sup_{\phi}\inf_{x\in C,\,z}\{-\ip{\phi, z}+\sup_{y\in D}
+[\psi(x,y)+\ip{z,y}]\}\\
+&= \sup_\phi\inf_{x\in C,\,z}\{-\ip{\phi, z}+q_x^*(z)\} \\
+&= \sup_\phi\inf_{x\in C}\{-q_x^{**}(\phi)\} \\
+&= \sup_{\phi}\inf_{x\in C}\{-q_x(\phi)\} \\
+&= \sup_{y\in D}\inf_{x\in C}\psi(x,y).
+\end{align*}
+The second to last equality follows because $q_x:\Y\to(-\infty,+\infty]$
+is closed and convex (Theorem 4.2.1, Fenchel biconjugation).
+}
+\item Suppose that for all points $y$ in $D$ the function $p_y$ defined in 
+part (c) is closed and convex, and that for some point $\hat y$ in $D$, 
+$p_{\hat y}$ has compact level sets. If $h$ is finite at 0, prove it is 
+lower semicontinuous there. If the assumption in part (d) also holds, 
+deduce 
+\begin{equation*}
+\sup_{y\in D}\inf_{x\in C}\psi(x,y) = \min_{x\in C}\sup_{y\in D}\psi(x,y).
+\end{equation*}
+\bluea{
+Let $(z^r, s^r),\,r\in\Z_+$ be a sequence in $\epi h$ converging to $(z,s)$.
+This implies that for every $r$, we can find an $x^r\in C$ such that 
+\begin{equation*}
+\sup_{y\in D}\{\psi(x^r,y)+\ip{z^r,y}\} \leq s^r+r^{-1},\;\text{ i.e. }\;
+\forall y\in D,\, \psi(x^r, y) + \ip{z^r,y}\leq s^r+r^{-1}.
+\end{equation*}
+In particular, $p_{\hat y}(x^r) \leq s^r+r^{-1}-\ip{z^r,\hat y}\to s-\ip{z,
+\hat y}.$ Since $p_{\hat y}$ has bounded level sets, this means $(x^r)_{
+r\in\Z_+}$ is a bounded sequence and we can take a convergent subsequence.
+Let the limit be $x^*$.
+Since $p_y(\cdot)=\psi(\cdot,y)$ is closed for every $y$, we have 
+$\psi(x^*, y) + \ip{z, y} \leq s$ for every $y\in D$, i.e. 
+$\sup_{y\in D}\{\psi(x^*, y)+\ip{z,y}\}\leq s$. Thus, $h(z) \leq s$.
+This proves $\epi h$ is closed. Therefore, $h$ is closed, i.e. lower 
+semicontinuous, and convex with part (d).
+ By Theorem 4.2.8, if $h$ is finite at 0, then 
+$h(0) = h^{**}(0)$, i.e. $\inf_{x\in C}\sup_{y\in D}\psi(x,y) 
+= \sup_{y\in D}\inf_{x\in C}\psi(x,y)$. The infimum is obtained 
+because we can apply our above argument to the sequence $(0, h(0))$.
+}
+\item Suppose the functions $f,g_1,g_2,\ldots, g_s:\R^t\to(-\infty,+\infty]$
+are closed and convex. Interpret the above results in the following 
+two cases: 
+\begin{enumerate}[(i)]
+\item $C=(\dom f)\cap\left(\bigcap_{i=1}^s \dom g_i\right),\; D=\R_+^s,
+\; \psi(u,w)=f(u)+\sum_{i=1}^s w_i g_i(u)$. \\
+\bluea{
+In this case, the above is a reformulation of Lagrangian duality.
+We can see that 
+\begin{align*}
+&\inf_{u\in C}\sup_{w\in D} \psi(u,w) = \inf\{f(u)\mid g(u) \leq 0\}\\
+&\sup_{w\in D}\inf_{u\in C}\psi(u,w) = \sup_{w\in\R_+^s}\Phi(w),
+\end{align*}
+where $\Phi$ is the dual function. $p_x$ and $q_y$ are both closed and 
+convex here for all $x,y\in C\times D$. $h$ is essentially the value 
+function, and part (e) is basically Theorem 4.3.8.
+}
+\item $C=\R_+^s,\; D= (\dom f)\cap\left(\bigcap_{i=1}^s \dom g_i\right),\;
+\psi(u,w)=-f(w)-\sum_{i=1}^s u_ig_i(w)$. \\
+\bluea{
+\begin{align*}
+&\sup_{w\in D}\inf_{u\in \R_+^s}\{-f(w)-\sum_{i=1}^s u_i g_i(w)\} = 
+\sup\{-f(w) : g(w)\leq 0\} \\
+&\inf_{u\in\R_+^s}\sup_{w\in D}\{-f(w)-\sum_{i=1}^s u_i g_i(w)\}
+= \inf_{u\in\R_+^s}\{-\Phi(u)\}.
+\end{align*}
+This problem is basically the negative of the above problem, why bother
+considering it.
+}
+\end{enumerate}
+\item (\textbf{Kakutani [109]}) Suppose that the nonempty sets $C\subset\Y$ 
+and $D\subset\E$ are compact and convex, that the function $\psi(C\times D)
+\to \R$ is continuous, that $\psi(x,y)$ is convex in the variable $x$ for 
+all fixed $y\in D$, and that $-\psi(x,y)$ is convex in the variable 
+$y$ for all points $x\in C$. Deduce $\psi$ has a saddlepoint. \\
+\bluea{
+Since $C$ is compact, $p_y(\cdot)$ has compact level sets for some 
+$y\in D$ (also, for all $y\in D$). By continuity of $\psi,\;
+p_y$ and $q_x$ are closed for all $(x,y)\in C\times D$. By the assumption
+on $\psi$ and convexity of $C$ and $D$, these functions are also convex.
+Therefore, by part (e), 
+\begin{equation*}
+\sup_{y\in D}\inf_{x\in C}\psi(x,y) = \min_{x\in C}\sup_{y\in D}\psi(x,y).
+\end{equation*}
+Moreover, for the function $-\psi(x,y)$, if we swap $C$ and $D$ all 
+the necessary assumptions go through, and we have 
+\begin{align*}
+&\sup_{x\in C}\inf_{y\in D}\{-\psi(x,y)\} = \min_{y\in D}\sup_{x\in C}\{
+-\psi(x,y)\} \\
+\iff & \inf_{x\in C}\sup_{y\in D}\psi(x,y) = \max_{y\in D}\inf_{x\in C}
+\psi(x,y).
+\end{align*}
+This gives $(\bar x,\bar y)\in C\times D$ such that 
+\begin{equation*}
+\sup_{y\in D}\psi(\bar x,y) = \inf_{x\in C}\psi(x, \bar y).
+\end{equation*}
+$\psi(\bar x,\bar y)$ lower bounds the LHS and upper bounds the RHS, 
+meaning $\psi(\bar x, \bar y) = \sup_{y\in D}\psi(\bar x,y)= 
+\inf_{x\in C}\psi(x,\bar y) = \inf\sup\psi = \sup\inf\psi$, 
+$(\bar x,\bar y)$ is a saddlepoint.
+}
+\end{enumerate}
+\end{document}
